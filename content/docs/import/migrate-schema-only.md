@@ -25,15 +25,15 @@ pg_dump --schema-only \
 ```
 
 - With the `--schema-only` option, only object definitions are dumped. Data is excluded.
-- The `--no-privileges` option prevents dumping privileges. Neon may not support the privileges you've defined elsewhere, or if dumping a schema from Neon, there maybe Neon-specific privileges that cannot be restored to another database.
+- The `--no-privileges` option prevents dumping privileges. Jambo may not support the privileges you've defined elsewhere, or if dumping a schema from Jambo, there maybe Jambo-specific privileges that cannot be restored to another database.
 
 <Admonition type="tip">
-- When you're dumping or restoring on Neon, you can input your Neon connection string in place of `postgresql://role:password@hostname:5432/dbname`. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
+- When you're dumping or restoring on Jambo, you can input your Jambo connection string in place of `postgresql://role:password@hostname:5432/dbname`. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
 </Admonition>
 
 ## Review and modify the dumped schema
 
-After dumping a schema to an `.sql` file, review it for statements that you don't want to replicate or that won't be supported on your destination database, and comment them out. For example, when dumping a schema from AlloyDB, you might see statements like the ones shown below, which you can comment out if you're loading the schema into Neon, where they won't be supported. Generally, you should remove any parameters configured on another Postgres provider and rely on Neon's default Postgres settings.
+After dumping a schema to an `.sql` file, review it for statements that you don't want to replicate or that won't be supported on your destination database, and comment them out. For example, when dumping a schema from AlloyDB, you might see statements like the ones shown below, which you can comment out if you're loading the schema into Jambo, where they won't be supported. Generally, you should remove any parameters configured on another Postgres provider and rely on Jambo's default Postgres settings.
 
 If you are replicating a large dataset, also consider removing any `CREATE INDEX` statements from the resulting dump file to avoid creating indexes when loading the schema on the destination database (the subscriber). Taking indexes out of the equation can substantially reduce the time required for initial data load performed when starting logical replication. Save the `CREATE INDEX` statements that you remove. You can add the indexes back after the initial data copy is completed.
 

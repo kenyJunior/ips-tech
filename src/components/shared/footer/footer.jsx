@@ -39,9 +39,11 @@ const Footer = ({ hasThemesSupport = false, theme = null }) => {
             </div>
           </div>
           <div className="flex flex-col gap-x-1 gap-y-3 text-[13px] leading-none tracking-extra-tight text-gray-new-40 lg:flex-row lg:self-end lg:leading-tight sm:flex-col sm:self-start">
-            <p>Made in SF and the World</p>
+            <p>Based in Logbaba, Douala Cameroun</p>
+            <p>Contact : +237 675 261 568 / 695 504 274</p>
+            <p>E-mail : info@ips.cm / info@ipstech.cm</p>
             <p>
-              <span className="lg:hidden">Copyright </span>Ⓒ 2022 – 2025 Neon, Inc.
+              <span className="lg:hidden">Copyright </span>Ⓒ 2025 IPS Technologies.
             </p>
           </div>
         </div>

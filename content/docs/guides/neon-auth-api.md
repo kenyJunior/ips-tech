@@ -1,37 +1,37 @@
 ---
-title: Manage Neon Auth using the API
+title: Manage Jambo Auth using the API
 enableTableOfContents: true
 updatedOn: '2025-02-21T13:30:24.355Z'
 ---
 
-Learn how to manage your Neon Auth integration using the Neon API. Create a new integration, generate SDK keys, add users, and claim ownership of your Neon-managed auth project to your auth provider.
+Learn how to manage your Jambo Auth integration using the Jambo API. Create a new integration, generate SDK keys, add users, and claim ownership of your Jambo-managed auth project to your auth provider.
 
 ## Prerequisites
 
-- A Neon API key (see [Create an API Key](/docs/manage/api-keys#create-an-organization-api-key))
-- A Neon project
+- A Jambo API key (see [Create an API Key](/docs/manage/api-keys#create-an-organization-api-key))
+- A Jambo project
 
 ## Common parameters
 
 Several endpoints require these parameters:
 
-- `project_id`: Your Neon project ID. You can find it in the Neon Console on the **Settings** page, or use the [List Projects endpoint](https://api-docs.neon.tech/reference/listprojects).
+- `project_id`: Your Jambo project ID. You can find it in the Jambo Console on the **Settings** page, or use the [List Projects endpoint](https://api-docs.neon.tech/reference/listprojects).
 - `auth_provider`: The authentication provider you're using. Currently supported providers:
   - `stack`: Stack Auth integration
 
 ## Create integration
 
-Creates a Neon-managed authentication project for your database (currently supporting Stack Auth). This endpoint performs the same action as using Quick Start in the Console, automatically provisioning and configuring a new auth provider project that Neon manages for you.
+Creates a Jambo-managed authentication project for your database (currently supporting Stack Auth). This endpoint performs the same action as using Quick Start in the Console, automatically provisioning and configuring a new auth provider project that Jambo manages for you.
 
 <Admonition type="note">
 To create an integration, you'll need:
-- Your main branch ID. Get it from the Neon Console on the **Branches** page, or use the [List Branches endpoint](https://api-docs.neon.tech/reference/listprojectbranches) (look for `"default": true`)
-- Your database name and role name. Get them by clicking on the **Connect** button on your **Project Dashboard** in the Neon Console, or use the [List Databases endpoint](https://api-docs.neon.tech/reference/listprojectbranches)
+- Your main branch ID. Get it from the Jambo Console on the **Branches** page, or use the [List Branches endpoint](https://api-docs.neon.tech/reference/listprojectbranches) (look for `"default": true`)
+- Your database name and role name. Get them by clicking on the **Connect** button on your **Project Dashboard** in the Jambo Console, or use the [List Databases endpoint](https://api-docs.neon.tech/reference/listprojectbranches)
 </Admonition>
 
 Required parameters:
 
-- `project_id`: Your Neon project ID
+- `project_id`: Your Jambo project ID
 - `branch_id`: Your project's main branch ID
 - `database_name`: Name of your database (defaults to `"neondb"`)
 - `role_name`: Database role for authenticated users (defaults to `"neondb_owner"`)
@@ -102,7 +102,7 @@ Generates SDK keys for your auth provider integration. These keys are used to se
 
 Required parameters:
 
-- `project_id`: Your Neon project ID
+- `project_id`: Your Jambo project ID
 - `auth_provider`: The authentication provider (currently `"stack"`)
 
 ```bash shouldWrap
@@ -138,7 +138,7 @@ Creates a new user in your auth provider's system.
 
 Required parameters:
 
-- `project_id`: Your Neon project ID
+- `project_id`: Your Jambo project ID
 - `auth_provider`: The authentication provider (currently `"stack"`)
 - `email`: User's email address
 
@@ -181,7 +181,7 @@ SELECT id, email, name, created_at FROM neon_auth.users_sync;
 
 ## Transfer to your auth provider
 
-Transfer ownership of your Neon-managed auth project to your own auth provider account. This is a two-step process:
+Transfer ownership of your Jambo-managed auth project to your own auth provider account. This is a two-step process:
 
 1. Request a transfer URL:
 
@@ -207,7 +207,7 @@ Example response:
 2. Open the returned URL in a browser to complete the transfer. You'll be asked to confirm which Stack Auth account should receive ownership of the project.
 
 <Admonition type="note">
-After the transfer, you'll still be able to access your project from the Neon dashboard, but you'll also have direct access from the Stack Auth dashboard.
+After the transfer, you'll still be able to access your project from the Jambo dashboard, but you'll also have direct access from the Stack Auth dashboard.
 </Admonition>
 
 ## Delete integration

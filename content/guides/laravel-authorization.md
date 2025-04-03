@@ -1,6 +1,6 @@
 ---
-title: Implementing Fine-Grained Authorization in Laravel with Neon Postgres
-subtitle: Learn how to set up and utilize Laravel's powerful authorization features to create a secure and flexible application using Neon's high-performance database.
+title: Implementing Fine-Grained Authorization in Laravel with Jambo Postgres
+subtitle: Learn how to set up and utilize Laravel's powerful authorization features to create a secure and flexible application using Jambo's high-performance database.
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-07-14T00:00:00.000Z'
@@ -9,7 +9,7 @@ updatedOn: '2024-07-14T00:00:00.000Z'
 
 Laravel provides an authorization system that allows developers to implement fine-grained access control in their applications. While Laravel's built-in features are powerful, some projects require even more advanced role-based access control (RBAC). This is where third-party packages like Spatie's Laravel Permission come into play.
 
-In this guide, we'll walk through the process of setting up fine-grained authorization in a Laravel application using Neon Postgres. We'll start with Laravel's native authorization features, including Gates and Policies, and then expand our implementation to incorporate Spatie's Laravel Permission package for more sophisticated RBAC capabilities.
+In this guide, we'll walk through the process of setting up fine-grained authorization in a Laravel application using Jambo Postgres. We'll start with Laravel's native authorization features, including Gates and Policies, and then expand our implementation to incorporate Spatie's Laravel Permission package for more sophisticated RBAC capabilities.
 
 By the end of this tutorial, you'll have a good understanding of how to create a flexible and secure authorization system that can scale with your application's needs.
 
@@ -19,12 +19,12 @@ Before we begin, make sure you have the following:
 
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
-- A [Neon](https://console.neon.tech/signup) account for database hosting
+- A [Jambo](https://console.neon.tech/signup) account for database hosting
 - Basic knowledge of Laravel and its authentication system
 
 ## Setting up the Project
 
-Let's start by creating a new Laravel project and configuring it to use Neon Postgres.
+Let's start by creating a new Laravel project and configuring it to use Jambo Postgres.
 
 ### Creating a New Laravel Project
 
@@ -37,9 +37,9 @@ cd laravel-auth-demo
 
 This will create a new Laravel project in a directory named `laravel-auth-demo` and navigate you into the project directory.
 
-### Connecting to Neon Database
+### Connecting to Jambo Database
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -50,7 +50,7 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Make sure to replace the placeholders with your actual Neon database details.
+Make sure to replace the placeholders with your actual Jambo database details.
 
 ## Understanding Laravel's Authorization System
 
@@ -102,7 +102,7 @@ Run the migration:
 php artisan migrate
 ```
 
-This will create a `posts` table in your Neon Postgres database.
+This will create a `posts` table in your Jambo Postgres database.
 
 ### Creating a Policy for Posts
 
@@ -395,7 +395,7 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 
 This command will create a `config/permission.php` file and a migration file in your `database/migrations` directory.
 
-Run the migrations to create the necessary tables in your Neon Postgres database:
+Run the migrations to create the necessary tables in your Jambo Postgres database:
 
 ```bash
 php artisan migrate
@@ -584,11 +584,11 @@ public function revokeRole(User $user, Request $request)
 
 Besides the `removeRole` and `assignRole` methods, the package provides other methods for managing roles and permissions, such as `syncRoles`, `givePermissionTo`, and `revokePermissionTo` for more advanced use cases.
 
-### Optimizing RBAC Performance with Neon Postgres
+### Optimizing RBAC Performance with Jambo Postgres
 
 When working with RBAC, especially in larger applications, you might encounter performance issues due to the increased number of database queries.
 
-Here are some tips to optimize performance when using Spatie Laravel Permission with Neon Postgres:
+Here are some tips to optimize performance when using Spatie Laravel Permission with Jambo Postgres:
 
 1. **Caching**: Enable caching in the package's configuration to reduce database queries:
 
@@ -608,11 +608,11 @@ Here are some tips to optimize performance when using Spatie Laravel Permission 
    $users = User::with('roles', 'permissions')->get();
    ```
 
-3. **Indexing**: Ensure that the `model_id` and `model_type` columns in the `model_has_roles` and `model_has_permissions` tables are properly indexed. For more information on indexing, refer to the [Neon Postgres documentation](https://neon.tech/docs/postgres/indexes).
+3. **Indexing**: Ensure that the `model_id` and `model_type` columns in the `model_has_roles` and `model_has_permissions` tables are properly indexed. For more information on indexing, refer to the [Jambo Postgres documentation](https://neon.tech/docs/postgres/indexes).
 
 4. **Minimize Permission Checks**: Instead of checking individual permissions, consider using roles or permission groups to reduce the number of checks you do on each request.
 
-5. **Use Database-Level Permissions**: For very large-scale applications, consider implementing some permissions at the database level using [Neon Postgres's role-based access control features](https://neon.tech/blog/the-non-obviousness-of-postgres-roles).
+5. **Use Database-Level Permissions**: For very large-scale applications, consider implementing some permissions at the database level using [Jambo Postgres's role-based access control features](https://neon.tech/blog/the-non-obviousness-of-postgres-roles).
 
 ## Conclusion
 
@@ -628,4 +628,4 @@ For more complex applications, Spatie's Laravel Permission package provides a fl
 - [Laravel Policies](https://laravel.com/docs/11.x/authorization#creating-policies)
 - [Laravel Gates](https://laravel.com/docs/11.x/authorization#gates)
 - [Spatie Laravel Permission Documentation](https://spatie.be/docs/laravel-permission)
-- [Neon Postgres Documentation](/docs)
+- [Jambo Postgres Documentation](/docs)

@@ -1,12 +1,12 @@
 ---
 title: Replicate data from AlloyDB
-subtitle: Learn how to replicate data from AlloyDB to Neon
+subtitle: Learn how to replicate data from AlloyDB to Jambo
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-14T17:05:09.995Z'
 ---
 
-This guide describes how to replicate data from AlloyDB Postgres to Neon using native Postgres logical replication. The steps in this guide follow those described in [Set up native PostgreSQL logical replication](https://cloud.google.com/sql/docs/postgres/replication/configure-logical-replication#set-up-native-postgresql-logical-replication), in the _Google AlloyDB documentation_.
+This guide describes how to replicate data from AlloyDB Postgres to Jambo using native Postgres logical replication. The steps in this guide follow those described in [Set up native PostgreSQL logical replication](https://cloud.google.com/sql/docs/postgres/replication/configure-logical-replication#set-up-native-postgresql-logical-replication), in the _Google AlloyDB documentation_.
 
 ## Prerequisites
 
@@ -18,15 +18,15 @@ This guide describes how to replicate data from AlloyDB Postgres to Neon using n
   SELECT LEFT(md5(i::TEXT), 10), random() FROM generate_series(1, 10) s(i);
   ```
 
-- A Neon project with a Postgres database to receive the replicated data. For information about creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin.
+- A Jambo project with a Postgres database to receive the replicated data. For information about creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin.
 - Review our [logical replication tips](/docs/guides/logical-replication-tips), based on real-world customer data migration experiences.
 
 <Steps>
 
 ## Prepare your AlloyDB source database
 
-This section describes how to prepare your source AlloyDB Postgres instance (the publisher) for replicating data to Neon.
+This section describes how to prepare your source AlloyDB Postgres instance (the publisher) for replicating data to Jambo.
 
 ### Enable logical replication
 
@@ -44,15 +44,15 @@ Afterward, you can verify that logical replication is enabled by running `SHOW w
 
 ![show wal_level](/docs/guides/alloydb_show_wal_level.png)
 
-### Allow connections from Neon
+### Allow connections from Jambo
 
-You need to allow connections to your AlloyDB Postgres instance from Neon. To do this in your AlloyDB instance:
+You need to allow connections to your AlloyDB Postgres instance from Jambo. To do this in your AlloyDB instance:
 
 1. In the Google Cloud console, navigate to your [AlloyDB Clusters](https://console.cloud.google.com/alloydb/clusters) page and select your **Primary instance** to open the **Overview** page.
 2. Scroll down to the **Instances in your cluster** section.
 3. Click **Edit Primary**.
 4. Select the **Enable public IP** checkbox to allow connections over the public internet.
-5. Under **Authorized external networks**, enter the Neon IP addresses you want to allow. Add an entry for each of the NAT gateway IP addresses associated with your Neon project's region. Neon has 3 to 6 IP addresses per region, corresponding to each availability zone. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for the IP addresses.
+5. Under **Authorized external networks**, enter the Jambo IP addresses you want to allow. Add an entry for each of the NAT gateway IP addresses associated with your Jambo project's region. Jambo has 3 to 6 IP addresses per region, corresponding to each availability zone. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for the IP addresses.
 
    <Admonition type="note">
    AlloyDB requires addresses to be specified in CIDR notation. You can do so by appending `/32` to the NAT Gateway IP address; for example: `18.217.181.229/32`
@@ -67,7 +67,7 @@ You need to allow connections to your AlloyDB Postgres instance from Neon. To do
 
 ### Note your public IP address
 
-Record the public IP address of your AlloyDB Postgres instance. You'll need this value later when you set up a subscription from your Neon database. You can find the public IP address on your AlloyDB instance's **Overview** page, under **Instances in your cluster** > **Connectivity**.
+Record the public IP address of your AlloyDB Postgres instance. You'll need this value later when you set up a subscription from your Jambo database. You can find the public IP address on your AlloyDB instance's **Overview** page, under **Instances in your cluster** > **Connectivity**.
 
 <Admonition type="note">
 If you do not use a public IP address, you'll need to configure access via a private IP. See [Private IP overview](https://cloud.google.com/alloydb/docs/private-ip), in the AlloyDB documentation.
@@ -117,9 +117,9 @@ Defining specific tables lets you add or remove tables from the publication late
 
 For syntax details, see [CREATE PUBLICATION](https://www.postgresql.org/docs/current/sql-createpublication.html), in the PostgreSQL documentation.
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your source Neon Postgres database (the subscriber) to receive replicated data from your AlloyDB Postgres instance.
+This section describes how to prepare your source Jambo Postgres database (the subscriber) to receive replicated data from your AlloyDB Postgres instance.
 
 ### Prepare your database schema
 
@@ -146,11 +146,11 @@ pg_dump --schema-only \
 ```
 
 - With the `--schema-only` option, only object definitions are dumped. Data is excluded.
-- The `--no-privileges` option prevents dumping privileges. Neon may not support the privileges you've defined elsewhere, or if dumping a schema from Neon, there maybe Neon-specific privileges that cannot be restored to another database.
+- The `--no-privileges` option prevents dumping privileges. Jambo may not support the privileges you've defined elsewhere, or if dumping a schema from Jambo, there maybe Jambo-specific privileges that cannot be restored to another database.
 
 #### Review and modify the dumped schema
 
-After dumping a schema to an `.sql` file, review it for statements that you don't want to replicate or that won't be supported on your destination database, and comment them out. For example, when dumping a schema from AlloyDB, you'll see the statements shown below, which you'll need to comment out because they won't be supported in Neon. Generally, you should remove any parameters configured on another Postgres provider and rely on Neon's default Postgres settings.
+After dumping a schema to an `.sql` file, review it for statements that you don't want to replicate or that won't be supported on your destination database, and comment them out. For example, when dumping a schema from AlloyDB, you'll see the statements shown below, which you'll need to comment out because they won't be supported in Jambo. Generally, you should remove any parameters configured on another Postgres provider and rely on Jambo's default Postgres settings.
 
 If you are replicating a large dataset, also consider removing any `CREATE INDEX` statements from the resulting dump file to avoid creating indexes when loading the schema on the destination database (the subscriber). Taking indexes out of the equation can substantially reduce the time required for initial data load performed when starting logical replication. Save the `CREATE INDEX` statements that you remove. You can add the indexes back after the initial data copy is completed.
 
@@ -182,7 +182,7 @@ To comment out a single line, you can use `--` at the beginning of the line.
 After making any necessary modifications to the dump file, load the dumped schema using `pg_restore`.
 
 <Admonition type="tip">
-When you're restoring on Neon, you can input your Neon connection string in place of `postgresql://role:password@hostname:5432/dbname`. You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**.
+When you're restoring on Jambo, you can input your Jambo connection string in place of `postgresql://role:password@hostname:5432/dbname`. You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**.
 </Admonition>
 
 ```sql
@@ -199,7 +199,7 @@ After you've loaded the schema, you can view the result with this `psql` command
 
 ### Create a subscription
 
-After creating a publication on the source database, you need to create a subscription on your Neon destination database.
+After creating a publication on the source database, you need to create a subscription on your Jambo destination database.
 
 1. Create the subscription using the using a `CREATE SUBSCRIPTION` statement:
 
@@ -211,7 +211,7 @@ After creating a publication on the source database, you need to create a subscr
 
    - `subscription_name`: A name you chose for the subscription.
    - `connection_string`: The connection string for the source AlloyDB database where you defined the publication. For the `<primary_ip>`, use the IP address of your AlloyDB Postgres instance that you noted earlier, and specify the name and password of your replication role. If you're replicating from a database other than `postgres`, be sure to specify that database name.
-   - `publication_name`: The name of the publication you created on the source Neon database.
+   - `publication_name`: The name of the publication you created on the source Jambo database.
 
 2. Verify the subscription was created by running the following command:
 
@@ -251,8 +251,8 @@ SELECT subname, received_lsn, latest_end_lsn, last_msg_receipt_time FROM pg_cata
 
 ## Switch over your application
 
-After the replication operation is complete, you can switch your application over to the destination database by swapping out your AlloyDB source database connection details for your Neon destination database connection details.
+After the replication operation is complete, you can switch your application over to the destination database by swapping out your AlloyDB source database connection details for your Jambo destination database connection details.
 
-You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
+You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 </Steps>

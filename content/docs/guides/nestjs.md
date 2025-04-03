@@ -1,24 +1,24 @@
 ---
-title: Connect a NestJS application to Neon
-subtitle: Set up a Neon project in seconds and connect from a NestJS application
+title: Connect a NestJS application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from a NestJS application
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.330Z'
 ---
 
-NestJS is a framework for building efficient, scalable Node.js server-side applications<sup><a target="_blank" href="https://docs.nestjs.com/">1</a></sup>. This guide explains how to connect NestJS with Neon using a secure server-side request.
+NestJS is a framework for building efficient, scalable Node.js server-side applications<sup><a target="_blank" href="https://docs.nestjs.com/">1</a></sup>. This guide explains how to connect NestJS with Jambo using a secure server-side request.
 
-To create a Neon project and access it from a NestJS application:
+To create a Jambo project and access it from a NestJS application:
 
-1. [Create a Neon project](#create-a-neon-project)
+1. [Create a Jambo project](#create-a-neon-project)
 2. [Create a NestJS project and add dependencies](#create-a-nestjs-project-and-add-dependencies)
 3. [Configure a Postgres client](#configure-the-postgres-client)
 4. [Run the app](#run-the-app)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -28,7 +28,7 @@ If you do not have one already, create a Neon project. Save your connection deta
 
 2. Add project dependencies using one of the following commands:
 
-   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
    ```shell
    npm install pg
@@ -44,9 +44,9 @@ If you do not have one already, create a Neon project. Save your connection deta
 
    </CodeTabs>
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find your connection details by clicking **Connect** on the Neon **Project Dashboard**. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find your connection details by clicking **Connect** on the Jambo **Project Dashboard**. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
@@ -56,9 +56,9 @@ DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port
 
 ### 1. Create a Database Module
 
-To manage the connection to your Neon database, start by creating a **DatabaseModule** in your NestJS application. This module will handle the configuration and provisioning of the Postgres client.
+To manage the connection to your Jambo database, start by creating a **DatabaseModule** in your NestJS application. This module will handle the configuration and provisioning of the Postgres client.
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```typescript
 import { config } from 'dotenv';
@@ -138,7 +138,7 @@ export class DatabaseModule {}
 
 Next, implement a service to facilitate interaction with your Postgres database. This service will use the database connection defined in the DatabaseModule.
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```typescript
 import { Injectable, Inject } from '@nestjs/common';
@@ -234,7 +234,7 @@ You can find the source code for the application described in this guide on GitH
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nestjs" description="Get started with NestJS and Neon" icon="github">Get started with NestJS and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nestjs" description="Get started with NestJS and Jambo" icon="github">Get started with NestJS and Jambo</a>
 
 </DetailIconCards>
 

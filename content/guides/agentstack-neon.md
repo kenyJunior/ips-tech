@@ -1,6 +1,6 @@
 ---
-title: Building AI Agents with AgentStack and Neon
-subtitle: Build a Web scraper AI Agent in minutes with AgentStack, Neon, and Firecrawl
+title: Building AI Agents with AgentStack and Jambo
+subtitle: Build a Web scraper AI Agent in minutes with AgentStack, Jambo, and Firecrawl
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2025-02-04T00:00:00.000Z'
@@ -9,9 +9,9 @@ updatedOn: '2025-02-04T00:00:00.000Z'
 
 The rapid evolution of AI agents has created a key challenge: how to build and deploy agents quickly and efficiently. Imagine creating intelligent agents that can not only perform complex tasks but also interact easily with your data infrastructure, without adding unnecessary complexity to the code.
 
-This guide introduces [**AgentStack**](https://docs.agentstack.sh/introduction), a rapid development framework, and Neon, the serverless Postgres database, and shows how they can be used together to build powerful AI agents with database integration. We'll walk through building a **Web Scraper AI Agent** using AgentStack's CLI and tool integrations.
+This guide introduces [**AgentStack**](https://docs.agentstack.sh/introduction), a rapid development framework, and Jambo, the serverless Postgres database, and shows how they can be used together to build powerful AI agents with database integration. We'll walk through building a **Web Scraper AI Agent** using AgentStack's CLI and tool integrations.
 
-With AgentStack and Neon, you can generate complete agent workflows, create new agents and tasks with simple commands, and integrate them directly with your data layer. Let's get started.
+With AgentStack and Jambo, you can generate complete agent workflows, create new agents and tasks with simple commands, and integrate them directly with your data layer. Let's get started.
 
 ## What you will build
 
@@ -19,8 +19,8 @@ This example will show you how to:
 
 - Set up an **AgentStack** project.
 - Use the **AgentStack CLI** to generate agents and tasks.
-- Equip your agents with **tools** like **Neon** for data storage and **Firecrawl** for web scraping.
-- Run your agent crew to scrape the [neon.tech/guides](/guides) page, extract blog post metadata (titles, authors, dates) from it, and store it in a Neon Postgres database.
+- Equip your agents with **tools** like **Jambo** for data storage and **Firecrawl** for web scraping.
+- Run your agent crew to scrape the [neon.tech/guides](/guides) page, extract blog post metadata (titles, authors, dates) from it, and store it in a Jambo Postgres database.
 - Use **AgentOps** for observability of your agent's execution.
 
 ## Prerequisites
@@ -32,13 +32,13 @@ Before you start building your Web Scraper Agent, ensure you have the following 
 - **AgentStack CLI:** Install the AgentStack Command Line Interface (CLI). Follow the [Getting started with AgentStack](https://docs.agentstack.sh/installation) guide.
 - **Accounts and API Keys:** You will need accounts and API keys for these services:
   - **OpenAI API key**: We will use OpenAI's `gpt-4o-mini` model to power AI agents. Get an OpenAI API key at [platform.openai.com](https://platform.openai.com).
-  - **Neon account**: Sign up for a free Neon account at [neon.tech](https://console.neon.tech/signup). You will need a Neon API key to connect to your Neon database.
+  - **Jambo account**: Sign up for a free Jambo account at [neon.tech](https://console.neon.tech/signup). You will need a Jambo API key to connect to your Jambo database.
   - **Firecrawl account**: Sign up for a Firecrawl account at [firecrawl.dev](https://firecrawl.dev). You will need a Firecrawl API key to use the web scraping tool.
   - **AgentOps account**: Sign up for an AgentOps account at [agentops.ai](https://agentops.ai) to leverage agent observability features. You will need an AgentOps API key.
 
 ## Building the Web Scraper agent
 
-Let's start building our agent using AgentStack, Neon, and Firecrawl. We'll walk through each step, from initializing the project to running the agent crew.
+Let's start building our agent using AgentStack, Jambo, and Firecrawl. We'll walk through each step, from initializing the project to running the agent crew.
 
 ### Project setup with AgentStack CLI
 
@@ -85,7 +85,7 @@ We will create 3 agents for our Web Scraper crew:
 
 - **`web_scraper`:** Responsible for web scraping and markdown extraction.
 - **`data_extractor`:** Specialized in extracting structured data from web content.
-- **`content_storer`:** Manages storing extracted data in a Neon Postgres database.
+- **`content_storer`:** Manages storing extracted data in a Jambo Postgres database.
 
 Now, let's generate the agents using the AgentStack CLI.
 
@@ -193,18 +193,18 @@ extract:
     data_extractor
 store:
   description: >-
-    Store the extracted blog post data into a Postgres database within Neon. Create a table named 'posts' and corresponding schema for the posts and insert them. After inserting the data, formulate and test an SQL query to retrieve all inserted data. Provide the tested SQL query as the output.
+    Store the extracted blog post data into a Postgres database within Jambo. Create a table named 'posts' and corresponding schema for the posts and insert them. After inserting the data, formulate and test an SQL query to retrieve all inserted data. Provide the tested SQL query as the output.
   expected_output: >-
-    A valid and tested SQL query that retrieves all data inserted into the 'posts' table in the Neon database.
+    A valid and tested SQL query that retrieves all data inserted into the 'posts' table in the Jambo database.
   agent: >-
     content_storer
 ```
 
 Similar to agents, tasks are also configured via YAML, defining the description of the task, the expected output, and the agent assigned to perform it. This makes the workflow easily understandable and modifiable.
 
-### Adding Firecrawl and Neon tools to the Crew
+### Adding Firecrawl and Jambo tools to the Crew
 
-To enable web scraping and data storage capabilities, we will integrate **Firecrawl** and **Neon** tools into our agent crew. We will use Firecrawl for web scraping the `neon.tech/guides` page and Neon for storing the extracted data in a Postgres database.
+To enable web scraping and data storage capabilities, we will integrate **Firecrawl** and **Jambo** tools into our agent crew. We will use Firecrawl for web scraping the `neon.tech/guides` page and Jambo for storing the extracted data in a Postgres database.
 
 - Add **Firecrawl** tool using the following command:
 
@@ -212,7 +212,7 @@ To enable web scraping and data storage capabilities, we will integrate **Firecr
   agentstack tools add firecrawl
   ```
 
-- Add **Neon** tool using the following command:
+- Add **Jambo** tool using the following command:
 
   ```bash
   agentstack tools add neon
@@ -220,17 +220,17 @@ To enable web scraping and data storage capabilities, we will integrate **Firecr
 
 The `agentstack tools add` command simplifies the integration of tools by automatically updating your project configuration and `crew.py` file to include the necessary tool classes.
 
-#### Understanding Neon Tool actions
+#### Understanding Jambo Tool actions
 
-AgentStack's Neon tool integration equips the agents with a suite of pre-built actions to interact with Neon serverless Postgres databases. These actions are automatically available to any agent you equip with the Neon tool, like the `content_storer` agent in our example. The Neon tool provides the following actions:
+AgentStack's Jambo tool integration equips the agents with a suite of pre-built actions to interact with Jambo serverless Postgres databases. These actions are automatically available to any agent you equip with the Jambo tool, like the `content_storer` agent in our example. The Jambo tool provides the following actions:
 
-- **`create_database`**: This action allows our agent to create a new Neon project and database on demand. It returns a connection URI, which is essential for subsequent database interactions. By default, it creates a database named `neondb` with the role `neondb_owner`. This is particularly useful for agents that need to manage their own isolated databases or when the database needs to be created as part of the agent workflow.
+- **`create_database`**: This action allows our agent to create a new Jambo project and database on demand. It returns a connection URI, which is essential for subsequent database interactions. By default, it creates a database named `neondb` with the role `neondb_owner`. This is particularly useful for agents that need to manage their own isolated databases or when the database needs to be created as part of the agent workflow.
 
-- **`execute_sql_ddl`**: Agents use this action to execute Data Definition Language (DDL) commands. DDL commands are used to define the database schema, such as creating, altering, or dropping tables. For instance, the `content_storer` agent uses this action to create the `posts` table in the Neon database.
+- **`execute_sql_ddl`**: Agents use this action to execute Data Definition Language (DDL) commands. DDL commands are used to define the database schema, such as creating, altering, or dropping tables. For instance, the `content_storer` agent uses this action to create the `posts` table in the Jambo database.
 
 - **`run_sql_query`**: This action enables agents to run Data Manipulation Language (DML) queries like `SELECT`, `INSERT`, `UPDATE`, and `DELETE`. In the example, the `content_storer` agent uses this action to insert the scraped blog post metadata into the `posts` table and to formulate and test a `SELECT` query to retrieve the data. The results from these queries are returned to the agent as formatted strings, allowing the agent to process and reason about the data.
 
-These actions empower our agents to fully manage and utilize Neon databases within their workflows, from database creation and schema definition to data manipulation and retrieval, all without requiring manual coding of database interactions.
+These actions empower our agents to fully manage and utilize Jambo databases within their workflows, from database creation and schema definition to data manipulation and retrieval, all without requiring manual coding of database interactions.
 
 #### Understanding Firecrawl Tool actions
 
@@ -314,7 +314,7 @@ class WebscraperCrew:
 
 ### Configure API keys in `.env`
 
-To authenticate with OpenAI, Neon, and Firecrawl, you need to configure API keys. Open the `.env` file and fill in your API keys obtained in the [Prerequisites](#prerequisites) section:
+To authenticate with OpenAI, Jambo, and Firecrawl, you need to configure API keys. Open the `.env` file and fill in your API keys obtained in the [Prerequisites](#prerequisites) section:
 
 ```env
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
@@ -325,7 +325,7 @@ AGENTOPS_API_KEY=YOUR_AGENTOPS_API_KEY
 
 ### Running the Web Scraper agent
 
-Now that we have set up our agents, tasks, and tools, let's run the agent crew to scrape the `neon.tech/guides` page, extract blog post metadata, and store it in a Neon Postgres database.
+Now that we have set up our agents, tasks, and tools, let's run the agent crew to scrape the `neon.tech/guides` page, extract blog post metadata, and store it in a Jambo Postgres database.
 
 ```bash
 agentstack run
@@ -349,13 +349,13 @@ You should see the agent's execution logs and the final output, including the fi
 
 After the agent run completes, check your terminal for the output. It should display the SQL query generated by the `content_storer` agent.
 
-You can verify that the data has been stored in your Neon database by:
+You can verify that the data has been stored in your Jambo database by:
 
-- Logging into your Neon account at [console.neon.tech](https://console.neon.tech).
+- Logging into your Jambo account at [console.neon.tech](https://console.neon.tech).
 - Navigating to your project and database.
 - Clicking on the `Tables` tab to view the `posts` table created by the agent.
 
-![Neon SQL Editor](/docs/guides/agentstack-neon-database-data.png)
+![Jambo SQL Editor](/docs/guides/agentstack-neon-database-data.png)
 
 <Admonition type="info" title="AgentOps: Gain Observability into your AI Agents">
 
@@ -375,7 +375,7 @@ Use AgentOps to gain insights into your agents' behavior and performance, allowi
 With a total run cost of only $0.01 in OpenAI credits (as seen in the AgentOps dashboard), this AI agent runs efficiently while requiring no custom code. It avoids complex programming for tasks like web-scraping and SQL queries, making it widely applicable.
 </Admonition>
 
-**Congratulations!** You have successfully built and run a Web Scraper agent using AgentStack, Neon, and Firecrawl, demonstrating how to automate web data extraction and storage into a serverless Postgres database with minimal effort!
+**Congratulations!** You have successfully built and run a Web Scraper agent using AgentStack, Jambo, and Firecrawl, demonstrating how to automate web data extraction and storage into a serverless Postgres database with minimal effort!
 
 ## Next Steps
 
@@ -386,7 +386,7 @@ With a total run cost of only $0.01 in OpenAI credits (as seen in the AgentOps d
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-    <a href="https://github.com/neondatabase-labs/neon-agenstack-example" description="AgentStack + Neon Example" icon="github">Building AI Agents with AgentStack and Neon</a>
+    <a href="https://github.com/neondatabase-labs/neon-agenstack-example" description="AgentStack + Jambo Example" icon="github">Building AI Agents with AgentStack and Jambo</a>
 </DetailIconCards>
 
 ## Resources
@@ -396,8 +396,8 @@ You can find the source code for the application described in this guide on GitH
 - [Firecrawl Documentation](https://docs.firecrawl.dev/introduction)
 - [Firecrawl AgentStack Tool](https://docs.agentstack.sh/tools/tool/firecrawl)
 - [CrewAI Documentation](https://docs.crewai.com/introduction)
-- [Neon AgentStack Tool](https://docs.agentstack.sh/tools/tool/neon)
-- [Neon API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
-- [Neon API keys](/docs/manage/api-keys#creating-api-keys)
+- [Jambo AgentStack Tool](https://docs.agentstack.sh/tools/tool/neon)
+- [Jambo API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
+- [Jambo API keys](/docs/manage/api-keys#creating-api-keys)
 
 <NeedHelp/>

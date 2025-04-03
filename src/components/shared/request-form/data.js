@@ -1,7 +1,7 @@
 const REGIONS = {
   title: 'Request a new Provider / Region',
   description:
-    "Looking for Neon in a different cloud provider or region? Select your preference below, and we'll notify you as soon as it's available.",
+    "Looking for Jambo in a different cloud provider or region? Select your preference below, and we'll notify you as soon as it's available.",
   placeholder: 'Select a region',
   buttonText: 'Request',
   options: [
@@ -124,7 +124,7 @@ const REGIONS = {
 
 const EXTENSIONS = {
   title: 'Request a new extension',
-  description: 'Looking for a specific extension in Neon? Suggest one using this form.',
+  description: 'Looking for a specific extension in Jambo? Suggest one using this form.',
   placeholder: 'Select an extension',
   buttonText: 'Request',
   options: [

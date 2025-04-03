@@ -7,11 +7,11 @@ redirectFrom:
 updatedOn: '2025-01-31T18:46:00.172Z'
 ---
 
-Most actions performed in the Neon Console can also be performed using the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). You'll need an API key to validate your requests. Each key is a randomly-generated 64-bit token that you must include when calling Neon API methods. All keys remain valid until deliberately revoked.
+Most actions performed in the Jambo Console can also be performed using the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). You'll need an API key to validate your requests. Each key is a randomly-generated 64-bit token that you must include when calling Jambo API methods. All keys remain valid until deliberately revoked.
 
 ## Types of API keys
 
-Neon supports three types of API keys:
+Jambo supports three types of API keys:
 
 | Key Type               | Who Can Create              | Scope                                                                          | Validity                                                                 |
 | ---------------------- | --------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
@@ -19,30 +19,30 @@ Neon supports three types of API keys:
 | Organization API Key   | Organization administrators | All projects within the organization                                           | Valid until revoked                                                      |
 | Project-scoped API Key | Any organization member     | Single specified project                                                       | Valid until revoked or project leaves organization                       |
 
-While there is no strict limit on the number of API keys you can create, we recommend keeping it under 10,000 per Neon account.
+While there is no strict limit on the number of API keys you can create, we recommend keeping it under 10,000 per Jambo account.
 
 ## Creating API keys
 
-You'll need to create your first API key from the Neon Console, where you are already authenticated. You can then use that key to generate new keys from the API.
+You'll need to create your first API key from the Jambo Console, where you are already authenticated. You can then use that key to generate new keys from the API.
 
 <Admonition type="note">
-When creating API keys from the Neon Console, the secret token will be displayed only once. Copy it immediately and store it securely in a credential manager (like AWS Key Management Service or Azure Key Vault) — you won't be able to retrieve it later. If you lose an API key, you'll need to revoke it and create a new one.
+When creating API keys from the Jambo Console, the secret token will be displayed only once. Copy it immediately and store it securely in a credential manager (like AWS Key Management Service or Azure Key Vault) — you won't be able to retrieve it later. If you lose an API key, you'll need to revoke it and create a new one.
 </Admonition>
 
 ### Create a personal API key
 
-You can create a personal API key in the Neon Console or using the Neon API.
+You can create a personal API key in the Jambo Console or using the Jambo API.
 
 <Tabs labels={["Console", "API"]}>
 
 <TabItem>
-In the Neon Console, select **Account settings** > **API keys**. You'll see a list of any existing keys, along with the button to create a new key.
+In the Jambo Console, select **Account settings** > **API keys**. You'll see a list of any existing keys, along with the button to create a new key.
 
-![Creating a personal API key in the Neon Console](/docs/manage/personal_api_key.png)
+![Creating a personal API key in the Jambo Console](/docs/manage/personal_api_key.png)
 </TabItem>
 
 <TabItem>
-You'll need an existing personal key (create one from the Neon Console) in order to create new keys using the API. If you've got a key ready, you can use the following request to generate new keys:
+You'll need an existing personal key (create one from the Jambo Console) in order to create new keys using the API. If you've got a key ready, you can use the following request to generate new keys:
 
 ```bash shouldWrap
 curl https://console.neon.tech/api/v2/api_keys
@@ -64,14 +64,14 @@ curl https://console.neon.tech/api/v2/api_keys
 }
 ```
 
-To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/createapikey).
+To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/createapikey).
 
 </TabItem>
 </Tabs>
 
 ### Create an organization API key
 
-Organization API keys provide admin-level access to all organization resources. Only organization admins can create these keys. To create an organization API key, you must use your personal API key and be an administrator in the organization. Neon will verify your admin status before allowing the key creation.
+Organization API keys provide admin-level access to all organization resources. Only organization admins can create these keys. To create an organization API key, you must use your personal API key and be an administrator in the organization. Jambo will verify your admin status before allowing the key creation.
 
 For more detail about organization-related methods, see [Organization API Keys](/docs/manage/orgs-api#api-keys).
 
@@ -175,7 +175,7 @@ curl 'https://console.neon.tech/api/v2/projects' \
 
 where:
 
-- `"https://console.neon.tech/api/v2/projects"` is the resource URL, which includes the base URL for the Neon API and the `/projects` endpoint.
+- `"https://console.neon.tech/api/v2/projects"` is the resource URL, which includes the base URL for the Jambo API and the `/projects` endpoint.
 - The `"Accept: application/json"` in the header specifies the accepted response type.
 - The `Authorization: Bearer $NEON_API_KEY` entry in the header specifies your API key. Replace `$NEON_API_KEY` with an actual 64-bit API key. A request without this header, or containing an invalid or revoked API key, fails and returns a `401 Unauthorized` HTTP status code.
 - [`jq`](https://stedolan.github.io/jq/) is an optional third-party tool that formats the JSON response, making it easier to read.
@@ -206,7 +206,7 @@ where:
 
 </details>
 
-Refer to the [Neon API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api) for other supported Neon API methods.
+Refer to the [Jambo API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api) for other supported Jambo API methods.
 
 ## List API keys
 
@@ -254,13 +254,13 @@ You should revoke API keys that are no longer needed or if you suspect a key may
 <Tabs labels={["Console", "API"]}>
 
 <TabItem>
-In the Neon Console, navigate to **Account settings** > **API keys** and click **Revoke** next to the key you want to revoke. The key will be immediately revoked. Any request that uses this key will now fail.
+In the Jambo Console, navigate to **Account settings** > **API keys** and click **Revoke** next to the key you want to revoke. The key will be immediately revoked. Any request that uses this key will now fail.
 
-![Revoking an API key in the Neon Console](/docs/manage/revoke_api_key.png)
+![Revoking an API key in the Jambo Console](/docs/manage/revoke_api_key.png)
 </TabItem>
 
 <TabItem>
-The following Neon API method revokes the specified API key. The `key_id` is a required parameter:
+The following Jambo API method revokes the specified API key. The `key_id` is a required parameter:
 
 ```bash
 curl -X DELETE \
@@ -288,4 +288,4 @@ curl -X DELETE \
 
 <NeedHelp/>
 
-To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/createapikey).
+To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/createapikey).

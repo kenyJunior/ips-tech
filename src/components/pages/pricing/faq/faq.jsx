@@ -6,17 +6,17 @@ import Item from './item';
 const items = [
   {
     question: 'What is a compute hour?',
-    answer: `Compute hour is the metric for compute usage in Neon. The quick math: [compute hours] = [compute size] x [hours your compute runs]. Each pricing plan includes a certain number of compute hours; how quickly you consume these hours depends on the size of your compute and how long it runs. Once you exceed the allocated amount of compute hours, you'll be billed for overages in a given month.`,
+    answer: `Compute hour is the metric for compute usage in Jambo. The quick math: [compute hours] = [compute size] x [hours your compute runs]. Each pricing plan includes a certain number of compute hours; how quickly you consume these hours depends on the size of your compute and how long it runs. Once you exceed the allocated amount of compute hours, you'll be billed for overages in a given month.`,
     id: 'compute-hour',
     initialState: 'open',
   },
   {
     question: 'How does billing work?',
-    answer: `In Neon, you are charged a monthly fee plus any additional compute and/or storage usage over what's included in your plan. For example, the Launch plan includes 300 compute-hours of compute usage;  if you consume 320 compute-hours in a month, your will see extra 20 compute-hours in your monthly bill.`,
+    answer: `In Jambo, you are charged a monthly fee plus any additional compute and/or storage usage over what's included in your plan. For example, the Launch plan includes 300 compute-hours of compute usage;  if you consume 320 compute-hours in a month, your will see extra 20 compute-hours in your monthly bill.`,
   },
   {
     question: 'When will I be billed?',
-    answer: `Neon bills for the past month's usage at the beginning of each calendar month. For more information, see <a href="/docs/introduction/manage-billing">Manage billing</a>.`,
+    answer: `Jambo bills for the past month's usage at the beginning of each calendar month. For more information, see <a href="/docs/introduction/manage-billing">Manage billing</a>.`,
   },
   {
     question: 'How many compute hours will it take to run my workload?',
@@ -27,28 +27,28 @@ const items = [
     answer: `When enabling <a href="/docs/introduction/autoscaling">autoscaling</a>, you will set a maximum autoscaling limit (e.g. 2 CU) that will act as a de-facto cost limit.`,
   },
   {
-    question: 'How is storage charged in Neon?',
-    answer: `Neon implements a unique storage engine that enables database branching on copy-on-write, without duplicate storage. You can create instant database copies (database branches) without adding to the storage bill. <a href="/docs/introduction/usage-metrics">Read more in our docs</a>.`,
+    question: 'How is storage charged in Jambo?',
+    answer: `Jambo implements a unique storage engine that enables database branching on copy-on-write, without duplicate storage. You can create instant database copies (database branches) without adding to the storage bill. <a href="/docs/introduction/usage-metrics">Read more in our docs</a>.`,
   },
   {
     question: 'Do I get a notification if I am approaching my usage limits?',
-    answer: `Yes, we display your usage consumption in the Neon admin console, and we will also email you when you’re getting close.`,
+    answer: `Yes, we display your usage consumption in the Jambo admin console, and we will also email you when you’re getting close.`,
   },
   {
-    question: 'Can I use Neon for database-per-user architectures?',
-    answer: `Yes, Neon is a great option for designs demanding one database per user. Our recommendation is to follow a project-per-user (or project-per-tenant) pattern, taking advantage of the thousands of projects included in our pricing plans. <a href="https://neon.tech/use-cases/database-per-tenant">Read more</a>.`,
+    question: 'Can I use Jambo for database-per-user architectures?',
+    answer: `Yes, Jambo is a great option for designs demanding one database per user. Our recommendation is to follow a project-per-user (or project-per-tenant) pattern, taking advantage of the thousands of projects included in our pricing plans. <a href="https://neon.tech/use-cases/database-per-tenant">Read more</a>.`,
   },
   {
-    question: 'Is Neon compliant?',
-    answer: `Yes, Neon adheres to SOC 2, ISO 27001, ISO 27701 standards and complies with GDPR and CCPA regulations. HIPAA compliance is also available upcon contract—if you need HIPAA, <a href="https://neon.tech/contact sales">contact us</a> and we'll walk you through it`,
+    question: 'Is Jambo compliant?',
+    answer: `Yes, Jambo adheres to SOC 2, ISO 27001, ISO 27701 standards and complies with GDPR and CCPA regulations. HIPAA compliance is also available upcon contract—if you need HIPAA, <a href="https://neon.tech/contact sales">contact us</a> and we'll walk you through it`,
   },
   {
-    question: 'Which level of uptime can I expect with Neon?',
-    answer: `Neon offers a 99.95% uptime SLA for Business and Enterprise customers, ensuring consistent availability and performance for mission-critical applications.`,
+    question: 'Which level of uptime can I expect with Jambo?',
+    answer: `Jambo offers a 99.95% uptime SLA for Business and Enterprise customers, ensuring consistent availability and performance for mission-critical applications.`,
   },
   {
-    question: 'Can Neon help with migrations?',
-    answer: `Absolutely. Our expert team assists Business and Enterprise clients throughout the migration process. <a href="https://neon.tech/migration-assistance">Tell us here</a> if you're considering migrating to Neon. `,
+    question: 'Can Jambo help with migrations?',
+    answer: `Absolutely. Our expert team assists Business and Enterprise clients throughout the migration process. <a href="https://neon.tech/migration-assistance">Tell us here</a> if you're considering migrating to Jambo. `,
   },
 ];
 

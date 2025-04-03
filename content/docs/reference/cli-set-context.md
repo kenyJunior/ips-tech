@@ -1,14 +1,14 @@
 ---
-title: Neon CLI commands — set-context
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — set-context
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-10-07T13:55:51.301Z'
 ---
 
 ## Before you begin
 
-- Before running the `set-context` command, ensure that you have [installed the Neon CLI](/docs/reference/neon-cli#install-the-neon-cli).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `set-context` command, ensure that you have [installed the Jambo CLI](/docs/reference/neon-cli#install-the-neon-cli).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
 ## The `set-context` command
 
@@ -131,5 +131,5 @@ This creates a hidden `.neon` file by default with the following context:
 You can now use any command that would normally require an additional `--project-id` parameter and the command will default to this context.
 
 <Admonition type="note">
-Neon does not save any confidential information to the context file (for example, auth tokens). You can safely commit this file to your repository or share with others.
+Jambo does not save any confidential information to the context file (for example, auth tokens). You can safely commit this file to your repository or share with others.
 </Admonition>

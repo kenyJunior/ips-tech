@@ -1,33 +1,33 @@
 # Replicate Data with Estuary Flow
 
-Learn how to replicate data from Neon with Estuary Flow
+Learn how to replicate data from Jambo with Estuary Flow
 
-Neon's logical replication feature allows you to replicate data from your Neon Postgres database to external destinations.
+Jambo's logical replication feature allows you to replicate data from your Jambo Postgres database to external destinations.
 
 [Estuary Flow](https://estuary.dev/) is a real-time data streaming platform that allows you to connect, transform, and move data from various sources to destinations with sub-100ms latency.
 
-In this guide, you will learn how to configure a Postgres source connector in Estuary Flow for ingesting changes from your Neon database, enabling you to replicate data from Neon to any of Estuary Flow's [supported destinations](https://docs.estuary.dev/reference/Connectors/materialization-connectors/#available-materialization-connectors), with optional transformations along the way.
+In this guide, you will learn how to configure a Postgres source connector in Estuary Flow for ingesting changes from your Jambo database, enabling you to replicate data from Jambo to any of Estuary Flow's [supported destinations](https://docs.estuary.dev/reference/Connectors/materialization-connectors/#available-materialization-connectors), with optional transformations along the way.
 
 ## Prerequisites
 
 - An [Estuary Flow account](https://dashboard.estuary.dev/register) (start free, no credit card required)
-- A [Neon account](https://console.neon.tech/)
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin
+- A [Jambo account](https://console.neon.tech/)
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin
 
-## Enable Logical Replication in Neon
-
-
-Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Neon project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Neon project, meaning active connections will be dropped and have to reconnect.
+## Enable Logical Replication in Jambo
 
 
-To enable logical replication in Neon:
+Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Jambo project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Jambo project, meaning active connections will be dropped and have to reconnect.
 
-1. Select your project in the Neon Console.
-2. On the Neon **Dashboard**, select **Settings**.
+
+To enable logical replication in Jambo:
+
+1. Select your project in the Jambo Console.
+2. On the Jambo **Dashboard**, select **Settings**.
 3. Select **Logical Replication**.
 4. Click **Enable** to enable logical replication.
 
-You can verify that logical replication is enabled by running the following query from the [Neon SQL Editor](https://docs.neon.tech/docs/query-with-neon-sql-editor):
+You can verify that logical replication is enabled by running the following query from the [Jambo SQL Editor](https://docs.neon.tech/docs/query-with-neon-sql-editor):
 
 ```sql
 SHOW wal_level;
@@ -38,13 +38,13 @@ SHOW wal_level;
 
 ## Create a Postgres Role for Replication
 
-It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Neon project and roles created using the Neon Console, CLI, or API are granted membership in the [neon_superuser](https://docs.neon.tech/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
+It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Jambo project and roles created using the Jambo Console, CLI, or API are granted membership in the [neon_superuser](https://docs.neon.tech/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
 
 
 
 
 
-The following CLI command creates a role. To view the CLI documentation for this command, see [Neon CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
+The following CLI command creates a role. To view the CLI documentation for this command, see [Jambo CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
 
 ```bash
 neon roles create --name cdc_role
@@ -54,9 +54,9 @@ neon roles create --name cdc_role
 
 
 
-To create a role in the Neon Console:
+To create a role in the Jambo Console:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to create the role.
@@ -69,7 +69,7 @@ To create a role in the Neon Console:
 
 
 
-The following Neon API method creates a role. To view the API documentation for this method, refer to the [Neon API reference](/docs/reference/cli-roles).
+The following Jambo API method creates a role. To view the API documentation for this method, refer to the [Jambo API reference](/docs/reference/cli-roles).
 
 ```bash
 curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-blue-tooth-671580/roles' \
@@ -113,21 +113,21 @@ Upon startup, the Estuary Flow connector for Postgres will automatically create 
 
 ## Allow Inbound Traffic
 
-If you are using Neon's **IP Allow** feature to limit the IP addresses that can connect to Neon, you will need to allow inbound traffic from Estuary Flow's IP addresses.
+If you are using Jambo's **IP Allow** feature to limit the IP addresses that can connect to Jambo, you will need to allow inbound traffic from Estuary Flow's IP addresses.
 Refer to the [Estuary Flow documentation](https://docs.estuary.dev/reference/regions-and-ip-addresses) for the list of IPs that need to be allowlisted for the Estuary Flow region of your account.
-For information about configuring allowed IPs in Neon, see [Configure IP Allow](https://docs.neon.tech/docs/manage/projects#configure-ip-allow).
+For information about configuring allowed IPs in Jambo, see [Configure IP Allow](https://docs.neon.tech/docs/manage/projects#configure-ip-allow).
 
 ## Create a Postgres Source Connector in Estuary Flow
 
 1. In the Estuary Flow web UI, select **Sources** from the left navigation bar and click **New Capture**.
-2. In the connector catalog, choose **Neon PostgreSQL** and click **Connect**.
-3. Enter the connection details for your Neon database. You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Your connection string will look like this:
+2. In the connector catalog, choose **Jambo PostgreSQL** and click **Connect**.
+3. Enter the connection details for your Jambo database. You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Your connection string will look like this:
 
    ```bash shouldWrap
    postgres://cdc_role:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
    ```
 
-   ![Creating a Neon capture connector in Estuary Flow](/docs/guides/estuary_flow_create_neon_capture.png)
+   ![Creating a Jambo capture connector in Estuary Flow](/docs/guides/estuary_flow_create_neon_capture.png)
 
    Enter the details for **your connection string** into the source connector fields. Based on the sample connection string above, the values would be specified as shown below. Your values will differ.
 
@@ -137,7 +137,7 @@ For information about configuring allowed IPs in Neon, see [Configure IP Allow](
    - **Password**: Click **Add a new secret...**, then specify a name for that secret and `AbC123dEf` as its value
    - **Database**: dbname
 
-   ![Configuring Neon capture in Estuary Flow](/docs/guides/estuary_flow_configure_neon_capture.png)
+   ![Configuring Jambo capture in Estuary Flow](/docs/guides/estuary_flow_configure_neon_capture.png)
 
 4. Click **Next**. Estuary Flow will now scan the source database for all the tables that can be replicated. Select one or more tables by checking the checkbox next to their name.
    Optionally, you can change the name of the destination name for each table. You can also take a look at the schema of each stream by clicking on the **Collection** tab.

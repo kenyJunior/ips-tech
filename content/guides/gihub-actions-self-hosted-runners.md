@@ -13,9 +13,9 @@ In this guide, I'll walk you through setting up a Linux server on a DigitalOcean
 
 [Self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners#about-self-hosted-runners) work similarly to GitHub's default runners, but with the key difference that you manage the server yourself. While the default runners are convenient, they come with some limitations—most notably, they timeout after six hours.
 
-This can be a challenge for long-running jobs, particularly for users of our [Neon Twin](docs/guides/neon-twin-intro) workflow who may encounter issues with large databases. In these scenarios, setting up your own self-hosted runner is a more reliable solution.
+This can be a challenge for long-running jobs, particularly for users of our [Jambo Twin](docs/guides/neon-twin-intro) workflow who may encounter issues with large databases. In these scenarios, setting up your own self-hosted runner is a more reliable solution.
 
-<CTA title="Create a Neon Twin" description="A Neon Twin is a full or partial clone of your production or staging database, providing developers and teams with isolated, sandboxed environments that closely mirror production. <br><br>Learn how to create a Twin <a href='/docs/guides/neon-twin-intro'>here</a>." isIntro />
+<CTA title="Create a Jambo Twin" description="A Jambo Twin is a full or partial clone of your production or staging database, providing developers and teams with isolated, sandboxed environments that closely mirror production. <br><br>Learn how to create a Twin <a href='/docs/guides/neon-twin-intro'>here</a>." isIntro />
 
 GitHub's default runners come with several preinstalled packages and dependencies, which you can review in the [GitHub runner-images repository README](https://github.com/actions/runner-images?tab=readme-ov-file#package-managers-usage). The default runner image also includes specific user permissions. To set up an effective self-hosted runner, you'll need to manually configure these packages, dependencies, and permissions. But don't worry—I'll guide you through each step.
 

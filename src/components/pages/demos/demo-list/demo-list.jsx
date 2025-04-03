@@ -12,26 +12,27 @@ const items = [
       {
         title: 'AI app architecture: vector database per tenant',
         description:
-          "An AI app where each user gets it's own database instance. Uses Neon + pgvector.",
+          "An AI app where each user gets it's own database instance. Uses Jambo + pgvector.",
         demoLink: 'https://db-per-tenant.up.railway.app/',
         sourceLink: 'https://github.com/neondatabase/ai-vector-db-per-tenant',
       },
     ],
   },
   {
-    category: 'Neon on Azure',
+    category: 'Jambo on Azure',
     categoryTextColor: 'text-blue-60',
     items: [
       {
         title: 'Multi-user RAG Chat in Azure: Database project per customer',
         description:
-          "RAG Chat example on Azure creates one Neon project per customer, each customer's data will be completely isolated",
+          "RAG Chat example on Azure creates one Jambo project per customer, each customer's data will be completely isolated",
         demoLink: 'https://multiuser-rag-g0e0g3h6ekhtf7cg.germanywestcentral-01.azurewebsites.net',
         sourceLink: 'https://github.com/neondatabase-labs/azure-tenant-ai-chat',
       },
       {
-        title: 'AI-Powered Neon Database Q&A Chatbot in Azure',
-        description: 'Ask questions about data in Neon database using React and FastAPI in Python.',
+        title: 'AI-Powered Jambo Database Q&A Chatbot in Azure',
+        description:
+          'Ask questions about data in Jambo database using React and FastAPI in Python.',
         demoLink: 'https://rag-vrjtpx5tgrsnm-ca.wittyriver-637b2279.eastus2.azurecontainerapps.io',
         sourceLink: 'https://github.com/neondatabase-labs/rag-neon-postgres-openai-azure-python',
       },
@@ -42,9 +43,9 @@ const items = [
     categoryTextColor: 'text-blue-80',
     items: [
       {
-        title: 'Neon Twitter',
+        title: 'Jambo Twitter',
         description:
-          "A microblogging application designed to demonstrate the database branching capability of Neon Serverless Postgres with Neon's GitHub Actions.",
+          "A microblogging application designed to demonstrate the database branching capability of Jambo Serverless Postgres with Jambo's GitHub Actions.",
         demoLink: 'https://neon-twitter.vercel.app/',
         sourceLink: 'https://github.com/neondatabase/neon_twitter',
       },
@@ -56,20 +57,20 @@ const items = [
         sourceLink: 'https://github.com/neondatabase/preview-branches-with-vercel',
       },
       {
-        title: 'Neon Discord bot',
-        description: `Learn how to build a Discord bot while leveraging Neon branching. Be sure to read the <a href="https://github.com/tinkertim/neon_branching_demo" target="_blank" rel="noopener noreferrer">companion branching tutorial</a> before jumping in.`,
+        title: 'Jambo Discord bot',
+        description: `Learn how to build a Discord bot while leveraging Jambo branching. Be sure to read the <a href="https://github.com/tinkertim/neon_branching_demo" target="_blank" rel="noopener noreferrer">companion branching tutorial</a> before jumping in.`,
         demoLink: '#',
         sourceLink: 'https://github.com/tinkertim/neon_branching_demo',
       },
       {
-        title: 'Full-stack preview environments using Neon and Qovery',
+        title: 'Full-stack preview environments using Jambo and Qovery',
         description:
           'This example shows how to execute a bash script and pass environment variables to other services within the same environment with Qovery Lifecycle Job.',
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/qovery-lifecycle-job',
       },
       {
-        title: 'Preview branches with Fly.io, Neon, and Github Actions',
+        title: 'Preview branches with Fly.io, Jambo, and Github Actions',
         description:
           'An example repo showing how to create one database branch per PR to automate your dev workflows, using Fly.io, Github Actions, and Drizzle for migrations.',
         demoLink: '#',
@@ -97,7 +98,7 @@ const items = [
       {
         title: 'Read replicas example',
         description:
-          'This example shows how to use Neon read replicas with the @prisma/extension-read-replicas extension in Prisma Client to read and write data in a PostgreSQL database.',
+          'This example shows how to use Jambo read replicas with the @prisma/extension-read-replicas extension in Prisma Client to read and write data in a PostgreSQL database.',
         demoLink: '#',
         sourceLink: 'https://github.com/prisma/read-replicas-demo',
       },
@@ -108,21 +109,21 @@ const items = [
     categoryTextColor: 'text-blue-80',
     items: [
       {
-        title: 'Neon Ecto Getting Started',
-        description: 'This repository shows how to connect to Neon from Elixir.',
+        title: 'Jambo Ecto Getting Started',
+        description: 'This repository shows how to connect to Jambo from Elixir.',
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/neon-ecto-getting-started-app',
       },
       {
-        title: 'Neon Edge Analytics Astro Sample',
+        title: 'Jambo Edge Analytics Astro Sample',
         description: 'A sample repository showing how to use Edge Analytics with Astro.',
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/neon-edge-analytics-astro-sample',
       },
       {
-        title: 'Neon with Next.js and Prisma',
+        title: 'Jambo with Next.js and Prisma',
         description:
-          'Example code using Next.js as the full stack framework, Prisma as the ORM, and Neon as the Postgres database.',
+          'Example code using Next.js as the full stack framework, Prisma as the ORM, and Jambo as the Postgres database.',
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/examples/tree/main/with-nextjs-prisma',
       },
@@ -135,14 +136,14 @@ const items = [
       {
         title: 'Ping Thing',
         description:
-          'Ping a Neon Serverless Postgres database using a Vercel Edge Function to see the journey your request makes.',
+          'Ping a Jambo Serverless Postgres database using a Vercel Edge Function to see the journey your request makes.',
         demoLink: '/demos/ping-thing',
         sourceLink: 'https://github.com/neondatabase/ping-thing',
       },
       {
-        title: 'Neon serverless driver UNESCO World Heritage Sites App',
+        title: 'Jambo serverless driver UNESCO World Heritage Sites App',
         description:
-          "This application demonstrates how to use raw SQL with Neon's serverless driver on Vercel Edge Functions.",
+          "This application demonstrates how to use raw SQL with Jambo's serverless driver on Vercel Edge Functions.",
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/neon-vercel-rawsql',
       },
@@ -153,9 +154,9 @@ const items = [
     categoryTextColor: 'text-pink-90',
     items: [
       {
-        title: 'Neon branch visualizer',
+        title: 'Jambo branch visualizer',
         description:
-          'This project enables you to visualize Neon branches and how they are connected to each other, showcasing how to build an OAuth integration with Neon.',
+          'This project enables you to visualize Jambo branches and how they are connected to each other, showcasing how to build an OAuth integration with Jambo.',
         demoLink: '#',
         sourceLink: 'https://github.com/neondatabase/neon-branches-visualizer',
       },
@@ -173,9 +174,9 @@ const items = [
         demoLink: 'https://postgres-pgvector.vercel.app/',
       },
       {
-        title: 'Vector similarity search using Neon Postgres',
+        title: 'Vector similarity search using Jambo Postgres',
         description:
-          'This OpenAI Cookbook guides you through using Neon Serverless Postgres as a vector database for OpenAI embeddings.',
+          'This OpenAI Cookbook guides you through using Jambo Serverless Postgres as a vector database for OpenAI embeddings.',
         demoLink: '#',
         sourceLink:
           'https://cookbook.openai.com/examples/vector_databases/neon/neon-postgres-vector-search-pgvector',

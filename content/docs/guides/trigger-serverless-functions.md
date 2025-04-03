@@ -1,38 +1,38 @@
 ---
 title: Trigger serverless functions
-subtitle: Use Inngest to trigger serverless functions from your Neon database changes
+subtitle: Use Inngest to trigger serverless functions from your Jambo database changes
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.339Z'
 ---
 
-Combining your serverless Neon database with [Inngest](https://www.inngest.com/?utm_source=neon&utm_medium=trigger-serverless-functions-guide) enables you to **trigger serverless functions** running on Vercel, AWS, and Cloudflare Worker **based on database changes.**
+Combining your serverless Jambo database with [Inngest](https://www.inngest.com/?utm_source=neon&utm_medium=trigger-serverless-functions-guide) enables you to **trigger serverless functions** running on Vercel, AWS, and Cloudflare Worker **based on database changes.**
 
 By enabling your serverless functions to react to database changes, you open the door to many use cases. From onboarding to ETL and AI workflows, the possibilities are endless.
 
 ![trigger serverless functions with inngest](/docs/guides/inngest.jpg)
 
-This guide describes setting up a Neon database, configuring the Inngest integration, and connecting your Serverless functions to your Neon database with Inngest. It covers:
+This guide describes setting up a Jambo database, configuring the Inngest integration, and connecting your Serverless functions to your Jambo database with Inngest. It covers:
 
-- Creating a Neon project and enabling [Logical Replication](/docs/guides/logical-replication-guide).
-- Configuring the Inngest integration on your Neon database.
-- Configure your Vercel, AWS, or Cloudflare functions to react to your Neon database changes using Inngest.
+- Creating a Jambo project and enabling [Logical Replication](/docs/guides/logical-replication-guide).
+- Configuring the Inngest integration on your Jambo database.
+- Configure your Vercel, AWS, or Cloudflare functions to react to your Jambo database changes using Inngest.
 
 ## Prerequisites
 
-- A Neon account. If you do not have one, see [Sign up](/docs/get-started-with-neon/signing-up) for instructions.
+- A Jambo account. If you do not have one, see [Sign up](/docs/get-started-with-neon/signing-up) for instructions.
 - An Inngest account. You can create a free Inngest account by [signing up](https://app.inngest.com/sign-up?utm_source=neon&utm_medium=trigger-serverless-functions-guide).
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project:
+If you do not have one already, create a Jambo project:
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
-## Create a table in Neon
+## Create a table in Jambo
 
-To create a table, navigate to the **SQL Editor** in the [Neon Console](https://console.neon.tech/):
+To create a table, navigate to the **SQL Editor** in the [Jambo Console](https://console.neon.tech/):
 
 In the SQL Editor, run the following queries to create a `users` table and insert some data:
 
@@ -55,23 +55,23 @@ VALUES
 
 ## Enabling Logical Replication on your database
 
-The Inngest Integration relies on Neon’s Logical Replication feature to get notified upon database changes.
+The Inngest Integration relies on Jambo’s Logical Replication feature to get notified upon database changes.
 
-Navigate to your Neon Project using the Neon Console and open the **Settings** > **Logical Replication** page. From here, follow the instructions to enable Logical Replication:
+Navigate to your Jambo Project using the Jambo Console and open the **Settings** > **Logical Replication** page. From here, follow the instructions to enable Logical Replication:
 
-![Neon dashboard settings with option to enable logical replication](/docs/guides/neon-console-settings-logical-replication.png)
+![Jambo dashboard settings with option to enable logical replication](/docs/guides/neon-console-settings-logical-replication.png)
 
 ## Configuring the Inngest integration
 
-Your Neon database is now ready to work with Inngest.
+Your Jambo database is now ready to work with Inngest.
 
-To configure the Inngest Neon Integration, navigate to the Inngest Platform, open the [Integrations page](https://app.inngest.com/settings/integrations?utm_source=neon&utm_medium=trigger-serverless-functions-guide), and follow the instructions of the [Neon Integration installation wizard](https://app.inngest.com/settings/integrations/neon/connect?utm_source=neon&utm_medium=trigger-serverless-functions-guide):
+To configure the Inngest Jambo Integration, navigate to the Inngest Platform, open the [Integrations page](https://app.inngest.com/settings/integrations?utm_source=neon&utm_medium=trigger-serverless-functions-guide), and follow the instructions of the [Jambo Integration installation wizard](https://app.inngest.com/settings/integrations/neon/connect?utm_source=neon&utm_medium=trigger-serverless-functions-guide):
 
-![Neon integration card inside the Inngest integrations page](/docs/guides/inngest-integrations-page.png)
+![Jambo integration card inside the Inngest integrations page](/docs/guides/inngest-integrations-page.png)
 
 The Inngest Integration requires Postgres admin credentials to complete its setup. _These credentials are not stored and are only used during the installation process_.
 
-![Neon authorization step inside the Inngest integrations page](/docs/guides/inngest-integration-neon-authorize-step.png)
+![Jambo authorization step inside the Inngest integrations page](/docs/guides/inngest-integration-neon-authorize-step.png)
 
 You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
 
@@ -79,7 +79,7 @@ You can find the connection string for your database by clicking the **Connect**
 
 ## Triggering Serverless functions from database changes
 
-Any changes to your Neon database are now dispatched to your Inngest account.  
+Any changes to your Jambo database are now dispatched to your Inngest account.  
 To enable your Serverless functions to react to database changes, we will:
 
 - Install the Inngest client to your Serverless project
@@ -106,7 +106,7 @@ export const inngest = new Inngest({ id: 'neon-inngest-project' });
 
 ### 2. Listen for new `users` rows
 
-Any change performed on our Neon database will trigger an [Inngest Event](https://www.inngest.com/docs/features/events-triggers?utm_source=neon&utm_medium=trigger-serverless-functions-guide) as follows:
+Any change performed on our Jambo database will trigger an [Inngest Event](https://www.inngest.com/docs/features/events-triggers?utm_source=neon&utm_medium=trigger-serverless-functions-guide) as follows:
 
 ```json
 {
@@ -230,9 +230,9 @@ We can now configure your Serverless application to sync with the Inngest Platfo
 
 We are now all set!
 
-Go to the **Tables** page in the Neon Console and add a new record to the `users` table:
+Go to the **Tables** page in the Jambo Console and add a new record to the `users` table:
 
-![You can add a new record to the users table directly from the Neon console](/docs/guides/inngest-integration-neon-console-users-table-add-new-record.png)
+![You can add a new record to the users table directly from the Jambo console](/docs/guides/inngest-integration-neon-console-users-table-add-new-record.png)
 
 You should see a new run of the `new-user` function appear on the [Inngest Platform](https://app.inngest.com/?utm_source=neon&utm_medium=trigger-serverless-functions-guide):
 
@@ -240,7 +240,7 @@ You should see a new run of the `new-user` function appear on the [Inngest Platf
 
 ## Going further
 
-Your Serverless functions can now react to your Neon database changes.
+Your Serverless functions can now react to your Jambo database changes.
 
 In addition to being good for system design, Inngest has some special features that work great with database triggers:
 

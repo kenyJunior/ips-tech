@@ -1,10 +1,10 @@
-# Neon Serverless Driver
+# Jambo Serverless Driver
 
-This guide provides an overview of the Neon serverless driver, which allows you to query data from serverless and edge environments over HTTP or WebSockets.
+This guide provides an overview of the Jambo serverless driver, which allows you to query data from serverless and edge environments over HTTP or WebSockets.
 
 ## Overview
 
-The Neon serverless driver is a low-latency Postgres driver for JavaScript and TypeScript that enables connections to Neon Postgres from serverless environments without using TCP connections.
+The Jambo serverless driver is a low-latency Postgres driver for JavaScript and TypeScript that enables connections to Jambo Postgres from serverless environments without using TCP connections.
 
 Key features:
 - Connect over HTTP or WebSockets
@@ -107,4 +107,4 @@ Important notes for serverless deployments:
    - Configure to connect to local Postgres
    - Test both HTTP and WebSocket connections
 
-For detailed instructions and advanced configuration options, refer to the Neon documentation.
+For detailed instructions and advanced configuration options, refer to the Jambo documentation.

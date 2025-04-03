@@ -2,7 +2,7 @@ export default [
   {
     name: 'Hybrid Search',
     slug: 'hybrid-search',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description: 'A full-featured, hackable Next.js Hybrid Search built with OpenAI.',
     framework: ['Next.js'],
     type: ['Starter'],
@@ -13,7 +13,7 @@ export default [
   {
     name: 'Chat with PDF (OpenAI + LlamaIndex)',
     slug: 'chat-with-pdf-llamaindex',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Chat with PDF chatbot built with OpenAI and LlamaIndex.',
     framework: ['Next.js', 'LlamaIndex'],
@@ -26,7 +26,7 @@ export default [
   {
     name: 'AI Chatbot (OpenAI + LlamaIndex)',
     slug: 'ai-chatbot-llamaindex',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description: 'A full-featured, hackable Next.js AI chatbot built with OpenAI and LlamaIndex.',
     framework: ['Next.js', 'LlamaIndex'],
     type: ['Starter', 'Chatbot'],
@@ -37,7 +37,7 @@ export default [
   {
     name: 'RAG Chatbot (OpenAI + LlamaIndex)',
     slug: 'rag-chatbot-llamaindex',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description: 'A full-featured, hackable Next.js RAG chatbot built with OpenAI and LlamaIndex.',
     framework: ['Next.js', 'LlamaIndex'],
     type: ['Starter', 'Chatbot'],
@@ -48,7 +48,7 @@ export default [
   {
     name: 'Semantic Search Chatbot (OpenAI + LlamaIndex)',
     slug: 'semantic-search-chatbot-llamaindex',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Semantic Search chatbot built with OpenAI and LlamaIndex.',
     framework: ['Next.js', 'LlamaIndex'],
@@ -61,7 +61,7 @@ export default [
   {
     name: 'Reverse Image Search (OpenAI + LlamaIndex)',
     slug: 'reverse-image-search-llamaindex',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Reverse Image Search Engine built with OpenAI and LlamaIndex.',
     framework: ['Next.js', 'LlamaIndex'],
@@ -74,7 +74,7 @@ export default [
   {
     name: 'Chat with PDF (OpenAI + LangChain)',
     slug: 'chat-with-pdf-langchain',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Chat with PDF chatbot built with OpenAI and LangChain.',
     framework: ['Next.js', 'LangChain'],
@@ -87,7 +87,7 @@ export default [
   {
     name: 'AI Chatbot (OpenAI + LangChain)',
     slug: 'ai-chatbot-langchain',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description: 'A full-featured, hackable Next.js AI chatbot built with OpenAI and LangChain.',
     framework: ['Next.js', 'LangChain'],
     type: ['Starter', 'Chatbot'],
@@ -98,7 +98,7 @@ export default [
   {
     name: 'RAG Chatbot (OpenAI + LangChain)',
     slug: 'rag-chatbot-langchain',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description: 'A full-featured, hackable Next.js RAG chatbot built with OpenAI and LangChain.',
     framework: ['Next.js', 'LangChain'],
     type: ['Starter', 'Chatbot'],
@@ -109,7 +109,7 @@ export default [
   {
     name: 'Semantic Search Chatbot (OpenAI + LangChain)',
     slug: 'semantic-search-chatbot-langchain',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Semantic Search chatbot built with OpenAI and LangChain.',
     framework: ['Next.js', 'LangChain'],
@@ -122,7 +122,7 @@ export default [
   {
     name: 'Reverse Image Search (OpenAI + LangChain)',
     slug: 'reverse-image-search-langchain',
-    publisher: 'Neon',
+    publisher: 'Jambo',
     description:
       'A full-featured, hackable Next.js Reverse Image Search Engine built with OpenAI and LangChain.',
     framework: ['Next.js', 'LangChain'],
@@ -135,8 +135,8 @@ export default [
   {
     name: 'Astro Boilerplate',
     slug: 'astro-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Astro and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Astro and Jambo in seconds.',
     framework: ['Astro'],
     type: ['Starter'],
     css: [],
@@ -146,8 +146,8 @@ export default [
   {
     name: 'Express Boilerplate',
     slug: 'express-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Express and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Express and Jambo in seconds.',
     framework: ['Express'],
     type: ['Starter'],
     css: [],
@@ -157,8 +157,8 @@ export default [
   {
     name: 'Fastify Boilerplate',
     slug: 'fastify-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Fastify and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Fastify and Jambo in seconds.',
     framework: ['Fastify'],
     type: ['Starter'],
     css: [],
@@ -168,8 +168,8 @@ export default [
   {
     name: 'Hono Boilerplate',
     slug: 'hono-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Hono and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Hono and Jambo in seconds.',
     framework: ['Hono'],
     type: ['Starter'],
     css: [],
@@ -179,8 +179,8 @@ export default [
   {
     name: 'Nest.js Boilerplate',
     slug: 'nestjs-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Nest.js and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Nest.js and Jambo in seconds.',
     framework: ['Nest.js'],
     type: ['Starter'],
     css: [],
@@ -190,8 +190,8 @@ export default [
   {
     name: 'Next.js Boilerplate',
     slug: 'nextjs-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Next.js and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Next.js and Jambo in seconds.',
     framework: ['Next.js'],
     type: ['Starter'],
     css: ['TailwindCSS'],
@@ -202,8 +202,8 @@ export default [
   {
     name: 'Node.js Boilerplate',
     slug: 'nodejs-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Node.js and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Node.js and Jambo in seconds.',
     framework: ['Node.js'],
     type: ['Starter'],
     css: [],
@@ -213,8 +213,8 @@ export default [
   {
     name: 'Python asyncpg Boilerplate',
     slug: 'python-asyncpg-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Python asyncpg and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Python asyncpg and Jambo in seconds.',
     framework: ['Python'],
     type: ['Starter'],
     css: [],
@@ -224,8 +224,8 @@ export default [
   {
     name: 'Python psycopg2 Boilerplate',
     slug: 'python-psycopg2-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Python psycopg2 and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Python psycopg2 and Jambo in seconds.',
     framework: ['Python'],
     type: ['Starter'],
     css: [],
@@ -235,8 +235,8 @@ export default [
   {
     name: 'Remix Boilerplate',
     slug: 'remix-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Remix and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Remix and Jambo in seconds.',
     framework: ['Remix'],
     type: ['Starter'],
     css: [],
@@ -246,8 +246,8 @@ export default [
   {
     name: 'Solid Start Boilerplate',
     slug: 'solidstart-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Solid Start and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Solid Start and Jambo in seconds.',
     framework: ['Solid Start'],
     type: ['Starter'],
     css: [],
@@ -257,8 +257,8 @@ export default [
   {
     name: 'SvelteKit Boilerplate',
     slug: 'sveltekit-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with SvelteKit and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with SvelteKit and Jambo in seconds.',
     framework: ['SvelteKit'],
     type: ['Starter'],
     css: ['TailwindCSS'],
@@ -268,8 +268,8 @@ export default [
   {
     name: 'Waku Boilerplate',
     slug: 'waku-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Waku and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Waku and Jambo in seconds.',
     framework: ['Waku'],
     type: ['Starter'],
     css: ['TailwindCSS'],
@@ -279,8 +279,8 @@ export default [
   {
     name: 'Angular Boilerplate',
     slug: 'angular-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Angular and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Angular and Jambo in seconds.',
     framework: ['Angular'],
     type: ['Starter'],
     css: [],
@@ -290,8 +290,8 @@ export default [
   {
     name: 'Wasp Boilerplate',
     slug: 'wasp-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Wasp and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Wasp and Jambo in seconds.',
     framework: ['Wasp'],
     type: ['Starter'],
     css: [],
@@ -301,8 +301,8 @@ export default [
   {
     name: 'Analog Boilerplate',
     slug: 'analog-boilerplate',
-    publisher: 'Neon',
-    description: 'Get started with Analog and Neon in seconds.',
+    publisher: 'Jambo',
+    description: 'Get started with Analog and Jambo in seconds.',
     framework: ['Analog'],
     type: ['Starter'],
     css: [],

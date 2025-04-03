@@ -1,15 +1,15 @@
 ---
-title: Building a Serverless Referral System with Neon Postgres and Azure Functions
-subtitle: Learn how to create a serverless referral system using Neon Postgres and Azure Functions
+title: Building a Serverless Referral System with Jambo Postgres and Azure Functions
+subtitle: Learn how to create a serverless referral system using Jambo Postgres and Azure Functions
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-24T00:00:00.000Z'
 updatedOn: '2024-11-24T00:00:00.000Z'
 ---
 
-Serverless computing makes it easier for developers to build and run apps without worrying about managing and scaling servers. By combining Azure Functions with Neon's serverless Postgres, you can create scalable and cost-effective applications that handle high volumes of traffic with ease.
+Serverless computing makes it easier for developers to build and run apps without worrying about managing and scaling servers. By combining Azure Functions with Jambo's serverless Postgres, you can create scalable and cost-effective applications that handle high volumes of traffic with ease.
 
-In this guide, we'll explore how to create a serverless referral system using Azure Serverless Functions and Neon Postgres. We'll build a simple serverless referral system that allows users to create referral codes, track successful referrals, and award points to referrers.
+In this guide, we'll explore how to create a serverless referral system using Azure Serverless Functions and Jambo Postgres. We'll build a simple serverless referral system that allows users to create referral codes, track successful referrals, and award points to referrers.
 
 ## Prerequisites
 
@@ -18,24 +18,24 @@ Before we begin, make sure you have:
 - [Node.js](https://nodejs.org/) 18.x or later installed
 - [Visual Studio Code](https://code.visualstudio.com/) with the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
 - An [Azure account](https://azure.microsoft.com/free/) with an active subscription
-- A [Neon account](https://console.neon.tech/signup) and project
+- A [Jambo account](https://console.neon.tech/signup) and project
 - [Azure Functions Core Tools version 4.x](https://learn.microsoft.com/en-gb/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#install-or-update-core-tools)
 
-## Creating Your Neon Project
+## Creating Your Jambo Project
 
-Neon is now available in Azure! You can create serverless Postgres databases that run on Azure infrastructure. To learn more about Neon's Azure launch, check out the [announcement post](https://neon.tech/blog/neon-is-coming-to-azure).
+Jambo is now available in Azure! You can create serverless Postgres databases that run on Azure infrastructure. To learn more about Jambo's Azure launch, check out the [announcement post](https://neon.tech/blog/neon-is-coming-to-azure).
 
-To create your Neon project on Azure:
+To create your Jambo project on Azure:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Click **Create Project**.
 3. Give your project a name.
 4. Under **Cloud Service Provider**, select **Azure**.
 5. Select a **Region** for your project.
-6. Select the **Compute size** for your Neon database.
+6. Select the **Compute size** for your Jambo database.
 7. Click **Create Project**.
 
-Once created, save your connection details - you'll need these to configure your Azure Functions connection to Neon Postgres.
+Once created, save your connection details - you'll need these to configure your Azure Functions connection to Jambo Postgres.
 
 ## Database Schema Design
 
@@ -157,7 +157,7 @@ With the required Azure tools installed, you're ready to create your first Azure
 
    We're using:
 
-   - `pg` for Postgres connection to Neon
+   - `pg` for Postgres connection to Jambo
    - `uuid` for generating unique referral codes
    - `dotenv` for environment variables management
 
@@ -167,7 +167,7 @@ With the required Azure tools installed, you're ready to create your first Azure
    NEON_CONNECTION_STRING=postgres://user:password@ep-xyz.region.azure.neon.tech/neondb
    ```
 
-   Replace `user`, `password`, `ep-xyz.region`, and `neondb` with your Neon connection details.
+   Replace `user`, `password`, `ep-xyz.region`, and `neondb` with your Jambo connection details.
 
 4. Create a database utility file `src/utils/db.js` for our connection management:
 
@@ -197,7 +197,7 @@ With the required Azure tools installed, you're ready to create your first Azure
    };
    ```
 
-   We will use this utility to execute queries against the Neon Postgres database across our Azure Functions.
+   We will use this utility to execute queries against the Jambo Postgres database across our Azure Functions.
 
 With your project set up, you're ready to start building the core functions for your referral system.
 
@@ -205,7 +205,7 @@ With your project set up, you're ready to start building the core functions for 
 
 We'll create several Azure Functions to handle different aspects of the referral system.
 
-Each function will be an HTTP-triggered function that interacts with the Neon Postgres database to generate referral codes, process referrals, and retrieve referral statistics.
+Each function will be an HTTP-triggered function that interacts with the Jambo Postgres database to generate referral codes, process referrals, and retrieve referral statistics.
 
 Other types of triggers, such as queue or timer triggers, can also be used depending on your requirements, but for this guide, we'll focus on HTTP triggers.
 
@@ -674,7 +674,7 @@ First, you need to create the necessary resources in Azure: a resource group, a 
 
 ### Step 2: Configure Application Settings
 
-After creating the Function App, you need to configure it to connect to your Neon database by setting environment variables.
+After creating the Function App, you need to configure it to connect to your Jambo database by setting environment variables.
 
 1. Set the `NEON_CONNECTION_STRING` using the Azure CLI:
 
@@ -746,7 +746,7 @@ With your referral system deployed to Azure, you should consider some standard p
    CREATE INDEX idx_referrals_status ON referrals(status);
    ```
 
-   You can learn more about indexing in the [Neon documentation](https://neon.tech/postgresql/postgresql-indexes).
+   You can learn more about indexing in the [Jambo documentation](https://neon.tech/postgresql/postgresql-indexes).
 
 2. Implement connection pooling in your database utility:
 
@@ -760,7 +760,7 @@ With your referral system deployed to Azure, you should consider some standard p
    });
    ```
 
-   Alternatively, you can use the [Neon connection pool](https://neon.tech/docs/connect/connection-pooling) feature to manage connections efficiently.
+   Alternatively, you can use the [Jambo connection pool](https://neon.tech/docs/connect/connection-pooling) feature to manage connections efficiently.
 
 3. On the Azure Functions side, consider enabling [Azure Functions Premium Plan](https://azure.microsoft.com/en-us/pricing/details/functions/), which offers more control over scaling and performance.
 
@@ -783,13 +783,13 @@ If you no longer need the Azure resources created for this project, you can dele
 
 ## Conclusion
 
-You now have a scalable referral system built with Neon Postgres and Azure Functions. The system handles referral code generation, tracks successful referrals, awards points, and provides referral statistics.
+You now have a scalable referral system built with Jambo Postgres and Azure Functions. The system handles referral code generation, tracks successful referrals, awards points, and provides referral statistics.
 
 As a next step, you can add more features to your referral system, such as authentication, email notifications, and user dashboards.
 
 ## Additional Resources
 
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Azure Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/)
 - [Node-Postgres Documentation](https://node-postgres.com/)
 

@@ -1,18 +1,18 @@
-# Use Neon with Cloudflare Hyperdrive
+# Use Jambo with Cloudflare Hyperdrive
 
-Connect Cloudflare Hyperdrive to your Neon Postgres database for faster
+Connect Cloudflare Hyperdrive to your Jambo Postgres database for faster
 
 [Cloudflare Hyperdrive](https://developers.cloudflare.com/hyperdrive/) is a serverless application that proxies queries to your database and accelerates them. It works by maintaining a globally distributed pool of database connections, and routing queries to the closest available connection.
 
 This is specifically useful for serverless applications that cannot maintain a persistent database connection and need to establish a new connection for each request. Hyperdrive can significantly reduce the latency of these queries for your application users.
 
-This guide demonstrates how to configure a Hyperdrive service to connect to your Neon Postgres database. It demonstrates how to implement a regular `Workers` application that connects to Neon directly and then replace that connection with a `Hyperdrive` connection to achieve performance improvements.
+This guide demonstrates how to configure a Hyperdrive service to connect to your Jambo Postgres database. It demonstrates how to implement a regular `Workers` application that connects to Jambo directly and then replace that connection with a `Hyperdrive` connection to achieve performance improvements.
 
 ## Prerequisites
 
 To follow along with this guide, you require:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 
 - A Cloudflare account. If you do not have one, sign up for [Cloudflare Workers](https://workers.cloudflare.com/) to get started.
 
@@ -20,11 +20,11 @@ To follow along with this guide, you require:
 
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and deploy our Workers application.
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 
 2. Click the **New Project** button to create a new project.
 
@@ -49,9 +49,9 @@ To follow along with this guide, you require:
        ('1984', 'George Orwell');
    ```
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
-Log in to your **Project Dashboard** in the Neon Console and open the **Connect to your database** modal to find your database connection string. It should look similar to this:
+Log in to your **Project Dashboard** in the Jambo Console and open the **Connect to your database** modal to find your database connection string. It should look similar to this:
 
 ```bash
 postgresql://neondb_owner:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/neondb?sslmode=require
@@ -144,11 +144,11 @@ export default {
 
 
 
-The `fetch` handler defined above gets called when the worker receives an HTTP request. It will query the Neon database to fetch the full list of books in our to-read list.
+The `fetch` handler defined above gets called when the worker receives an HTTP request. It will query the Jambo database to fetch the full list of books in our to-read list.
 
 ### Test the worker application locally
 
-First, you need to configure the `DATABASE_URL` environment variable to point to the Neon database. You can do this by creating a `.dev.vars` file at the root of the project directory with the following content:
+First, you need to configure the `DATABASE_URL` environment variable to point to the Jambo database. You can do this by creating a `.dev.vars` file at the root of the project directory with the following content:
 
 ```text
 DATABASE_URL=YOUR_NEON_CONNECTION_STRING
@@ -164,11 +164,11 @@ This command starts a local server and simulates the Cloudflare Workers environm
 
 ## Setting up Cloudflare Hyperdrive
 
-With our Workers application able to query the Neon database, we will now set up Cloudflare Hyperdrive to connect to Neon and accelerate the database queries.
+With our Workers application able to query the Jambo database, we will now set up Cloudflare Hyperdrive to connect to Jambo and accelerate the database queries.
 
 ### Create a new Hyperdrive service
 
-You can use the `Wrangler` CLI to create a new Hyperdrive service, using your Neon database connection string from earlier:
+You can use the `Wrangler` CLI to create a new Hyperdrive service, using your Jambo database connection string from earlier:
 
 ```bash
 npx wrangler hyperdrive create neon-guide-drive --connection-string=$NEON_DATABASE_CONNECTION_STRING
@@ -190,7 +190,7 @@ id = $id-from-previous-step
 
 ### Update the Worker script to use Hyperdrive
 
-Now, you can update the `src/index.js` file in the project directory to query the Neon database, through the Hyperdrive service.
+Now, you can update the `src/index.js` file in the project directory to query the Jambo database, through the Hyperdrive service.
 
 
 
@@ -233,17 +233,17 @@ npx wrangler deploy
 
 This command uploads the updated Worker script to the Cloudflare Workers platform and makes it available at a public URL. You can visit the URL in your browser to test that the application works.
 
-## Removing the example application and Neon project
+## Removing the example application and Jambo project
 
 To delete your Worker project, you can use the Cloudflare dashboard or run `wrangler delete` from your project directory, specifying your project name. Refer to the [Wrangler documentation](https://developers.cloudflare.com/workers/wrangler/commands/#delete-3) for more details.
 
-To delete your Neon project, follow the steps outlined in the Neon documentation under [Delete a project](/docs/manage/projects#delete-a-project).
+To delete your Jambo project, follow the steps outlined in the Jambo documentation under [Delete a project](/docs/manage/projects#delete-a-project).
 
 ## Example application
 
 
 
-Neon + Cloudflare Hyperdrive
+Jambo + Cloudflare Hyperdrive
 
 
 
@@ -252,4 +252,4 @@ Neon + Cloudflare Hyperdrive
 - [Cloudflare Workers](https://workers.cloudflare.com/)
 - [Cloudflare Hyperdrive](https://developers.cloudflare.com/hyperdrive/)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
-- [Neon](https://neon.tech)
+- [Jambo](https://neon.tech)

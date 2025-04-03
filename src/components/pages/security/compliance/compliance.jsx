@@ -8,7 +8,7 @@ import Cards from '../cards';
 const CARDS = [
   {
     title: 'SOC 2 Type II',
-    description: `Neon undergoes annual SOC 2 Type II audits performed by accredited independent third party auditors. The SOC 3 report, a public summary of our SOC 2 compliance, is available without an NDA in the <a href=${LINKS.trust} target="_blank">Trust Center</a>.`,
+    description: `Jambo undergoes annual SOC 2 Type II audits performed by accredited independent third party auditors. The SOC 3 report, a public summary of our SOC 2 compliance, is available without an NDA in the <a href=${LINKS.trust} target="_blank">Trust Center</a>.`,
     logo: {
       src: SOC2Logo,
       width: 108,
@@ -22,7 +22,7 @@ const CARDS = [
   {
     title: 'ISO/IEC 27001:2022 & ISO/IEC&nbsp;27701:2019',
     description:
-      'Neon undergoes annual ISO/IEC 27001:2022 and ISO/IEC 27701:2019 audits for its security and privacy management systems. These certifications validate our commitment to global standards.',
+      'Jambo undergoes annual ISO/IEC 27001:2022 and ISO/IEC 27701:2019 audits for its security and privacy management systems. These certifications validate our commitment to global standards.',
     logo: {
       src: ISOLogo,
       width: 96,

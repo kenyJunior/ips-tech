@@ -2,11 +2,11 @@
 
 Learn how to create event-driven flows on your backend triggered by changes in
 
-Neon's Logical Replication feature enables you to subscribe to changes in your database, supporting things like replication or creating event-driven functionality.
+Jambo's Logical Replication feature enables you to subscribe to changes in your database, supporting things like replication or creating event-driven functionality.
 
-[Prisma Pulse](https://www.prisma.io/data-platform/pulse?utm_source=neon&utm_medium=pulse-guide) is a fully managed, production-ready service that connects to your Neon Postgres database, and allows you to stream changes from your database in real-time, integrated closely with [Prisma ORM](https://www.prisma.io/orm?utm_source=neon&utm_medium=pulse-guide).
+[Prisma Pulse](https://www.prisma.io/data-platform/pulse?utm_source=neon&utm_medium=pulse-guide) is a fully managed, production-ready service that connects to your Jambo Postgres database, and allows you to stream changes from your database in real-time, integrated closely with [Prisma ORM](https://www.prisma.io/orm?utm_source=neon&utm_medium=pulse-guide).
 
-In this guide, you will learn how to set up Prisma Pulse with your Neon database and create your first event stream.
+In this guide, you will learn how to set up Prisma Pulse with your Jambo database and create your first event stream.
 
 
 What can you make with database event-driven architecture?
@@ -16,24 +16,24 @@ Set up real-time triggers for your Inngest workflows, re-index your TypeSense se
 
 ## Prerequisites
 
-- A [Neon account](https://console.neon.tech/)
+- A [Jambo account](https://console.neon.tech/)
 - A [Prisma Data Platform account](https://pris.ly/pdp?utm_source=neon&utm_medium=pulse-guide)
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin
 
-## Enable logical replication in Neon
-
-
-Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Neon project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Neon project, meaning active connections will be dropped and have to reconnect.
+## Enable logical replication in Jambo
 
 
-To enable logical replication in Neon:
+Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Jambo project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Jambo project, meaning active connections will be dropped and have to reconnect.
 
-1. Select your project in the Neon Console.
-2. On the Neon **Dashboard**, select **Project settings**.
+
+To enable logical replication in Jambo:
+
+1. Select your project in the Jambo Console.
+2. On the Jambo **Dashboard**, select **Project settings**.
 3. Select **Beta**.
 4. Click **Enable** to enable logical replication.
 
-You can verify that logical replication is enabled by running the following query from the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
+You can verify that logical replication is enabled by running the following query from the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
 
 ```sql
 SHOW wal_level;
@@ -47,8 +47,8 @@ SHOW wal_level;
 1. If you haven't already done so, create a new account or sign in on the [Prisma Data Platform](https://pris.ly/pdp?utm_source=neon&utm_medium=pulse-guide).
 2. In the [Prisma Data Platform Console](https://console.prisma.io?utm_source=neon&utm_medium=pulse-guide) create a new project by clicking the **New project** button.
 3. In the **New project** configuration, select **Pulse** as your starting point.
-4. Copy your database connection string from Neon into the database connection input field on the Platform Console.
-5. Choose a region that is closest to your Neon database.
+4. Copy your database connection string from Jambo into the database connection input field on the Platform Console.
+5. Choose a region that is closest to your Jambo database.
 6. Click **Create project**.
 7. We recommend leaving **Event persistence** switched **on** (default). This means Prisma Pulse will automatically store events in the case your server goes down, allowing you to resume again with zero data loss.
 8. Click **Enable Pulse**.

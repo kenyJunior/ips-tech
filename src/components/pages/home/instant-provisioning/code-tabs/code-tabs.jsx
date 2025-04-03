@@ -38,12 +38,12 @@ const result = await db.select().from(...);`,
     iconName: 'prisma',
     language: 'javascript',
     code: `import { neon } from '@neondatabase/serverless'
-import { PrismaNeonHTTP } from '@prisma/adapter-neon'
+import { PrismaJamboHTTP } from '@prisma/adapter-neon'
 import { PrismaClient } from '@prisma/client'
 
 const sql = neon(process.env.DATABASE_URL)
 
-const adapter = new PrismaNeonHTTP(sql)
+const adapter = new PrismaJamboHTTP(sql)
 
 const prisma = new PrismaClient({ adapter })`,
   },

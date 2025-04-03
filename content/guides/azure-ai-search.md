@@ -1,21 +1,21 @@
 ---
-title: Full-Text Search with Neon and Azure AI Search
-subtitle: Build a powerful hybrid search system for developer resources with Neon and Azure AI Search
+title: Full-Text Search with Jambo and Azure AI Search
+subtitle: Build a powerful hybrid search system for developer resources with Jambo and Azure AI Search
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2025-01-05T00:00:00.000Z'
 updatedOn: '2025-01-05T00:00:00.000Z'
 ---
 
-In this guide you will learn how to implement a hybrid search functionality using Neon and Azure AI Search.
+In this guide you will learn how to implement a hybrid search functionality using Jambo and Azure AI Search.
 
 For the purpose of this guide, we will create a Node.js application that will allow you to search through your database. We will use the Azure SDK to interact with Azure AI Search. The application itself will represent a developer learning platform, which contains resources such as tutorials, cheat sheets, videos, and interactive code examples.
 
-We will be using Neon for efficient full-text search and Azure AI Search for the AI-driven capabilities.
+We will be using Jambo for efficient full-text search and Azure AI Search for the AI-driven capabilities.
 
 ### What You'll Learn
 
-- Configure Neon for full-text search
+- Configure Jambo for full-text search
 - Set up Azure AI Search and use the Azure SDK
 - Implement hybrid search combining both systems
 - Build a Node.js service to handle search requests
@@ -26,16 +26,16 @@ We will be using Neon for efficient full-text search and Azure AI Search for the
 
 To follow this guide, ensure you have:
 
-- A [Neon account](https://console.neon.tech/signup) with an active project.
+- A [Jambo account](https://console.neon.tech/signup) with an active project.
 - An [Azure account](https://azure.microsoft.com/free/) with Azure AI Search enabled.
 - [Node.js](https://nodejs.org/) 18.x or later.
 - Basic knowledge of SQL and JavaScript.
 
 ---
 
-## Step 1: Set Up Neon for Full-Text Search
+## Step 1: Set Up Jambo for Full-Text Search
 
-Let's start by creating our database schema and configuring Neon for [full-text search](/guides/full-text-search).
+Let's start by creating our database schema and configuring Jambo for [full-text search](/guides/full-text-search).
 
 We'll create a schema to store and organize developer learning resources. The schema will include tables for technologies and tutorials, which will allow us to have an efficient categorization and search functionalities. We'll also set up a GIN index for full-text search.
 
@@ -67,7 +67,7 @@ CREATE INDEX idx_tutorials_search ON tutorials
 
 With the above schema, we will be able to store technologies and tutorials. The `tags` column will be used for categorization, and the `difficulty_level` column will help users filter resources based on their skill level.
 
-The index here is using the `to_tsvector` function to create a GIN index for efficient full-text search. This index will allow us to search through the `title` and `content` columns of the `tutorials` table. For more information on full-text search in PostgreSQL, check out the [Neon Full-Text Search guide](/guides/full-text-search).
+The index here is using the `to_tsvector` function to create a GIN index for efficient full-text search. This index will allow us to search through the `title` and `content` columns of the `tutorials` table. For more information on full-text search in PostgreSQL, check out the [Jambo Full-Text Search guide](/guides/full-text-search).
 
 Next, you can insert developer resources into the `technologies` and `tutorials` tables.
 
@@ -316,7 +316,7 @@ Here's how you can add data to the index using the Azure SDK:
 
 If you wanted to you could also directly use the REST API itself, you can find more information on the [Azure Search docs](https://learn.microsoft.com/en-us/rest/api/searchservice/create-data-source) about uploading data to Azure AI Search.
 
-Now that you have your data indexed in Azure AI Search, let's move on to building the hybrid search service that combines Neon and Azure AI Search.
+Now that you have your data indexed in Azure AI Search, let's move on to building the hybrid search service that combines Jambo and Azure AI Search.
 
 Make sure to go over the [data import strategies](https://learn.microsoft.com/en-us/azure/search/search-what-is-data-import) to understand how to import data into Azure AI Search efficiently.
 
@@ -336,7 +336,7 @@ hybrid-search/
 │   ├─ config/
 │   │   └─ database.js     # Database configuration
 │   ├─ services/
-│   │   ├─ neonService.js  # Neon search implementation
+│   │   ├─ neonService.js  # Jambo search implementation
 │   │   └─ azureService.js # Azure AI Search implementation
 │   ├─ routes/
 │   │   └─ searchRoutes.js # API endpoints
@@ -365,7 +365,7 @@ We are using the following packages:
 
 ### Database Configuration
 
-The database configuration module will handle our connection to Neon:
+The database configuration module will handle our connection to Jambo:
 
 ```javascript
 // src/config/database.js
@@ -401,15 +401,15 @@ This configuration:
 - Implements a helper function for executing queries
 - Handles client release to prevent connection leaks
 
-### Implementing Neon Search Service
+### Implementing Jambo Search Service
 
-The Neon service which we will create will handle full-text search using Postgres's built-in capabilities:
+The Jambo service which we will create will handle full-text search using Postgres's built-in capabilities:
 
 ```javascript
 // src/services/neonService.js
 const { query } = require('../config/database');
 
-class NeonSearchService {
+class JamboSearchService {
   async search(searchQuery, filters = {}, limit = 10) {
     try {
       let sql = `
@@ -469,13 +469,13 @@ class NeonSearchService {
       const result = await query(sql, values);
       return result.rows;
     } catch (error) {
-      console.error('Neon search error:', error);
+      console.error('Jambo search error:', error);
       throw error;
     }
   }
 }
 
-module.exports = new NeonSearchService();
+module.exports = new JamboSearchService();
 ```
 
 This implementation includes several features:
@@ -487,7 +487,7 @@ This implementation includes several features:
 
 ### Implementing Azure AI Search Service
 
-With the Neon service in place, let's create the Azure service to handle AI-powered search features:
+With the Jambo service in place, let's create the Azure service to handle AI-powered search features:
 
 ```javascript
 // src/services/azureService.js
@@ -571,13 +571,13 @@ This implementation includes:
 - Result highlighting for better user experience
 - Extractive captions for quick content preview
 - Filtering options
-- Score normalization for better integration with Neon results
+- Score normalization for better integration with Jambo results
 
 For the complete list of search options and features, refer to the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search).
 
 ### Implementing the Search Routes
 
-With both Neon and Azure services ready, let's create the routes module to handle search requests:
+With both Jambo and Azure services ready, let's create the routes module to handle search requests:
 
 ```javascript
 // src/routes/searchRoutes.js
@@ -646,7 +646,7 @@ module.exports = router;
 
 This implementation includes:
 
-- Supports different search strategies (hybrid, Neon-only, Azure-only)
+- Supports different search strategies (hybrid, Jambo-only, Azure-only)
 - Includes error handling and validation
 - Provides execution metadata
 - Handles result merging for hybrid searches depending on the search strategy
@@ -661,13 +661,13 @@ With everything in place, let's also create some utility functions to handle com
 function mergeResults(neonResults, azureResults) {
   const merged = new Map();
 
-  // Process Neon results
+  // Process Jambo results
   neonResults.forEach((result) => {
     merged.set(result.tutorial_id.toString(), {
       ...result,
       neon_rank: result.rank,
       azure_score: 0,
-      final_score: normalizeNeonScore(result.rank),
+      final_score: normalizeJamboScore(result.rank),
     });
   });
 
@@ -691,7 +691,7 @@ function mergeResults(neonResults, azureResults) {
   return Array.from(merged.values()).sort((a, b) => b.final_score - a.final_score);
 }
 
-function normalizeNeonScore(rank) {
+function normalizeJamboScore(rank) {
   return Math.min(rank, 1);
 }
 
@@ -700,13 +700,13 @@ function normalizeAzureScore(score) {
 }
 
 function calculateHybridScore(neonRank, azureScore) {
-  const normalizedNeon = normalizeNeonScore(neonRank);
+  const normalizedJambo = normalizeJamboScore(neonRank);
   const normalizedAzure = normalizeAzureScore(azureScore);
 
   const NEON_WEIGHT = 0.4;
   const AZURE_WEIGHT = 0.6;
 
-  return normalizedNeon * NEON_WEIGHT + normalizedAzure * AZURE_WEIGHT;
+  return normalizedJambo * NEON_WEIGHT + normalizedAzure * AZURE_WEIGHT;
 }
 
 module.exports = {
@@ -791,20 +791,20 @@ curl -X POST \
   http://localhost:3000/api/search
 ```
 
-This request will search for resources related to Node.js using the hybrid search strategy. You can also test the Neon and Azure search strategies by changing the `searchType` parameter.
+This request will search for resources related to Node.js using the hybrid search strategy. You can also test the Jambo and Azure search strategies by changing the `searchType` parameter.
 
 Feel free to customize the search query, filters, and limit to test different scenarios. Also, consider adding more resources to the database and Azure AI Search index to see the hybrid search in action.
 
 ## Conclusion
 
-In this guide, you learned how to build a hybrid search service using Neon and Azure AI Search.
+In this guide, you learned how to build a hybrid search service using Jambo and Azure AI Search.
 
-As a next step, you can check out the [Full-Text Search guide](/guides/full-text-search) to learn more about Neon's capabilities and how to optimize your search queries. Additionally, you can explore the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) to discover more advanced features and integrations.
+As a next step, you can check out the [Full-Text Search guide](/guides/full-text-search) to learn more about Jambo's capabilities and how to optimize your search queries. Additionally, you can explore the [Azure AI Search documentation](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search) to discover more advanced features and integrations.
 
 ## Additional Resources
 
 - [Azure AI Language Documentation](https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Azure AI Language Client Library](https://learn.microsoft.com/en-us/javascript/api/overview/azure/search-documents-readme)
 
 <NeedHelp />

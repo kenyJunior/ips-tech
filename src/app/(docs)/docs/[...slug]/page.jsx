@@ -60,8 +60,8 @@ export async function generateMetadata({ params }) {
   const encodedCategory = category && Buffer.from(category).toString('base64');
 
   return getMetadata({
-    title: `${title} - Neon Docs`,
-    description: isChangelog ? 'The latest product updates from Neon' : post.excerpt,
+    title: `${title} - Jambo Docs`,
+    description: isChangelog ? 'The latest product updates from Jambo' : post.excerpt,
     imagePath: `${VERCEL_URL}/docs/og?title=${encodedTitle}&category=${encodedCategory}`,
     pathname: `${LINKS.docs}/${currentSlug}`,
     rssPathname: isChangelog ? `${LINKS.changelog}/rss.xml` : null,
@@ -116,7 +116,7 @@ const DocPost = async ({ params }) => {
     headline: data.title,
     author: {
       '@type': 'Organization',
-      name: 'Neon',
+      name: 'Jambo',
     },
   };
 

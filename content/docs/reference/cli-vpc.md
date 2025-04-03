@@ -1,18 +1,18 @@
 ---
-title: Neon CLI commands — vpc
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — vpc
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2025-03-12T15:31:54.854Z'
 ---
 
 ## Before you begin
 
-- Before running a `vpc` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running a `vpc` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
 ## The `vpc` command
 
-You can use the `vpc` CLI command to manage [Private Networking](/docs/guides/neon-private-networking) configurations in Neon.
+You can use the `vpc` CLI command to manage [Private Networking](/docs/guides/neon-private-networking) configurations in Jambo.
 
 The `vpc` command includes subcommands for managing VPC endpoints and project-level VPC endpoint restrictions.
 
@@ -23,20 +23,20 @@ The `vpc` command includes subcommands for managing VPC endpoints and project-le
 
 ## The `vpc endpoint` subcommand
 
-The `vpc endpoint` subcommand lets you to list, assign, remove, and get the status of VPC endpoints for a Neon organization.
+The `vpc endpoint` subcommand lets you to list, assign, remove, and get the status of VPC endpoints for a Jambo organization.
 
 ### Usage
 
 | Subcommand    | Description                                                                                                                           |
 | :------------ | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `list`        | List configured VPC endpoints for the Neon organization.                                                                              |
-| `assign <id>` | Add or update a VPC endpoint in the Neon organization. The ID is the VPC endpoint ID. Aliases for this command are `add` and `update` |
-| `remove <id>` | Remove a VPC endpoint from the Neon organization. The ID is the VPC endpoint ID. A removed VPC endpoint cannot be added back.         |
-| `status <id>` | Get the status of a VPC endpoint for the Neon organization. The ID is the VPC endpoint ID.                                            |
+| `list`        | List configured VPC endpoints for the Jambo organization.                                                                              |
+| `assign <id>` | Add or update a VPC endpoint in the Jambo organization. The ID is the VPC endpoint ID. Aliases for this command are `add` and `update` |
+| `remove <id>` | Remove a VPC endpoint from the Jambo organization. The ID is the VPC endpoint ID. A removed VPC endpoint cannot be added back.         |
+| `status <id>` | Get the status of a VPC endpoint for the Jambo organization. The ID is the VPC endpoint ID.                                            |
 
 ### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `vpc endpoint` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `vpc endpoint` subcommand supports these options:
 
 | Option           | Description                                                                                                                                                        | Type   | Required                                                                                                                          |
 | :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------- |
@@ -48,7 +48,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - **List VPC endpoints**
 
-  Retrieve a list of all configured VPC endpoints for a specific Neon organization.
+  Retrieve a list of all configured VPC endpoints for a specific Jambo organization.
 
   ```bash
   neon vpc endpoint list --org-id org-bold-bonus-12345678
@@ -56,29 +56,29 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - **Assign a VPC endpoint**
 
-  Add or update a VPC endpoint for a specific Neon organization and region.
+  Add or update a VPC endpoint for a specific Jambo organization and region.
 
   ```bash
   neon vpc endpoint assign vpce-1234567890abcdef0 --org-id org-bold-bonus-12345678 --region-id aws-us-east-1
   ```
 
-  After assigning a VPC endpoint to a Neon organization, client connections will be accepted from the corresponding VPC for all projects in the Neon organization, unless restricted. Aliases for this command are `add` and `update`.
+  After assigning a VPC endpoint to a Jambo organization, client connections will be accepted from the corresponding VPC for all projects in the Jambo organization, unless restricted. Aliases for this command are `add` and `update`.
 
 - **Remove a VPC endpoint**
 
-  Delete an existing VPC endpoint from a specific Neon organization.
+  Delete an existing VPC endpoint from a specific Jambo organization.
 
   ```bash
   neon vpc endpoint remove vpce-1234567890abcdef0 --org-id org-bold-bonus-12345678
   ```
 
   <Admonition type="note">
-  A removed VPC endpoint cannot be added back to the Neon organization.
+  A removed VPC endpoint cannot be added back to the Jambo organization.
   </Admonition>
 
 - **Get the status of a VPC endpoint**
 
-  Check the status of a specific VPC endpoint in a Neon organization.
+  Check the status of a specific VPC endpoint in a Jambo organization.
 
   ```bash
   neon vpc endpoint status vpce-1234567890abcdef0 --org-id org-bold-bonus-12345678
@@ -86,7 +86,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 ## The `vpc project` subcommand
 
-The `vpc project` subcommand lets you list, configure, or remove VPC endpoint restrictions to prevent access to specific projects in your Neon organization.
+The `vpc project` subcommand lets you list, configure, or remove VPC endpoint restrictions to prevent access to specific projects in your Jambo organization.
 
 ### Usage
 
@@ -98,7 +98,7 @@ The `vpc project` subcommand lets you list, configure, or remove VPC endpoint re
 
 ### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `vpc project` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `vpc project` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   | Required |
 | :--------------- | :-------------------------------------------------------------------------------------------- | :----- | :------- |
@@ -109,7 +109,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - **List project-level VPC endpoint restrictions**
 
-  List all VPC endpoint restrictions for the specified Neon project.
+  List all VPC endpoint restrictions for the specified Jambo project.
 
   ```bash
   neon vpc project list --project-id orange-credit-12345678
@@ -117,7 +117,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - **Restrict connections to a specific VPC**
 
-  Configure or update a VPC endpoint restriction for a Neon project. When a VPC endpoint ID is assigned as a restriction, the specified project only accepts connections from the specified VPC.
+  Configure or update a VPC endpoint restriction for a Jambo project. When a VPC endpoint ID is assigned as a restriction, the specified project only accepts connections from the specified VPC.
 
   ```bash
   neon vpc project restrict vpce-1234567890abcdef0 --project-id orange-credit-12345678
@@ -125,7 +125,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - **Remove a VPC endpoint restriction**
 
-  Remove a VPC endpoint restriction from a specific Neon project.
+  Remove a VPC endpoint restriction from a specific Jambo project.
 
   ```bash
   neon vpc project remove vpce-1234567890abcdef0 --project-id orange-credit-12345678

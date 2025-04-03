@@ -1,6 +1,6 @@
 ---
 title: Replicate data from Amazon RDS Postgres
-subtitle: Learn how to replicate data from Amazon RDS Postgres to Neon
+subtitle: Learn how to replicate data from Amazon RDS Postgres to Jambo
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-14T17:05:10.001Z'
@@ -8,7 +8,7 @@ updatedOn: '2025-02-14T17:05:10.001Z'
 
 <MigrationAssistant/>
 
-Neon's logical replication feature allows you to replicate data from Amazon RDS PostgreSQL to Neon.
+Jambo's logical replication feature allows you to replicate data from Amazon RDS PostgreSQL to Jambo.
 
 ## Prerequisites
 
@@ -20,15 +20,15 @@ Neon's logical replication feature allows you to replicate data from Amazon RDS 
   SELECT LEFT(md5(i::TEXT), 10), random() FROM generate_series(1, 10) s(i);
   ```
 
-- A destination Neon project. For information about creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin.
+- A destination Jambo project. For information about creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin.
 - Review our [logical replication tips](/docs/guides/logical-replication-tips), based on real-world customer data migration experiences.
 
 <Steps>
 
 ## Prepare your source database
 
-This section describes how to prepare your source Amazon RDS Postgres instance (the publisher) for replicating data to Neon.
+This section describes how to prepare your source Amazon RDS Postgres instance (the publisher) for replicating data to Jambo.
 
 ### Enable logical replication in the source Amazon RDS PostgreSQL instance
 
@@ -66,16 +66,16 @@ To enable logical replication:
    (1 row)
    ```
 
-### Allow connections from Neon
+### Allow connections from Jambo
 
-You need to allow inbound connections to your AWS RDS Postgres instance from Neon. You can do this by editing your instance's **CIDR/IP - Inbound** security group, which you can find a link to from your AWS RDS Postgres instance page.
+You need to allow inbound connections to your AWS RDS Postgres instance from Jambo. You can do this by editing your instance's **CIDR/IP - Inbound** security group, which you can find a link to from your AWS RDS Postgres instance page.
 
 1. Click on the security group name.
 2. Click on the security group ID.
 3. From the **Actions** menu, select **Edit inbound rules**.
-4. Add rules that allow traffic from each of the IP addresses for your Neon project's region.
+4. Add rules that allow traffic from each of the IP addresses for your Jambo project's region.
 
-   Neon uses 3 to 6 IP addresses per region for outbound communication, corresponding to each availability zone in the region. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for Neon's NAT gateway IP addresses.
+   Jambo uses 3 to 6 IP addresses per region for outbound communication, corresponding to each availability zone in the region. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for Jambo's NAT gateway IP addresses.
 
 5. When you're finished, click **Save rules**.
 
@@ -107,7 +107,7 @@ For syntax details, see [CREATE PUBLICATION](https://www.postgresql.org/docs/cur
 
 ## Prepare your destination database
 
-This section describes how to prepare your source Neon Postgres database (the subscriber) to receive replicated data from your AWS RDS Postgres instance.
+This section describes how to prepare your source Jambo Postgres database (the subscriber) to receive replicated data from your AWS RDS Postgres instance.
 
 ### Prepare your database schema
 
@@ -121,9 +121,9 @@ CREATE TABLE IF NOT EXISTS playing_with_neon(id SERIAL PRIMARY KEY, name TEXT NO
 
 ### Create a subscription
 
-After creating a publication on the source database, you need to create a subscription on your Neon destination database.
+After creating a publication on the source database, you need to create a subscription on your Jambo destination database.
 
-1. Use the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor), `psql`, or another SQL client to connect to your destination database.
+1. Use the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor), `psql`, or another SQL client to connect to your destination database.
 2. Create the subscription using the using a `CREATE SUBSCRIPTION` statement.
 
    ```sql shouldWrap
@@ -176,8 +176,8 @@ SELECT subname, received_lsn, latest_end_lsn, last_msg_receipt_time FROM pg_cata
 
 ## Switch over your application
 
-After the replication operation is complete, you can switch your application over to the destination database by swapping out your AWS RDS source database connection details for your Neon destination database connection details.
+After the replication operation is complete, you can switch your application over to the destination database by swapping out your AWS RDS source database connection details for your Jambo destination database connection details.
 
-You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. See [Connect from any application](/docs/connect/connect-from-any-app). See [Connect from any application](/docs/connect/connect-from-any-app).
+You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. See [Connect from any application](/docs/connect/connect-from-any-app). See [Connect from any application](/docs/connect/connect-from-any-app).
 
 </Steps>

@@ -1,28 +1,28 @@
 ---
-title: Connect a .NET (C#) application to Neon
-subtitle: Set up a Neon project in seconds and connect from a .NET (C#) application
+title: Connect a .NET (C#) application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from a .NET (C#) application
 enableTableOfContents: true
 updatedOn: '2024-11-03T11:22:23.319Z'
 ---
 
-This guide describes how to create a Neon project and connect to it from a .NET (C#) application. We'll build a simple book library that demonstrates basic database operations using the Npgsql provider.
+This guide describes how to create a Jambo project and connect to it from a .NET (C#) application. We'll build a simple book library that demonstrates basic database operations using the Npgsql provider.
 
 <Admonition type="note">
 The same configuration steps can be used for any .NET application type, including ASP.NET Core Web API, MVC, Blazor, or Windows Forms applications.
 </Admonition>
 
-To connect to Neon from a .NET application:
+To connect to Jambo from a .NET application:
 
-1. [Create a Neon Project](#create-a-neon-project)
+1. [Create a Jambo Project](#create-a-neon-project)
 2. [Create a .NET project and add dependencies](#create-a-net-project-and-add-dependencies)
-3. [Store your Neon credentials](#store-your-neon-credentials)
+3. [Store your Jambo credentials](#store-your-neon-credentials)
 4. [Perform database operations](#perform-database-operations)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -31,8 +31,8 @@ If you do not have one already, create a Neon project.
 1. Create a new console application and change to the newly created directory:
 
    ```bash
-   dotnet new console -n NeonLibraryExample
-   cd NeonLibraryExample
+   dotnet new console -n JamboLibraryExample
+   cd JamboLibraryExample
    ```
 
    <Admonition type="important" title="IMPORTANT">
@@ -45,9 +45,9 @@ If you do not have one already, create a Neon project.
    dotnet add package Npgsql --version YOUR_DOTNET_VERSION
    ```
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-1. Create or update the `appsettings.json` file in the project directory with your Neon connection string:
+1. Create or update the `appsettings.json` file in the project directory with your Jambo connection string:
 
    ```json
    {
@@ -71,7 +71,7 @@ To ensure the security of your data, never commit your credentials to version co
 
 ### Step 1: Create table
 
-The following code gets the connection string from `appsettings.json`, establishes a connection to your Neon database, and creates a new table for storing books. We use the `NpgsqlConnection` to open a connection and then execute a `CREATE TABLE` statement using NpgsqlCommand's `ExecuteNonQuery()` method. The table includes columns for the book's ID (automatically generated), title, author, and publication year.
+The following code gets the connection string from `appsettings.json`, establishes a connection to your Jambo database, and creates a new table for storing books. We use the `NpgsqlConnection` to open a connection and then execute a `CREATE TABLE` statement using NpgsqlCommand's `ExecuteNonQuery()` method. The table includes columns for the book's ID (automatically generated), title, author, and publication year.
 
 ```csharp
 var configuration = new ConfigurationBuilder()
@@ -198,7 +198,7 @@ using(var conn = new NpgsqlConnection(connString))
 
 ## Best Practices
 
-When working with Neon and .NET:
+When working with Jambo and .NET:
 
 1. Always use parameterized queries to prevent SQL injection
 2. Handle database exceptions appropriately
@@ -210,12 +210,12 @@ When working with Neon and .NET:
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/examples/tree/main/with-dotnet-npgsql" description="Get started with .NET (C#) and Neon" icon="github">Get started with .NET (C#) and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-dotnet-npgsql" description="Get started with .NET (C#) and Jambo" icon="github">Get started with .NET (C#) and Jambo</a>
 </DetailIconCards>
 
 ## Community Guides
 
-- [Connect an Entity Framework application to Neon](/docs/guides/dotnet-entity-framework)
+- [Connect an Entity Framework application to Jambo](/docs/guides/dotnet-entity-framework)
 
 ## Resources
 

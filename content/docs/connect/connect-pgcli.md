@@ -1,6 +1,6 @@
 ---
 title: Connect with pgcli
-subtitle: Learn how to connect to Neon using the interactive pgcli client
+subtitle: Learn how to connect to Jambo using the interactive pgcli client
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-03T20:41:57.299Z'
@@ -20,9 +20,9 @@ To view `pgcli` usage information, run the following command:
 pgcli --help
 ```
 
-## Connect to Neon
+## Connect to Jambo
 
-The easiest way to connect to Neon using the `pgcli` client is with a connection string, which you can obtain by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
+The easiest way to connect to Jambo using the `pgcli` client is with a connection string, which you can obtain by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
 
 ![Connection details modal](/docs/connect/connection_details.png)
 

@@ -136,10 +136,10 @@ const SubscribeForm = ({ className = null, size = 'md', dataTest }) => {
             ) : (
               <>
                 <h2 className="font-title text-4xl font-medium leading-none tracking-tighter xl:text-[32px] sm:text-[28px]">
-                  Subscribe to <mark className="bg-transparent text-green-45">Neon’s News</mark>
+                  Subscribe to <mark className="bg-transparent text-green-45">Jambo’s News</mark>
                 </h2>
                 <p className="mt-4 text-lg leading-none tracking-extra-tight text-gray-new-80 xl:mt-2 xl:text-base xl:leading-tight sm:mx-auto sm:mt-2.5 sm:max-w-[300px]">
-                  Get insider access to Neon's latest news and events
+                  Get insider access to Jambo's latest news and events
                 </p>
               </>
             )}

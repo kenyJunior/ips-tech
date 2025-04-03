@@ -12,13 +12,13 @@ The `pgvector` extension enables you to store vector embeddings and perform vect
 - Any language with a Postgres client
 - ACID compliance, point-in-time recovery, JOINs, and all other Postgres features
 
-This topic describes how to enable the `pgvector` extension in Neon and how to create, store, and query vectors.
+This topic describes how to enable the `pgvector` extension in Jambo and how to create, store, and query vectors.
 
 
 
 ## Enable the pgvector extension
 
-You can enable the `pgvector` extension by running the following `CREATE EXTENSION` statement in the [Neon SQL Editor]() or from a client such as [psql]() that is connected to Neon.
+You can enable the `pgvector` extension by running the following `CREATE EXTENSION` statement in the [Jambo SQL Editor]() or from a client such as [psql]() that is connected to Jambo.
 
 ```sql
 CREATE EXTENSION vector;
@@ -26,15 +26,15 @@ CREATE EXTENSION vector;
 
 ## Use a previous version of pgvector
 
-Neon allows you to install the previous version of `pgvector`, which is one version behind the latest supported version.
+Jambo allows you to install the previous version of `pgvector`, which is one version behind the latest supported version.
 
-For example, if Neon’s latest supported `pgvector` version is 0.8.0, you can install the prior version, 0.7.4, by specifying the version number:
+For example, if Jambo’s latest supported `pgvector` version is 0.8.0, you can install the prior version, 0.7.4, by specifying the version number:
 
 ```sql
 CREATE EXTENSION vector VERSION '0.7.4';
 ```
 
-To check the latest supported `pgvector` version on Neon, visit our [Postgres extension page](/docs/extensions/extensions-intro). You can install one version back from that version.
+To check the latest supported `pgvector` version on Jambo, visit our [Postgres extension page](/docs/extensions/extensions-intro). You can install one version back from that version.
 
 For a full version history, see the [pgvector changelog](https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md). Note that `pgvector` versions are not always sequential — for example, version 0.7.4 was followed by 0.8.0.
 
@@ -279,7 +279,7 @@ Like other index types, it’s faster to create an index after loading your init
   HINT:  Increase maintenance_work_mem to speed up builds.
   ```
 
-  In Postgres, the `maintenance_work_mem` setting determines the maximum memory allocation for tasks such as `CREATE INDEX`. The default `maintenance_work_mem` value in Neon is set according to your Neon [compute size](/docs/manage/endpoints#how-to-size-your-compute).
+  In Postgres, the `maintenance_work_mem` setting determines the maximum memory allocation for tasks such as `CREATE INDEX`. The default `maintenance_work_mem` value in Jambo is set according to your Jambo [compute size](/docs/manage/endpoints#how-to-size-your-compute).
 
   To optimize `pgvector` index build time, you can increase the `maintenance_work_mem` setting for the current session with a command similar to the following:
 
@@ -407,7 +407,7 @@ Like other index types, it’s faster to create an index after loading your init
 
 - `maintenance_work_mem`
 
-  In Postgres, the `maintenance_work_mem` setting determines the maximum memory allocation for tasks such as `CREATE INDEX`. The default `maintenance_work_mem` value in Neon is set according to your Neon [compute size](/docs/manage/endpoints#how-to-size-your-compute). For a table that shows the `maintenance_work_mem` setting by compute size, see [Parameter settings that differ by compute size](/docs/reference/compatibility#parameter-settings-that-differ-by-compute-size).
+  In Postgres, the `maintenance_work_mem` setting determines the maximum memory allocation for tasks such as `CREATE INDEX`. The default `maintenance_work_mem` value in Jambo is set according to your Jambo [compute size](/docs/manage/endpoints#how-to-size-your-compute). For a table that shows the `maintenance_work_mem` setting by compute size, see [Parameter settings that differ by compute size](/docs/reference/compatibility#parameter-settings-that-differ-by-compute-size).
 
   To optimize `pgvector` index build time, you can increase the `maintenance_work_mem` setting for the current session with a command similar to the following:
 

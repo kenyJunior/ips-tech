@@ -1,20 +1,20 @@
 ---
-title: Neon CLI commands — roles
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — roles
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2025-02-07T17:55:42.640Z'
 ---
 
 ## Before you begin
 
-- Before running the `roles` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `roles` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
-For information about roles in Neon, see [Manage roles](/docs/manage/roles).
+For information about roles in Jambo, see [Manage roles](/docs/manage/roles).
 
 ## The `roles` command
 
-The `roles` command allows you to list, create, and delete roles in a Neon project.
+The `roles` command allows you to list, create, and delete roles in a Jambo project.
 
 ### Usage
 
@@ -40,12 +40,12 @@ neon roles list [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string |                                                     |
 
 If a branch ID or name is not provided, the command lists roles for the default branch of the project.
@@ -87,12 +87,12 @@ neon roles create [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type    |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------- | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string  |                                                     |
-| `--project-id`   | Project ID                                                                                    | string  | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string  | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string  |                                                     |
 | `--name`         | The role name. Cannot exceed 63 bytes in length.                                              | string  |                       &check;                       |
 | `--no-login`     | Create a passwordless role that cannot login                                                  | boolean |                                                     |
@@ -122,12 +122,12 @@ neon roles delete <role> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string |                                                     |
 
 If a branch ID or name is not provided, the command assumes the role resides in the default branch of the project.

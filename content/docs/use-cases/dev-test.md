@@ -1,5 +1,5 @@
 ---
-title: Neon for Development and Testing
+title: Intégration solutions IoT Intelligentes
 subtitle: Boost developer productivity with Neon—a flexible development sandbox for
   running non-production workloads.
 enableTableOfContents: true
@@ -55,4 +55,4 @@ Most teams running dev/test workloads on Neon while keeping production on anothe
 - [Building Slack notifications to monitor pg_dump and restore workflows](https://neon.tech/blog/building-slack-notifications-to-monitor-pg_dump-and-restore-workflows)
 - [Neon Twin: How to deploy a change tested in Neon to prod in RDS](https://neon.tech/blog/neon-twin-deploy-workflow)
 
-<CTA title="Let's Connect" description="We’re happy to give you a hand with any technical questions about how to set this workflow up. We can also discuss pricing options, annual contracts, and provide migration assistance." buttonText="Contact us" buttonUrl="/contact-sales" />
+<CTA title="Let's Connect" description="Nous sommes à votre disposition pour répondre à toutes vos questions concernant nos solutions technologiques, nos plans tarifaires, les options de contrat personnalisées et l'assistance pour les migrations." />

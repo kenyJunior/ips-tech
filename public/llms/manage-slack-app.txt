@@ -1,21 +1,21 @@
-# Neon App for Slack
+# Jambo App for Slack
 
-Track your Neon projects and organizations from Slack
+Track your Jambo projects and organizations from Slack
 
-The Neon App for Slack allows you to monitor your Neon usage and manage organization membership directly from Slack. Get quick access to project information and resource usage metrics without leaving your workspace.
+The Jambo App for Slack allows you to monitor your Jambo usage and manage organization membership directly from Slack. Get quick access to project information and resource usage metrics without leaving your workspace.
 
-![Neon App for Slack commands](/docs/manage/slack_app_overview.png)
+![Jambo App for Slack commands](/docs/manage/slack_app_overview.png)
 
 ## Setup
 
 
 
-## Install the Neon App for Slack
+## Install the Jambo App for Slack
 
 Click the **Add to Slack** button and follow the prompts.
 
 
-## Authenticate with Neon
+## Authenticate with Jambo
 
 The first thing you need to do is authorize — open a DM with your new app and type `/neon auth`. Follow the login flow that opens in your browser, and you're in.
 
@@ -27,21 +27,21 @@ Once authenticated, you're ready to use all available commands.
 
 | **Command**             | **Description**                                   |
 | ----------------------- | ------------------------------------------------- |
-| `/neon auth`            | Log in to your Neon account                       |
+| `/neon auth`            | Log in to your Jambo account                       |
 | `/neon projects`        | List your projects (with IDs)                     |
 | `/neon usage`           | View your overall resource usage                  |
 | `/neon help`            | Show all available commands                       |
-| `/neon status`          | Check Neon's system status                        |
-| `/neon feedback`        | Share your thoughts to improve the Neon App for Slack |
+| `/neon status`          | Check Jambo's system status                        |
+| `/neon feedback`        | Share your thoughts to improve the Jambo App for Slack |
 | `/neon projects usage`  | View resource usage for a specific project        |
 | `/neon projects shared` | See projects others have shared with you          |
 | `/neon invite user`     | Invite a user to your organization                |
 
 ## Example workflows
 
-### Check your Neon usage statistics
+### Check your Jambo usage statistics
 
-Open a DM with the Neon App for Slack and run the following command to instantly view your current data transfer, compute time, and storage usage across all projects:
+Open a DM with the Jambo App for Slack and run the following command to instantly view your current data transfer, compute time, and storage usage across all projects:
 
 ```
 /neon usage
@@ -51,14 +51,14 @@ Open a DM with the Neon App for Slack and run the following command to instantly
 
 ### Usage notifications
 
-In addition to checking usage on demand, the Neon App for Slack will automatically notify you when you approach or reach your resource limits for compute hours, storage, or data transfer.
+In addition to checking usage on demand, the Jambo App for Slack will automatically notify you when you approach or reach your resource limits for compute hours, storage, or data transfer.
 
 ## FAQs
 
 
-**What can I do with the Neon App for Slack?**
+**What can I do with the Jambo App for Slack?**
 
-The Neon App for Slack allows you to:
+The Jambo App for Slack allows you to:
 
 - View project information and resource usage
 - Monitor system status
@@ -70,7 +70,7 @@ The Neon App for Slack allows you to:
 
 **Does this app allow me to modify databases or projects?**
 
-No, the Neon App for Slack is primarily for viewing usage details and managing organization membership, not for direct database management.
+No, the Jambo App for Slack is primarily for viewing usage details and managing organization membership, not for direct database management.
 
 
 

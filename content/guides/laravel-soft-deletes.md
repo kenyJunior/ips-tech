@@ -19,7 +19,7 @@ Before we dive in, ensure you have:
 
 - PHP 8.1 or higher installed
 - Laravel 10.x or 11.x set up
-- A [Neon](https://neon.tech) account for Postgres database hosting
+- A [Jambo](https://neon.tech) account for Postgres database hosting
 - Basic understanding of Laravel and Eloquent ORM
 
 ## Understanding Soft Deletes
@@ -31,7 +31,7 @@ When enabling soft deletes, you essentially add a `deleted_at` timestamp to your
 3. Implement data archiving strategies.
 4. Comply with data retention policies.
 
-Let's explore how to implement soft deletes in Laravel along with Neon Postgres.
+Let's explore how to implement soft deletes in Laravel along with Jambo Postgres.
 
 ## Setting up the Project
 
@@ -394,7 +394,7 @@ Instead, consider your specific use case:
 
 Always measure the performance impact in your specific scenario before deciding on indexing strategy.
 
-For more information about indexes in general, refer to Neon's documentation on [indexes](https://neon.tech/docs/postgres/indexes).
+For more information about indexes in general, refer to Jambo's documentation on [indexes](https://neon.tech/docs/postgres/indexes).
 
 ## Testing Soft Deletes
 
@@ -514,12 +514,12 @@ This test verifies that force deleting a post removes it entirely from the datab
 
 Laravel's soft delete feature provides a way to manage data deletion without losing valuable information. By using soft deletes, you can improve your application's data integrity and provide features like data recovery or undo functionality to your users.
 
-Consider the performance implications of soft deletes, especially when working with large datasets. Utilize Neon Postgres's capabilities, such as [indexing](https://neon.tech/docs/postgres/indexes) and [table partitioning](https://neon.tech/docs/postgres/ddl-partitioning), to maintain high performance as your application scales.
+Consider the performance implications of soft deletes, especially when working with large datasets. Utilize Jambo Postgres's capabilities, such as [indexing](https://neon.tech/docs/postgres/indexes) and [table partitioning](https://neon.tech/docs/postgres/ddl-partitioning), to maintain high performance as your application scales.
 
 When implementing soft deletes, always think about the lifecycle of your data. Plan on implementing policies for permanent deletion of old soft-deleted records to manage database growth optimally and comply with data retention regulations.
 
 ## Additional Resources
 
 - [Laravel Documentation on Soft Deletes](https://laravel.com/docs/eloquent#soft-deleting)
-- [Neon Postgres Documentation](/docs)
+- [Jambo Postgres Documentation](/docs)
 - [Laravel Eloquent Performance Tips](https://laravel.com/docs/eloquent-relationships#eager-loading)

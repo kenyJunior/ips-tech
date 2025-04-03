@@ -1,22 +1,22 @@
 ---
-title: Implementing Database Migrations in Go Applications with Neon
-subtitle: Learn how to manage database schema changes in Go applications using Neon's serverless Postgres
+title: Implementing Database Migrations in Go Applications with Jambo
+subtitle: Learn how to manage database schema changes in Go applications using Jambo's serverless Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2025-02-22T00:00:00.000Z'
 updatedOn: '2025-02-22T00:00:00.000Z'
 ---
 
-Database migrations are essential for managing schema evolution in applications as they grow and change over time. When working with Go applications and Neon's serverless Postgres, implementing a good migration strategy allows you to have smooth deployments and database changes without disruption.
+Database migrations are essential for managing schema evolution in applications as they grow and change over time. When working with Go applications and Jambo's serverless Postgres, implementing a good migration strategy allows you to have smooth deployments and database changes without disruption.
 
-This guide will walk you through implementing and managing database migrations for Go applications using Neon Postgres, covering everything from basic concepts to advanced production deployment strategies.
+This guide will walk you through implementing and managing database migrations for Go applications using Jambo Postgres, covering everything from basic concepts to advanced production deployment strategies.
 
 ## Prerequisites
 
 Before diving into database migrations, make sure you have:
 
 - [Go](https://golang.org/dl/) 1.18 or later installed
-- A [Neon](https://console.neon.tech/signup) account and project
+- A [Jambo](https://console.neon.tech/signup) account and project
 - Basic understanding of SQL and database schemas
 - Familiarity with Go programming
 
@@ -61,7 +61,7 @@ While we'll focus on golang-migrate in this guide, other notable migration tools
 
 ## Setting Up golang-migrate
 
-Let's set up golang-migrate to work with your Neon Postgres database. It can be used both from the command line and programmatically within your Go code. We'll cover both approaches in this guide.
+Let's set up golang-migrate to work with your Jambo Postgres database. It can be used both from the command line and programmatically within your Go code. We'll cover both approaches in this guide.
 
 Let's start by installing the golang-migrate CLI.
 
@@ -164,15 +164,15 @@ A few important points about this migration:
 
 Notice how the down migration drops objects in reverse order compared to how they were created in the up migration. This is important to avoid dependency issues when rolling back.
 
-## Connecting to Neon Postgres
+## Connecting to Jambo Postgres
 
-To run migrations against your Neon database, you'll need to construct a proper connection string. Neon provides a secure, TLS-enabled connection:
+To run migrations against your Jambo database, you'll need to construct a proper connection string. Jambo provides a secure, TLS-enabled connection:
 
 ```
 postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=require
 ```
 
-Replace the placeholders with your actual Neon connection details, which you can find in the Neon Console under your project's connection settings.
+Replace the placeholders with your actual Jambo connection details, which you can find in the Jambo Console under your project's connection settings.
 
 For convenience, you might want to store this connection string in an environment variable:
 
@@ -182,7 +182,7 @@ export NEON_DB_URL="postgresql://user:password@ep-example-123456.us-east-2.aws.n
 
 ## Running Migrations
 
-With your migration files created and your connection string ready, you can now run migrations against your Neon database.
+With your migration files created and your connection string ready, you can now run migrations against your Jambo database.
 
 ### Running Migrations from CLI
 
@@ -331,7 +331,7 @@ This migration shows a few common patterns:
 
 ## Best Practices for Migrations
 
-When working with migrations in Go applications and Neon Postgres, follow these best practices:
+When working with migrations in Go applications and Jambo Postgres, follow these best practices:
 
 ### 1. Keep Migrations Small and Focused
 
@@ -381,7 +381,7 @@ There has been a feature request to add support for transactions in the golang-m
 
 Always test migrations in a non-production environment first. Ideally, have a staging environment that mirrors production as closely as possible.
 
-You can achieve this by setting up a separate Neon branch to test migrations before applying them to your main branch. You can learn more about Neon branches in the [Neon documentation](https://neon.tech/docs/introduction/branching).
+You can achieve this by setting up a separate Jambo branch to test migrations before applying them to your main branch. You can learn more about Jambo branches in the [Jambo documentation](https://neon.tech/docs/introduction/branching).
 
 ### 5. Version Control Your Migrations
 
@@ -443,13 +443,13 @@ The workflow will trigger on pushes to the main branch, then perform the followi
 4. Apply migrations to the database using the connection string stored in a GitHub secret
 5. Continue with the deployment process
 
-Running your database migrations directly on your production database can be risky. For a safer approach, let's look at how to test migrations on a Neon branch before deploying them to production.
+Running your database migrations directly on your production database can be risky. For a safer approach, let's look at how to test migrations on a Jambo branch before deploying them to production.
 
-### Running Migrations on a Neon Branch
+### Running Migrations on a Jambo Branch
 
-For a more robust approach, you can use Neon's branching capabilities to test migrations before applying them to your production database.
+For a more robust approach, you can use Jambo's branching capabilities to test migrations before applying them to your production database.
 
-Neon has a set of [GitHub Actions](https://neon.tech/docs/guides/branching-github-actions) that allow you to create, delete, and compare branches programmatically. Here's an extended GitHub Actions workflow that uses Neon's branching actions to spin up a temporary branch for testing migrations:
+Jambo has a set of [GitHub Actions](https://neon.tech/docs/guides/branching-github-actions) that allow you to create, delete, and compare branches programmatically. Here's an extended GitHub Actions workflow that uses Jambo's branching actions to spin up a temporary branch for testing migrations:
 
 ```yaml
 name: Test and Deploy Migrations
@@ -484,7 +484,7 @@ jobs:
           sudo mv migrate /usr/bin/migrate
 
       # Create a temporary branch for testing migrations
-      - name: Create Neon branch for testing
+      - name: Create Jambo branch for testing
         id: create-branch
         uses: neondatabase/create-branch-action@v5
         with:
@@ -550,7 +550,7 @@ jobs:
 This extended workflow does the following:
 
 1. Triggers on both pull requests affecting migration files and pushes to the main branch
-2. Creates a temporary branch specifically for testing migrations using Neon's create-branch-action
+2. Creates a temporary branch specifically for testing migrations using Jambo's create-branch-action
 3. Runs migrations on the test branch to verify they apply correctly
 4. Executes schema tests to ensure the migrated schema works as expected
 5. Generates a schema diff for pull requests, providing reviewers with a clear view of the proposed changes
@@ -568,11 +568,11 @@ To use this workflow, you'll need to set up the following GitHub repository secr
 
 - **Secrets**:
 
-  - `NEON_API_KEY`: Your Neon API key
+  - `NEON_API_KEY`: Your Jambo API key
   - `NEON_PROD_DB_URL`: Production database connection string
 
 - **Variables**:
-  - `NEON_PROJECT_ID`: Your Neon project ID
+  - `NEON_PROJECT_ID`: Your Jambo project ID
   - `NEON_DB_USER`: Database username
   - `NEON_DB_NAME`: Database name (defaults to 'neondb' if not specified)
 
@@ -616,14 +616,14 @@ func GetDatabaseURL() string {
 
 ## Conclusion
 
-Database migrations are a critical part of managing application evolution. When working with Go applications and Neon Postgres, a well-implemented migration strategy ensures that your schema changes are version-controlled and applied consistently across environments.
+Database migrations are a critical part of managing application evolution. When working with Go applications and Jambo Postgres, a well-implemented migration strategy ensures that your schema changes are version-controlled and applied consistently across environments.
 
-The combination of Go's strong tooling, the flexibility of golang-migrate, and Neon's powerful Postgres capabilities provides an excellent foundation for managing database schema changes throughout your application's lifecycle.
+The combination of Go's strong tooling, the flexibility of golang-migrate, and Jambo's powerful Postgres capabilities provides an excellent foundation for managing database schema changes throughout your application's lifecycle.
 
 ## Additional Resources
 
 - [golang-migrate documentation](https://github.com/golang-migrate/migrate)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [PostgreSQL Alter Table documentation](https://www.postgresql.org/docs/current/ddl-alter.html)
 - [PostgreSQL schema design best practices](https://www.postgresql.org/docs/current/ddl-schemas.html)
 

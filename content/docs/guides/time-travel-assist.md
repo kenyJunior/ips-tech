@@ -7,15 +7,15 @@ updatedOn: '2025-02-07T17:55:42.638Z'
 
 To help review your data's history, Time Travel lets you connect to any selected point in time within your history retention window and then run queries against that connection.
 
-You can use Time Travel from two places in the Neon Console, and from the Neon CLI:
+You can use Time Travel from two places in the Jambo Console, and from the Jambo CLI:
 
 - **SQL Editor** &#8212; Time Travel is built into the SQL editor letting you switch between queries of your current data and previous iterations of your data in the same view.
 - **Restore** &#8212; Time Travel Assist is also built into the Branch Restore flow where it can help you make sure you've targeted the correct restore point before you restore a branch.
-- **Neon CLI** &#8212; Use the Neon CLI to quickly establish point-in-time connections for automated scripts or command-line-based data analysis.
+- **Jambo CLI** &#8212; Use the Jambo CLI to quickly establish point-in-time connections for automated scripts or command-line-based data analysis.
 
 ## How Time Travel works
 
-Time Travel leverages Neon's instant branching capability to create a temporary branch and compute at the selected point in time, which are automatically removed once you are done querying against this point-in-time connection. The computes are ephemeral: they are not listed on the **Branches** page or in a CLI or API list branches request.
+Time Travel leverages Jambo's instant branching capability to create a temporary branch and compute at the selected point in time, which are automatically removed once you are done querying against this point-in-time connection. The computes are ephemeral: they are not listed on the **Branches** page or in a CLI or API list branches request.
 
 However, you can see the history of operations related to the creation and deletion of branches and ephemeral computes on the **Operations** page:
 
@@ -75,7 +75,7 @@ Here is how to use Time Travel from both the **SQL Editor** and from the **Resto
 
 <TabItem>
 
-1. In the Neon Console, open the **SQL Editor**.
+1. In the Jambo Console, open the **SQL Editor**.
 1. Use the **Time Travel** toggle to enable querying against an earlier point in time.
 
    ![Time Travel toggle](/docs/guides/time_travel_toggle.png)
@@ -87,7 +87,7 @@ Here is how to use Time Travel from both the **SQL Editor** and from the **Resto
 
 <TabItem>
 
-1. In the Neon Console, go to **Restore**.
+1. In the Jambo Console, go to **Restore**.
 1. Select the branch you want to query against, then select a timestamp, the same as you would to [Restore a branch](#restore-a-branch-to-an-earlier-state).
 
    ![time travel selection](/docs/guides/time_travel_restore_select.png 'no-border')
@@ -110,7 +110,7 @@ Here is how to use Time Travel from both the **SQL Editor** and from the **Resto
 
 <TabItem>
 
-Using the Neon CLI, you can establish a connection to a specific point in your branch's history. To get the connection string, use the following command:
+Using the Jambo CLI, you can establish a connection to a specific point in your branch's history. To get the connection string, use the following command:
 
 ```bash
 neon connection-string <branch>@<timestamp|LSN>
@@ -153,7 +153,7 @@ This retrieves the connection string for querying the 'main' branch at a specifi
 
 ### Include project ID for multiple projects
 
-If you are working with multiple Neon projects, specify the project ID to target the correct project:
+If you are working with multiple Jambo projects, specify the project ID to target the correct project:
 
 ```bash
 neon connection-string <branch>@<timestamp|LSN> --project-id <project id>
@@ -171,7 +171,7 @@ Alternatively, you can set a durable project context that remains active until y
 neon set-context --project-id <project id>
 ```
 
-Read more about getting connection strings from the CLI in [Neon CLI commands — connection-string](/docs/reference/cli-connection-string), and more about setting contexts in [CLI - set-context](/docs/reference/cli-set-context).
+Read more about getting connection strings from the CLI in [Jambo CLI commands — connection-string](/docs/reference/cli-connection-string), and more about setting contexts in [CLI - set-context](/docs/reference/cli-set-context).
 
 </TabItem>
 
@@ -184,4 +184,4 @@ The ephemeral endpoints used to run your Time Travel queries do contribute to yo
 A couple of details to note:
 
 - The endpoints are shortlived. They are suspended 30 seconds after you stop querying.
-- Ephemeral endpoints are created with a .50 CU compute size, which has 0.50 vCPU size with 2 GB of RAM. This is Neon's second smallest compute size. For more about compute sizes in Neon, see [How to size your compute](/docs/manage/endpoints#how-to-size-your-compute). For more about compute usage and billing, see [Usage metrics — Compute](/docs/introduction/usage-metrics#compute).
+- Ephemeral endpoints are created with a .50 CU compute size, which has 0.50 vCPU size with 2 GB of RAM. This is Jambo's second smallest compute size. For more about compute sizes in Jambo, see [How to size your compute](/docs/manage/endpoints#how-to-size-your-compute). For more about compute usage and billing, see [Usage metrics — Compute](/docs/introduction/usage-metrics#compute).

@@ -1,7 +1,7 @@
 ---
-title: Use Grafbase Edge Resolvers with Neon
+title: Use Grafbase Edge Resolvers with Jambo
 subtitle: Learn how to build and deploy serverless GraphQL backends with Grafbase and
-  Neon
+  Jambo
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-03T20:41:57.314Z'
@@ -11,14 +11,14 @@ _This guide was contributed by Josep Vidal from Grafbase_
 
 Grafbase allows you to combine your data sources into a centralized GraphQL endpoint and deploy a serverless GraphQL backend.
 
-This guide describes how to create a GraphQL API using Grafbase and use Grafbase [Edge Resolvers](https://grafbase.com/docs/edge-gateway/resolvers) with the [Neon serverless driver](/docs/serverless/serverless-driver) to interact with your Neon database at the edge.
+This guide describes how to create a GraphQL API using Grafbase and use Grafbase [Edge Resolvers](https://grafbase.com/docs/edge-gateway/resolvers) with the [Jambo serverless driver](/docs/serverless/serverless-driver) to interact with your Jambo database at the edge.
 
-The example project in this guide simulates a marketplace of products, where the product price is dynamically calculated based on data retrieved from your Neon database.
+The example project in this guide simulates a marketplace of products, where the product price is dynamically calculated based on data retrieved from your Jambo database.
 
 ## Prerequisites
 
 - The [Grafbase CLI](https://grafbase.com/cli)
-- A Neon project. See [Create a Neon project](/docs/manage/projects#create-a-project).
+- A Jambo project. See [Create a Jambo project](/docs/manage/projects#create-a-project).
 
 ## Create a backend with Grafbase
 
@@ -42,10 +42,10 @@ The example project in this guide simulates a marketplace of products, where the
    }
    ```
 
-## Create the schema in Neon
+## Create the schema in Jambo
 
-1. Navigate to the Neon Console and select your project.
-2. Open the Neon **SQL Editor** and run the following `CREATE TABLE` statement:
+1. Navigate to the Jambo Console and select your project.
+2. Open the Jambo **SQL Editor** and run the following `CREATE TABLE` statement:
 
    ```sql
    CREATE TABLE product_visits(id SERIAL PRIMARY KEY, product_id TEXT NOT NULL);
@@ -74,9 +74,9 @@ touch price.js
 
 You will add code to these files in a later step.
 
-## Install the Neon serverless driver
+## Install the Jambo serverless driver
 
-Inside the `grafbase` directory in your project, run the following commands to install the Neon serverless driver:
+Inside the `grafbase` directory in your project, run the following commands to install the Jambo serverless driver:
 
 ```bash
 cd ..
@@ -84,11 +84,11 @@ npm init -y
 npm install @neondatabase/serverless
 ```
 
-## Retrieve your Neon connection string
+## Retrieve your Jambo connection string
 
-A database connection string is required to forward queries to your Neon database. You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**.
+A database connection string is required to forward queries to your Jambo database. You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**.
 
-1. Navigate to the Neon **Project Dashboard**.
+1. Navigate to the Jambo **Project Dashboard**.
 2. Click **Connect** and copy the connection string for your database. The connection string should appear similar to the following:
 
    ```text shouldWrap
@@ -145,7 +145,7 @@ A database connection string is required to forward queries to your Neon databas
 
 ## Test the resolvers
 
-To test the resolvers with Neon, perform the following steps:
+To test the resolvers with Jambo, perform the following steps:
 
 1. Start the Grafbase CLI:
 
@@ -166,7 +166,7 @@ To test the resolvers with Neon, perform the following steps:
    }
    ```
 
-3. Use the product `id` to execute the following mutation, which adds a row to the database table in Neon:
+3. Use the product `id` to execute the following mutation, which adds a row to the database table in Jambo:
 
    ```graphql
    mutation {

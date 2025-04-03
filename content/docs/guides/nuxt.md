@@ -1,24 +1,24 @@
 ---
-title: Connect Nuxt to Postgres on Neon
+title: Connect Nuxt to Postgres on Jambo
 subtitle: Learn how to make server-side queries to Postgres using Nitro API routes
 enableTableOfContents: true
 updatedOn: '2025-03-05T21:09:38.752Z'
 ---
 
-[Nuxt](https://nuxt.com/) is an open-source full-stack meta framework that enables Vue-based web applications. This topic describes how to connect a Nuxt application to a Postgres database on Neon.
+[Nuxt](https://nuxt.com/) is an open-source full-stack meta framework that enables Vue-based web applications. This topic describes how to connect a Nuxt application to a Postgres database on Jambo.
 
-To create a Neon project and access it from a Nuxt.js application:
+To create a Jambo project and access it from a Nuxt.js application:
 
-1. [Create a Neon project](#create-a-neon-project)
+1. [Create a Jambo project](#create-a-neon-project)
 2. [Create a Nuxt project and add dependencies](#create-a-nuxt-project-and-add-dependencies)
 3. [Configure a Postgres client](#configure-the-postgres-client)
 4. [Run the app](#run-the-app)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -28,7 +28,7 @@ If you do not have one already, create a Neon project. Save your connection deta
 
 2. Add project dependencies using one of the following commands:
 
-   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
    ```shell
    npm install pg
@@ -44,9 +44,9 @@ If you do not have one already, create a Neon project. Save your connection deta
 
    </CodeTabs>
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 NUXT_DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
@@ -66,7 +66,7 @@ export default defineNuxtConfig({
 });
 ```
 
-Next, use the Neon serverless driver to create a database connection. Here’s an example configuration:
+Next, use the Jambo serverless driver to create a database connection. Here’s an example configuration:
 
 ```javascript
 import { neon } from '@neondatabase/serverless';
@@ -85,7 +85,7 @@ export default defineCachedEventHandler(
 ```
 
 <Admonition type="note">
-- This example demonstrates using the Neon serverless driver to run a simple query. The `useRuntimeConfig` method accesses the `databaseUrl` set in your Nuxt runtime configuration.
+- This example demonstrates using the Jambo serverless driver to run a simple query. The `useRuntimeConfig` method accesses the `databaseUrl` set in your Nuxt runtime configuration.
 - Async Handling: Make sure the handler is async if you are awaiting the database query result.
 - Make sure `maxAge` caching fits your application’s needs. In this example, it’s set to cache results for a day. Adjust as necessary.
 </Admonition>
@@ -104,7 +104,7 @@ You can find the source code for the applications described in this guide on Git
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nuxt" description="Get started with Nuxt and Neon" icon="github">Get started with Nuxt and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nuxt" description="Get started with Nuxt and Jambo" icon="github">Get started with Nuxt and Jambo</a>
 
 </DetailIconCards>
 

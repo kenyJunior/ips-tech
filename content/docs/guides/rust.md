@@ -1,24 +1,24 @@
 ---
-title: Connect a Rust application to Neon
-subtitle: Set up a Neon project in seconds and connect from a Rust application
+title: Connect a Rust application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from a Rust application
 redirectFrom:
   - /docs/quickstart/rust
   - /docs/integrations/rust
 updatedOn: '2025-02-03T20:41:57.336Z'
 ---
 
-This guide describes how to create a Neon project and connect to it from a Rust application.
+This guide describes how to create a Jambo project and connect to it from a Rust application.
 
-1. [Create a Neon project](#create-a-neon-project)
+1. [Create a Jambo project](#create-a-neon-project)
 2. [Configure the connection](#configure-the-connection)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection string and password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection string and password. They are required when defining connection settings.
 
-To create a Neon project:
+To create a Jambo project:
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -28,7 +28,7 @@ To create a Neon project:
 To run the Rust solution below you have to install the required dependencies. You can do this by running `cargo add postgres postgres_openssl openssl`. Also, the example provided uses the synchronous `postgres` crate. If your application is asynchronous and uses `tokio`, we recommend using the `tokio-postgres` crate for compatibility with async runtimes.
 </Admonition>
 
-Add the Neon connection details to your `main.rs` file, as in the following example:
+Add the Jambo connection details to your `main.rs` file, as in the following example:
 
 ```rust
 use postgres::Client;

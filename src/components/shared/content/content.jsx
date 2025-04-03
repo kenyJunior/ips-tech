@@ -108,7 +108,7 @@ const getComponents = (withoutAnchorHeading, isReleaseNote, isPostgres, isUseCas
       </Link>
     );
   },
-  img: (props) => {
+  Image: (props) => {
     const { className, title, src, ...rest } = props;
 
     // No zoom on PostgreSQLTutorial Images

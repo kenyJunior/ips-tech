@@ -23,11 +23,11 @@ pgAdmin4 is a powerful web-based administration tool for managing PostgreSQL dat
 
 ## Provisioning a Serverless Postgres
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and enter the name of your choice as the project name.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and enter the name of your choice as the project name.
 
 ![](/guides/images/pg-notify/index.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
@@ -36,8 +36,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
 - `user` is the database user.
 - `password` is the database user’s password.
 - `endpoint_hostname` is the host with neon.tech as the [TLD](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `port` is the Neon port number. The default port number is 5432.
-- `dbname` is the name of the database. “neondb” is the default database created with each Neon project.
+- `port` is the Jambo port number. The default port number is 5432.
+- `dbname` is the name of the database. “neondb” is the default database created with each Jambo project.
 - `?sslmode=require` an optional query parameter that enforces the [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode while connecting to the Postgres instance for better security.
 
 You will be using these connecting string components further in the guide. Proceed further in this guide to connect pgAdmin4 to your Postgres.

@@ -19,7 +19,7 @@ Before we begin, ensure you have the following:
 
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
-- A [Neon](https://console.neon.tech/signup) account for database hosting
+- A [Jambo](https://console.neon.tech/signup) account for database hosting
 - Basic knowledge of Laravel and RESTful API principles
 
 ## Setting up the Project
@@ -39,7 +39,7 @@ This will create a new Laravel project in a directory named `laravel-crud-api` a
 
 ### Setting up the Database
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -717,7 +717,7 @@ The end-user will still receive the same JSON response, but the validation logic
 
 To ensure our API works as expected, Laravel provides a powerful testing suite out of the box.
 
-To learn more about testing in Laravel along with Neon branding, check out the [Testing Laravel Applications with Neon's Database Branching](https://neon.tech/guides/laravel-test-on-branch).
+To learn more about testing in Laravel along with Jambo branding, check out the [Testing Laravel Applications with Jambo's Database Branching](https://neon.tech/guides/laravel-test-on-branch).
 
 ## Adding API Documentation
 
@@ -816,7 +816,7 @@ This caches the task list for one hour. Remember to clear the cache when tasks a
 
 In this guide, we've walked through the process of building a simple CRUD API with Laravel, secured with Laravel Sanctum for authentication.
 
-We've covered setting up the project, configuring the database with Neon, and implementing CRUD operations for a Task model. We also added essential features such as API versioning, API documentation, and caching to improve the API's performance, security, and maintainability.
+We've covered setting up the project, configuring the database with Jambo, and implementing CRUD operations for a Task model. We also added essential features such as API versioning, API documentation, and caching to improve the API's performance, security, and maintainability.
 
 By following these steps, you now have a fully functional API that allows authenticated users to manage tasks effectively. This can be used as the foundation for more complex applications and extended with additional features as needed.
 
@@ -829,4 +829,4 @@ Additionally, it is a good idea to implement throttling to protect your API from
 - [Laravel Documentation](https://laravel.com/docs)
 - [Laravel Sanctum Documentation](https://laravel.com/docs/sanctum)
 - [Scribe Documentation](https://scribe.knuckles.wtf/laravel)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

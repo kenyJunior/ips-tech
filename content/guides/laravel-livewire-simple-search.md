@@ -1,6 +1,6 @@
 ---
-title: Building a Simple Real-Time Search with Laravel, Livewire, and Neon
-subtitle: Learn how to integrate Laravel with Postgres on Neon, using Laravel's Eloquent ORM and migrations for efficient database management.
+title: Building a Simple Real-Time Search with Laravel, Livewire, and Jambo
+subtitle: Learn how to integrate Laravel with Postgres on Jambo, using Laravel's Eloquent ORM and migrations for efficient database management.
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-06-29T00:00:00.000Z'
@@ -9,7 +9,7 @@ updatedOn: '2024-06-29T00:00:00.000Z'
 
 Laravel is a powerful PHP framework known for its elegant syntax and feature-rich ecosystem. Livewire, a full-stack framework for Laravel, allows us to build dynamic interfaces with minimal JavaScript. Together, they provide a robust foundation for creating interactive web applications.
 
-In this guide, we'll build a simple real-time search feature using Laravel, Livewire, and Neon. We'll set up a Laravel project, create a database schema, implement the search functionality with Livewire, and optimize performance with Neon. By the end of this tutorial, you'll have a working real-time search feature that leverages the strengths of Laravel, Livewire, and Neon.
+In this guide, we'll build a simple real-time search feature using Laravel, Livewire, and Jambo. We'll set up a Laravel project, create a database schema, implement the search functionality with Livewire, and optimize performance with Jambo. By the end of this tutorial, you'll have a working real-time search feature that leverages the strengths of Laravel, Livewire, and Jambo.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ Before we begin, you will need to have the following:
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine for managing front-end assets
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - Basic knowledge of Laravel, Livewire, and Tailwind CSS
 
 ## Setting up the Project
@@ -88,9 +88,9 @@ npm run dev
 
 Leave the Vite development server running in the background to compile your assets and proceed with the next steps.
 
-### Connecting to Neon Database
+### Connecting to Jambo Database
 
-To connect your Laravel application to your Neon database, update your `.env` file with the Neon database credentials:
+To connect your Laravel application to your Jambo database, update your `.env` file with the Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -101,7 +101,7 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Make sure to replace the placeholders with your actual Neon database details.
+Make sure to replace the placeholders with your actual Jambo database details.
 
 ## Building the Search Functionality
 
@@ -328,9 +328,9 @@ After updating the layout, make sure that your Vite development server is still 
 npm run dev
 ```
 
-## Optimizing Search Performance with Neon
+## Optimizing Search Performance with Jambo
 
-To optimize our search performance, we can leverage Neon's indexing capabilities.
+To optimize our search performance, we can leverage Jambo's indexing capabilities.
 
 Indexing the `name` and `description` columns will speed up search queries by allowing the database to quickly locate matching records.
 
@@ -416,11 +416,11 @@ Run the test with:
 php artisan test
 ```
 
-To learn more about testing in Laravel along with Neon branding, check out the [Testing Laravel Applications with Neon's Database Branching](https://neon.tech/guides/laravel-test-on-branch).
+To learn more about testing in Laravel along with Jambo branding, check out the [Testing Laravel Applications with Jambo's Database Branching](https://neon.tech/guides/laravel-test-on-branch).
 
 ## Conclusion
 
-In this tutorial, we've built a real-time search feature using Laravel, Livewire, and Neon. We've leveraged Livewire's real-time capabilities to create a responsive search component, and utilized Neon's high-performance database to ensure quick and efficient queries.
+In this tutorial, we've built a real-time search feature using Laravel, Livewire, and Jambo. We've leveraged Livewire's real-time capabilities to create a responsive search component, and utilized Jambo's high-performance database to ensure quick and efficient queries.
 
 This implementation provides a solid foundation for a search feature, but there are always ways to enhance and expand its functionality:
 
@@ -430,13 +430,13 @@ This implementation provides a solid foundation for a search feature, but there 
 - Implement caching to further improve performance
 - Use [Laravel Scout](https://laravel.com/docs/11.x/scout) for full-text search capabilities
 
-By combining the power of Laravel, the simplicity of Livewire, and the performance of Neon, it's easy to create dynamic and responsive web applications that meet your users' needs.
+By combining the power of Laravel, the simplicity of Livewire, and the performance of Jambo, it's easy to create dynamic and responsive web applications that meet your users' needs.
 
 ## Additional Resources
 
 - [Laravel Documentation](https://laravel.com/docs)
 - [Livewire Documentation](https://laravel-livewire.com/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 
 <NeedHelp />

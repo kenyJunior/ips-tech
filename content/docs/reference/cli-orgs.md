@@ -1,18 +1,18 @@
 ---
-title: Neon CLI commands — orgs
-subtitle: Use the Neon CLI to manage Neon organizations directly from the terminal
+title: Jambo CLI commands — orgs
+subtitle: Use the Jambo CLI to manage Jambo organizations directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-07-05T19:12:26.343Z'
 ---
 
 ## Before you begin
 
-- Before running the `orgs` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `orgs` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
 ## The `orgs` command
 
-Use this command to manage the organizations you belong to within the Neon CLI.
+Use this command to manage the organizations you belong to within the Jambo CLI.
 
 ### Usage
 
@@ -24,7 +24,7 @@ neon orgs <sub-command> [options]
 
 #### `list`
 
-This sub-command lists all organizations associated with the authenticated Neon CLI user.
+This sub-command lists all organizations associated with the authenticated Jambo CLI user.
 
 ```bash
 neon orgs list

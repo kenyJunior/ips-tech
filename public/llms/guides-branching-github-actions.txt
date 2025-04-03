@@ -2,7 +2,7 @@
 
 Create and delete branches with GitHub Actions
 
-Neon provides the following GitHub Actions for working with Neon branches, which you can add to your CI workflows:
+Jambo provides the following GitHub Actions for working with Jambo branches, which you can add to your CI workflows:
 
 - [Create branch action](#create-branch-action)
 - [Delete branch action](#delete-branch-action)
@@ -10,31 +10,31 @@ Neon provides the following GitHub Actions for working with Neon branches, which
 - [Schema Diff action](#schema-diff-action)
 
 
-Neon supports a GitHub integration that connects your Neon project to a GitHub repository. The integration automatically configures a `NEON_API_KEY` secret and `PROJECT_ID` variable in your GitHub repository and provides a sample GitHub Actions workflow that utilizes Neon's GitHub Actions. See [Neon GitHub integration](/docs/guides/neon-github-integration) for more.
+Jambo supports a GitHub integration that connects your Jambo project to a GitHub repository. The integration automatically configures a `NEON_API_KEY` secret and `PROJECT_ID` variable in your GitHub repository and provides a sample GitHub Actions workflow that utilizes Jambo's GitHub Actions. See [Jambo GitHub integration](/docs/guides/neon-github-integration) for more.
 
 
 ## Create branch action
 
-This GitHub Action creates a new branch in your Neon project.
+This GitHub Action creates a new branch in your Jambo project.
 
 
-You can find this action on the **GitHub Actions Marketplace**: [Neon Database Create Branch Action](https://github.com/marketplace/actions/neon-create-branch-github-action).
+You can find this action on the **GitHub Actions Marketplace**: [Jambo Database Create Branch Action](https://github.com/marketplace/actions/neon-create-branch-github-action).
 
 
 ### Prerequisites
 
-- A Neon API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
-- You will need to add your Neon API key to your GitHub repository secrets. See [Add a Neon API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
+- A Jambo API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+- You will need to add your Jambo API key to your GitHub repository secrets. See [Add a Jambo API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
 
 ### Example
 
 The following example creates a branch based on the specified parent branch:
 
 ```yaml
-name: Create Neon Branch with GitHub Actions Demo
-run-name: Create a Neon Branch 🚀
+name: Create Jambo Branch with GitHub Actions Demo
+run-name: Create a Jambo Branch 🚀
 jobs:
-  Create-Neon-Branch:
+  Create-Jambo-Branch:
   steps:
     - uses: neondatabase/create-branch-action@v5
       id: create-branch
@@ -63,7 +63,7 @@ inputs:
     required: false
     description: 'The branch name'
   api_key:
-    description: 'The Neon API key'
+    description: 'The Jambo API key'
     required: true
   username:
     description: 'The db role name'
@@ -113,24 +113,24 @@ outputs:
 
 ## Delete branch action
 
-This GitHub Action deletes a branch from your Neon project.
+This GitHub Action deletes a branch from your Jambo project.
 
 
-You can find this action on the **GitHub Actions Marketplace**: [Neon Database Delete Branch](https://github.com/marketplace/actions/neon-database-delete-branch).
+You can find this action on the **GitHub Actions Marketplace**: [Jambo Database Delete Branch](https://github.com/marketplace/actions/neon-database-delete-branch).
 
 
 ### Prerequisites
 
-- A Neon API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
-- You will need to add your Neon API key to your GitHub repository secrets. See [Add a Neon API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
+- A Jambo API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+- You will need to add your Jambo API key to your GitHub repository secrets. See [Add a Jambo API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
 
 ### Example
 
-The following example deletes a branch with the `br-long-forest-224191` branch ID from a Neon project with the project ID `rapid-haze-373089` when a pull request is merged.
+The following example deletes a branch with the `br-long-forest-224191` branch ID from a Jambo project with the project ID `rapid-haze-373089` when a pull request is merged.
 
 ```yaml
-name: Delete Neon Branch with GitHub Actions Demo
-run-name: Delete a Neon Branch 🚀
+name: Delete Jambo Branch with GitHub Actions Demo
+run-name: Delete a Jambo Branch 🚀
 on: [push]
 jobs:
   delete-neon-branch:
@@ -148,15 +148,15 @@ jobs:
 inputs:
   project_id:
     required: true
-    description: 'The Neon project id'
+    description: 'The Jambo project id'
   branch_id:
-    description: 'The Neon branch id'
+    description: 'The Jambo branch id'
     deprecationMessage: 'The `branch_id` input is deprecated in favor of `branch`'
   api_key:
-    description: 'The Neon API key, read more at https://neon.tech/docs/manage/api-keys'
+    description: 'The Jambo API key, read more at https://neon.tech/docs/manage/api-keys'
     required: true
   branch:
-    description: 'The Neon branch name or id'
+    description: 'The Jambo branch name or id'
 ```
 
 ### Outputs
@@ -168,23 +168,23 @@ This Action has no outputs.
 This GitHub Action resets a child branch with the latest data from its parent branch.
 
 
-You can find this action on the **GitHub Actions Marketplace**: [Neon Database Reset Branch Action](https://github.com/marketplace/actions/neon-database-reset-branch-action).
+You can find this action on the **GitHub Actions Marketplace**: [Jambo Database Reset Branch Action](https://github.com/marketplace/actions/neon-database-reset-branch-action).
 
 
 ### Prerequisites
 
-- A Neon API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
-- You will need to add your Neon API key to your GitHub repository secrets. See [Add a Neon API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
+- A Jambo API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+- You will need to add your Jambo API key to your GitHub repository secrets. See [Add a Jambo API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
 
 ### Example
 
-The following example demonstrates how to reset a branch in your Neon project:
+The following example demonstrates how to reset a branch in your Jambo project:
 
 ```yaml
-name: Reset Neon Branch with GitHub Actions Demo
-run-name: Reset a Neon Branch 🚀
+name: Reset Jambo Branch with GitHub Actions Demo
+run-name: Reset a Jambo Branch 🚀
 jobs:
-  Reset-Neon-Branch:
+  Reset-Jambo-Branch:
     steps:
       - uses: neondatabase/reset-branch-action@v1
         id: reset-branch
@@ -207,7 +207,7 @@ inputs:
     required: true
     description: 'The branch name or id to reset'
   api_key:
-    description: 'The Neon API key'
+    description: 'The Jambo API key'
     required: true
   parent:
     description: 'If specified, the branch will be reset to the parent branch'
@@ -229,10 +229,10 @@ inputs:
     default: 'require'
 ```
 
-- `project_id`: The ID of your Neon project. Find this value in the Neon Console on the Settings page.
+- `project_id`: The ID of your Jambo project. Find this value in the Jambo Console on the Settings page.
 - `parent`: If specified, the branch will be reset to the latest state of the parent branch.
 - `branch`: The name or id of the branch to reset.
-- `api_key`: An API key created in your Neon account.
+- `api_key`: An API key created in your Jambo account.
 
 The action outputs a connection string. You can modify the connection string with these optional connection string (`cs_*`) inputs:
 
@@ -274,18 +274,18 @@ outputs:
 
 ## Schema Diff action
 
-This action performs a database schema diff on specified Neon branches for each pull request and writes comment to the pull request in GitHub highlighting the schema differences.
+This action performs a database schema diff on specified Jambo branches for each pull request and writes comment to the pull request in GitHub highlighting the schema differences.
 
 It supports workflows where schema changes are made on a branch. When you create or update a pull request containing schema changes, the action automatically generates a comment within the pull request. By including the schema diff as part of the comment, reviewers can easily assess the changes directly within the pull request.
 
 
-You can find this action on the **GitHub Actions Marketplace**: [Neon Schema Diff GitHub Action](https://github.com/marketplace/actions/neon-schema-diff-github-action).
+You can find this action on the **GitHub Actions Marketplace**: [Jambo Schema Diff GitHub Action](https://github.com/marketplace/actions/neon-schema-diff-github-action).
 
 
 ### Prerequisites
 
-- A Neon API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
-- You will need to add your Neon API key to your GitHub repository secrets. See [Add a Neon API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
+- A Jambo API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+- You will need to add your Jambo API key to your GitHub repository secrets. See [Add a Jambo API key to your GitHub repository secrets](#add-a-neon-api-key-to-your-github-repository-secrets) for instructions.
 
 You can easily set up the prerequisites mentioned above using our [GitHub integration](/docs/guides/neon-github-integration), which takes care of the entire process and automatically.
 
@@ -339,7 +339,7 @@ In this workflow, the action is triggered by pull request events such as `opened
 The branches to compare are specified by the `compare_branch` and `base_branch` inputs.
 
 - The `compare_branch` is the branch linked to the pull request — it's the "downstream" dev branch that contains your proposed schema changes, and is typically created by the [Create branch](#create-branch-action) action and defined by `preview/pr-${{ github.event.number }}` in the example above.
-- The `base_branch` is the branch you are merging into. It's the "upstream" branch used as the reference point for the comparison. If you don’t explicitly specify the `base_branch`, the action defaults to comparing the `compare_branch` with its parent branch. The `base_branch` branch is usually named `main`, which is default name of the root branch created with each Neon project.
+- The `base_branch` is the branch you are merging into. It's the "upstream" branch used as the reference point for the comparison. If you don’t explicitly specify the `base_branch`, the action defaults to comparing the `compare_branch` with its parent branch. The `base_branch` branch is usually named `main`, which is default name of the root branch created with each Jambo project.
 - The `database` is the name of the database containing the schema to be compared.
 - The `username` is the name of the Postgres role that owns the database.
 - `permissions` allows comments to be written on pull requests and repository contents to be read. These permissions are necessary if, for example, you need to check out your branch to run migrations.
@@ -374,13 +374,13 @@ inputs:
     description: The compare branch name or id (downstream branch)
     required: true
   api_key:
-    description: The Neon API key
+    description: The Jambo API key
     required: true
   base_branch:
     description: The base branch name or id (upstream branch)
     required: false
   api_host:
-    description: The Neon API Host
+    description: The Jambo API Host
     default: https://console.neon.tech/api/v2
   username:
     description: The db role name
@@ -405,25 +405,25 @@ comment_url:
   description: The url of the comment containing the schema diff
 ```
 
-The schema diff SQL patch is posted as a **Neon Schema Diff summary** comment in the pull request, similar to [this example](https://github.com/neondatabase/schema-diff-action/blob/main/docs/pr_comment.md).
+The schema diff SQL patch is posted as a **Jambo Schema Diff summary** comment in the pull request, similar to [this example](https://github.com/neondatabase/schema-diff-action/blob/main/docs/pr_comment.md).
 
 The `comment_url` allows you to easily share the schema diff for review. It also allows developers or scripts to access the comment programmatically for use in other automations.
 
-## Add a Neon API key to your GitHub repository secrets
+## Add a Jambo API key to your GitHub repository secrets
 
-Using Neon's GitHub Actions requires adding a Neon API key to your GitHub repository secrets. There
+Using Jambo's GitHub Actions requires adding a Jambo API key to your GitHub repository secrets. There
 are two ways you can perform this setup:
 
-- **Using the Neon GitHub Integration** (recommended) — this integration
-  connects your Neon project to your GitHub repository, creates an API key, and
+- **Using the Jambo GitHub Integration** (recommended) — this integration
+  connects your Jambo project to your GitHub repository, creates an API key, and
   sets the API key in your GitHub repository for you. See
-  [Neon GitHub Integration](/docs/guides/neon-github-integration) for
+  [Jambo GitHub Integration](/docs/guides/neon-github-integration) for
   instructions.
 
-- **Manual setup** — this method requires obtaining a Neon API key and
+- **Manual setup** — this method requires obtaining a Jambo API key and
   configuring it manually in your GitHub repository.
 
-  1. Obtain a Neon API key. See
+  1. Obtain a Jambo API key. See
      [Create an API key](/docs/manage/api-keys#create-an-api-key)
      for instructions.
   1. In your GitHub repository, go to **Project settings** and locate
@@ -435,7 +435,7 @@ are two ways you can perform this setup:
 
 ## Example applications
 
-The following example applications use GitHub Actions workflows to create and delete branches in Neon.
+The following example applications use GitHub Actions workflows to create and delete branches in Jambo.
 
 
 
@@ -445,4 +445,4 @@ Preview branches with Vercel
 
 Preview branches with Fly.io
 
-Neon Twitter app
+Jambo Twitter app

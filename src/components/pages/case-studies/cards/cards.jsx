@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { PropTypes } from 'prop-types';
-import { useState, useMemo } from 'react';
 
 // import Button from 'components/shared/button';
 import Container from 'components/shared/container';
@@ -109,63 +108,23 @@ export const CardPropTypes = {
 
 Card.propTypes = CardPropTypes;
 
-const Cards = ({ items, categories }) => {
-  const [activeCategory, setActiveCategory] = useState({ slug: 'all' });
-  // const [isOpen, setIsOpen] = useState(false);
-  // const { width: windowWidth } = useWindowSize();
-  // const itemsToShow = windowWidth < 768 ? 10 : 17;
-
-  const filteredItems = useMemo(
-    () =>
-      activeCategory.slug === 'all'
-        ? items
-        : items.filter((item) =>
-            item.caseStudiesCategories.nodes.some((node) => node.slug === activeCategory.slug)
-          ),
-    [items, activeCategory]
-  );
-
+const Cards = () => 
   // const hasHiddenItems = filteredItems.length > itemsToShow;
   // const limitedItems =
   //   hasHiddenItems && isOpen ? filteredItems : filteredItems.slice(0, itemsToShow);
 
-  return (
+   (
     <section className="main safe-paddings mt-40 xl:mt-[136px] lg:mt-[104px] md:mt-20">
       <Container className="flex flex-col items-center lg:!max-w-3xl md:px-5" size="960">
         <h2 className="sr-only">All success stories</h2>
         <p className="text-center text-lg leading-snug tracking-extra-tight text-gray-new-60 sm:max-w-64 sm:text-base">
-          Powering ambitious product teams of all shapes and sizes
+          Dans un monde en constante évolution technologique, la montée en compétences des employés
+          est cruciale pour garantir la compétitivité et l’efficacité des organisations, qu’il
+          s’agisse d’entreprises privées, de gouvernements, ou d’ONG. Nous proposons des programmes
+          de formation de pointe destinés à accompagner les entreprises et les organisations dans la
+          transformation numérique, la cybersécurité, la gestion des données, et bien plus encore.
         </p>
-        <div className="mt-7 max-w-full overflow-hidden rounded-full border border-gray-new-15 bg-black-new xl:mt-6 lg:mt-5 sm:mt-[18px]">
-          <ul className="no-scrollbars flex h-12 items-center overflow-x-auto px-1.5">
-            {categories.map(({ name, slug, featuredCaseStudy }, index) => (
-              <li className="group" key={index}>
-                <button
-                  className={clsx(
-                    'flex h-9 items-center whitespace-nowrap rounded-full px-6 font-medium tracking-extra-tight',
-                    'border transition-colors duration-200 hover:text-green-45',
-                    slug === activeCategory.slug
-                      ? 'border-[#1B2C2E] bg-[#132628]/50 text-green-45'
-                      : 'border-transparent text-gray-new-50'
-                  )}
-                  type="button"
-                  onClick={() => setActiveCategory({ slug, featuredCaseStudy })}
-                >
-                  {name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <ul className="mt-16 grid w-full grid-cols-3 gap-5 xl:mt-14 lg:mt-12 lg:grid-cols-2 md:mt-9 sm:grid-cols-1">
-          {filteredItems.map(({ id, title, caseStudyPost }, index) => {
-            const isFeatured = activeCategory.featuredCaseStudy
-              ? id === activeCategory.featuredCaseStudy
-              : index === 0;
 
-            return <Card key={index} title={title} {...caseStudyPost} isFeatured={isFeatured} />;
-          })}
-        </ul>
         {/* Show more button */}
         {/* {hasHiddenItems && !isOpen && (
           <Button
@@ -179,8 +138,8 @@ const Cards = ({ items, categories }) => {
         )} */}
       </Container>
     </section>
-  );
-};
+  )
+;
 
 Cards.propTypes = {
   items: PropTypes.arrayOf(

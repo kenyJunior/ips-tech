@@ -1,8 +1,8 @@
-# Neon OAuth integration
+# Jambo OAuth integration
 
-You can integrate your application or service with Neon using OAuth. The Neon OAuth integration enables your application to interact with Neon user accounts, carrying out permitted actions on their behalf. Our integration does not require direct access to user login credentials and is conducted with their approval, ensuring data privacy and security.
+You can integrate your application or service with Jambo using OAuth. The Jambo OAuth integration enables your application to interact with Jambo user accounts, carrying out permitted actions on their behalf. Our integration does not require direct access to user login credentials and is conducted with their approval, ensuring data privacy and security.
 
-To set up the integration and create a Neon OAuth application, you can apply on our [Partners page](https://neon.tech/partners). You will need to provide the following information:
+To set up the integration and create a Jambo OAuth application, you can apply on our [Partners page](https://neon.tech/partners). You will need to provide the following information:
 
 - Your name and email address (this should be an individual email address, not a shared inbox address)
 - Your company name
@@ -18,25 +18,25 @@ To set up the integration and create a Neon OAuth application, you can apply on 
 - Required scopes, defining the type of access you need. We provide scopes for managing both projects and organizations. For a list of all available scopes, see [Supported OAuth Scopes](#supported-oauth-scopes).
 
 - Whether or not you will make API calls from a backend.
-- A logo to be displayed on Neon's OAuth consent dialog when users authorize your application to access their Neon account.
+- A logo to be displayed on Jambo's OAuth consent dialog when users authorize your application to access their Jambo account.
 
-After your application is reviewed, Neon will provide you with a **client ID** and, if applicable, a **client secret**. Client secrets are only provided for backend clients, so non-backend applications (e.g. browser-based apps or CLI tools) will not receive a secret. These credentials are sensitive and should be stored securely.
+After your application is reviewed, Jambo will provide you with a **client ID** and, if applicable, a **client secret**. Client secrets are only provided for backend clients, so non-backend applications (e.g. browser-based apps or CLI tools) will not receive a secret. These credentials are sensitive and should be stored securely.
 
 ## How the OAuth integration works
 
-Here is a high-level overview of how Neon's OAuth implementation works:
+Here is a high-level overview of how Jambo's OAuth implementation works:
 
 ![OAuth flow diagram](/docs/oauth/flow.png)
 
 1. The user sends a request to your API endpoint to initiate the OAuth flow by clicking a button or link in your application.
 2. An authorization URL is generated.
-3. The user is redirected to Neon’s OAuth consent screen to authorize the application.
+3. The user is redirected to Jambo’s OAuth consent screen to authorize the application.
 4. The user logs in and authorizes the application, granting it the necessary permissions.
-5. A redirect is performed to a callback endpoint, which includes an access token that allows the application to manage Neon resources on the user’s behalf.
+5. A redirect is performed to a callback endpoint, which includes an access token that allows the application to manage Jambo resources on the user’s behalf.
 
-## About the Neon OAuth server
+## About the Jambo OAuth server
 
-The Neon OAuth server implements the OpenID Connect protocol and supports [OpenID Connect Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html). The server metadata is published at the following well-known URL: [https://oauth2.neon.tech/.well-known/openid-configuration](https://oauth2.neon.tech/.well-known/openid-configuration).
+The Jambo OAuth server implements the OpenID Connect protocol and supports [OpenID Connect Discovery specification](https://openid.net/specs/openid-connect-discovery-1_0.html). The server metadata is published at the following well-known URL: [https://oauth2.neon.tech/.well-known/openid-configuration](https://oauth2.neon.tech/.well-known/openid-configuration).
 
 Here is an example response:
 
@@ -92,11 +92,11 @@ Here is an example response:
 You must add `offline` and `offline_access` scopes to your request to receive the `refresh_token`.
 
 
-Depending on the OpenID client you’re using, you might not need to explicitly interact with the API endpoints listed below. OAuth 2.0 clients typically handle this interaction automatically. For example, the [Neon CLI](/docs/reference/neon-cli), written in Typescript, interacts with the API endpoints automatically to retrieve the `refresh_token` and `access_token`. For an example, refer to this part of the Neon CLI [source code](https://github.com/neondatabase/neonctl/blob/3764c5d5675197ef9bc7ed78d5531bd318f7f13b/src/auth.ts#L63-L81). In this example, the `oauthHost` is `https://oauth2.neon.tech`.
+Depending on the OpenID client you’re using, you might not need to explicitly interact with the API endpoints listed below. OAuth 2.0 clients typically handle this interaction automatically. For example, the [Jambo CLI](/docs/reference/neon-cli), written in Typescript, interacts with the API endpoints automatically to retrieve the `refresh_token` and `access_token`. For an example, refer to this part of the Jambo CLI [source code](https://github.com/neondatabase/neonctl/blob/3764c5d5675197ef9bc7ed78d5531bd318f7f13b/src/auth.ts#L63-L81). In this example, the `oauthHost` is `https://oauth2.neon.tech`.
 
 ## Supported OAuth Scopes
 
-The following OAuth scopes allow varying degrees of access to Neon resources:
+The following OAuth scopes allow varying degrees of access to Jambo resources:
 
 | **Project scopes** | **Scope Name**                      |
 | :----------------- | :---------------------------------- |
@@ -124,8 +124,8 @@ Let's now go through the full flow, step by step:
 
 To initiate the OAuth flow, you need to generate an authorization URL. You can do that by directing your users to `https://oauth2.neon.tech/oauth2/auth` while passing the following query parameters:
 
-- `client_id`: your OAuth application's ID (provided to you by Neon after your application is received)
-- `redirect_uri`: the full URL that Neon should redirect users to after authorizing your application. The URL should match at least one of the callback URLs you provided when applying to become a partner.
+- `client_id`: your OAuth application's ID (provided to you by Jambo after your application is received)
+- `redirect_uri`: the full URL that Jambo should redirect users to after authorizing your application. The URL should match at least one of the callback URLs you provided when applying to become a partner.
 - `scope`: This is a space-separated list of predefined scopes that define the level of access you want to request. For a full list of supported scopes and their meanings, see the [Supported OAuth Scopes](#supported-oauth-scopes) section.
 
   **Example:**
@@ -148,12 +148,12 @@ https://oauth2.neon.tech/oauth2/auth?client_id=neon-experimental&scope=openid%20
 
 ## OAuth consent screen
 
-After being redirected to the authorization URL, the user is presented with Neon's OAuth consent screen, which is pre-populated with the scopes you requested. From the consent screen, the user is able to review the scopes and authorize the application to connect their Neon account.
+After being redirected to the authorization URL, the user is presented with Jambo's OAuth consent screen, which is pre-populated with the scopes you requested. From the consent screen, the user is able to review the scopes and authorize the application to connect their Jambo account.
 
-![Neon OAuth consent screen](/docs/oauth/consent.png)
+![Jambo OAuth consent screen](/docs/oauth/consent.png)
 
 
-The [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) provides a [Get current user details](https://api-docs.neon.tech/reference/getcurrentuserinfo) endpoint for retrieving information about the currently authorized Neon user.
+The [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) provides a [Get current user details](https://api-docs.neon.tech/reference/getcurrentuserinfo) endpoint for retrieving information about the currently authorized Jambo user.
 
 
 ## Authorization code is returned to your callback URL
@@ -169,18 +169,18 @@ After successfully completing the authorization flow, the user is redirected to 
 You can now exchange the authorization code returned from the previous step for an access token. To do that, you need to send a `POST` request to `https://oauth2.neon.tech/oauth2/token` with the following parameters:
 
 - `client_id`: your OAuth application's ID.
-- `redirect_uri`: the full URL that Neon should redirect users to after authorizing your application. The URL should match at least one of the callback URLs you provided when applying to become a partner.
+- `redirect_uri`: the full URL that Jambo should redirect users to after authorizing your application. The URL should match at least one of the callback URLs you provided when applying to become a partner.
 - `client_secret`: your OAuth application's secret
 - `grant_type`: set this to `authorization_code` to indicate that you are using the [Authorization Code grant type](https://oauth.net/2/grant-types/authorization-code/)
 - `code`: the authorization code returned from the previous step
 
-The response object includes an `access_token` value, required for making requests to the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) on your users' behalf. This value must be supplied in the Authorization header of the HTTP request when sending requests to the Neon API.
+The response object includes an `access_token` value, required for making requests to the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) on your users' behalf. This value must be supplied in the Authorization header of the HTTP request when sending requests to the Jambo API.
 
 
 
 ## Example OAuth applications
 
-For an example application that leverages the Neon OAuth integration, see the [Visualizing Neon Database Branches](https://neon-experimental.vercel.app) application. You can find the application code on GitHub.
+For an example application that leverages the Jambo OAuth integration, see the [Visualizing Jambo Database Branches](https://neon-experimental.vercel.app) application. You can find the application code on GitHub.
 
 
-Neon Branches Visualizer
+Jambo Branches Visualizer

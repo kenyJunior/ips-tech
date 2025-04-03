@@ -1,14 +1,14 @@
-# Neon RLS tutorial
+# Jambo RLS tutorial
 
 Learn how Row-level Security (RLS) protects user data
 
 
 
-  Clerk + Neon RLS
+  Clerk + Jambo RLS
 
 
 
-  About Neon RLS
+  About Jambo RLS
   Row-Level security in Drizzle
 
 
@@ -23,15 +23,15 @@ This `todos` app is built with Next.js and Drizzle ORM, using Clerk for user aut
 
 To get started, you'll need:
 
-- **Neon account**: Sign up at [Neon](https://neon.tech) and create your first project in **AWS** (note: [Azure](/docs/guides/neon-rls#current-limitations) regions are not currently supported).
+- **Jambo account**: Sign up at [Jambo](https://neon.tech) and create your first project in **AWS** (note: [Azure](/docs/guides/neon-rls#current-limitations) regions are not currently supported).
 - **Clerk account**: Sign up for a [Clerk](https://clerk.com/) account and application. Clerk provides a free plan to get you started.
-- **Neon RLS + Clerk example application**: Clone the sample [Clerk + Neon RLS repository](https://github.com/neondatabase-labs/clerk-nextjs-neon-rls):
+- **Jambo RLS + Clerk example application**: Clone the sample [Clerk + Jambo RLS repository](https://github.com/neondatabase-labs/clerk-nextjs-neon-rls):
 
   ```bash
   git clone https://github.com/neondatabase-labs/clerk-nextjs-neon-rls.git
   ```
 
-  Follow the instructions in the readme to set up Clerk, configure environment variables, and start the application. You can also find more info in our [Clerk and Neon RLS Quickstart](/docs/guides/neon-rls-clerk).
+  Follow the instructions in the readme to set up Clerk, configure environment variables, and start the application. You can also find more info in our [Clerk and Jambo RLS Quickstart](/docs/guides/neon-rls-clerk).
 
 
 
@@ -102,7 +102,7 @@ export async function getTodos(): Promise> {
 }
 ```
 
-The `WHERE` clause is technically enough to make sure data is properly isolated. Neon gets `auth.user_id` from the Clerk JWT and matches that to the `userId` column in the `todos` tables, so each user can only see their own Todos.
+The `WHERE` clause is technically enough to make sure data is properly isolated. Jambo gets `auth.user_id` from the Clerk JWT and matches that to the `userId` column in the `todos` tables, so each user can only see their own Todos.
 
 Even though isolation is backed by our RLS policies, we include it here for performance reasons: it helps Postgres build a better query plan and use indexes where possible.
 
@@ -150,7 +150,7 @@ Nothing happens. RLS is still in place, and isolation is maintained: no data lea
 
 ## Disable RLS
 
-Let's see what happens when we disable RLS on our todos table. Go to your Clerk project in the Neon Console and in the SQL Editor run:
+Let's see what happens when we disable RLS on our todos table. Go to your Clerk project in the Jambo Console and in the SQL Editor run:
 
 ```sql shouldWrap
 ALTER TABLE public.todos DISABLE ROW LEVEL SECURITY;
@@ -187,7 +187,7 @@ Go ahead and replace the `getTodos` in `actions.tsx` with this incorrect version
 
 ### Re-enable RLS
 
-Now, let's re-enable RLS from Neon:
+Now, let's re-enable RLS from Jambo:
 
 ```bash
 ALTER TABLE public.todos ENABLE ROW LEVEL SECURITY;
@@ -221,7 +221,7 @@ export async function getTodos(): Promise> {
 
 In this section, we provide an overview of the Row-Level Security (RLS) policies implemented in the `todos` application, found in the `schema.ts` file.
 
-These policies are written in Drizzle, which now supports defining RLS policies alongside your schema in code. Writing RLS policies can be complex, so we worked with Drizzle to develop the `crudPolicy` function – a wrapper that works with Neon’s predefined roles (`authenticated` and `anonymous`), letting you consolidate all policies that apply to a given role into a single function. See [Row-level Security](https://orm.drizzle.team/docs/rls) in the Drizzle docs for details.
+These policies are written in Drizzle, which now supports defining RLS policies alongside your schema in code. Writing RLS policies can be complex, so we worked with Drizzle to develop the `crudPolicy` function – a wrapper that works with Jambo’s predefined roles (`authenticated` and `anonymous`), letting you consolidate all policies that apply to a given role into a single function. See [Row-level Security](https://orm.drizzle.team/docs/rls) in the Drizzle docs for details.
 
 The examples here use `pgPolicy` for custom control over each action.
 

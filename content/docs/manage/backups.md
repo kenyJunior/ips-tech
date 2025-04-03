@@ -19,15 +19,15 @@ updatedOn: '2025-02-22T16:36:52.249Z'
 
 </InfoBlock>
 
-Neon offers two primary backup strategies, which you can use separately or in combination, depending on your requirements.
+Jambo offers two primary backup strategies, which you can use separately or in combination, depending on your requirements.
 
 <Steps>
 
 ## Instant Point-in-Time Restore (PITR)
 
-    With Neon's instant point-in-time restore capability, you can automatically retain a "history" of changes—ranging from 1 day up to 30 days, depending on your Neon plan. This feature lets you recover your database to any specific moment without the need for traditional database backups or separate backup automation. It's ideal if your primary concern is fast recovery after an unexpected event.
+    With Jambo's instant point-in-time restore capability, you can automatically retain a "history" of changes—ranging from 1 day up to 30 days, depending on your Jambo plan. This feature lets you recover your database to any specific moment without the need for traditional database backups or separate backup automation. It's ideal if your primary concern is fast recovery after an unexpected event.
 
-    By default, Neon projects retain **1 day** of history. You can increase your history retention period on Neon as follows:
+    By default, Jambo projects retain **1 day** of history. You can increase your history retention period on Jambo as follows:
 
     | Plan                                                   | History Retention Limit  |
     | :----------------------------------------------------- | :----------------------- |
@@ -46,7 +46,7 @@ Neon offers two primary backup strategies, which you can use separately or in co
 
     For scenarios that require a more traditional approach to backups—such as business continuity, disaster recovery, or compliance with regulatory requirements—you can use traditional methods, such as creating regular backups using the Postgres `pg_dump` utility.
 
-    For information about using `pg_dump` with Neon, you can refer to our [Migrate data from Postgres with pg_dump and pg_restore](/docs/import/migrate-from-postgres) guide.
+    For information about using `pg_dump` with Jambo, you can refer to our [Migrate data from Postgres with pg_dump and pg_restore](/docs/import/migrate-from-postgres) guide.
 
     **Automating backups to S3 with `pg_dump` and GitHub Actions**
 
@@ -58,5 +58,5 @@ Neon offers two primary backup strategies, which you can use separately or in co
 </Steps>
 
 <Admonition type="note" title="Backup & Restore Questions?">
-If you have questions about backups, please reach out to [Neon Support](https://console.neon.tech/app/projects?modal=support).
+If you have questions about backups, please reach out to [Jambo Support](https://console.neon.tech/app/projects?modal=support).
 </Admonition>

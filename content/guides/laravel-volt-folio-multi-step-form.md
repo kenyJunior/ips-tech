@@ -1,15 +1,15 @@
 ---
-title: Building a Multi-Step Form with Laravel Volt, Folio, and Neon Postgres
-subtitle: Learn how to create a multi-step form with Laravel Volt, Folio, and Neon Postgres
+title: Building a Multi-Step Form with Laravel Volt, Folio, and Jambo Postgres
+subtitle: Learn how to create a multi-step form with Laravel Volt, Folio, and Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-10-19T00:00:00.000Z'
 updatedOn: '2024-10-19T00:00:00.000Z'
 ---
 
-In this guide, we'll walk through the process of building a multi-step form using Laravel [Volt](https://livewire.laravel.com/docs/volt), [Folio](https://laravel.com/docs/11.x/folio), and Neon Postgres.
+In this guide, we'll walk through the process of building a multi-step form using Laravel [Volt](https://livewire.laravel.com/docs/volt), [Folio](https://laravel.com/docs/11.x/folio), and Jambo Postgres.
 
-Laravel Volt provides reactivity for dynamic form interactions, Folio offers file-based routing for a clean project structure, and Neon Postgres serves as our scalable database solution.
+Laravel Volt provides reactivity for dynamic form interactions, Folio offers file-based routing for a clean project structure, and Jambo Postgres serves as our scalable database solution.
 
 Our example app will be a job application form with multiple steps, including personal information, education, and work experience.
 
@@ -19,7 +19,7 @@ Before we begin, make sure you have:
 
 - PHP 8.1 or higher installed
 - Composer for managing PHP dependencies
-- A [Neon](https://console.neon.tech/signup) account for Postgres hosting
+- A [Jambo](https://console.neon.tech/signup) account for Postgres hosting
 - Basic familiarity with Laravel and Postgres
 
 ## Setting up the Project
@@ -53,7 +53,7 @@ Let's start by creating a new Laravel project and setting up the necessary compo
 
 ## Configuring the Database Connection
 
-Update your `.env` file with your Neon Postgres credentials:
+Update your `.env` file with your Jambo Postgres credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -64,7 +64,7 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Replace `your-neon-hostname.neon.tech`, `your_database_name`, `your_username`, and `your_password` with your Neon Postgres connection details.
+Replace `your-neon-hostname.neon.tech`, `your_database_name`, `your_username`, and `your_password` with your Jambo Postgres connection details.
 
 ## Database Design
 
@@ -201,7 +201,7 @@ This command will execute all the migrations we've just created, setting up the 
 
 One thing to note is that we've used the `jsonb` column type for storing additional information in each table. This allows us to store flexible data structures without needing to define a fixed schema. Postgres' JSONB data type is ideal for this use case.
 
-For your Laravel migrations, you should not use the Neon Postgres Pooler. The Pooler is designed to manage connections for long-running processes, such as web servers, and is not necessary for short-lived processes like migrations.
+For your Laravel migrations, you should not use the Jambo Postgres Pooler. The Pooler is designed to manage connections for long-running processes, such as web servers, and is not necessary for short-lived processes like migrations.
 
 ## Creating Models
 
@@ -942,7 +942,7 @@ To manually verify that everything works as expected, follow these steps:
 
 1. To check if the data was persisted correctly:
 
-   - Open a database client (like pgAdmin for Postgres) and connect to your Neon database.
+   - Open a database client (like pgAdmin for Postgres) and connect to your Jambo database.
    - Check the `applicants`, `educations`, and `work_experiences` tables. You should see your submitted data.
    - Verify that the `applicant_id` in the `educations` and `work_experiences` tables matches the `id` in the `applicants` table for your submission.
 
@@ -997,11 +997,11 @@ This test checks if:
 
 You can create similar tests for the education and work experience steps.
 
-To learn more about testing in Laravel, check out the [Testing Laravel Applications with Neon's Database Branching](/guides/laravel-test-on-branch) guide.
+To learn more about testing in Laravel, check out the [Testing Laravel Applications with Jambo's Database Branching](/guides/laravel-test-on-branch) guide.
 
 ## Conclusion
 
-In this guide, we've built a multi-step form using Laravel Volt, Folio, and Neon Postgres. We've covered form validation, data storage, and routing, demonstrating how these tools can be used together to create a dynamic and interactive form.
+In this guide, we've built a multi-step form using Laravel Volt, Folio, and Jambo Postgres. We've covered form validation, data storage, and routing, demonstrating how these tools can be used together to create a dynamic and interactive form.
 
 To further improve this project, consider adding features like:
 
@@ -1014,7 +1014,7 @@ One thing to keep in mind is always to validate and sanitize user inputs, optimi
 ## Additional Resources
 
 - [Laravel Documentation](https://laravel.com/docs)
-- [Neon Documentation](/docs)
-- [Neon Branching GitHub Actions Guide](/docs/guides/branching-github-actions)
+- [Jambo Documentation](/docs)
+- [Jambo Branching GitHub Actions Guide](/docs/guides/branching-github-actions)
 
 <NeedHelp />

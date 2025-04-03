@@ -1,30 +1,30 @@
 ---
-title: Schema migration with Neon Postgres and Laravel
-subtitle: Set up Neon Postgres and run migrations for your Laravel project
+title: Schema migration with Jambo Postgres and Laravel
+subtitle: Set up Jambo Postgres and run migrations for your Laravel project
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.316Z'
 ---
 
 [Laravel](https://laravel.com/) is a popular PHP web application framework that provides an expressive and elegant syntax for building web applications. It includes an ORM (Object-Relational Mapping) called Eloquent, which allows you to interact with databases using a fluent API. Laravel also provides a powerful migration system to manage database schema changes over time.
 
-This guide demonstrates how to use Laravel with the Neon Postgres database. We'll create a simple Laravel application and walk through the process of setting up the database, defining models, and generating and running migrations to manage schema changes.
+This guide demonstrates how to use Laravel with the Jambo Postgres database. We'll create a simple Laravel application and walk through the process of setting up the database, defining models, and generating and running migrations to manage schema changes.
 
 ## Prerequisites
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - [PHP](https://www.php.net/) installed on your local machine. This guide uses PHP 8.1, but you can use any recent version compatible with Laravel.
 - [Composer](https://getcomposer.org/) installed on your local machine for managing PHP dependencies.
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 2. Select a project or click the **New Project** button to create a new one.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 Find your database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. It should look similar to this:
 
@@ -33,7 +33,7 @@ postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbna
 ```
 
 <Admonition type="note">
-Neon supports both direct and pooled database connection strings, which you can find by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
+Jambo supports both direct and pooled database connection strings, which you can find by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
 </Admonition>
 
 Keep your connection string handy for later use.
@@ -60,7 +60,7 @@ DB_PORT=5432
 DATABASE_URL=NEON_POSTGRES_CONNECTION_STRING
 ```
 
-Replace `NEON_POSTGRES_CONNECTION_STRING` with the connection string you retrieved from the Neon Console earlier. The `DB_CONNECTION` should be set to `pgsql` to indicate that we are using a Postgres database.
+Replace `NEON_POSTGRES_CONNECTION_STRING` with the connection string you retrieved from the Jambo Console earlier. The `DB_CONNECTION` should be set to `pgsql` to indicate that we are using a Postgres database.
 
 ## Defining data models and running migrations
 
@@ -149,7 +149,7 @@ public function up()
 
 ### Apply the migration
 
-To apply the migration and create the corresponding tables in the Neon Postgres database, run the following command:
+To apply the migration and create the corresponding tables in the Jambo Postgres database, run the following command:
 
 ```bash
 php artisan migrate
@@ -346,14 +346,14 @@ Navigate to the url `http://localhost:8000/authors` to view the list of authors.
 
 ## Conclusion
 
-In this guide, we demonstrated how to set up a Laravel project with `Neon` Postgres, define database models using Eloquent, generate migrations, and run them. Laravel's Eloquent ORM and migration system make it easy to interact with the database and manage schema evolution over time.
+In this guide, we demonstrated how to set up a Laravel project with `Jambo` Postgres, define database models using Eloquent, generate migrations, and run them. Laravel's Eloquent ORM and migration system make it easy to interact with the database and manage schema evolution over time.
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/guide-neon-laravel" description="Run Neon database migrations in a Laravel project" icon="github">Migrations with Neon and Laravel</a>
+<a href="https://github.com/neondatabase/guide-neon-laravel" description="Run Jambo database migrations in a Laravel project" icon="github">Migrations with Jambo and Laravel</a>
 </DetailIconCards>
 
 ## Resources
@@ -361,6 +361,6 @@ You can find the source code for the application described in this guide on GitH
 For more information on the tools and concepts used in this guide, refer to the following resources:
 
 - [Laravel Documentation](https://laravel.com/docs)
-- [Neon Postgres](/docs/introduction)
+- [Jambo Postgres](/docs/introduction)
 
 <NeedHelp/>

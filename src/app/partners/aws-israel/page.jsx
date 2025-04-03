@@ -20,7 +20,7 @@ const AWSPage = () => (
     <Regions />
     <Testimonial
       className="mt-40 xl:mt-[120px] lg:mt-28 md:mt-20"
-      quote="The combination of flexible resource limits and nearly instant database provisioning made Neon a no-brainer."
+      quote="Grâce à l’expertise d’IPS, nos projets technologiques sont livrés à temps et sans dépassement de budget. Leur approche agile a optimisé notre processus et renforcé notre efficacité."
       name="Lincoln Bergeson"
       position="Infrastructure Engineer at Replit"
     />
@@ -28,8 +28,8 @@ const AWSPage = () => (
     <CTAWithElephant
       className="mt-[136px] xl:mt-[104px] lg:mt-20 md:mt-16"
       buttonClassName="px-[78px] xl:px-14"
-      title="Try Neon<br/> in the Israel region"
-      description="We are delighted to announce that Neon is now available in the new Israel (Tel Aviv) AWS region."
+      title="Try Jambo<br/> in the Israel region"
+      description="We are delighted to announce that Jambo is now available in the new Israel (Tel Aviv) AWS region."
       buttonText="Sign up"
       buttonUrl={LINKS.signup}
       linkText="Learn more about AWS"

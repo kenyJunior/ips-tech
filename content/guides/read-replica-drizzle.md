@@ -1,27 +1,27 @@
 ---
-title: Scale your Next.js application with Drizzle ORM and Neon Postgres Read Replicas
-subtitle: Learn how to scale Next.js applications with Drizzle ORM's withReplicas() function and Neon Postgres Read Replicas
+title: Scale your Next.js application with Drizzle ORM and Jambo Postgres Read Replicas
+subtitle: Learn how to scale Next.js applications with Drizzle ORM's withReplicas() function and Jambo Postgres Read Replicas
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-10-14T00:00:00.000Z'
 updatedOn: '2024-10-14T00:00:00.000Z'
 ---
 
-[Neon read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications.
+[Jambo read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications.
 
-A key advantage of Neon's architecture is that adding a read replica doesn't require additional storage, making it a highly efficient scaling solution. This cost-effective approach is ideal for businesses of all sizes that need to improve database performance without increasing storage costs.
+A key advantage of Jambo's architecture is that adding a read replica doesn't require additional storage, making it a highly efficient scaling solution. This cost-effective approach is ideal for businesses of all sizes that need to improve database performance without increasing storage costs.
 
-This guide demonstrates how to leverage Neon read replicas to efficiently scale Next.js applications using Drizzle ORM. You'll learn how to configure your Drizzle database client to work with read replicas, enabling you to optimize your database operations and improve overall application performance.
+This guide demonstrates how to leverage Jambo read replicas to efficiently scale Next.js applications using Drizzle ORM. You'll learn how to configure your Drizzle database client to work with read replicas, enabling you to optimize your database operations and improve overall application performance.
 
 ## Prerequisites
 
-- A Neon account and a Project. If you don't have one, you can sign up for a Neon account and create a project by following the [Getting Started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
+- A Jambo account and a Project. If you don't have one, you can sign up for a Jambo account and create a project by following the [Getting Started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
 - Basic knowledge of [Next.js](https://nextjs.org/docs) and TypeScript
 - [Node.js](https://nodejs.org/en/download/package-manager) and npm installed on your local machine
 
 ## Build the Polling app
 
-To demonstrate how to use Neon read replicas with Drizzle in Next.js, we'll build a simple Polling application that uses a Neon database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
+To demonstrate how to use Jambo read replicas with Drizzle in Next.js, we'll build a simple Polling application that uses a Jambo database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
 
 ### Part 1: Build the initial Polling app with a single database
 
@@ -79,13 +79,13 @@ This code sets up the Drizzle ORM client. It creates a connection pool using the
 
 #### Update `.env`
 
-Add the Neon database connection string:
+Add the Jambo database connection string:
 
 ```
 DATABASE_URL=postgres://your-username:your-password@your-neon-host/your-database
 ```
 
-This environment variable stores the connection string for your Neon database.
+This environment variable stores the connection string for your Jambo database.
 
 #### Set up migrations and create tables
 
@@ -127,7 +127,7 @@ To generate your first migration based on your schema, run:
 npm run migration:generate
 ```
 
-To apply the migration and create the table in your Neon database, run:
+To apply the migration and create the table in your Jambo database, run:
 
 ```bash
 npm run migration:migrate
@@ -341,11 +341,11 @@ Visit [`http://localhost:3000`](http://localhost:3000) to test the polling app.
 
 ### Part 2: Use a read replica for read-only operations
 
-#### Create a read replica on Neon
+#### Create a read replica on Jambo
 
 To create a read replica:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new compute** dialog, select **Read replica** as the **Compute type**.
@@ -399,7 +399,7 @@ READ_REPLICA_URL=postgres://your-username:your-password@your-neon-read-replica-h
 These environment variables store the connection strings for both your primary database and the read replica.
 
 <Admonition type="note">
-   You can also pass an array of read replica connection strings if you want to use multiple read replicas. Neon supports adding multiple read replicas to a database branch.
+   You can also pass an array of read replica connection strings if you want to use multiple read replicas. Jambo supports adding multiple read replicas to a database branch.
 
 ```javascript
 const primaryDb = drizzle(
@@ -436,7 +436,7 @@ You can find the source code for the application described in this guide on GitH
 
 ## Conclusion
 
-By leveraging Neon's read replicas with Drizzle in your Next.js application, you can significantly improve your application's performance and scalability. Drizzle makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
+By leveraging Jambo's read replicas with Drizzle in your Next.js application, you can significantly improve your application's performance and scalability. Drizzle makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
 
 This setup allows you to distribute your read load across one or more read replicas while ensuring that all write operations are performed on the primary database. Monitor your application's performance and adjust the number of read replicas as needed to handle your specific load requirements.
 

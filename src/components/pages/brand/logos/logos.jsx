@@ -28,7 +28,7 @@ const Logos = () => (
         </h2>
         <p className="mt-3.5 max-w-[512px] font-light leading-snug tracking-extra-tight text-gray-new-80 lg:mt-2.5 md:mt-2">
           Default to using the complete full-color logo below. Use the monochrome version when the
-          context requires it. Do not edit, change, distort, recolor, or reconfigure the Neon logo.
+          context requires it. Do not edit, change, distort, recolor, or reconfigure the Jambo logo.
         </p>
         <ul className="mt-10 grid auto-cols-fr grid-cols-2 gap-4 xl:mt-9 lg:mt-8 md:mt-7 md:grid-cols-1">
           {logos.map((logo, index) => (
@@ -38,7 +38,7 @@ const Logos = () => (
                 href={logo.src}
                 download={logo.name}
               >
-                <Image src={logo.src} alt="Neon logo" width={158} height={44} priority />
+                <Image src={logo.src} alt="Jambo logo" width={158} height={44} priority />
                 <span className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded border opacity-0 transition-opacity duration-300 group-odd:border-gray-new-80 group-odd:text-gray-new-30 group-even:border-gray-new-20 group-even:text-gray-new-94 group-hover/link:opacity-100">
                   <DownloadIcon />
                 </span>
@@ -52,7 +52,7 @@ const Logos = () => (
           Logomark
         </h2>
         <p className="mt-3.5 max-w-[512px] font-light leading-snug tracking-extra-tight text-gray-new-80 lg:mt-2.5 md:mt-2">
-          The Neon logomark should only be used in places where there is not enough room to display
+          The Jambo logomark should only be used in places where there is not enough room to display
           the full logo, or in cases where only brand symbols of multiple brands are displayed.
         </p>
         <ul className="mt-10 grid auto-cols-fr grid-cols-4 gap-4 xl:mt-9 lg:mt-8 md:mt-7 md:grid-cols-2">
@@ -69,7 +69,7 @@ const Logos = () => (
                 <Image
                   className="lg:h-auto lg:w-[52px]"
                   src={logo.src}
-                  alt="Neon logo"
+                  alt="Jambo logo"
                   width={58}
                   height={58}
                 />

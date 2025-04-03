@@ -1,20 +1,20 @@
-# Connecting to Neon Postgres
+# Connecting to Jambo Postgres
 
-This guide provides an overview of connecting to Neon Postgres from different clients and applications, troubleshooting connection issues, and optimizing your connections.
+This guide provides an overview of connecting to Jambo Postgres from different clients and applications, troubleshooting connection issues, and optimizing your connections.
 
 ## Connection Methods
 
-Neon supports multiple connection methods:
+Jambo supports multiple connection methods:
 
 1. **Choose the right driver and connection type**
-   - Neon Serverless driver (for JavaScript/TypeScript in serverless environments)
+   - Jambo Serverless driver (for JavaScript/TypeScript in serverless environments)
    - TCP-based drivers (for traditional applications)
    - Direct connections (for migrations and admin tasks)
    - Pooled connections (for high concurrency)
 
 2. **Connect from clients and applications**
    - Connect from any application using connection strings
-   - Use the Neon serverless driver for serverless environments
+   - Use the Jambo serverless driver for serverless environments
    - Connect from GUI applications like pgAdmin, DBeaver, etc.
    - Use psql, the native command-line client for Postgres
 
@@ -39,7 +39,7 @@ Common connection issues and their solutions:
 
 ## Secure Connections
 
-Ensure secure connections to your Neon database:
+Ensure secure connections to your Jambo database:
 
 1. **SSL/TLS encrypted connections**
    - Always use SSL/TLS for secure connections
@@ -47,7 +47,7 @@ Ensure secure connections to your Neon database:
    - Verify server certificates for enhanced security
 
 2. **Passwordless authentication**
-   - Use Neon's psql passwordless auth feature
+   - Use Jambo's psql passwordless auth feature
    - Generate temporary authentication tokens
 
 ## Connection Pooling
@@ -63,4 +63,4 @@ Optimize connections with pooling:
    - Prisma connection pooling
    - Other framework-specific pooling strategies
 
-For detailed instructions on specific connection methods, refer to the Neon documentation.
+For detailed instructions on specific connection methods, refer to the Jambo documentation.

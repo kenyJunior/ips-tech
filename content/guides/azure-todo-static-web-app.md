@@ -1,6 +1,6 @@
 ---
-title: Building Azure Static Web Apps with Neon
-subtitle: A step-by-step guide to creating and deploying static sites using Azure and Neon Postgres
+title: Building Azure Static Web Apps with Jambo
+subtitle: A step-by-step guide to creating and deploying static sites using Azure and Jambo Postgres
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-12-14T00:00:00.000Z'
@@ -21,13 +21,13 @@ Before you begin, make sure you have:
 - [Visual Studio Code](https://code.visualstudio.com/)
 - An [Azure account](https://azure.microsoft.com/free/) with an active subscription
 
-## Create a Neon Project
+## Create a Jambo Project
 
-Neon is now available in Azure! You can create serverless Postgres databases that run on Azure infrastructure. To learn more about Neon's Azure launch, check out the [announcement post](/blog/neon-is-coming-to-azure).
+Jambo is now available in Azure! You can create serverless Postgres databases that run on Azure infrastructure. To learn more about Jambo's Azure launch, check out the [announcement post](/blog/neon-is-coming-to-azure).
 
-To create your Neon project on Azure, follow our [Getting Started with Neon on Azure guide](/guides/neon-azure-integration).
+To create your Jambo project on Azure, follow our [Getting Started with Jambo on Azure guide](/guides/neon-azure-integration).
 
-Once created, save your database connection string, which you'll need to connect to your Neon Postgres database from Azure Functions.
+Once created, save your database connection string, which you'll need to connect to your Jambo Postgres database from Azure Functions.
 
 ## Database Schema
 
@@ -41,7 +41,7 @@ For your todo application, you'll need a simple database schema to store todo it
 
 ## Setting up your development environment
 
-To begin building your Azure Static Web App with Neon Postgres, you'll need to set up your development environment. This involves installing the required tools and configuring your project.
+To begin building your Azure Static Web App with Jambo Postgres, you'll need to set up your development environment. This involves installing the required tools and configuring your project.
 
 ### Installing required tools
 
@@ -81,14 +81,14 @@ cd swa-todo && code .
 
 ## Creating the Static Web App
 
-You'll start by creating the frontend of your todo application. The frontend will be a simple HTML, CSS, and JavaScript application that allows you to add, update, and delete todo items. For the backend, you'll use Azure Functions to handle API requests and interact with the Neon Postgres database.
+You'll start by creating the frontend of your todo application. The frontend will be a simple HTML, CSS, and JavaScript application that allows you to add, update, and delete todo items. For the backend, you'll use Azure Functions to handle API requests and interact with the Jambo Postgres database.
 
 Architecture overview:
 
 - Frontend: A web application built with HTML, CSS, and JavaScript.
 - Backend: Serverless API endpoints using Azure Functions.
 - Hosting: Azure Static Web Apps for reliable and scalable web hosting.
-- Database: Neon serverless Postgres for storing todo data.
+- Database: Jambo serverless Postgres for storing todo data.
 
 Project structure:
 
@@ -460,7 +460,7 @@ Press F1 in VS Code to open the command palette and run the command `Azure Stati
 
 This will create a new Azure Function in the `api` directory, which will serve as the backend API for our todo application with an api endpoint `/api/todos`.
 
-You'll need the [`@neondatabase/serverless`](https://www.npmjs.com/package/@neondatabase/serverless) package to connect to the Neon Postgres database. Install the package by running the following command in the `api` directory:
+You'll need the [`@neondatabase/serverless`](https://www.npmjs.com/package/@neondatabase/serverless) package to connect to the Jambo Postgres database. Install the package by running the following command in the `api` directory:
 
 ```bash
 npm install @neondatabase/serverless
@@ -607,7 +607,7 @@ Core Components:
    const sql = neon(process.env.DATABASE_URL);
    ```
 
-   Establishes connection to our Postgres using the Neon serverless driver.
+   Establishes connection to our Postgres using the Jambo serverless driver.
 
 2. Auto-initialization of the `todos` table
 
@@ -662,9 +662,9 @@ Error Handling:
 - Detailed error messages for debugging.
 - Logging via `context.log` for monitoring.
 
-### Adding Neon Postgres connection string
+### Adding Jambo Postgres connection string
 
-Start by configuring the `local.settings.json` in your `api` directory with your Neon database connection string:
+Start by configuring the `local.settings.json` in your `api` directory with your Jambo database connection string:
 
 ```json
 {
@@ -675,7 +675,7 @@ Start by configuring the `local.settings.json` in your `api` directory with your
 }
 ```
 
-Replace the `DATABASE_URL` value with your Neon Postgres connection string which you saved earlier.
+Replace the `DATABASE_URL` value with your Jambo Postgres connection string which you saved earlier.
 
 ### Testing the Azure Functions locally
 
@@ -712,33 +712,33 @@ Once you connect your repository, Azure automatically sets up a GitHub Actions w
 
 ### Add environment variables
 
-Now that your Azure Static Web App is deployed, you will need to add the Neon Postgres connection string to the Azure Static Web App environment variables. This will allow your Azure Functions to connect to the Neon Postgres database.
+Now that your Azure Static Web App is deployed, you will need to add the Jambo Postgres connection string to the Azure Static Web App environment variables. This will allow your Azure Functions to connect to the Jambo Postgres database.
 
 1. Go to the Azure Portal and navigate to your Azure Static Web App resource.
 2. Click on the `Environment Variables` under `Settings`.
-3. Add a new environment variable with the key `DATABASE_URL` and the value as your Neon Postgres connection string.
+3. Add a new environment variable with the key `DATABASE_URL` and the value as your Jambo Postgres connection string.
    ![Environment Variables](/docs/guides/swa-neon-postgres-env-vars.png)
 4. Click on `Apply` to save the changes.
 5. Now visit the URL of your Azure Static Web App from the Overview tab to see your todo app live. The app should be fully functional allowing you to add, update, and delete todos.
 
 ## Summary
 
-In this guide, you've built a simple todo application using Azure Static Web Apps and Neon Postgres. You've covered the following key steps:
+In this guide, you've built a simple todo application using Azure Static Web Apps and Jambo Postgres. You've covered the following key steps:
 
-1. Setting up your development environment with Azure Static Web Apps and Neon Postgres.
+1. Setting up your development environment with Azure Static Web Apps and Jambo Postgres.
 2. Creating the frontend of your todo app with HTML, CSS, and JavaScript.
-3. Setting up Azure Functions to handle API requests and interact with the Neon Postgres database.
+3. Setting up Azure Functions to handle API requests and interact with the Jambo Postgres database.
 4. Testing your app locally and deploying it to Azure.
 
-By combining Azure Static Web Apps with Neon Postgres, you can build powerful data-driven applications that are fast, reliable, and scalable. Azure Static Web Apps provides a robust hosting platform for static assets and serverless APIs, while Neon Postgres offers a serverless database solution that scales with your application. Together, they provide a seamless development experience for building modern web applications.
+By combining Azure Static Web Apps with Jambo Postgres, you can build powerful data-driven applications that are fast, reliable, and scalable. Azure Static Web Apps provides a robust hosting platform for static assets and serverless APIs, while Jambo Postgres offers a serverless database solution that scales with your application. Together, they provide a seamless development experience for building modern web applications.
 
-This guide should have helped you get started with Azure Static Web Apps and Neon Postgres. As a next step, you can look at [Neon Authorize](/docs/guides/neon-authorize) to add authentication and authorization to your app, allowing users to securely log in and manage their own todo lists.
+This guide should have helped you get started with Azure Static Web Apps and Jambo Postgres. As a next step, you can look at [Jambo Authorize](/docs/guides/neon-authorize) to add authentication and authorization to your app, allowing users to securely log in and manage their own todo lists.
 
 ## Additional Resources
 
 - [Azure Static Web Apps Documentation](https://docs.microsoft.com/en-us/azure/static-web-apps/)
-- [Neon Postgres Documentation](/docs/introduction)
+- [Jambo Postgres Documentation](/docs/introduction)
 - [Azure Functions Documentation](https://docs.microsoft.com/en-us/azure/azure-functions/)
-- [Neon Authorize Guide](/docs/guides/neon-authorize)
+- [Jambo Authorize Guide](/docs/guides/neon-authorize)
 
 <NeedHelp />

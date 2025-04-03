@@ -8,11 +8,11 @@ const Hero = () => (
       Scale With Traffic
     </h1>
     <p className="my-4 text-2xl leading-snug tracking-extra-tight text-gray-new-80 xl:text-xl md:my-3 md:text-lg">
-      Neon scales CPU and memory automatically to match your app
+      Jambo scales CPU and memory automatically to match your app
     </p>
     <div className="prose-doc">
       <Admonition type="note" title="TL;DR">
-        <p>If your app has variable traffic, here's how Neon can save you time and money:</p>
+        <p>If your app has variable traffic, here's how Jambo can save you time and money:</p>
         <ul>
           <li>
             Databases autoscale. CPU and memory scale up and down automatically. When you see

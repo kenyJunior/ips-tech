@@ -10,7 +10,7 @@ import Link from 'components/shared/link';
 const statusData = {
   UP: {
     color: 'bg-green-45',
-    text: 'All systems operational',
+    text: 'Disponible pour tous vos projets',
   },
   HASISSUES: {
     color: 'bg-yellow-70',

@@ -417,7 +417,7 @@
     {
       "rows": "2",
       "feature": {
-        "title": "Neon RLS",
+        "title": "Jambo RLS",
         "subtitle": "Row-level security"
       },
       "free": true,
@@ -428,7 +428,7 @@
     {
       "rows": "2",
       "feature": {
-        "title": "Neon Auth"
+        "title": "Jambo Auth"
       },
       "free": true,
       "launch": true,
@@ -468,7 +468,7 @@
     {
       "rows": "1",
       "feature": {
-        "title": "Neon CLI"
+        "title": "Jambo CLI"
       },
       "free": true,
       "launch": true,

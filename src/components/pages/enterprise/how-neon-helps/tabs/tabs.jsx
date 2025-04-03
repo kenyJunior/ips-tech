@@ -87,9 +87,9 @@ const Tabs = ({ tabs }) => {
           aria-hidden
         />
         <div className="mt-6 flex items-center gap-x-2 lg:mt-5">
-          <Image className="shrink-0" src={lampIcon} width={22} height={22} alt="" />
+          <img className="shrink-0" src={lampIcon} width={22} height={22} alt="" />
           <h3 className="text-xl font-semibold leading-none tracking-tighter text-white lg:text-lg">
-            How Neon helps
+            How IPS Technologies helps
           </h3>
         </div>
         <LazyMotion features={domAnimation}>

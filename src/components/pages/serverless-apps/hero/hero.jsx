@@ -8,20 +8,24 @@ import LINKS from 'constants/links';
 import checkIcon from 'icons/serverless-apps/check.svg';
 
 const features = [
-  'CPU, memory, and storage scale automatically with your workload.',
-  'Usage-based pricing eliminates overprovisioning.',
-  'Supports up to 10,000 connections via its built-in connection pooler.',
-  'It’s 100% Postgres, without the server management.',
+  'Formation à la transformation digitale',
+  'Formation en intelligence artificielle et automatisation',
+  'Formation en ERP et gestion de projets',
+  'Formation pour les gouvernements et institutions publiques',
 ];
 
 const Hero = () => (
   <section className="hero safe-paddings pt-[90px] lg:pt-12 md:pt-9">
     <Container className="flex flex-col items-center" size="960">
       <h1 className="mx-auto text-center font-title text-[68px] font-medium leading-none tracking-extra-tight xl:text-[56px] xl:leading-[0.9] lg:text-5xl md:px-5 md:text-4xl">
-        Postgres for serverless apps
+        Formation entreprise – Transformez vos équipes avec des compétences numériques
       </h1>
       <p className="mt-4 text-center text-lg font-light leading-snug tracking-tighter text-gray-new-80 xl:font-normal xl:tracking-extra-tight lg:mt-[14px] lg:text-base md:mt-3">
-        With thousands of connections, real-time autoscaling, and usage-based pricing
+        Dans un monde en constante évolution technologique, la montée en compétences des employés
+        est cruciale pour garantir la compétitivité et l’efficacité des organisations, qu’il
+        s’agisse d’entreprises privées, de gouvernements, ou d’ONG. Nous proposons des programmes de
+        formation de pointe destinés à accompagner les entreprises et les organisations dans la
+        transformation numérique, la cybersécurité, la gestion des données, et bien plus encore.
       </p>
       <div
         className={clsx(
@@ -32,7 +36,7 @@ const Hero = () => (
         <div className="relative z-10 flex w-full gap-5 lg:gap-0 md:flex-col md:gap-8">
           <div className="flex-1">
             <h2 className="text-balance text-2xl font-medium leading-snug tracking-tighter">
-              Why use Neon for serverless architectures:
+              La formation entreprise destinée aux professionnels
             </h2>
             <ul className="lg:gap-x-4s mt-[18px] grid grid-cols-2 gap-x-10 gap-y-[18px] lg:gap-x-4 sm:grid-cols-1">
               {features.map((feature, index) => (
@@ -54,7 +58,7 @@ const Hero = () => (
           </div>
           <div className="relative w-[270px] pl-11 lg:w-[254px] lg:pl-7 md:w-full md:border-t md:border-dashed md:border-white/10 md:pl-0 md:pt-8">
             <h3 className="text-balance text-xl font-medium leading-snug tracking-tighter md:text-2xl">
-              Sign up to get the Free Plan, plus $100 in credits
+              Vous souhaitez renforcer vos compétences en technologie ?
             </h3>
             <p
               className={clsx(
@@ -62,14 +66,15 @@ const Hero = () => (
                 '[&_a:hover]:border-gray-new-70 [&_a]:border-b [&_a]:border-gray-new-70/40 [&_a]:font-normal [&_a]:transition-colors [&_a]:duration-300'
               )}
             >
-              ...or <a href={LINKS.contactSales}>talk to our team</a> if you have any questions.
+              ...Contactez-nous dès aujourd’hui pour découvrir nos formations adaptées à vos besoins
+              et faire évoluer votre expertise !
             </p>
             <Button
               className="mt-5 h-11 w-full font-semibold tracking-tighter"
               theme="primary"
-              to={LINKS.signupCredits}
+              to={LINKS.contactSales}
             >
-              Sign up
+              Contactez-Nous
             </Button>
           </div>
         </div>

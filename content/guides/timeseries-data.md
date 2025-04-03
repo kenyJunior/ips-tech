@@ -23,7 +23,7 @@ With the [TimescaleDB extension](https://www.timescale.com/), you can you can ef
 
 Before using timeseries queries, you need to install the TimescaleDB extension.
 TimescaleDB extends PostgreSQL with hypertables, which optimize storage and queries for timeseries data.
-In Neon, TimescaleDB is already installed, you just need to enable it using the following command.
+In Jambo, TimescaleDB is already installed, you just need to enable it using the following command.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS timescaledb;

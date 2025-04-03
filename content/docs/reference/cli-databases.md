@@ -1,22 +1,22 @@
 ---
-title: Neon CLI commands — databases
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — databases
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-06-30T14:35:12.894Z'
 ---
 
 ## Before you begin
 
-- Before running the `databases` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `databases` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
-For information about databases in Neon, see [Manage databases](/docs/manage/databases).
+For information about databases in Jambo, see [Manage databases](/docs/manage/databases).
 
 ## The `databases` command
 
 ### Usage
 
-The `databases` command allows you to list, create, and delete databases in a Neon project.
+The `databases` command allows you to list, create, and delete databases in a Jambo project.
 
 | Subcommand        | Description       |
 | ----------------- | ----------------- |
@@ -36,12 +36,12 @@ neon databases list [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string |                                                     |
 
 If a branch ID or name is not provided, the command lists databases for the default branch of the project.
@@ -69,12 +69,12 @@ neon databases create [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string |                                                     |
 | `--name`         | The name of the database                                                                      | string |                       &check;                       |
 | `--owner-name`   | The name of the role that owns the database                                                   | string |                                                     |
@@ -107,12 +107,12 @@ neon databases delete <database> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 | `--branch`       | Branch ID or name                                                                             | string |                                                     |
 
 If a branch ID or name is not provided, it is assumed the database resides in the default branch of the project.

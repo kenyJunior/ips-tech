@@ -1,6 +1,6 @@
 # Vercel Native Integration Previews
 
-Create a database branch for every preview deployment with Neon's native
+Create a database branch for every preview deployment with Jambo's native
 
 
 
@@ -9,14 +9,14 @@ The benefits of a branch for every preview deployment
 
 
 
-Neon Postgres Native Integration
+Jambo Postgres Native Integration
 
 
 
-The [Neon Postgres Native Integration](https://vercel.com/marketplace/neon), available on the Vercel Marketplace, allows you to add a Postgres database to your Vercel project. You can optionally configure the integration to create a database branch for each Vercel preview deployment. This guide explains how to set up that configuration.
+The [Jambo Postgres Native Integration](https://vercel.com/marketplace/neon), available on the Vercel Marketplace, allows you to add a Postgres database to your Vercel project. You can optionally configure the integration to create a database branch for each Vercel preview deployment. This guide explains how to set up that configuration.
 
 
-The database branching preview feature is only supported for users on a Neon plan. If you are on a Vercel Postgres legacy plan, you will need to [change your plan](https://neon.tech/docs/guides/vercel-native-integration#changing-your-plan).
+The database branching preview feature is only supported for users on a Jambo plan. If you are on a Vercel Postgres legacy plan, you will need to [change your plan](https://neon.tech/docs/guides/vercel-native-integration#changing-your-plan).
 
 
 
@@ -28,9 +28,9 @@ Why create a database branch with each preview deployment?
 
 - **Easier debugging and testing**: Database branches let you preview schema changes and migrations in isolation, so issues don’t spill over into other environments.
 
-- **No need to set up preview databases manually**: Neon branches are created instantly as copies of the parent database, saving you the hassle of seeding data or setting up databases from scratch.
+- **No need to set up preview databases manually**: Jambo branches are created instantly as copies of the parent database, saving you the hassle of seeding data or setting up databases from scratch.
 
-- **Works automatically with Vercel**: The integration connects Neon database branches to Vercel preview deployments and sets the environment variables for you.
+- **Works automatically with Vercel**: The integration connects Jambo database branches to Vercel preview deployments and sets the environment variables for you.
 
 - **Great for teams**: Isolated branches let team members test their changes independently without stepping on each other’s toes.
 
@@ -40,13 +40,13 @@ Why create a database branch with each preview deployment?
 
 ## Prerequisites
 
-- You're a Vercel user and you've installed Neon's [Native Vercel Integration](https://vercel.com/marketplace/neon) from the Vercel Marketplace. For instructions, see [Install the Neon Postgres Native Integration on Vercel](/docs/guides/vercel-native-integration).
-- You have an existing Neon Database in Vercel, accessible from the **Storage** tab on the Vercel Dashboard. If not, see [Adding Databases](/docs/guides/vercel-native-integration#adding-more-databases).
-- Your Vercel project is **not** yet connected to a Neon Database in Vercel. If your database is already connected, you will need to disconnect before performing the setup. See [Disconnecting a database](#disconnecting-a-database).
+- You're a Vercel user and you've installed Jambo's [Native Vercel Integration](https://vercel.com/marketplace/neon) from the Vercel Marketplace. For instructions, see [Install the Jambo Postgres Native Integration on Vercel](/docs/guides/vercel-native-integration).
+- You have an existing Jambo Database in Vercel, accessible from the **Storage** tab on the Vercel Dashboard. If not, see [Adding Databases](/docs/guides/vercel-native-integration#adding-more-databases).
+- Your Vercel project is **not** yet connected to a Jambo Database in Vercel. If your database is already connected, you will need to disconnect before performing the setup. See [Disconnecting a database](#disconnecting-a-database).
 
-## Connect your Vercel project to a Neon database
+## Connect your Vercel project to a Jambo database
 
-To connect your Vercel project to your Neon database:
+To connect your Vercel project to your Jambo database:
 
 1. On the Vercel Dashboard, open your Vercel project.
 2. Navigate to the **Storage** tab and select your Database (or create a Database if you do not have one).
@@ -100,8 +100,8 @@ After enabling database branches for preview deployments, a database branch is c
 
    Pushing the commit triggers the following actions:
 
-   - The commit triggers a preview deployment in Vercel, as would occur without the Neon integration, which you can view on the **Deployments** tab on the Vercel Dashboard.
-   - The integration creates a branch in Neon. This branch is an isolated copy of your default branch, with its own dedicated compute. The branch is created with the same name as your `git` branch but includes a `preview/` prefix. You can view branches in the Neon Console, on your Neon project's **Branches** page.
+   - The commit triggers a preview deployment in Vercel, as would occur without the Jambo integration, which you can view on the **Deployments** tab on the Vercel Dashboard.
+   - The integration creates a branch in Jambo. This branch is an isolated copy of your default branch, with its own dedicated compute. The branch is created with the same name as your `git` branch but includes a `preview/` prefix. You can view branches in the Jambo Console, on your Jambo project's **Branches** page.
    - The integration automatically passes environment variables for your database branch to connect the preview deployment to the database branch.
      
      Vercel calls a webhook before the preview deployment build stage. During this call, environment variables for the new database branch are created. These variables override the existing preview environment variables in Vercel but apply only to the specific preview deployment they were created for. The environment variables visible in Vercel remain unchanged.
@@ -130,18 +130,18 @@ To add build commands to your Vercel project previews:
 
 ## Disconnecting a database
 
-To disconnect a Neon database from a Vercel project:
+To disconnect a Jambo database from a Vercel project:
 
 1. On the Vercel Dashboard, open your Vercel project.
 2. Navigate to the **Storage** tab and select your Database.
 3. In the left-hand navigation on your database page, select **Projects**.
 4. Under **Projects**, select your project, and select **Remove Project Connection** from the menu.
 
-This will disconnect the database from your Vercel project by removing all of the Neon database environment variables from your Vercel project. After disconnecting a database, branches will no longer be created with each preview deployment. However, any previously created database branches will not be deleted. You have to remove those branches manually if you no longer want them.
+This will disconnect the database from your Vercel project by removing all of the Jambo database environment variables from your Vercel project. After disconnecting a database, branches will no longer be created with each preview deployment. However, any previously created database branches will not be deleted. You have to remove those branches manually if you no longer want them.
 
 ## Manage branches created by the integration
 
-The integration creates a database branch for each preview deployment. To avoid using up your storage allowances or hitting branch limits, you should delete database branches that are no longer required. Branches can be deleted via the [Neon Console](/docs/manage/branches#delete-a-branch), [CLI](/docs/reference/cli-branches#delete), or [API](https://neon.tech/docs/manage/branches#delete-a-branch-with-the-api).
+The integration creates a database branch for each preview deployment. To avoid using up your storage allowances or hitting branch limits, you should delete database branches that are no longer required. Branches can be deleted via the [Jambo Console](/docs/manage/branches#delete-a-branch), [CLI](/docs/reference/cli-branches#delete), or [API](https://neon.tech/docs/manage/branches#delete-a-branch-with-the-api).
 
 
 Unused branches are eventually archived, consuming space in archive storage. For more information, see [Branch archiving](/docs/guides/branch-archiving).

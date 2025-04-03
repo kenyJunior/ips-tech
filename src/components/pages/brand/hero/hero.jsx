@@ -7,7 +7,7 @@ const Hero = () => (
         Brand Guidelines
       </h1>
       <p className="mt-3 max-w-[512px] font-light leading-snug tracking-extra-tight text-gray-new-80 lg:mt-2.5 md:mt-2">
-        Official assets and guidelines to help you reference the Neon brand, including our logo,
+        Official assets and guidelines to help you reference the Jambo brand, including our logo,
         content and trademarks.
       </p>
       <a

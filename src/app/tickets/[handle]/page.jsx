@@ -30,14 +30,14 @@ const TicketPage = async ({ params }) => {
         >
           <div className="pointer-events-none relative z-10 col-span-4 col-start-1 self-center 2xl:col-start-1 xl:col-span-full xl:self-end xl:text-center">
             <Link to={LINKS.deploy} theme="green" size="sm" className="mb-2 font-semibold">
-              Neon Deploy
+              Jambo Deploy
             </Link>
             <h1 className="relative z-50 font-title text-[62px] font-medium leading-none tracking-[-0.06em] text-white xl:mx-auto xl:max-w-[579px] md:max-w-[500px] md:text-[52px]">
               {userName}&apos;s <br className="hidden md:block" />
               Ticket
             </h1>
             <p className="relative z-50 mt-5 max-w-[363px] text-[1.15rem] font-light leading-tight tracking-tight text-gray-new-70 xl:mx-auto xl:max-w-[579px] xl:text-lg xl:leading-snug xl:tracking-tighter lg:mt-4 lg:max-w-[610px] lg:text-base">
-              Join {userName.split(' ')[0]} at Neon Deploy on{' '}
+              Join {userName.split(' ')[0]} at Jambo Deploy on{' '}
               <time dateTime="2024-10-30T17:00:00Z">October 30th, 10 a.m. PT</time>
             </p>
             <Link

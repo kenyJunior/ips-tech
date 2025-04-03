@@ -16,7 +16,7 @@ export async function GET() {
       AND is_deleted = false
     `;
 
-    // Delete projects from Neon API
+    // Delete projects from Jambo API
     await Promise.all(
       oldProjects.map((project) => neonApiClient.deleteProject(project.project_id))
     );

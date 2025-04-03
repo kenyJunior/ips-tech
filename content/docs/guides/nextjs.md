@@ -1,6 +1,6 @@
 ---
-title: Connect a Next.js application to Neon
-subtitle: Set up a Neon project in seconds and connect from a Next.js application
+title: Connect a Next.js application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from a Next.js application
 enableTableOfContents: true
 redirectFrom:
   - /docs/quickstart/vercel
@@ -8,20 +8,20 @@ redirectFrom:
 updatedOn: '2025-02-18T15:25:38.976Z'
 ---
 
-Next.js by Vercel is an open-source web development framework that enables React-based web applications. This topic describes how to create a Neon project and access it from a Next.js application.
+Next.js by Vercel is an open-source web development framework that enables React-based web applications. This topic describes how to create a Jambo project and access it from a Next.js application.
 
-To create a Neon project and access it from a Next.js application:
+To create a Jambo project and access it from a Next.js application:
 
-1. [Create a Neon project](#create-a-neon-project)
+1. [Create a Jambo project](#create-a-neon-project)
 2. [Create a Next.js project and add dependencies](#create-a-nextjs-project-and-add-dependencies)
 3. [Configure a Postgres client](#configure-the-postgres-client)
 4. [Run the app](#run-the-app)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -31,7 +31,7 @@ If you do not have one already, create a Neon project. Save your connection deta
 
 2. Add project dependencies using one of the following commands:
 
-   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
    ```shell
    npm install pg
@@ -47,9 +47,9 @@ If you do not have one already, create a Neon project. Save your connection deta
 
    </CodeTabs>
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find your Neon database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find your Jambo database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
@@ -68,9 +68,9 @@ There are two methods for fetching and mutating data using server-side requests 
 
 #### Server Components
 
-In your server components using the App Router, add the following code snippet to connect to your Neon database:
+In your server components using the App Router, add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```javascript
 import { Pool } from 'pg';
@@ -130,9 +130,9 @@ export default async function Page() {
 
 #### Server Actions
 
-In your server actions using the App Router, add the following code snippet to connect to your Neon database:
+In your server actions using the App Router, add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```javascript
 import { Pool } from 'pg';
@@ -210,9 +210,9 @@ There are two methods for fetching data using server-side requests in Next.js Pa
 
 #### getServerSideProps
 
-From `getServerSideProps` using the Pages Router, add the following code snippet to connect to your Neon database:
+From `getServerSideProps` using the Pages Router, add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```javascript
 import { Pool } from 'pg';
@@ -269,9 +269,9 @@ export default function Page({ data }) {
 
 #### getStaticProps
 
-From `getStaticProps` using the Pages Router, add the following code snippet to connect to your Neon database:
+From `getStaticProps` using the Pages Router, add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```javascript
 import { Pool } from 'pg';
@@ -328,9 +328,9 @@ export default function Page({ data }) {
 
 ### Serverless Functions
 
-From your Serverless Functions, add the following code snippet to connect to your Neon database:
+From your Serverless Functions, add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```javascript
 import { Pool } from 'pg';
@@ -380,7 +380,7 @@ export default async function handler(req, res) {
 
 ### Edge Functions
 
-From your Edge Functions, add the following code snippet and connect to your Neon database using the [Neon serverless driver](/docs/serverless/serverless-driver):
+From your Edge Functions, add the following code snippet and connect to your Jambo database using the [Jambo serverless driver](/docs/serverless/serverless-driver):
 
 ```javascript
 export const config = {
@@ -412,17 +412,17 @@ You can find the source code for the applications described in this guide on Git
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-edge-functions" description="Get started with Next.js Edge Functions and Neon" icon="github">Get started with Next.js Edge Functions and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-edge-functions" description="Get started with Next.js Edge Functions and Jambo" icon="github">Get started with Next.js Edge Functions and Jambo</a>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-serverless-functions" description="Get started with Next.js Serverless Functions and Neon" icon="github">Get started with Next.js Serverless Functions and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-serverless-functions" description="Get started with Next.js Serverless Functions and Jambo" icon="github">Get started with Next.js Serverless Functions and Jambo</a>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-get-server-side-props" description="Get started with Next.js getServerSideProps and Neon" icon="github">Get started with Next.js getServerSideProps and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-get-server-side-props" description="Get started with Next.js getServerSideProps and Jambo" icon="github">Get started with Next.js getServerSideProps and Jambo</a>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-get-static-props" description="Get started with Next.js getStaticProps and Neon" icon="github">Get started with Next.js getStaticProps and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-get-static-props" description="Get started with Next.js getStaticProps and Jambo" icon="github">Get started with Next.js getStaticProps and Jambo</a>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-server-actions" description="Get started with Next.js Server Actions and Neon" icon="github">Get started with Next.js Server Actions and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-server-actions" description="Get started with Next.js Server Actions and Jambo" icon="github">Get started with Next.js Server Actions and Jambo</a>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-server-components" description="Get started with Next.js Server Components and Neon" icon="github">Get started with Next.js Server Components and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-nextjs-server-components" description="Get started with Next.js Server Components and Jambo" icon="github">Get started with Next.js Server Components and Jambo</a>
 
 </DetailIconCards>
 

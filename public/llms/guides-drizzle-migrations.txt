@@ -1,26 +1,26 @@
-# Schema migration with Neon Postgres and Drizzle ORM
+# Schema migration with Jambo Postgres and Drizzle ORM
 
-Set up Neon Postgres and run migrations for your TypeScript project using
+Set up Jambo Postgres and run migrations for your TypeScript project using
 
 [Drizzle](https://orm.drizzle.team/) is a TypeScript-first ORM that connects to all major databases and works across most Javascript runtimes. It provides a simple way to define database schemas and queries in an SQL-like dialect and tools to generate and run migrations.
 
-This guide shows how to use `Drizzle` with the `Neon` Postgres database in a Typescript project. We'll create a simple Node.js application with `Hono.js` and demonstrate the full workflow of setting up and working with your database using `Drizzle`.
+This guide shows how to use `Drizzle` with the `Jambo` Postgres database in a Typescript project. We'll create a simple Node.js application with `Hono.js` and demonstrate the full workflow of setting up and working with your database using `Drizzle`.
 
 ## Prerequisites
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 2. Select a project or click the `New Project` button to create a new one.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 Find your database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. It should look similar to this:
 
@@ -31,7 +31,7 @@ postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbna
 Keep your connection string handy for later use.
 
 
-Neon supports both direct and pooled database connection strings, which you can find by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can lead to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
+Jambo supports both direct and pooled database connection strings, which you can find by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can lead to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
 
 
 ## Setting up the TypeScript application
@@ -59,7 +59,7 @@ cloned honojs/starter#main to ./repos/javascript/neon-drizzle-guide
 ✔ Which package manager do you want to use? › npm
 ```
 
-To use Drizzle and connect to the Neon database, we also add the `drizzle-orm` and `drizzle-kit` packages to our project, along with the `Neon serverless` driver library.
+To use Drizzle and connect to the Jambo database, we also add the `drizzle-orm` and `drizzle-kit` packages to our project, along with the `Jambo serverless` driver library.
 
 ```bash
 cd neon-drizzle-guide && touch .env
@@ -67,7 +67,7 @@ npm install drizzle-orm @neondatabase/serverless
 npm install -D drizzle-kit dotenv
 ```
 
-Add the `DATABASE_URL` environment variable to your `.env` file, which you'll use to connect to our Neon database. Use the connection string that you obtained from the Neon Console earlier:
+Add the `DATABASE_URL` environment variable to your `.env` file, which you'll use to connect to our Jambo database. Use the connection string that you obtained from the Jambo Console earlier:
 
 ```bash
 # .env
@@ -122,7 +122,7 @@ This command generates a new folder named `drizzle` containing the migration fil
 
 ### Run the migration
 
-The generated migration file is written in SQL and contains the necessary commands to create the tables in the database. To apply these migrations, we'll use the [Neon serverless driver](/docs/serverless/serverless-driver) and helper functions provided by the `drizzle-orm` library.
+The generated migration file is written in SQL and contains the necessary commands to create the tables in the database. To apply these migrations, we'll use the [Jambo serverless driver](/docs/serverless/serverless-driver) and helper functions provided by the `drizzle-orm` library.
 
 Create a new `migrate.ts` in your `src` directory and add the following code:
 
@@ -152,7 +152,7 @@ const main = async () => {
 main();
 ```
 
-The `drizzle-orm` package comes with an integration for `Neon`, which allows us to run the migrations using the `migrate` function. Add a new script to the `package.json` file that executes the migration.
+The `drizzle-orm` package comes with an integration for `Jambo`, which allows us to run the migrations using the `migrate` function. Add a new script to the `package.json` file that executes the migration.
 
 ```json
 {
@@ -393,14 +393,14 @@ You can navigate to `http://localhost:3000/authors` in your browser to check tha
 
 ## Conclusion
 
-In this guide, we set up a new TypeScript project using `Hono.js` and `Drizzle` ORM and connected it to a `Neon` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
+In this guide, we set up a new TypeScript project using `Hono.js` and `Drizzle` ORM and connected it to a `Jambo` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 
-Migrations with Neon and Drizzle
+Migrations with Jambo and Drizzle
 
 
 ## Resources

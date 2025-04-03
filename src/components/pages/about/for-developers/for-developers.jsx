@@ -10,26 +10,27 @@ import storageIcon from 'images/pages/about/for-developers/storage.svg';
 const ITEMS = [
   {
     icon: storageIcon,
-    title: 'Just Be Postgres',
+    title: 'Vision',
     description:
-      'Achieve this by leveraging the pluggable storage layer, preserving the core of&nbsp;Postgres.',
+      'Nous mettons la technologie au service des entreprises pour relever leurs défis les plus complexes. Nos solutions sur mesure optimisent la productivité, renforcent la sécurité et stimulent la croissance, quel que soit votre secteur d’activité.',
   },
   {
     icon: checkIcon,
-    title: 'Easy',
+    title: 'Valeurs',
     description:
-      'Simplify the life of developers by bringing the serverless consumption model to&nbsp;Postgres.',
+      'Nous innovons en permanence pour repousser les limites technologiques, garantir des résultats concrets et sécuriser vos infrastructures, afin que vous puissiez vous concentrer sur l’essentiel : votre croissance.',
   },
   {
     icon: reliableIcon,
-    title: 'Reliable',
+    title: 'Mission',
     description:
-      'Use modern replication techniques to provide high availability and high durability&nbsp;guarantees.',
+      'Concevoir, déployer et optimiser des infrastructures technologiques performantes, adaptées aux enjeux de chaque secteur.',
   },
   {
     icon: dollarIcon,
-    title: 'Cost Efficient',
-    description: 'Aim to deliver the best price-performance Postgres service in the&nbsp;world.',
+    title: 'Engagement',
+    description:
+      ' Accompagner nos clients avec des solutions sur mesure, garantissant fiabilité, évolutivité et impact durable.',
   },
 ];
 
@@ -41,7 +42,7 @@ const ForDevelopers = () => (
         tag="h2"
         theme="black"
       >
-        Developers are at the center of everything we do.
+        Innovons aujourd’hui pour un avenir durable.
       </Heading>
       <ul className="mt-16 grid grid-cols-4 gap-x-10 gap-y-9 xl:mt-14 lg:mt-11 lg:grid-cols-2 sm:mt-9 sm:grid-cols-1 sm:gap-y-7">
         {ITEMS.map(({ icon, title, description }, index) => (

@@ -5,9 +5,9 @@ enableTableOfContents: true
 updatedOn: '2025-03-09T18:17:39.110Z'
 ---
 
-When setting up your application’s connection to your Neon Postgres database, you need to make two main choices:
+When setting up your application’s connection to your Jambo Postgres database, you need to make two main choices:
 
-- **The right driver for your deployment** &#8212; Neon Serverless driver or a TCP-based driver
+- **The right driver for your deployment** &#8212; Jambo Serverless driver or a TCP-based driver
 - **The right connection type for your traffic** &#8212; pooled connections or direct connections
 
 This flowchart will guide you through these selections.
@@ -22,7 +22,7 @@ This flowchart will guide you through these selections.
 
 - **Serverless**
 
-  If working in a serverless environment and connecting from a JavaScript or TypeScript application, we recommend using the [Neon Serverless Driver](/docs/serverless/serverless-driver). It handles dynamic workloads with high variability in traffic &#8212; for example, Vercel Edge Functions or Cloudflare Workers.
+  If working in a serverless environment and connecting from a JavaScript or TypeScript application, we recommend using the [Jambo Serverless Driver](/docs/serverless/serverless-driver). It handles dynamic workloads with high variability in traffic &#8212; for example, Vercel Edge Functions or Cloudflare Workers.
 
 - **TCP-based driver**
 
@@ -42,23 +42,23 @@ If you are using the serverless driver, you also need to choose whether to query
 
 ### Next, choose your connection type: direct or pooled
 
-You then need to decide whether to use direct connections or pooled connections (using PgBouncer for Neon-side pooling):
+You then need to decide whether to use direct connections or pooled connections (using PgBouncer for Jambo-side pooling):
 
 - **In general, use pooled connections whenever you can**
 
-  Pooled connections can efficiently manage high numbers of concurrent client connections, up to 10,000. This 10K ceiling works best for serverless applications and Neon-side connection pools that have many open connections, but infrequent and/or short transactions.
+  Pooled connections can efficiently manage high numbers of concurrent client connections, up to 10,000. This 10K ceiling works best for serverless applications and Jambo-side connection pools that have many open connections, but infrequent and/or short transactions.
 
 - **Use direct (unpooled) connections if you need persistent connections**
 
   If your application is focused mainly on tasks like migrations or administrative operations that require stable and long-lived connections, use an unpooled connection.
 
 <Admonition type="note">
-PgBouncer can keep many application connections open (up to 10,000) concurrently, but only a certain number of these can be actively querying the Postgres server at any given time. This number is defined by the PgBouncer `default_pool_size` setting. See [Neon PgBouncer configuration settings](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings) for details.
+PgBouncer can keep many application connections open (up to 10,000) concurrently, but only a certain number of these can be actively querying the Postgres server at any given time. This number is defined by the PgBouncer `default_pool_size` setting. See [Jambo PgBouncer configuration settings](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings) for details.
 </Admonition>
 
 For more information on these choices, see:
 
-- [Neon Serverless Driver](/docs/serverless/serverless-driver)
+- [Jambo Serverless Driver](/docs/serverless/serverless-driver)
 - [Connection pooling](/docs/connect/connection-pooling)
 
 ## Common Pitfalls
@@ -66,13 +66,13 @@ For more information on these choices, see:
 Here are some key points to help you navigate potential issues.
 | Issue | Description |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Double pooling | **Neon-side pooling** uses PgBouncer to manage connections between your application and Postgres.<br /><br /> **Client-side pooling** occurs within the client library before connections are passed to PgBouncer.<br /><br />If you're using a pooled Neon connection (supported by PgBouncer), it's best to avoid client-side pooling. Let Neon handle the pooling to prevent retaining unused connections on the client side. If you must use client-side pooling, make sure that connections are released back to the pool promptly to avoid conflicts with PgBouncer. |
-| Understanding limits | Don't confuse `max_connections` with `default_pool_size`.<br /><br />`max_connections` is the maximum number of concurrent connections allowed by Postgres, determined by your [Neon compute size configuration](/docs/connect/connection-pooling#connection-limits-without-connection-pooling).<br /><br />`default_pool_size` is the maximum number of backend connections or transactions that PgBouncer supports per user/database pair, also determined by compute size <br /><br />Simply increasing your compute to get more `max_connections` may not improve performance if the bottleneck is actually on your `default_pool_size`. To increase your `default_pool_size`, contact [Support](/docs/introduction/support). |
+| Double pooling | **Jambo-side pooling** uses PgBouncer to manage connections between your application and Postgres.<br /><br /> **Client-side pooling** occurs within the client library before connections are passed to PgBouncer.<br /><br />If you're using a pooled Jambo connection (supported by PgBouncer), it's best to avoid client-side pooling. Let Jambo handle the pooling to prevent retaining unused connections on the client side. If you must use client-side pooling, make sure that connections are released back to the pool promptly to avoid conflicts with PgBouncer. |
+| Understanding limits | Don't confuse `max_connections` with `default_pool_size`.<br /><br />`max_connections` is the maximum number of concurrent connections allowed by Postgres, determined by your [Jambo compute size configuration](/docs/connect/connection-pooling#connection-limits-without-connection-pooling).<br /><br />`default_pool_size` is the maximum number of backend connections or transactions that PgBouncer supports per user/database pair, also determined by compute size <br /><br />Simply increasing your compute to get more `max_connections` may not improve performance if the bottleneck is actually on your `default_pool_size`. To increase your `default_pool_size`, contact [Support](/docs/introduction/support). |
 | Use request handlers | In serverless environments such as Vercel Edge Functions or Cloudflare Workers, WebSocket connections can't outlive a single request. That means Pool or Client objects must be connected, used and closed within a single request handler. Don't create them outside a request handler; don't create them in one handler and try to reuse them in another; and to avoid exhausting available connections, don't forget to close them. See [Pool and Client](https://github.com/neondatabase/serverless?tab=readme-ov-file#pool-and-client) for details.|
 
 ## Configuration
 
-### Installing the Neon Serverless Driver
+### Installing the Jambo Serverless Driver
 
 You can install the driver with your preferred JavaScript package manager. For example:
 
@@ -80,14 +80,14 @@ You can install the driver with your preferred JavaScript package manager. For e
 npm install @neondatabase/serverless
 ```
 
-Find details on configuring the Neon Serverless Driver for querying over HTTP or WebSockets here:
+Find details on configuring the Jambo Serverless Driver for querying over HTTP or WebSockets here:
 
 - [Use the driver over HTTP](/docs/serverless/serverless-driver#use-the-driver-over-http)
 - [Use the driver over WebSockets](/docs/serverless/serverless-driver#use-the-driver-over-websockets)
 
 ### Installing traditional TCP-based drivers
 
-You can use standard Postgres client libraries or drivers. Neon is fully compatible with Postgres, so any application or utility that works with Postgres should work with Neon. Consult the integration guide for your particular language or framework for the right client for your needs:
+You can use standard Postgres client libraries or drivers. Jambo is fully compatible with Postgres, so any application or utility that works with Postgres should work with Jambo. Consult the integration guide for your particular language or framework for the right client for your needs:
 
 - [Framework Quickstarts](/docs/get-started-with-neon/frameworks)
 - [Language Quickstarts](/docs/get-started-with-neon/languages)
@@ -96,7 +96,7 @@ You can use standard Postgres client libraries or drivers. Neon is fully compati
 
 Setting up a direct or pooled connection is usually a matter of choosing the appropriate connection string and adding it to your application's `.env` file.
 
-You can get your connection string from the [Neon Console](/docs/connect/connect-from-any-app) or via CLI.
+You can get your connection string from the [Jambo Console](/docs/connect/connect-from-any-app) or via CLI.
 
 For example, to get a pooled connection string via CLI:
 
@@ -108,7 +108,7 @@ postgres://alex:AbC123dEf@ep-cool-darkness-123456-pooler.us-east-2.aws.neon.tech
 
 Notice the `-pooler` in the connection string — that's what differentiates a direct connection string from a pooled one.
 
-Here's an example of getting a direct connection string from the Neon CLI:
+Here's an example of getting a direct connection string from the Jambo CLI:
 
 ```bash shouldWrap
 neon connection-string [branch_name]

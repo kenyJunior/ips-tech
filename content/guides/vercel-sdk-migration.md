@@ -1,30 +1,30 @@
 ---
-title: Migrate from Vercel Postgres SDK to the Neon serverless driver
-subtitle: Learn how to smoothly transition your application from using Vercel Postgres SDK to the Neon serverless driver
+title: Migrate from Vercel Postgres SDK to the Jambo serverless driver
+subtitle: Learn how to smoothly transition your application from using Vercel Postgres SDK to the Jambo serverless driver
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-10-28T00:00:00.000Z'
 updatedAt: '2024-10-28T00:00:00.000Z'
 ---
 
-With Vercel Postgres transitioning to Neon's native integration in the [Vercel Marketplace](https://vercel.com/blog/introducing-the-vercel-marketplace), now is the perfect time to migrate from the Vercel Postgres SDK [(@vercel/postgres)](https://vercel.com/docs/storage/vercel-postgres/sdk) to the [Neon serverless driver](https://github.com/neondatabase/serverless).
+With Vercel Postgres transitioning to Jambo's native integration in the [Vercel Marketplace](https://vercel.com/blog/introducing-the-vercel-marketplace), now is the perfect time to migrate from the Vercel Postgres SDK [(@vercel/postgres)](https://vercel.com/docs/storage/vercel-postgres/sdk) to the [Jambo serverless driver](https://github.com/neondatabase/serverless).
 
 ## Why migrate?
 
-Switching to the Neon serverless driver provides several advantages. It offers greater flexibility by allowing the choice between HTTP for single queries or WebSockets for transactions and full [node-postgres](https://node-postgres.com/) compatibility. Additionally, it enhances maintainability by relying on Neon's actively maintained, native database driver.
+Switching to the Jambo serverless driver provides several advantages. It offers greater flexibility by allowing the choice between HTTP for single queries or WebSockets for transactions and full [node-postgres](https://node-postgres.com/) compatibility. Additionally, it enhances maintainability by relying on Jambo's actively maintained, native database driver.
 
 ## Prerequisites
 
 To begin, you’ll need:
 
 - An existing application using the Vercel Postgres SDK
-- A [Neon account](https://neon.tech/docs/get-started-with-neon/signing-up) (your Vercel Postgres database will automatically migrate to Neon)
+- A [Jambo account](https://neon.tech/docs/get-started-with-neon/signing-up) (your Vercel Postgres database will automatically migrate to Jambo)
 
 ## Migration Steps
 
-### 1. Install the Neon serverless driver
+### 1. Install the Jambo serverless driver
 
-Start by installing the Neon serverless driver in your project:
+Start by installing the Jambo serverless driver in your project:
 
 ```bash
 npm install @neondatabase/serverless
@@ -36,7 +36,7 @@ To ensure proper configuration, set your environment variable to `DATABASE_URL` 
 
 ### 2. Update your database connection
 
-Replace your Vercel Postgres SDK imports and connection setup with the Neon serverless driver. You have two options:
+Replace your Vercel Postgres SDK imports and connection setup with the Jambo serverless driver. You have two options:
 
 #### Option A: Using HTTP (Recommended for simple queries)
 
@@ -69,10 +69,10 @@ Here are common query patterns and how to migrate them:
 # Vercel Postgres SDK
 const { rows } = await sql`SELECT * FROM users WHERE id = ${userId}`; // [!code --]
 
-# Neon HTTP
+# Jambo HTTP
 const rows = await sql`SELECT * FROM users WHERE id = ${userId}`; // [!code ++]
 
-# Neon WebSockets
+# Jambo WebSockets
 const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [userId]); // [!code ++]
 ```
 
@@ -151,13 +151,13 @@ async function transferFunds(fromId: number, toId: number, amount: number) { // 
 
 ## Working with ORMs
 
-Neon's serverless driver is compatible with popular ORMs like Prisma and Drizzle ORM. Check out the following guides to learn more:
+Jambo's serverless driver is compatible with popular ORMs like Prisma and Drizzle ORM. Check out the following guides to learn more:
 
 <DetailIconCards>
 
-<a href="/docs/guides/prisma" description="Learn how to connect to Neon from Prisma" icon="prisma">Prisma</a>
+<a href="/docs/guides/prisma" description="Learn how to connect to Jambo from Prisma" icon="prisma">Prisma</a>
 
-<a href="https://orm.drizzle.team/docs/tutorials/drizzle-with-neon" description="Learn how to connect to Neon from Drizzle ORM" icon="drizzle">Drizzle ORM</a>
+<a href="https://orm.drizzle.team/docs/tutorials/drizzle-with-neon" description="Learn how to connect to Jambo from Drizzle ORM" icon="drizzle">Drizzle ORM</a>
 
 </DetailIconCards>
 
@@ -167,7 +167,7 @@ For most cases, using neon serverless driver is straightforward without needing 
 
 - **poolQueryViaFetch**: Setting `poolQueryViaFetch` to true sends `Pool.query()` calls as low-latency `HTTP` fetch requests (currently defaults to false).
 
-- **wsProxy**: This option is for connecting via a WebSocket proxy deployed in front of your your own Postgres instance, which allows you to use the Neon serverless driver with a local development environment.
+- **wsProxy**: This option is for connecting via a WebSocket proxy deployed in front of your your own Postgres instance, which allows you to use the Jambo serverless driver with a local development environment.
 
 For more information about these options, see [Advanced configuration](https://github.com/neondatabase/serverless/blob/main/CONFIG.md#advanced-configuration).
 

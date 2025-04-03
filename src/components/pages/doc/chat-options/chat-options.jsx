@@ -5,13 +5,13 @@ import Link from 'components/shared/link';
 import LINKS from 'constants/links';
 import DiscordIcon from 'icons/chat-options/discord.inline.svg';
 import GithubIcon from 'icons/chat-options/github.inline.svg';
-import NeonIcon from 'icons/chat-options/neon.inline.svg';
+import JamboIcon from 'icons/chat-options/neon.inline.svg';
 import VSCodeIcon from 'icons/chat-options/vscode.inline.svg';
 
 const ITEMS = [
   {
     title: 'Docs',
-    icon: NeonIcon,
+    icon: JamboIcon,
     link: LINKS.aiChat,
   },
   {
@@ -57,7 +57,7 @@ const ChatOptions = ({ isSidebar = false }) => {
 
   return (
     <div className={classNames.block}>
-      <TitleTag className={classNames.title}>Neon AI chat assistants</TitleTag>
+      <TitleTag className={classNames.title}>Jambo AI chat assistants</TitleTag>
       <ul className={classNames.list}>
         {ITEMS.map(({ title, icon, link, isExternal, className }) => {
           const Icon = icon;

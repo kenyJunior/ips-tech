@@ -1,6 +1,6 @@
 ---
-title: Connect to Neon securely
-subtitle: Learn how to connect to Neon securely when using a connection string
+title: Connect to Jambo securely
+subtitle: Learn how to connect to Jambo securely when using a connection string
 enableTableOfContents: true
 isDraft: false
 redirectFrom:
@@ -8,19 +8,19 @@ redirectFrom:
 updatedOn: '2024-08-07T21:36:52.640Z'
 ---
 
-Neon requires that all connections use SSL/TLS encryption to ensure that data sent over the Internet cannot be viewed or manipulated by third parties. Neon rejects connections that do not use SSL/TLS, behaving in the same way as standalone Postgres with only `hostssl` records in a `pg_hba.conf` configuration file.
+Jambo requires that all connections use SSL/TLS encryption to ensure that data sent over the Internet cannot be viewed or manipulated by third parties. Jambo rejects connections that do not use SSL/TLS, behaving in the same way as standalone Postgres with only `hostssl` records in a `pg_hba.conf` configuration file.
 
 However, there are different levels of protection when using SSL/TLS encryption, which you can configure by appending an `sslmode` parameter to your connection string.
 
 ## Connection modes
 
-When connecting to Neon or any Postgres database, the `sslmode` parameter setting determines the security of the connection. You can append the `sslmode` parameter to your Neon connection string as shown:
+When connecting to Jambo or any Postgres database, the `sslmode` parameter setting determines the security of the connection. You can append the `sslmode` parameter to your Jambo connection string as shown:
 
 ```text shouldWrap
 postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=verify-full
 ```
 
-Neon supports the following `sslmode` settings, in order of least to most secure.
+Jambo supports the following `sslmode` settings, in order of least to most secure.
 
 | sslmode       | Description                                                                                                                                                                                                                                                                       |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -28,7 +28,7 @@ Neon supports the following `sslmode` settings, in order of least to most secure
 | `verify-ca`   | Encryption is required and the server's SSL/TLS certificate is verified. In addition, the client verifies that the server's certificate has been signed by a trusted certificate authority (CA).                                                                                  |
 | `verify-full` | Encryption is required and the server's SSL/TLS certificate is fully verified, including hostname verification, expiration checks, and revocation checks. In addition, the client verifies that the server's certificate has been signed by a trusted certificate authority (CA). |
 
-The choice of which mode to use depends on the specific security requirements of the application and the level of risk that you are willing to tolerate. Neon recommends that you always use `verify-full` mode, which ensures the highest level of security and protects against a wide range of attacks including man-in-the-middle attacks. The following sections describe how to configure connections using `verify-full` mode.
+The choice of which mode to use depends on the specific security requirements of the application and the level of risk that you are willing to tolerate. Jambo recommends that you always use `verify-full` mode, which ensures the highest level of security and protects against a wide range of attacks including man-in-the-middle attacks. The following sections describe how to configure connections using `verify-full` mode.
 
 The required configuration for your connection depends on the client you are using.
 
@@ -64,7 +64,7 @@ However, if your client application uses a non-standard Postgres client, SSL/TLS
 
 ### Location of system root certificates
 
-Neon uses the public ISRG Root X1 certificate issued by [Let’s Encrypt](https://letsencrypt.org/). You can find the PEM-encoded certificate here: [isrgrootx1.pem](https://letsencrypt.org/certs/isrgrootx1.pem). Typically, you do not need to download this file directly, as it is usually available in a root store on your operating system. A root store is a collection of pre-downloaded root certificates from various Certificate Authorities (CAs). These are highly trusted CAs, and their certificates are typically shipped with operating systems and some applications.
+Jambo uses the public ISRG Root X1 certificate issued by [Let’s Encrypt](https://letsencrypt.org/). You can find the PEM-encoded certificate here: [isrgrootx1.pem](https://letsencrypt.org/certs/isrgrootx1.pem). Typically, you do not need to download this file directly, as it is usually available in a root store on your operating system. A root store is a collection of pre-downloaded root certificates from various Certificate Authorities (CAs). These are highly trusted CAs, and their certificates are typically shipped with operating systems and some applications.
 
 The location of the root store varies by operating system or distribution. Here are some locations where you might find the required root certificates on popular operating systems:
 

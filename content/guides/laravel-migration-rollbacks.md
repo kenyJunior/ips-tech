@@ -1,6 +1,6 @@
 ---
 title: Reverting a failed deployment and schema migration in Laravel
-subtitle: Learn how to revert a failed deployment and schema migration in Laravel using built-in tools like `migrate:rollback` and Neon's backup and restore capabilities.
+subtitle: Learn how to revert a failed deployment and schema migration in Laravel using built-in tools like `migrate:rollback` and Jambo's backup and restore capabilities.
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-05-26T00:00:00.000Z'
@@ -11,7 +11,7 @@ Deploying new features and updates is an essential part of maintaining a modern 
 
 When something goes wrong, especially with schema migrations, the consequences can range from data inconsistencies to extended application downtime.
 
-In this guide, you'll learn how to revert a failed deployment and schema migration in Laravel using built-in tools like `migrate:rollback` and the backup and restore capabilities of Neon. We'll cover practical steps and best practices for deployment and recovery, helping you prevent future deployment issues.
+In this guide, you'll learn how to revert a failed deployment and schema migration in Laravel using built-in tools like `migrate:rollback` and the backup and restore capabilities of Jambo. We'll cover practical steps and best practices for deployment and recovery, helping you prevent future deployment issues.
 
 ## Rolling back migrations in Laravel
 
@@ -102,22 +102,22 @@ After rolling back migrations, verify the database schema and data to ensure the
 
 > **Note:** `migrate:rollback` can lead to data loss if not used carefully. Ensure you have a backup strategy in place.
 
-## Restoring your data using Neon
+## Restoring your data using Jambo
 
-If rolling back migrations doesn't solve the issue, [Neon's backup and restore](/docs/manage/backups) capabilities can quickly restore your database to a previous state.
+If rolling back migrations doesn't solve the issue, [Jambo's backup and restore](/docs/manage/backups) capabilities can quickly restore your database to a previous state.
 
-### Key benefits of using Neon for restoration
+### Key benefits of using Jambo for restoration
 
 1. **Point-in-Time Restoration:** Restore to a specific moment before the failed deployment.
-2. **Restore from another Branch:** Use Neon's branching feature to restore from a stable branch.
+2. **Restore from another Branch:** Use Jambo's branching feature to restore from a stable branch.
 
 ### Restoration steps
 
-To restore your database using Neon, you can either use the Neon dashboard or the Neon CLI or API. Follow the steps outlined in [Neon's Branch Restore Guide](/docs/guides/branch-restore#how-to-use-branch-restore):
+To restore your database using Jambo, you can either use the Jambo dashboard or the Jambo CLI or API. Follow the steps outlined in [Jambo's Branch Restore Guide](/docs/guides/branch-restore#how-to-use-branch-restore):
 
 After restoring the database, align your codebase with the restored data to ensure consistency.
 
-For detailed steps, refer to the [Neon Branch Restore Guide](/docs/guides/branch-restore#how-to-use-branch-restore).
+For detailed steps, refer to the [Jambo Branch Restore Guide](/docs/guides/branch-restore#how-to-use-branch-restore).
 
 ## Best practices for deployment and recovery
 
@@ -199,12 +199,12 @@ Implement a CI/CD pipeline to streamline the deployment process and add safeguar
 
 3. **Deployment Stage:** Deploy to staging, run health checks, and promote to production if all tests pass.
 
-### Use Neon's branching feature
+### Use Jambo's branching feature
 
-Create isolated environments for testing and staging using [Neon's branching feature](/docs/introduction/branching).
+Create isolated environments for testing and staging using [Jambo's branching feature](/docs/introduction/branching).
 
 1. **Create a branch:**
-   Create a branch from your production database in the Neon dashboard.
+   Create a branch from your production database in the Jambo dashboard.
 
 2. **Deploy code to staging:**
    Point your staging environment to the new branch.
@@ -215,7 +215,7 @@ Create isolated environments for testing and staging using [Neon's branching fea
 4. **Merge to production:**
    Deploy your changes to production after successful testing.
 
-For a detailed guide on using Neon's branching feature with Laravel for testing and staging, refer to the [Testing Laravel Applications with Neon's Database Branching](/guides/laravel-test-on-branch).
+For a detailed guide on using Jambo's branching feature with Laravel for testing and staging, refer to the [Testing Laravel Applications with Jambo's Database Branching](/guides/laravel-test-on-branch).
 
 ### Set up monitoring and alerts
 
@@ -223,11 +223,11 @@ Proactively monitor your application and database. That way, you can catch issue
 
 Some monitoring tools to consider can include tools like New Relic, Sentry, or Datadog.
 
-On the database monitoring side, you can use [Neon's built-in monitoring capabilities](/docs/introduction/monitoring-page) to track performance metrics and receive alerts for potential issues.
+On the database monitoring side, you can use [Jambo's built-in monitoring capabilities](/docs/introduction/monitoring-page) to track performance metrics and receive alerts for potential issues.
 
 ## Conclusion
 
-By using Laravel's built-in `migrate:rollback` command and Neon's backup and restore capabilities, you can revert a failed deployment quickly and safely. Follow best practices like testing in staging environments, breaking down database changes, and automating deployments to minimize future issues and maintain a smooth deployment process.
+By using Laravel's built-in `migrate:rollback` command and Jambo's backup and restore capabilities, you can revert a failed deployment quickly and safely. Follow best practices like testing in staging environments, breaking down database changes, and automating deployments to minimize future issues and maintain a smooth deployment process.
 
 - [Laravel Migrations Documentation](https://laravel.com/docs/11.x/migrations)
-- [Neon documentation](/docs)
+- [Jambo documentation](/docs)

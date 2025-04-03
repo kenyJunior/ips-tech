@@ -1,14 +1,14 @@
 ---
-title: Manage Organizations using the Neon CLI
+title: Manage Organizations using the Jambo CLI
 enableTableOfContents: true
 updatedOn: '2025-01-29T23:50:53.962Z'
 ---
 
-Neon's CLI provides an expanding set of commands to manage your organizations.
+Jambo's CLI provides an expanding set of commands to manage your organizations.
 
 ## Authorization
 
-Use the `auth` command to authenticate your Neon account from the CLI. This command opens a browser where you will be asked to grant the necessary permissions to managae both your personal and organization resources.
+Use the `auth` command to authenticate your Jambo account from the CLI. This command opens a browser where you will be asked to grant the necessary permissions to managae both your personal and organization resources.
 
 Note that authentication is tied to your personal account. Once authenticated, you can access and manage any Organizations that you belong to.
 
@@ -34,7 +34,7 @@ See [Orgs - CLI](/docs/reference/cli-orgs) to learn more.
 
 ## Manage projects within an Organization
 
-The Neon CLI `projects` command supports an `--org-id` option. This allows you to list or create projects within a specified organization.
+The Jambo CLI `projects` command supports an `--org-id` option. This allows you to list or create projects within a specified organization.
 
 Example: Listing all projects in an organization:
 
@@ -61,6 +61,6 @@ See [Projects - CLI](/docs/reference/cli-projects) to learn more.
 
 ## Setting Organization Context
 
-To simplify your workflow, the Neon CLI `set-context` command supports setting an organization context. This means you don't have to specify an organization ID every time you run a CLI command.
+To simplify your workflow, the Jambo CLI `set-context` command supports setting an organization context. This means you don't have to specify an organization ID every time you run a CLI command.
 
 Sees [set-context - CLI](/docs/reference/cli-set-context) to learn more.

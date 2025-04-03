@@ -1,20 +1,20 @@
 ---
-title: Neon CLI commands — connection-string
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — connection-string
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-08-07T21:36:52.675Z'
 ---
 
 ## Before you begin
 
-- Before running the `connection-string` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `connection-string` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
-For information about connecting to Neon, see [Connect from any application](/docs/connect/connect-from-any-app).
+For information about connecting to Jambo, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ## The `connection-string` command
 
-This command gets a Postgres connection string for connecting to a database in your Neon project. You can construct a connection string for any database in any branch. The connection string includes the password for the specified role.
+This command gets a Postgres connection string for connecting to a database in your Jambo project. You can construct a connection string for any database in any branch. The connection string includes the password for the specified role.
 
 ### Usage
 
@@ -26,12 +26,12 @@ neon connection-string [branch[@timestamp|@LSN]] [options]
 
 ### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `connection-string` command supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `connection-string` command supports these options:
 
 | Option            | Description                                                                                          | Type    |                      Required                       |
 | ----------------- | ---------------------------------------------------------------------------------------------------- | ------- | :-------------------------------------------------: |
 | `--context-file`  | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name        | string  |                                                     |
-| `--project-id`    | Project ID                                                                                           | string  | Only if your Neon account has more than one project |
+| `--project-id`    | Project ID                                                                                           | string  | Only if your Jambo account has more than one project |
 | `--role-name`     | Role name                                                                                            | string  |     Only if your branch has more than one role      |
 | `--database-name` | Database name                                                                                        | string  |   Only if your branch has more than one database    |
 | `--pooled`        | Construct a pooled connection. The default is `false`.                                               | boolean |                                                     |

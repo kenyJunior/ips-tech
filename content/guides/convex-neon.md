@@ -1,20 +1,20 @@
 ---
-title: Getting started with Convex and Neon
-subtitle: A step-by-step guide to integrating Convex with Neon Postgres
+title: Getting started with Convex and Jambo
+subtitle: A step-by-step guide to integrating Convex with Jambo Postgres
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2025-02-14T00:00:00.000Z'
 updatedOn: '2025-02-14T00:00:00.000Z'
 ---
 
-This guide explores Convex's self-hosting capability and demonstrates how to use it with Neon Postgres. [Convex](https://www.convex.dev) is a reactive backend platform ideal for building real-time applications. A [recent release](https://news.convex.dev/self-hosting) significantly enhances the self-hosted experience, overcoming limitations of the initial open-source version which lacked a dashboard and relied solely on SQLite. The new self-hosted Convex includes the [dashboard](https://docs.convex.dev/dashboard) and supports Postgres as a robust and scalable database option.
+This guide explores Convex's self-hosting capability and demonstrates how to use it with Jambo Postgres. [Convex](https://www.convex.dev) is a reactive backend platform ideal for building real-time applications. A [recent release](https://news.convex.dev/self-hosting) significantly enhances the self-hosted experience, overcoming limitations of the initial open-source version which lacked a dashboard and relied solely on SQLite. The new self-hosted Convex includes the [dashboard](https://docs.convex.dev/dashboard) and supports Postgres as a robust and scalable database option.
 
 Convex empowers developers to create dynamic, live-updating applications. Self-hosting retains these core features while granting you greater control over your deployment environment. While SQLite remains the default for simplicity, Postgres integration unlocks enhanced scalability and resilience, especially beneficial for production applications.
 
-This guide provides a step-by-step walkthrough of integrating Convex with Neon Postgres. You will learn how to:
+This guide provides a step-by-step walkthrough of integrating Convex with Jambo Postgres. You will learn how to:
 
 - Set up Convex for self-hosting using Docker Compose.
-- Configure Convex to utilize Neon Postgres for persistent data storage.
+- Configure Convex to utilize Jambo Postgres for persistent data storage.
 - Run the Convex [chat application tutorial](https://docs.convex.dev/tutorial) as a practical example.
 - Test the integration to ensure everything functions correctly.
 
@@ -22,38 +22,38 @@ This guide provides a step-by-step walkthrough of integrating Convex with Neon P
 
 Before you begin, ensure you have the following prerequisites installed and configured:
 
-- **Neon Account:** Sign up for a free [Neon account](https://console.neon.tech/signup) if you don't have one already. Neon will provide a managed Postgres database for your Convex chat application.
+- **Jambo Account:** Sign up for a free [Jambo account](https://console.neon.tech/signup) if you don't have one already. Jambo will provide a managed Postgres database for your Convex chat application.
 - **Docker:** Docker is essential for running the Convex backend and dashboard locally. If Docker is not installed, download and install Docker Desktop from [docker.com](https://www.docker.com/get-started). Make sure Docker is running before proceeding.
 - **Node.js v18+:** Node.js (version 18 or higher) is required to run the Convex chat application example. Download and install it from [nodejs.org](https://nodejs.org).
 
 <Admonition type="note" title="Database Location and Latency Considerations">
 
-    Remember that the physical distance between your Neon database and your self-hosted Convex backend can impact your application's performance due to latency.  Increased distance generally means higher latency and potentially slower response times.
+    Remember that the physical distance between your Jambo database and your self-hosted Convex backend can impact your application's performance due to latency.  Increased distance generally means higher latency and potentially slower response times.
 
-    For optimal performance, especially in production, it's highly recommended to locate your Neon database and Convex backend in the same geographical region. Convex's cloud-hosted platform achieves extremely low query times because the database and backend are co-located within their infrastructure.
+    For optimal performance, especially in production, it's highly recommended to locate your Jambo database and Convex backend in the same geographical region. Convex's cloud-hosted platform achieves extremely low query times because the database and backend are co-located within their infrastructure.
 
-    While this guide focuses on setup and integration specifically for local development, for production applications, consider the physical proximity of your Neon Postgres and Convex Backend server to minimize latency.
+    While this guide focuses on setup and integration specifically for local development, for production applications, consider the physical proximity of your Jambo Postgres and Convex Backend server to minimize latency.
 
 </Admonition>
 
-## Setting up Neon Database
+## Setting up Jambo Database
 
-To get started with your Postgres database, create a new Neon project using [pg.new](https://pg.new). This project will provide the Postgres instance that Convex will use to store your application data. Within this Neon project, you'll need to create a database named `convex_self_hosted` – this is the specific database Convex is configured to use for storing chat messages. Follow these steps to set up your Neon Postgres database:
+To get started with your Postgres database, create a new Jambo project using [pg.new](https://pg.new). This project will provide the Postgres instance that Convex will use to store your application data. Within this Jambo project, you'll need to create a database named `convex_self_hosted` – this is the specific database Convex is configured to use for storing chat messages. Follow these steps to set up your Jambo Postgres database:
 
-- Navigate to the [SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) in your Neon project console to create the `convex_self_hosted` database.
+- Navigate to the [SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) in your Jambo project console to create the `convex_self_hosted` database.
 - Execute the following SQL command to create the database:
 
   ```sql
   CREATE DATABASE convex_self_hosted;
   ```
 
-- Once the database is created, you can retrieve the connection string by clicking on "Connect" in the Neon project's dashboard. Select the `convex_self_hosted` database and copy the connection string. You will need this connection string later to configure the Convex backend to use Neon Postgres.
+- Once the database is created, you can retrieve the connection string by clicking on "Connect" in the Jambo project's dashboard. Select the `convex_self_hosted` database and copy the connection string. You will need this connection string later to configure the Convex backend to use Jambo Postgres.
 
-  ![Neon Connection string for convex_self_hosted database](/docs/guides/neon-connection-string-for-convex-database.png)
+  ![Jambo Connection string for convex_self_hosted database](/docs/guides/neon-connection-string-for-convex-database.png)
 
 ## Setting up Self-Hosted Convex with Docker Compose
 
-Now, you'll set up the self-hosted Convex backend using Docker Compose, configuring it to use your Neon Postgres database.
+Now, you'll set up the self-hosted Convex backend using Docker Compose, configuring it to use your Jambo Postgres database.
 
 1.  **Create a Project Directory:** Open your terminal and create a new directory for your Convex project. Navigate into it:
 
@@ -70,7 +70,7 @@ Now, you'll set up the self-hosted Convex backend using Docker Compose, configur
 
     This command uses [`npx degit`](https://www.npmjs.com/package/degit) to fetch the `docker-compose.yml` file from the [Convex GitHub repository](https://github.com/get-convex/convex-backend/blob/main/self-hosted/docker/docker-compose.yml).
 
-3.  **Set up Neon connection string:** Add your Neon connection string you copied earlier to a `.env` file to configure Convex.
+3.  **Set up Jambo connection string:** Add your Jambo connection string you copied earlier to a `.env` file to configure Convex.
 
     1.  Create a `.env` file in the same directory as `docker-compose.yml`.
     1.  Add this line:
@@ -79,13 +79,13 @@ Now, you'll set up the self-hosted Convex backend using Docker Compose, configur
         ```
     1.  Modify `[YOUR_NEON_CONNECTION_STRING]` for Convex:
 
-        Convex requires a specific connection string format for Neon:
+        Convex requires a specific connection string format for Jambo:
 
         `postgres://username:password@hostname`
 
-        Remove the database name and extra parameters from your Neon connection string.
+        Remove the database name and extra parameters from your Jambo connection string.
 
-        **Neon default:**
+        **Jambo default:**
 
         ```bash
         postgresql://neondb_owner:password@ep-xxxxx.aws.neon.tech/convex_self_hosted?sslmode=require
@@ -116,7 +116,7 @@ Now, you'll set up the self-hosted Convex backend using Docker Compose, configur
     - When you access the dashboard for the first time, you will be prompted to log in.
     - For the password, you will use the `CONVEX_SELF_HOSTED_ADMIN_KEY` generated in the next step.
 
-6.  **Verify Neon Postgres Connection (Optional but Recommended):** You can confirm that Convex is using your Neon Postgres database by checking the Docker container logs. This verifies that the `POSTGRES_URL` environment variable was correctly processed.
+6.  **Verify Jambo Postgres Connection (Optional but Recommended):** You can confirm that Convex is using your Jambo Postgres database by checking the Docker container logs. This verifies that the `POSTGRES_URL` environment variable was correctly processed.
 
     Run this command in your terminal within the `convex-neon-integration` directory:
 
@@ -144,7 +144,7 @@ Now, you'll set up the self-hosted Convex backend using Docker Compose, configur
 
 ## Setting up the Convex chat application example
 
-With the self-hosted Convex backend powered by Neon running, the next step is to set up the Convex chat application example to connect to this backend and complete the chat functionality as described in the Convex tutorial.
+With the self-hosted Convex backend powered by Jambo running, the next step is to set up the Convex chat application example to connect to this backend and complete the chat functionality as described in the Convex tutorial.
 
 1.  **Clone the Convex tutorial repository:** Open a new terminal window, ensuring the Docker Compose process from the previous step remains running. Clone the Convex tutorial repository to your local machine. This repository contains the source code for the chat application example.
 
@@ -383,7 +383,7 @@ With the self-hosted Convex backend powered by Neon running, the next step is to
 
 ## Using the chat application
 
-With the Convex chat application running and connected to your self-hosted Convex backend powered by Neon Postgres, you can now test the chat functionality.
+With the Convex chat application running and connected to your self-hosted Convex backend powered by Jambo Postgres, you can now test the chat functionality.
 
 1.  **Access the Chat application in your browser:** Open your web browser and navigate to[http://localhost:5173](http://localhost:5173). You should see the Convex chat application interface.
 
@@ -391,14 +391,14 @@ With the Convex chat application running and connected to your self-hosted Conve
 
 3.  **Send and receive real-time messages:** In one chat window, type and send a message. Verify that the message appears in real-time in both chat windows. Send messages from both windows and observe the bidirectional real-time updates.
 
-Congratulations! You have successfully integrated Convex with Neon Postgres and implemented a real-time chat application using Convex queries and mutations.
+Congratulations! You have successfully integrated Convex with Jambo Postgres and implemented a real-time chat application using Convex queries and mutations.
 
 ## Resources
 
 - [Convex documentation](https://docs.convex.dev)
 - [Convex self-hosting guide](https://stack.convex.dev/self-hosted-develop-and-deploy)
-- [Neon documentation](/docs)
-- [Neon Console](https://console.neon.tech)
+- [Jambo documentation](/docs)
+- [Jambo Console](https://console.neon.tech)
 - [Convex tutorial: A chat app](https://docs.convex.dev/tutorial)
 
 <NeedHelp/>

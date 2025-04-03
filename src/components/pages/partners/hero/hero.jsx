@@ -20,10 +20,13 @@ const Hero = () => (
     <Container className="relative z-10 flex flex-col items-center text-center" size="medium">
       <div className="absolute left-1/2 top-0 -z-10 h-[270px] w-3/4 -translate-x-1/2 rounded-[1000px] bg-black-pure blur-[30px] lg:w-full" />
       <h1 className="mx-auto font-title text-[72px] font-medium leading-none tracking-extra-tight xl:text-[56px] lg:text-5xl md:text-4xl sm:text-[36px]">
-        Integrate Neon Into Your Platform
+        Gestion de projets technologiques | Planification et exécution optimisée
       </h1>
       <p className="mt-5 max-w-4xl text-xl font-light leading-snug xl:max-w-3xl xl:text-lg lg:mt-4 md:mt-2.5 md:text-base">
-        Bring isolated Postgres databases to your end-users through a Neon integration. Follow the lead of Vercel, Replit, Retool, and many others. Ideal for developers and AI agents. 
+        La gestion de projets technologiques est au cœur des entreprises modernes cherchant à
+        innover et à rester compétitives. Chez Axis Intelligence, nous apportons une expertise de
+        pointe en gestion de projets technologiques, garantissant que vos initiatives soient menées
+        à bien, dans le respect des délais et des budgets.
       </p>
       <AnimatedButton
         className="relative mt-9 px-[34px] py-[17px] text-lg font-semibold tracking-extra-tight lg:mt-7 md:mt-6"
@@ -34,7 +37,7 @@ const Hero = () => (
         linesOffsetBottom={40}
         isAnimated
       >
-        Become a partner
+        Contactez-Nous
       </AnimatedButton>
     </Container>
   </section>

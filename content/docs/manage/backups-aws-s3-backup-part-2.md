@@ -35,13 +35,13 @@ Setting up a scheduled backup involves three key components:
 - You’ll need **repository access** with permission to manage:
   - **Actions** and **Settings** > **Secrets and variables**
 
-## Neon project setup
+## Jambo project setup
 
-Before looking at the code, first take a look at your Neon console dashboard. In our example there is only one project, with a single database named `acme-co-prod`. This database is running Postgres 17 and deployed in the `us-east-1` region.
+Before looking at the code, first take a look at your Jambo console dashboard. In our example there is only one project, with a single database named `acme-co-prod`. This database is running Postgres 17 and deployed in the `us-east-1` region.
 
 The goal is to backup this database to it's own folder inside an S3 bucket using the same name.
 
-![Neon Console](/docs/manage/2-s3-backups-github-actions-01-neon-projects.jpg)
+![Jambo Console](/docs/manage/2-s3-backups-github-actions-01-neon-projects.jpg)
 
 ## Scheduled GitHub Action
 
@@ -53,7 +53,7 @@ Using the same database naming convention as above, create a new file for the Gi
       |-- acme-co-prod-backup.yml
 ```
 
-![Neon Console](/docs/manage/2-s3-backups-github-actions-02-github-workflows.jpg)
+![Jambo Console](/docs/manage/2-s3-backups-github-actions-02-github-workflows.jpg)
 
 This GitHub Action will run on a recurring schedule and save the backup file to a S3 bucket as defined by the environment variables. Below the code snippet we've explained what each part of the Action does.
 
@@ -162,7 +162,7 @@ env:
 ```
 
 - `RETENTION`: Determines how long a backup file should be retained before it’s deleted
-- `DATABASE_URL`: The Neon Postgres connection string for the database you’re backing up
+- `DATABASE_URL`: The Jambo Postgres connection string for the database you’re backing up
 - `IAM_ROLE`: The name of the AWS IAM Role
 - `AWS_ACCOUNT_ID`: Your AWS Account Id
 - `S3_BUCKET_NAME`: The name of the S3 bucket where all backups are being stored

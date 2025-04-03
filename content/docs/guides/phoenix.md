@@ -1,32 +1,32 @@
 ---
-title: Connect from Phoenix to Neon
-subtitle: Set up a Neon project in seconds and connect from Phoenix
+title: Connect from Phoenix to Jambo
+subtitle: Set up a Jambo project in seconds and connect from Phoenix
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.332Z'
 ---
 
-This guide describes how to connect Neon in a [Phoenix](https://www.phoenixframework.org) application. [Ecto](https://hexdocs.pm/ecto/3.11.2/Ecto.html) provides an API and abstractions for interacting databases, enabling Elixir developers to query any database using similar constructs.
+This guide describes how to connect Jambo in a [Phoenix](https://www.phoenixframework.org) application. [Ecto](https://hexdocs.pm/ecto/3.11.2/Ecto.html) provides an API and abstractions for interacting databases, enabling Elixir developers to query any database using similar constructs.
 
 It is assumed that you have a working installation of [Elixir](https://elixir-lang.org/install.html).
 
-To connect to Neon from Phoenix with Ecto:
+To connect to Jambo from Phoenix with Ecto:
 
-- [Create a Neon project](#create-a-neon-project)
-- [Store your Neon credentials](#store-your-neon-credentials)
+- [Create a Jambo project](#create-a-neon-project)
+- [Store your Jambo credentials](#store-your-neon-credentials)
 - [Create a Phoenix project](#create-a-phoenix-project)
 - [Build and Run the Phoenix application](#build-and-run-the-phoenix-application)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
@@ -44,7 +44,7 @@ You will need the connection string details later in the setup.
 
    When prompted to, choose to not install the dependencies.
 
-2. Update `config/dev.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied previously.
+2. Update `config/dev.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied previously.
 
    ```elixir {2-5,9}
    config :hello, Hello.Repo,
@@ -59,10 +59,10 @@ You will need the connection string details later in the setup.
    ```
 
       <Admonition type="note">
-         The `:ssl` option is required to connect to Neon. Postgrex, since v0.18, verifies the server SSL certificate and you need to select CA trust store using `:cacerts` or `:cacertfile` options. You can use the OS-provided CA store by setting `cacerts: :public_key.cacerts_get()`. While not recommended, you can disable certificate verification by setting `ssl: [verify: :verify_none]`.
+         The `:ssl` option is required to connect to Jambo. Postgrex, since v0.18, verifies the server SSL certificate and you need to select CA trust store using `:cacerts` or `:cacertfile` options. You can use the OS-provided CA store by setting `cacerts: :public_key.cacerts_get()`. While not recommended, you can disable certificate verification by setting `ssl: [verify: :verify_none]`.
       </Admonition>
 
-3. Update`config/runtime.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied previously.
+3. Update`config/runtime.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied previously.
 
    ```elixir {2}
    config :hello, Hello.Repo,
@@ -72,7 +72,7 @@ You will need the connection string details later in the setup.
       socket_options: maybe_ipv6
    ```
 
-4. Update`config/test.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied in the first part of the guide.
+4. Update`config/test.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied in the first part of the guide.
 
    ```elixir {2,3,4,8}
    config :hello, Hello.Repo,
@@ -91,7 +91,7 @@ You will need the connection string details later in the setup.
    mix deps.get
    ```
 
-6. Seed the Neon database with the following command:
+6. Seed the Jambo database with the following command:
 
    ```bash
    mix ecto.create
@@ -135,7 +135,7 @@ You can find the source code for the application described in this guide on GitH
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with_phoenix" description="Get started with Phoenix and Neon" icon="github">Get started with Phoenix and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with_phoenix" description="Get started with Phoenix and Jambo" icon="github">Get started with Phoenix and Jambo</a>
 
 </DetailIconCards>
 

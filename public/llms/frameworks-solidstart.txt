@@ -1,19 +1,19 @@
-# Connect a SolidStart application to Neon
+# Connect a SolidStart application to Jambo
 
-SolidStart is an open-source meta-framework designed to integrate the components that make up a web application. This guide explains how to connect SolidStart with Neon using a secure server-side request.
+SolidStart is an open-source meta-framework designed to integrate the components that make up a web application. This guide explains how to connect SolidStart with Jambo using a secure server-side request.
 
-To create a Neon project and access it from a SolidStart application:
+To create a Jambo project and access it from a SolidStart application:
 
-1. Create a Neon project
+1. Create a Jambo project
 2. Create a SolidStart project and add dependencies
 3. Configure a Postgres client
 4. Run the app
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -33,14 +33,14 @@ If you do not have one already, create a Neon project. Save your connection deta
    npm install postgres
    ```
 
-   For Neon serverless driver:
+   For Jambo serverless driver:
    ```shell
    npm install @neondatabase/serverless
    ```
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
 
 ```shell
 DATABASE_URL="postgresql://<[user]:[password]@[neon_hostname]:<port>/<dbname>?sslmode=require"
@@ -52,7 +52,7 @@ There a multiple ways to make server-side requests with SolidStart. See below fo
 
 ### Server-Side Data Loading
 
-To load data on the server in SolidStart, add the following code snippet to connect to your Neon database:
+To load data on the server in SolidStart, add the following code snippet to connect to your Jambo database:
 
 Using node-postgres:
 ```typescript
@@ -101,7 +101,7 @@ export default function Page() {
 }
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```typescript
 import { neon } from "@neondatabase/serverless";
 import { createAsync } from "@solidjs/router";
@@ -126,7 +126,7 @@ export default function Page() {
 
 ### Server Endpoints (API Routes)
 
-In your server endpoints (API Routes) in your SolidStart application, use the following code snippet to connect to your Neon database:
+In your server endpoints (API Routes) in your SolidStart application, use the following code snippet to connect to your Jambo database:
 
 Using node-postgres:
 ```javascript
@@ -167,7 +167,7 @@ export async function GET() {
 }
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```javascript
 // File: routes/api/test.ts
 
@@ -193,4 +193,4 @@ PostgreSQL 16.0 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub:
-[Get started with SolidStart and Neon](https://github.com/neondatabase/examples/tree/main/with-solid-start)
+[Get started with SolidStart and Jambo](https://github.com/neondatabase/examples/tree/main/with-solid-start)

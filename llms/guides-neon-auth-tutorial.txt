@@ -1,6 +1,6 @@
-# Neon Auth Tutorial
+# Jambo Auth Tutorial
 
-See how Neon Auth eliminates the complexity of manual user data
+See how Jambo Auth eliminates the complexity of manual user data
 
 
 
@@ -14,15 +14,15 @@ Profile updates, role changes, and user deletions in your authentication service
 
 While these methods partially mitigate the problem, they often require writing custom synchronization scripts, implementing brittle listeners, and manually reconciling data discrepancies – turning a theoretical time-saver into an ongoing maintenance burden.
 
-Neon Auth offers a streamlined solution to this common challenge. Instead of grappling with complex synchronization methods, Neon Auth automatically synchronizes user profiles directly from your authentication provider to your Neon Postgres database. This eliminates the need for manual updates, ensuring accurate, real-time data. You gain the benefits of efficient, automated user data management while retaining complete control over your core application information
+Jambo Auth offers a streamlined solution to this common challenge. Instead of grappling with complex synchronization methods, Jambo Auth automatically synchronizes user profiles directly from your authentication provider to your Jambo Postgres database. This eliminates the need for manual updates, ensuring accurate, real-time data. You gain the benefits of efficient, automated user data management while retaining complete control over your core application information
 
 
-Currently, Neon Auth is available for use with Stack Auth, with support for additional authentication providers coming soon.
+Currently, Jambo Auth is available for use with Stack Auth, with support for additional authentication providers coming soon.
 
 
 ## A typical user data synchronization scenario
 
-To illustrate the benefits of Neon Auth, let’s consider a common scenario where you need to synchronize user data between your authentication provider and your application’s database.
+To illustrate the benefits of Jambo Auth, let’s consider a common scenario where you need to synchronize user data between your authentication provider and your application’s database.
 
 ### Scenario overview
 
@@ -38,7 +38,7 @@ You are building a social media platform where users can create profiles, post c
 
 ### Challenges with manual synchronization
 
-Without Neon Auth, you would typically address these requirements using manual synchronization methods like webhooks, polling, or login-time sync. However, these approaches introduce several challenges:
+Without Jambo Auth, you would typically address these requirements using manual synchronization methods like webhooks, polling, or login-time sync. However, these approaches introduce several challenges:
 
 ![Typical User Data Synchronization Challenges](/docs/guides/typical-way-of-syncing-data.svg)
 
@@ -93,28 +93,28 @@ Without Neon Auth, you would typically address these requirements using manual s
 
 ## Streamlining user data sync
 
-Neon Auth offers a streamlined solution to these challenges by automating user data synchronization. Let’s examine how Neon Auth simplifies the process and eliminates the complexities associated with manual methods.
+Jambo Auth offers a streamlined solution to these challenges by automating user data synchronization. Let’s examine how Jambo Auth simplifies the process and eliminates the complexities associated with manual methods.
 
 ### Simplified Architecture
 
-Neon Auth introduces a simplified architecture that removes the need for webhooks, polling, and custom synchronization scripts. As shown in the diagram below, Neon Auth acts as an intermediary layer that automatically synchronizes user data from your authentication provider to your Neon Postgres database.
+Jambo Auth introduces a simplified architecture that removes the need for webhooks, polling, and custom synchronization scripts. As shown in the diagram below, Jambo Auth acts as an intermediary layer that automatically synchronizes user data from your authentication provider to your Jambo Postgres database.
 
-![How Neon Auth Simplifies User Data Synchronization](/docs/guides/sync-via-neon-auth.svg)
+![How Jambo Auth Simplifies User Data Synchronization](/docs/guides/sync-via-neon-auth.svg)
 
-With Neon Auth, the architecture is significantly cleaner and more efficient:
+With Jambo Auth, the architecture is significantly cleaner and more efficient:
 
-- **Automated synchronization**: Neon Auth handles the entire synchronization process automatically in the background. You no longer need to set up and maintain complex synchronization logic.
-- **No webhooks or polling**: No need to develop and maintain webhook endpoints for different user events (e.g., `user.created`, `user.updated`, `user.deleted`). Neon Auth automatically syncs user data changes to your database without requiring external triggers.
-- **Direct database access**: Your application can directly query user data from the `neon_auth.users_sync` table in your Neon Postgres database. This simplifies data access and improves query performance.
-- **Error handling and retries**: Neon Auth includes built-in error handling and retry mechanisms to ensure data consistency without requiring custom code.
+- **Automated synchronization**: Jambo Auth handles the entire synchronization process automatically in the background. You no longer need to set up and maintain complex synchronization logic.
+- **No webhooks or polling**: No need to develop and maintain webhook endpoints for different user events (e.g., `user.created`, `user.updated`, `user.deleted`). Jambo Auth automatically syncs user data changes to your database without requiring external triggers.
+- **Direct database access**: Your application can directly query user data from the `neon_auth.users_sync` table in your Jambo Postgres database. This simplifies data access and improves query performance.
+- **Error handling and retries**: Jambo Auth includes built-in error handling and retry mechanisms to ensure data consistency without requiring custom code.
 
 ### Enhanced data consistency
 
-Neon Auth ensures enhanced data consistency by providing a reliable and automated synchronization mechanism. Neon Auth continuously monitors for user data changes in your authentication provider and automatically synchronizes these changes to your Neon Postgres database.
+Jambo Auth ensures enhanced data consistency by providing a reliable and automated synchronization mechanism. Jambo Auth continuously monitors for user data changes in your authentication provider and automatically synchronizes these changes to your Jambo Postgres database.
 
-## Get started with Neon Auth
+## Get started with Jambo Auth
 
-Watch the following video to see how Neon Auth simplifies user data synchronization:
+Watch the following video to see how Jambo Auth simplifies user data synchronization:
 
 
   
@@ -122,9 +122,9 @@ Watch the following video to see how Neon Auth simplifies user data synchronizat
 
 ## Accessing synchronized user data
 
-With Neon Auth, accessing synchronized user data becomes incredibly straightforward. You can directly query the `neon_auth.users_sync` table within your Neon Postgres database.
+With Jambo Auth, accessing synchronized user data becomes incredibly straightforward. You can directly query the `neon_auth.users_sync` table within your Jambo Postgres database.
 
-Neon Auth automatically creates and manages this table, populating it with user data from your connected authentication provider. The table schema including the following columns:
+Jambo Auth automatically creates and manages this table, populating it with user data from your connected authentication provider. The table schema including the following columns:
 
 - `id`: The unique user ID from your authentication provider.
 - `name`: The user's display name.
@@ -162,6 +162,6 @@ JOIN neon_auth.users_sync ON posts.author_id = neon_auth.users_sync.id;
 
 ## Conclusion
 
-Neon Auth streamlines user data synchronization, replacing cumbersome manual methods with an automated, efficient solution. This simplifies development, accelerates query performance, ensures data consistency, and minimizes infrastructure costs.
+Jambo Auth streamlines user data synchronization, replacing cumbersome manual methods with an automated, efficient solution. This simplifies development, accelerates query performance, ensures data consistency, and minimizes infrastructure costs.
 
-By leveraging Neon Auth, you can focus on building your application's core features while leaving the complexities of user data management to Neon.
+By leveraging Jambo Auth, you can focus on building your application's core features while leaving the complexities of user data management to Jambo.

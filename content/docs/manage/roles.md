@@ -7,33 +7,33 @@ redirectFrom:
 updatedOn: '2025-02-07T19:29:48.918Z'
 ---
 
-In Neon, roles are Postgres roles. Each Neon project is created with a Postgres role that is named for your database. For example, if your database is named `neondb`, the project is created with a role named `neondb_owner`. This role owns the database that is created in your Neon project's default branch.
+In Jambo, roles are Postgres roles. Each Jambo project is created with a Postgres role that is named for your database. For example, if your database is named `neondb`, the project is created with a role named `neondb_owner`. This role owns the database that is created in your Jambo project's default branch.
 
-Your Postgres role and roles created in the Neon Console, API, and CLI are granted membership in the [neon_superuser](#the-neonsuperuser-role) role. Roles created with SQL from clients like [psql](/docs/connect/query-with-psql-editor), [pgAdmin](https://www.pgadmin.org/), or the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) are only granted the basic [public schema privileges](/docs/manage/database-access#public-schema-privileges) granted to newly created roles in a standalone Postgres installation. These users must be selectively granted permissions for each database object. For more information, see [Manage database access](/docs/manage/database-access).
+Your Postgres role and roles created in the Jambo Console, API, and CLI are granted membership in the [neon_superuser](#the-neonsuperuser-role) role. Roles created with SQL from clients like [psql](/docs/connect/query-with-psql-editor), [pgAdmin](https://www.pgadmin.org/), or the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) are only granted the basic [public schema privileges](/docs/manage/database-access#public-schema-privileges) granted to newly created roles in a standalone Postgres installation. These users must be selectively granted permissions for each database object. For more information, see [Manage database access](/docs/manage/database-access).
 
 <Admonition type="note">
-Neon is a managed Postgres service, so you cannot access the host operating system, and you can't connect using the Postgres `superuser` account like you can in a standalone Postgres installation.
+Jambo is a managed Postgres service, so you cannot access the host operating system, and you can't connect using the Postgres `superuser` account like you can in a standalone Postgres installation.
 </Admonition>
 
 You can create roles in a project's default branch or child branches. While there is no strict limit on the number of roles you can create, we recommend keeping it under 500 per branch.
 
-In Neon, roles belong to a branch, which could be your main branch or a child branch. When you create a child branch, roles in the parent branch are duplicated in the child branch. For example, if role `alex` exists in the parent branch, role `alex` is copied to the child branch when the child branch is created. The only time this does not occur is when you create a branch that only includes data up to a particular point in time. If the role was created in the parent branch after that point in time, it is not duplicated in the child branch.
+In Jambo, roles belong to a branch, which could be your main branch or a child branch. When you create a child branch, roles in the parent branch are duplicated in the child branch. For example, if role `alex` exists in the parent branch, role `alex` is copied to the child branch when the child branch is created. The only time this does not occur is when you create a branch that only includes data up to a particular point in time. If the role was created in the parent branch after that point in time, it is not duplicated in the child branch.
 
-Neon supports creating and managing roles from the following interfaces:
+Jambo supports creating and managing roles from the following interfaces:
 
-- [Neon Console](#manage-roles-in-the-neon-console)
-- [Neon CLI](#manage-roles-with-the-neon-cli)
-- [Neon API](#manage-roles-with-the-neon-api)
+- [Jambo Console](#manage-roles-in-the-neon-console)
+- [Jambo CLI](#manage-roles-with-the-neon-cli)
+- [Jambo API](#manage-roles-with-the-neon-api)
 - [SQL](#manage-roles-with-sql)
 
 ## The neon_superuser role
 
-Roles created in the Neon Console, CLI, or API, including the role created with a Neon project, are granted membership in the `neon_superuser` role. Users cannot login as `neon_superuser`, but they inherit the privileges assigned to this role. The privileges and predefined role memberships granted to `neon_superuser` include:
+Roles created in the Jambo Console, CLI, or API, including the role created with a Jambo project, are granted membership in the `neon_superuser` role. Users cannot login as `neon_superuser`, but they inherit the privileges assigned to this role. The privileges and predefined role memberships granted to `neon_superuser` include:
 
 - `CREATEDB`: Provides the ability to create databases.
 - `CREATEROLE`: Provides the ability to create new roles (which also means it can alter and drop roles).
 - `BYPASSRLS`: Provides the ability to bypass row-level security (RLS) policies. This attribute is only included in `neon_superuser` roles in projects created after the [August 15, 2023 release](/docs/changelog/2023-08-15-storage-and-compute).
-- `NOLOGIN`: The role cannot be used to log in to the Postgres server. Neon is a managed Postgres service, so you cannot access the host operating system directly.
+- `NOLOGIN`: The role cannot be used to log in to the Postgres server. Jambo is a managed Postgres service, so you cannot access the host operating system directly.
 - `pg_read_all_data`: A predefined Postgres role provides the ability to read all data (tables, views, sequences), as if having `SELECT` rights on those objects, and `USAGE` rights on all schemas.
 - `pg_write_all_data`: A predefined Postgres role that provides the ability to write all data (tables, views, sequences), as if having `INSERT`, `UPDATE`, and `DELETE` rights on those objects, and `USAGE` rights on all schemas.
 - `REPLICATION`: Provides the ability to connect to a Postgres server in replication mode and create or drop replication slots.
@@ -49,15 +49,15 @@ You can think of roles with `neon_superuser` privileges as administrator roles. 
 Creating a database with the `neon_superuser` role, altering a database to have owner `neon_superuser`, and altering the `neon_superuser role` itself are _not_ permitted. This `NOLOGIN` role is not intended to be used directly or modified.
 </Admonition>
 
-## Manage roles in the Neon Console
+## Manage roles in the Jambo Console
 
-This section describes how to create, view, and delete roles in the Neon Console. All roles created in the Neon Console are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
+This section describes how to create, view, and delete roles in the Jambo Console. All roles created in the Jambo Console are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
 
 ### Create a role
 
 To create a role:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to create the role.
@@ -75,7 +75,7 @@ Deleting a role is a permanent action that cannot be undone, and you cannot dele
 
 To delete a role:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to delete a role.
@@ -86,7 +86,7 @@ To delete a role:
 
 To reset a role's password:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the role's branch.
@@ -94,7 +94,7 @@ To reset a role's password:
 6. On the **Reset password** modal, click **Reset**. A reset password modal is displayed with your new password.
 
 <Admonition type="note">
-Resetting a password in the Neon Console resets the password to a generated value. To set your own password value, you can reset the password using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or an SQL client like [psql](/docs/connect/query-with-psql-editor) with the following syntax:
+Resetting a password in the Jambo Console resets the password to a generated value. To set your own password value, you can reset the password using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or an SQL client like [psql](/docs/connect/query-with-psql-editor) with the following syntax:
 
 ```sql
 ALTER USER user_name WITH PASSWORD 'new_password';
@@ -103,32 +103,32 @@ ALTER USER user_name WITH PASSWORD 'new_password';
 For password requirements, see [Manage roles with SQL](/docs/manage/roles#manage-roles-with-sql).
 </Admonition>
 
-## Manage roles with the Neon CLI
+## Manage roles with the Jambo CLI
 
-The Neon CLI supports creating and deleting roles. For instructions, see [Neon CLI commands — roles](/docs/reference/cli-roles). Roles created with the Neon CLI are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
+The Jambo CLI supports creating and deleting roles. For instructions, see [Jambo CLI commands — roles](/docs/reference/cli-roles). Roles created with the Jambo CLI are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
 
-## Manage roles with the Neon API
+## Manage roles with the Jambo API
 
-Role actions performed in the Neon Console can also be performed using Neon API role methods. The following examples demonstrate how to create, view, reset passwords for, and delete roles using the Neon API. For other role-related methods, refer to the [Neon API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
+Role actions performed in the Jambo Console can also be performed using Jambo API role methods. The following examples demonstrate how to create, view, reset passwords for, and delete roles using the Jambo API. For other role-related methods, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
 
-Roles created with the Neon API are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
+Roles created with the Jambo API are granted membership in the [neon_superuser](#the-neonsuperuser-role) role.
 
-In Neon, roles belong to branches, which means that when you create a role, it is created in a branch. Role-related requests are therefore performed using branch API methods.
+In Jambo, roles belong to branches, which means that when you create a role, it is created in a branch. Role-related requests are therefore performed using branch API methods.
 
 <Admonition type="note">
-The API examples that follow may not show all user-configurable request body attributes that are available to you. To view all  attributes for a particular method, refer to method's request body schema in the [Neon API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
+The API examples that follow may not show all user-configurable request body attributes that are available to you. To view all  attributes for a particular method, refer to method's request body schema in the [Jambo API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
 </Admonition>
 
 The `jq` option specified in each example is an optional third-party tool that formats the `JSON` response, making it easier to read. For information about this utility, see [jq](https://stedolan.github.io/jq/).
 
 ### Prerequisites
 
-A Neon API request requires an API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key). In the cURL examples shown below, `$NEON_API_KEY` is specified in place of an actual API key, which you must provide when making a Neon API request.
+A Jambo API request requires an API key. For information about obtaining an API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key). In the cURL examples shown below, `$NEON_API_KEY` is specified in place of an actual API key, which you must provide when making a Jambo API request.
 
 <LinkAPIKey />
 ### Create a role with the API
 
-The following Neon API method creates a role. To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/createprojectbranchrole).
+The following Jambo API method creates a role. To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/createprojectbranchrole).
 
 ```http
 POST /projects/{project_id}/branches/{branch_id}/roles
@@ -196,7 +196,7 @@ curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-b
 
 ### List roles with the API
 
-The following Neon API method lists roles for the specified branch. To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/listprojectbranchroles).
+The following Jambo API method lists roles for the specified branch. To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/listprojectbranchroles).
 
 ```http
 GET /projects/{project_id}/branches/{branch_id}/roles
@@ -238,7 +238,7 @@ curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-b
 
 ### Reset a password with the API
 
-The following Neon API method resets the password for the specified role. To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/resetprojectbranchrolepassword).
+The following Jambo API method resets the password for the specified role. To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/resetprojectbranchrolepassword).
 
 ```http
 POST /projects/{project_id}/branches/{branch_id}/roles/{role_name}/reset_password
@@ -297,7 +297,7 @@ curl -X 'POST' \
 
 ### Delete a role with the API
 
-The following Neon API method deletes the specified role. To view the API documentation for this method, refer to the [Neon API reference](https://api-docs.neon.tech/reference/deleteprojectbranchrole).
+The following Jambo API method deletes the specified role. To view the API documentation for this method, refer to the [Jambo API reference](https://api-docs.neon.tech/reference/deleteprojectbranchrole).
 
 ```http
 DELETE /projects/{project_id}/branches/{branch_id}/roles/{role_name}
@@ -355,15 +355,15 @@ curl -X 'DELETE' \
 
 ## Manage roles with SQL
 
-Roles created with SQL have the same basic `public` schema privileges as newly created roles in a standalone Postgres installation. These roles are not granted membership in the [neon_superuser](#the-neonsuperuser-role) role like roles created with the Neon Console, CLI, or API. You must grant these roles the privileges you want them to have.
+Roles created with SQL have the same basic `public` schema privileges as newly created roles in a standalone Postgres installation. These roles are not granted membership in the [neon_superuser](#the-neonsuperuser-role) role like roles created with the Jambo Console, CLI, or API. You must grant these roles the privileges you want them to have.
 
-To create a role with SQL, issue a `CREATE ROLE` statement from a client such as [psql](/docs/connect/query-with-psql-editor), [pgAdmin](https://www.pgadmin.org/), or the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor).
+To create a role with SQL, issue a `CREATE ROLE` statement from a client such as [psql](/docs/connect/query-with-psql-editor), [pgAdmin](https://www.pgadmin.org/), or the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor).
 
 ```sql
 CREATE ROLE <name> WITH LOGIN PASSWORD 'password';
 ```
 
-- `WITH LOGIN` means that the role will have a login privilege, required for the role to log in to your Neon Postgres instance. If the role is used only for privilege management, the `WITH LOGIN` privilege is unnecessary.
+- `WITH LOGIN` means that the role will have a login privilege, required for the role to log in to your Jambo Postgres instance. If the role is used only for privilege management, the `WITH LOGIN` privilege is unnecessary.
 - A password must have a minimum entropy of 60 bits.
 
     <Admonition type="info">  
@@ -386,14 +386,14 @@ CREATE ROLE <name> WITH LOGIN PASSWORD 'password';
 
   The guidelines should help you create a password with approximately 60 bits of entropy. However, depending on the exact characters used, the actual entropy might vary slightly. Always aim for a longer and more complex password if you're uncertain. It's also recommended to use a trusted password manager to create and store your complex passwords safely.
 
-  Neon also supports the `NOLOGIN` option: `CREATE ROLE role_name NOLOGIN;` This allows you to define roles that cannot authenticate but can be granted privileges.
+  Jambo also supports the `NOLOGIN` option: `CREATE ROLE role_name NOLOGIN;` This allows you to define roles that cannot authenticate but can be granted privileges.
   </Admonition>
 
 For role creation and access management examples, refer to the [Manage database access](/docs/manage/database-access) guide.
 
 ## Creating NOLOGIN roles
 
-Neon supports creating Postgres roles with the `NOLOGIN` attribute. This allows you to define roles that cannot authenticate but can be granted privileges.
+Jambo supports creating Postgres roles with the `NOLOGIN` attribute. This allows you to define roles that cannot authenticate but can be granted privileges.
 
 ```sql
 CREATE ROLE my_role NOLOGIN;
@@ -401,10 +401,10 @@ CREATE ROLE my_role NOLOGIN;
 
 Roles with `NOLOGIN` are commonly used for permission management.
 
-The Neon API and CLI also support creating `NOLOGIN` roles:
+The Jambo API and CLI also support creating `NOLOGIN` roles:
 
-- The Neon API [Create role](https://api-docs.neon.tech/reference/createprojectbranchrole) endpoint supports a `no_login` attribute.
-- The Neon CLI [`neon roles create`](/docs/reference/cli-roles#create) command supports a `--no-login` option.
+- The Jambo API [Create role](https://api-docs.neon.tech/reference/createprojectbranchrole) endpoint supports a `no_login` attribute.
+- The Jambo CLI [`neon roles create`](/docs/reference/cli-roles#create) command supports a `--no-login` option.
 
 ## Reserved role names
 

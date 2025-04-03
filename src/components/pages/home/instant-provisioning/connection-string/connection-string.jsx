@@ -94,9 +94,7 @@ const ConnectionString = ({ url }) => {
           isAnimated ? 'translate-y-[3px] opacity-0' : 'translate-y-0 opacity-100'
         )}
       >
-        <span className="relative text-xs tracking-extra-tight opacity-80 xl:text-[11px]">
-          Provisioned in 300ms
-        </span>
+        <span className="relative text-xs tracking-extra-tight opacity-80 xl:text-[11px]" />
       </p>
       <BlurWrapper className="mt-2.5 md:mt-8 md:p-1">
         <div

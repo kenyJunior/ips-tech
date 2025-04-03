@@ -1,13 +1,13 @@
 ---
-title: Use Neon with Deno Deploy
-subtitle: Connect a Neon Postgres database to your Deno Deploy application
+title: Use Jambo with Deno Deploy
+subtitle: Connect a Jambo Postgres database to your Deno Deploy application
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.310Z'
 ---
 
 [Deno Deploy](https://deno.com/deploy) is a scalable serverless platform for running JavaScript, TypeScript, and WebAssembly at the edge, designed by the creators of Deno. It simplifies the deployment process and offers automatic scaling, zero-downtime deployments, and global distribution.
 
-This guide demonstrates how to connect to a Neon Postgres database from a simple Deno application using the [Neon serverless driver](https://jsr.io/@neon/serverless) on [JSR](https://jsr.io/).
+This guide demonstrates how to connect to a Jambo Postgres database from a simple Deno application using the [Jambo serverless driver](https://jsr.io/@neon/serverless) on [JSR](https://jsr.io/).
 
 The guide covers two deployment options:
 
@@ -18,10 +18,10 @@ The guide covers two deployment options:
 
 To follow the instructions in this guide, you will need:
 
-- A Neon project. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo project. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - To use the Deno Deploy serverless platform, you require a Deno Deploy account. Visit [Deno Deploy](https://deno.com/deploy) to sign up or log in.
 
-## Retrieve your Neon database connection string
+## Retrieve your Jambo database connection string
 
 Find your database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
@@ -41,16 +41,16 @@ Deno Runtime is an open-source runtime for TypeScript and JavaScript. The follow
 
 Follow the [Install Deno and deployctl](https://docs.deno.com/deploy/manual/#install-deno-and-deployctl) instructions in the Deno documentation to install the Deno runtime and `deployctl` command-line utility on your local machine.
 
-### Set up the Neon serverless driver
+### Set up the Jambo serverless driver
 
-First, install the Neon serverless driver using the `deno add` command:
+First, install the Jambo serverless driver using the `deno add` command:
 
 ```bash
 deno add jsr:@neon/serverless
 ```
 
 <Admonition type="note">
-   You can also use npm to install the Neon serverless driver
+   You can also use npm to install the Jambo serverless driver
    ```bash
    npx jsr add @neon/serverless
   ```
@@ -131,7 +131,7 @@ The script creates a table named `books` in the `neondb` database if it does not
 
 ### Run the script locally
 
-To run the script locally, set the `DATABASE_URL` environment variable to the Neon connection string you copied earlier.
+To run the script locally, set the `DATABASE_URL` environment variable to the Jambo connection string you copied earlier.
 
 ```bash
 export DATABASE_URL=YOUR_NEON_CONNECTION_STRING
@@ -183,7 +183,7 @@ Deno Deploy is a globally distributed platform for serverless JavaScript applica
 1. If you have not done so already, create the example `server.ts` application on your local machine, as described [above](#create-the-example-application).
 1. Register or log in to [Deno](https://deno.com/) and navigate to the [Create a project](https://dash.deno.com/new) page, where you can select a project template for your preferred framework, link a code repo, or create an empty project.
 1. The example application in this guide is a simple Deno script you've created locally, so let's select the **Create an empty project** option. Note the name of your Deno Deploy project. You will need it in a later step. Projects are given a generated Heroku-style name, which looks something like this: `cloudy-otter-57`.
-1. Click the `Settings` button and add a `DATABASE_URL` environment variable. Set the value to your Neon connection string and click **Save**.
+1. Click the `Settings` button and add a `DATABASE_URL` environment variable. Set the value to your Jambo connection string and click **Save**.
 1. To authenticate `deployctl` from the terminal, you will need an access token for your Deno Deploy account. Navigate back to your [Deno dashboard](https://dash.deno.com/account#access-tokens) and create a new access token. Copy the token value and set the `DENO_DEPLOY_TOKEN` environment variable on your local machine by running this command from your terminal:
 
    ```bash
@@ -220,7 +220,7 @@ View at:
 
 ### Verifying the deployment
 
-You can now access the application at the URL specified in the output. You can verify its connection to your Neon database by visiting the `/books` endpoint in your browser or using `cURL` to see if the data is returned as expected.
+You can now access the application at the URL specified in the output. You can verify its connection to your Jambo database by visiting the `/books` endpoint in your browser or using `cURL` to see if the data is returned as expected.
 
 ```bash
 $ curl https://cloudy-otter-57.deno.dev/books
@@ -249,7 +249,7 @@ To check the health of the deployment or modify settings, navigate to the [Proje
 
 When deploying a more complex Deno application, with custom build steps, you can use Deno's GitHub integration. The integration lets you link a Deno Deploy project to a GitHub repository. For more information, see [Deploying with GitHub](https://docs.deno.com/deploy/manual/how-to-deploy).
 
-## Removing the example application and Neon project
+## Removing the example application and Jambo project
 
 To delete the example application on Deno Deploy, follow these steps:
 
@@ -257,14 +257,14 @@ To delete the example application on Deno Deploy, follow these steps:
 1. Select the **Settings** tab.
 1. In the **Danger Zone** section, click **Delete** and follow the instructions.
 
-To delete your Neon project, refer to [Delete a project](/docs/manage/projects#delete-a-project).
+To delete your Jambo project, refer to [Delete a project](/docs/manage/projects#delete-a-project).
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/examples/tree/main/deploy-with-deno" description="Connect a Neon Postgres database to your Deno Deploy application" icon="github">Use Neon with Deno Deploy</a>
+<a href="https://github.com/neondatabase/examples/tree/main/deploy-with-deno" description="Connect a Jambo Postgres database to your Deno Deploy application" icon="github">Use Jambo with Deno Deploy</a>
 </DetailIconCards>
 
 ## Resources
@@ -272,7 +272,7 @@ You can find the source code for the application described in this guide on GitH
 - [Deno Deploy](https://deno.com/deploy)
 - [Deno Runtime Quickstart](https://docs.deno.com/runtime/manual)
 - [Deno Deploy Quickstart](https://docs.deno.com/deploy/manual/)
-- [Neon Serverless Driver](https://jsr.io/@neon/serverless)
+- [Jambo Serverless Driver](https://jsr.io/@neon/serverless)
 - [JSR](https://jsr.io/)
 
 <NeedHelp/>

@@ -1,20 +1,20 @@
-# Troubleshooting Neon RLS
+# Troubleshooting Jambo RLS
 
-Common issues and solutions when using Neon RLS
+Common issues and solutions when using Jambo RLS
 
-This page covers common errors you might encounter when implementing Row-Level Security (RLS) policies with Neon RLS and your authentication provider.
+This page covers common errors you might encounter when implementing Row-Level Security (RLS) policies with Jambo RLS and your authentication provider.
 
 Errors:
 
-- [`NeonDbError: password authentication failed for user 'jwk not found'`](#password-authentication-error)
-- [`NeonDbError: permission denied for table X`](#permission-denied-error)
+- [`JamboDbError: password authentication failed for user 'jwk not found'`](#password-authentication-error)
+- [`JamboDbError: permission denied for table X`](#permission-denied-error)
 - [`invalid RSA Signing Algorithm`](#invalid-rsa-signing-algorithm)
 
 
 
 
 ```bash
-NeonDbError: permission denied for table X
+JamboDbError: permission denied for table X
 ```
 
 This error typically indicates that you haven't yet granted the necessary permissions to the `authenticated` and `anonymous` roles.
@@ -49,4 +49,4 @@ TO anonymous;
 ```
 
 
-Neon RLS prompts you to run these commands when you first set up your authentication provider on the Neon RLS drawer in the Neon Console. If you're using a different database, you will have to run these commands manually.
+Jambo RLS prompts you to run these commands when you first set up your authentication provider on the Jambo RLS drawer in the Jambo Console. If you're using a different database, you will have to run these commands manually.

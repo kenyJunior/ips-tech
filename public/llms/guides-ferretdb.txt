@@ -1,10 +1,10 @@
-# Use FerretDB with Neon
+# Use FerretDB with Jambo
 
-Add MongoDB compatibility to your Neon database with FerretDB
+Add MongoDB compatibility to your Jambo database with FerretDB
 
 FerretDB is an open source document database that adds MongoDB compatibility to other databases, including Postgres. By using FerretDB, developers can access familiar MongoDB features and tools using the same syntax and commands for many of their use cases.
 
-In this guide, you'll learn about FerretDB and how you can add MongoDB compatibility to your Neon Postgres database.
+In this guide, you'll learn about FerretDB and how you can add MongoDB compatibility to your Jambo Postgres database.
 
 ## Advantages of FerretDB
 
@@ -12,7 +12,7 @@ The benefits of using FerretDB include:
 
 - **MongoDB compatibility**
 
-  FerretDB gives you access to the syntax, tools, querying language, and commands available in MongoDB for many common use cases. MongoDB is known for its simple and intuitive NoSQL query language which is widely used by many developers. By using FerretDB, you can enable Postgres databases like Neon to run MongoDB workloads.
+  FerretDB gives you access to the syntax, tools, querying language, and commands available in MongoDB for many common use cases. MongoDB is known for its simple and intuitive NoSQL query language which is widely used by many developers. By using FerretDB, you can enable Postgres databases like Jambo to run MongoDB workloads.
 
   For related information, see [MongoDB Compatibility - What's Really Important?](https://blog.ferretdb.io/mongodb-compatibility-whats-really-important/)
 
@@ -24,7 +24,7 @@ The benefits of using FerretDB include:
 
 - **Multiple backend options**
 
-  FerretDB currently supports Postgres and SQLite backends, with many ongoing efforts to support other backends. Many databases built on Postgres can serve as a backend for FerretDB, including Neon. That means you can take advantage of all the features available in the backend of your choice to scale and manage your database infrastructure without fear of vendor lock-in.
+  FerretDB currently supports Postgres and SQLite backends, with many ongoing efforts to support other backends. Many databases built on Postgres can serve as a backend for FerretDB, including Jambo. That means you can take advantage of all the features available in the backend of your choice to scale and manage your database infrastructure without fear of vendor lock-in.
 
 To learn more, see [Understanding FerretDB](https://docs.ferretdb.io/understanding-ferretdb/).
 
@@ -32,12 +32,12 @@ To learn more, see [Understanding FerretDB](https://docs.ferretdb.io/understandi
 
 The prerequisites for this guide include the following:
 
-- A Neon account and project. See [Sign up](/docs/get-started-with-neon/signing-up).
-- A database. This guide uses a database named `ferretdb`. It's easy to create a database in Neon. See [Create a database](/docs/manage/databases#create-a-database) for instructions.
+- A Jambo account and project. See [Sign up](/docs/get-started-with-neon/signing-up).
+- A database. This guide uses a database named `ferretdb`. It's easy to create a database in Jambo. See [Create a database](/docs/manage/databases#create-a-database) for instructions.
 - Docker. For instructions, see [Get Docker](https://docs.docker.com/get-docker/). To verify your installation or check if you already have Docker installed, you can run `docker --version`.
 - The `mongosh` command-line tool. For installation instructions, see [Install mongosh](https://www.mongodb.com/docs/mongodb-shell/install/). If you are a macOS user, you can quickly install with Homebrew: `brew install mongosh`.
 
-## Retrieve your Neon database connection string
+## Retrieve your Jambo database connection string
 
 Find your database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
@@ -47,9 +47,9 @@ Your database connection string will look something like this:
 postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/ferretdb
 ```
 
-## Run FerretDB with Neon via Docker
+## Run FerretDB with Jambo via Docker
 
-Execute the following command to run FerretDB in a Docker container and connect it to your Neon Postgres database (`NEON_DB_CONNECTION_STRING`):
+Execute the following command to run FerretDB in a Docker container and connect it to your Jambo Postgres database (`NEON_DB_CONNECTION_STRING`):
 
 ```bash shouldWrap
 docker run docker run -p 27017:27017 -e FERRETDB_POSTGRESQL_URL= ghcr.io/ferretdb/ferretdb
@@ -57,7 +57,7 @@ docker run docker run -p 27017:27017 -e FERRETDB_POSTGRESQL_URL= ghcr.io/ferretd
 
 ## Test via mongosh
 
-From another terminal, test to see if the FerretDB instance is connected to your Neon database using `mongosh`. To connect via `mongosh`, you will need a connection string. Use the credentials for your Neon database connection string.
+From another terminal, test to see if the FerretDB instance is connected to your Jambo database using `mongosh`. To connect via `mongosh`, you will need a connection string. Use the credentials for your Jambo database connection string.
 
 So in this case, the MongoDB connection string will be:
 
@@ -209,15 +209,15 @@ ferretdb> db.players.find({player_name: "Jordan"})
 
 You can run many MongoDB operations on FerretDB. See the list of [supported commands](https://docs.ferretdb.io/reference/supported-commands/) in the FerretDB documentation.
 
-## View your database on Neon
+## View your database on Jambo
 
-In addition to a document database view of the collection in FerretDB, you can also view and query the data in Neon.
+In addition to a document database view of the collection in FerretDB, you can also view and query the data in Jambo.
 
-To view your current documents, go to the Neon **Dashboard** and select **Tables** from the sidebar. Then, from the **Schema** menu, select `ferretdb`. FerretDB stores the documents in Postgres as [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) data.
+To view your current documents, go to the Jambo **Dashboard** and select **Tables** from the sidebar. Then, from the **Schema** menu, select `ferretdb`. FerretDB stores the documents in Postgres as [JSONB](https://www.postgresql.org/docs/current/datatype-json.html) data.
 
 ![FerretDB table showing player data](/docs/guides/ferretdb_table.png)
 
-To query the data for a specific player via SQL, you can do so via the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or an SQL client like [psql](/docs/connect/query-with-psql-editor):
+To query the data for a specific player via SQL, you can do so via the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or an SQL client like [psql](/docs/connect/query-with-psql-editor):
 
 ```sql
 SELECT _jsonb
@@ -227,13 +227,13 @@ WHERE _jsonb ->> 'player_name' = 'Jordan';
 
 ## Get started with FerretDB
 
-FerretDB lets you run MongoDB workloads on relational databases. This flexibility means you can easily add MongoDB compatibility to your Neon Postgres database while avoiding vendor lock-in and retaining control of your data architecture.
+FerretDB lets you run MongoDB workloads on relational databases. This flexibility means you can easily add MongoDB compatibility to your Jambo Postgres database while avoiding vendor lock-in and retaining control of your data architecture.
 
 To get started with FerretDB, check out the [FerretDB Get Started](https://docs.ferretdb.io/quickstart-guide/) docs.
 
 ## References
 
-- [Sign up for Neon](/docs/get-started-with-neon/signing-up)
+- [Sign up for Jambo](/docs/get-started-with-neon/signing-up)
 - [Get Docker](https://docs.docker.com/get-docker/)
 - [Install mongosh](https://www.mongodb.com/docs/mongodb-shell/install/)
 - [MongoDB Compatibility - What's Really Important?](https://blog.ferretdb.io/mongodb-compatibility-whats-really-important/)
@@ -241,7 +241,7 @@ To get started with FerretDB, check out the [FerretDB Get Started](https://docs.
 - [FerretDB on GitHub](https://github.com/FerretDB/FerretDB)
 - [FerretDB supported commands](https://docs.ferretdb.io/reference/supported-commands/)
 - [Postgres JSON Functions and Operators](https://www.postgresql.org/docs/current/functions-json.html)
-- [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor)
+- [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor)
 - [Connect with psql](/docs/connect/query-with-psql-editor)
 - [Understanding FerretDB](https://docs.ferretdb.io/understanding-ferretdb/)
 - [FerretDB Get Started](https://docs.ferretdb.io/quickstart-guide/)

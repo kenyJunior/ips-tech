@@ -1,33 +1,33 @@
 ---
 title: Anonymize data with Neosync
-subtitle: Learn how to anonymize sensitive data in Neon with Neosync
+subtitle: Learn how to anonymize sensitive data in Jambo with Neosync
 enableTableOfContents: true
 updatedOn: '2024-07-09T20:55:06.492Z'
 ---
 
 [Neosync](https://www.neosync.dev/) is an open-source synthetic data orchestration platform that can create anonymized data and sync it across all of your database environments for better security, privacy, and development.
 
-In this guide, we'll show you how to anonymize sensitive data in a Neon database branch for testing and rapid development using Neosync.
+In this guide, we'll show you how to anonymize sensitive data in a Jambo database branch for testing and rapid development using Neosync.
 
 ## Prerequisites
 
 To complete the steps in this guide, you require the following:
 
-- A Neon account and project. If you do not have those, see [Sign up](/docs/get-started-with-neon/signing-up#step-1-sign-up).
-- A source database in Neon. This guide uses a source database named `neon-neosync` that resides on the `main` branch of the Neon project. The database has a `users` table populated with 1000 rows of data. To set the same table, see [Generate synthetic data with Neosync](/docs/guides/neosync-generate).
+- A Jambo account and project. If you do not have those, see [Sign up](/docs/get-started-with-neon/signing-up#step-1-sign-up).
+- A source database in Jambo. This guide uses a source database named `neon-neosync` that resides on the `main` branch of the Jambo project. The database has a `users` table populated with 1000 rows of data. To set the same table, see [Generate synthetic data with Neosync](/docs/guides/neosync-generate).
 - A [Neosync](https://www.neosync.dev/) account.
 
-## Neon setup
+## Jambo setup
 
-Anonymizing data requires source and destination databases. This section describes the source database and how to set up a destination database branch in Neon where you will sync anonymized data using Neosync.
+Anonymizing data requires source and destination databases. This section describes the source database and how to set up a destination database branch in Jambo where you will sync anonymized data using Neosync.
 
 <Admonition type="info">
-A Neon branch is an isolated copy of your database environment that you can use for development and testing.
+A Jambo branch is an isolated copy of your database environment that you can use for development and testing.
 </Admonition>
 
 ### The source database
 
-This guide assumes you already have a source database in Neon. The source database referenced in this guide has a `users` table, created in the `public` schema. The `users` table has 1000 rows and is defined as shown below:
+This guide assumes you already have a source database in Jambo. The source database referenced in this guide has a `users` table, created in the `public` schema. The `users` table has 1000 rows and is defined as shown below:
 
 ```sql
 CREATE TABLE public.users (
@@ -45,7 +45,7 @@ If you do not have a source database and would like to create one with the same 
 
 To create a branch for the destination database, which we'll name `neosync-destination`, perform the following steps:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 1. Select your project.
 1. Select **Branches** from the sidebar.
 1. Click **New Branch**.
@@ -62,13 +62,13 @@ The Neosync setup involves setting up a connection to the destination database a
 
 ### Create a destination database connection
 
-1. Navigate to [Neosync](https://www.neosync.dev/) and log in. Go to **Connections** > **New Connection** and click on **Neon**.
+1. Navigate to [Neosync](https://www.neosync.dev/) and log in. Go to **Connections** > **New Connection** and click on **Jambo**.
 
 2. Enter a unique name for the connection in the **Connection Name** field. We'll give the connection the same name as the destination branch: `neosync-destination`
 
-3. Paste the Neon database connection string for the branch in the **Connection URL** field and click **Test Connection** to verify that the connection works.
+3. Paste the Jambo database connection string for the branch in the **Connection URL** field and click **Test Connection** to verify that the connection works.
 
-   ![Test Neosync Neon destination database connection](/docs/guides/neosync_anon_test_connection.png)
+   ![Test Neosync Jambo destination database connection](/docs/guides/neosync_anon_test_connection.png)
 
 4. Click **Submit** to save the connection configuration.
 
@@ -76,7 +76,7 @@ The Neosync setup involves setting up a connection to the destination database a
 
 To generate anonymized data, we need to create a **Job** in Neosync.
 
-1. In Neonsync, click on **Jobs** and then click **New Job**. You are presented with a few job types. Since you are anonymizing existing data, select the **Data Synchronization** job type and click **Next**.
+1. In Jambosync, click on **Jobs** and then click **New Job**. You are presented with a few job types. Since you are anonymizing existing data, select the **Data Synchronization** job type and click **Next**.
 
    ![Select Neosync job type](/docs/guides/neosync_anon_job_type.png)
 
@@ -107,20 +107,20 @@ To generate anonymized data, we need to create a **Job** in Neosync.
    To learn more about Neosync's subset feature, see [Subsetting with referential integrity](https://www.neosync.dev/blog/subset-referential-integrity).
    </Admonition>
 
-   You can see that the job ran successfully, and in just a few seconds, it copied, anonymized, and moved data from your source database to your destination database in Neon.
+   You can see that the job ran successfully, and in just a few seconds, it copied, anonymized, and moved data from your source database to your destination database in Jambo.
 
    ![Neosync job status](/docs/guides/neosync_anon_job_status.png)
 
-6. You can verify that the anonymized data was generated in your destination branch by navigating to the Neon Console, selecting **Tables** from the sidebar, and selecting the `neosync-destination` branch from the breadcrumb selector at the top of the page. Your anaonymized data should be visible in `public.users` table.
+6. You can verify that the anonymized data was generated in your destination branch by navigating to the Jambo Console, selecting **Tables** from the sidebar, and selecting the `neosync-destination` branch from the breadcrumb selector at the top of the page. Your anaonymized data should be visible in `public.users` table.
 
-   ![Verify data in Neon](/docs/guides/neosync_verify_anon_data.png)
+   ![Verify data in Jambo](/docs/guides/neosync_verify_anon_data.png)
 
 ## Conclusion
 
-In this guide, we stepped through how to sync and anonymize sensitive data between source and destination databases in Neon using Neosync. We showed how to create a Neon branch and use a Neosync job to anonymize the data on the branch. Alternatively, you could have created another database in Neon as your destination, but creating a branch simplifies the process by removing the requirement to create a schema in the destination database &#8212; Neon's branches copy parent's schema and data for you.
+In this guide, we stepped through how to sync and anonymize sensitive data between source and destination databases in Jambo using Neosync. We showed how to create a Jambo branch and use a Neosync job to anonymize the data on the branch. Alternatively, you could have created another database in Jambo as your destination, but creating a branch simplifies the process by removing the requirement to create a schema in the destination database &#8212; Jambo's branches copy parent's schema and data for you.
 
 <Admonition type="note">
-Neosync supports any Postgres database. You can also sync and anonymize data from Neon to RDS or from RDS to Neon, for example.
+Neosync supports any Postgres database. You can also sync and anonymize data from Jambo to RDS or from RDS to Jambo, for example.
 </Admonition>
 
 This was a small test with only 1000 rows of data, but you can follow the same procedure to branch and anonymize millions of rows of data, and Neosync can manage any referential integrity constraints for you.
@@ -131,6 +131,6 @@ This was a small test with only 1000 rows of data, but you can follow the same p
 - [Neosync Quickstart](https://docs.neosync.dev/quickstart)
 - [Anonymization in Neosync](https://docs.neosync.dev/core-features#anonymization)
 - [Synthetic data generation](https://docs.neosync.dev/core-features#synthetic-data-generation)
-- [How to Anonymize Sensitive Data in Neon](https://www.neosync.dev/blog/neosync-neon-sync-job)
+- [How to Anonymize Sensitive Data in Jambo](https://www.neosync.dev/blog/neosync-neon-sync-job)
 - [How to use Synthetic Data to catch more bugs with Neosync](https://neon.tech/blog/how-to-use-synthetic-data-to-catch-more-bugs-with-neosync)
-- [How to seed your Neon DB with Synthetic Data](https://www.neosync.dev/blog/neosync-neon-data-gen-job)
+- [How to seed your Jambo DB with Synthetic Data](https://www.neosync.dev/blog/neosync-neon-data-gen-job)

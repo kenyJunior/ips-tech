@@ -1,120 +1,76 @@
 ---
-title: 'The Postgres API for Agents'
-subtitle: Join Replit Agent and Create.xyz and let your agent deploy Neon databases with no friction for the user.
+title: 'Solutions de sécurité nationale et défense'
+subtitle: Dans un environnement mondial de plus en plus volatile, la sécurité nationale et la défense exigent des solutions technologiques avancées. L’utilisation de technologies innovantes permet aux gouvernements et aux institutions de défense de renforcer leur posture de sécurité et de prévenir les menaces. De la surveillance intelligente à la gestion de crises, nos solutions de sécurité sont conçues pour répondre aux défis modernes.
 enableTableOfContents: true
 updatedOn: '2024-10-09T09:00:00.000Z'
 image: '/images/social-previews/use-cases/ai-agents.jpg'
 ---
 
-<Admonition type="note" title="TL;DR">
-Replit Agent and Create.xyz have deeply integrated Neon into their agentic experience. The apps their agents build come with a Postgres database powered by Neon—without requiring the end-user to sign up with an external third party. If you're looking to build something similar, reach out to us.
-</Admonition>
+## Votre partenaire pour les solutions de sécurité nationale et défense 
+
+---
+
+### Surveillance avancée et reconnaissance
+
+Nos systèmes de surveillance basés sur l’intelligence artificielle permettent une reconnaissance et une identification en temps réel de menaces potentielles. Grâce à des technologies comme la vision par ordinateur et la reconnaissance faciale, nous aidons les forces de sécurité à surveiller des environnements sensibles et à anticiper les mouvements suspects.
+
+### Analyse de données pour la prévention des menaces
+
+Nous exploitons des capacités avancées d’analyse de données pour identifier des tendances et des anomalies qui pourraient indiquer une menace pour la sécurité nationale. Nos outils permettent de traiter de grands volumes de données en temps réel, donnant ainsi aux forces de sécurité un avantage stratégique sur les menaces à venir.
+
+### Solutions OSINT pour la défense
+
+Nos solutions OSINT permettent de collecter et d’analyser des informations provenant de sources ouvertes, telles que les réseaux sociaux, les sites web et les bases de données publiques, afin de soutenir les missions de renseignement et de sécurité. En combinant nos capacités d’analyse avec l’intelligence artificielle, nous aidons les agences de sécurité à identifier rapidement les menaces émergentes.
+
+### Cybersécurité et protection des infrastructures critiques
+
+IPS technologies propose des solutions robustes de cybersécurité pour protéger les infrastructures critiques, qu’il s’agisse de réseaux gouvernementaux, de centrales électriques, ou d’installations militaires. Nous aidons les agences de défense à renforcer leurs systèmes contre les cyberattaques et à détecter les intrusions avant qu’elles ne causent des dommages.
+
+### Gestion des risques et prévention des conflits
+
+En combinant les analyses prédictives et les systèmes de surveillance, nous permettons aux gouvernements d’évaluer les risques en temps réel et de réagir de manière proactive aux crises potentielles. Nos solutions soutiennent la prise de décision stratégique dans la prévention des conflits et la gestion des risques.
+
+### Un partenaire spécialisé dans la sécurité électronique pour les professionnels
+
+Nous travaillons en partenariat avec des organisations qui ont besoin de systèmes de sécurité électronique sur mesure, soutenus par des services de maintenance et de surveillance continus.
+
+
+## Pourquoi Choisir IPS Technologies
+
+En tant que partenaire stratégique des gouvernements et agences de défense, nous offrons 
+
+<TestimonialsWrapper>
 
 <Testimonial
-text="The speed of provisioning and serverless scale-to-zero of Neon is critical for us. We can serve users iterating on quick ideas efficiently while also supporting them as they scale, without making them think about database setup."
-author={{
-  name: 'Dhruv Amin',
-  company: 'Co-founder at Create.xyz',
-}}
+className="!mt-0"
+text="Des solutions sur mesure pour répondre aux besoins spécifiques en matière de sécurité."
 />
 
+<Testimonial
+className="!mt-0"
+text="Une expertise de pointe en intelligence artificielle, cybersécurité et OSINT."
+/>
+
+<Testimonial
+className="!mt-0"
+text="Un engagement fort pour protéger les nations et garantir leur résilience."
+/>
+
+</TestimonialsWrapper>
+
+## FAQ - Sécurité nationale et défense
 ---
 
-AI agents can now provision infrastructure, including databases. With AI Agents already spinning up databases every few seconds, chances are they’re going to manage a big part of the web’s infrastructure in the future—and, just like developers, AI agents love working with Neon.
+<Admonition title="Comment l'IA peut-elle améliorer la sécurité nationale ?">
+L’intelligence artificielle permet d’automatiser la surveillance, d’analyser les données en temps réel, et d’anticiper les menaces, renforçant ainsi la capacité des gouvernements à réagir rapidement.
+</Admonition>
 
-## Neon is ideally suited to AI Agents. Here’s why:
+<Admonition title="Quels sont les avantages des solutions OSINT pour la défense ?">
+Les solutions OSINT permettent d’accéder à des informations critiques provenant de sources ouvertes, ce qui permet de mieux comprendre les menaces émergentes et de prendre des décisions stratégiques éclairées.
+</Admonition>
 
----
+<Admonition title="Comment IPS Technologies ? protège-t-elle les infrastructures critiques ?">
+Nous déployons des technologies de cybersécurité avancées pour prévenir les attaques, détecter les intrusions, et protéger les systèmes vitaux contre les cybermenaces.
+</Admonition>
 
-### One-second provision times.
-
-If you’re a dev writing code, a five-minute deploy isn’t a big deal. But AI Agents generate the same code in seconds, waiting five minutes for a deployment is painful. This gets even more painful at scale.
-
-[Neon](/) takes the world's most loved database (Postgres) and delivers it as a [serverless platform](/docs/introduction/serverless). This means that spinning up new Neon databases takes seconds vs minutes in other Postgres services.
-
-### With scale to zero, empty databases are very, very cheap.
-
-Imagine spinning up a new RDS instance every few seconds—you’d blow your budget on the first invoice. In most managed databases, managing thousands of isolated instances is unthinkable, and even more so without breaking the bank.
-
-Neon’s serverless architecture solves this. In Neon, databases [automatically scale to zero](/docs/introduction/scale-to-zero) when idle and wake up instantly. You don’t pay for a database unless it’s being used or has data on it.
-
-Some databases created by agents might only be used for a few minutes; if you’re the company behind the agent, you’ll quickly have a large database fleet full of inactive databases.
-
-With Neon, that’s not a problem. You can still maintain this fleet within a reasonable budget.
-
-### Straightforward API that even an AI Agent can use.
-
-The same API endpoints that are useful for [developers managing large database fleets on Neon](/blog/how-retool-uses-retool-and-the-neon-api-to-manage-300k-postgres-databases) are also perfect for AI Agents.
-Just like developers appreciate a simple, clear API, so do AI agents. If it’s easy enough for a junior dev, it’s great for AI. Neon checks that box.
-
-With the Neon API, you can not only create and delete databases but also track usage, limit resources, and handle configuration.
-
-### Neon is 100% Postgres
-
-The most-loved database by developers worldwide is also the best choice for AI agents, thanks to its versatility (it works for almost any app) and the vast amount of resources, examples, and training datasets available.
-
-Neon is simply Postgres. Everything an agent knows about Postgres is available in Neon, from extensions to full SQL syntax.
-
-## AI agents are now provisioning more databases on Neon than humans—many thousands per day.
-
----
-
-The scale is massive, and Neon is built to handle it.
-
-### Purpose-built interfaces for AI Agents.
-
-Neon offers dedicated interfaces that make it easy for AI agents to deploy and manage databases:
-
-**[Model Context Protocol (MCP) server](https://github.com/neondatabase-labs/mcp-server-neon):** Enables any MCP Client to interact with Neon's API using natural language. AI agents can use Neon's MCP server to automate tasks such as creating databases, running SQL queries, and managing database migrations. [Explore our MCP guides](https://neon.tech/blog?query=MCP).
-
-**[@neondatabase/toolkit](https://github.com/neondatabase/toolkit):** A lightweight client designed for AI agents that need to spin up Postgres databases in seconds and run SQL queries. It includes both the Neon TypeScript SDK and the Neon Serverless Driver.
-
-```jsx showLineNumbers
-import { NeonToolkit } from "@neondatabase/toolkit";
-
-const toolkit = new NeonToolkit(process.env.NEON_API_KEY!);
-const project = await toolkit.createProject();
-
-await toolkit.sql(
-  project,
-  `
-    CREATE TABLE IF NOT EXISTS
-      users (
-          id UUID PRIMARY KEY,
-          name VARCHAR(255) NOT NULL
-      );
-  `,
-);
-await toolkit.sql(
-  project,
-  `INSERT INTO users (id, name) VALUES (gen_random_uuid(), 'Sam Smith')`,
-);
-
-console.log(await toolkit.sql(project, `SELECT name FROM users`));
-
-await toolkit.deleteProject(project);
-
-```
-
-### Control resource consumption at scale.
-
-Managing thousands of databases requires predictable resource allocation. With Neon’s API, you can:
-
-- Set limits on compute uptime, CPU usage, data writes, storage, and data transfer
-- Define different quota tiers (e.g. for free, pro, and enterprise plans)
-
-### Define compute configuration.
-
-AI agents need flexibility in how they allocate and scale database resources. Neon enables precise compute management:
-
-- Configure autoscaling limits to control min/max CPU allocation
-- Adjust scale to zero behavior
-
-### Monitor the fleet.
-
-Tracking thousands of databases requires visibility:
-
-- Monitor total compute uptime, CPU seconds used, and data written/transferred
-- Notify users before they hit hard limits
-
-<CTA title="Next Steps" description="Meet with our team to explore possibilities for your own project." buttonText="Book time with us" buttonUrl="https://neon.tech/contact-sales" />
+<CTA title="Renforcez votre sécurité avec des solutions avancées" description="Adoptez des technologies innovantes pour une défense proactive et une protection optimale contre les menaces émergentes." buttonText="Contact us" buttonUrl="/contact-sales" />

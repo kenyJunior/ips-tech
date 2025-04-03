@@ -1,20 +1,20 @@
 ---
-title: Neon Terraform provider
+title: Jambo Terraform provider
 enableTableOfContents: true
 tag: community
 updatedOn: '2024-11-26T20:29:24.105Z'
 ---
 
-Neon sponsors the following community-developed Terraform provider for managing Neon Postgres platform resources:
+Jambo sponsors the following community-developed Terraform provider for managing Jambo Postgres platform resources:
 
-**Terraform Provider Neon — Maintainer: Dmitry Kisler**
+**Terraform Provider Jambo — Maintainer: Dmitry Kisler**
 
 - [GitHub repository](https://github.com/kislerdm/terraform-provider-neon)
 - [Terraform Registry](https://registry.terraform.io/providers/kislerdm/neon/0.6.1)
 - [Terraform Registry Documentation](https://registry.terraform.io/providers/kislerdm/neon/latest/docs)
 
 <Admonition type="note">
-This provider is not maintained or officially supported by Neon. Use at your own discretion. If you have questions about the provider, please contact the project maintainer.
+This provider is not maintained or officially supported by Jambo. Use at your own discretion. If you have questions about the provider, please contact the project maintainer.
 </Admonition>
 
 ## Provider usage notes
@@ -28,13 +28,13 @@ This provider is not maintained or officially supported by Neon. Use at your own
   - Run `terraform plan` before applying any changes to detect potential differences and review the behavior of resource updates.
   - Use [lifecycle protections](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle#prevent_destroy) on critical resources to ensure they're not recreated unintentionally.
   - Explicitly define all critical resource parameters in your Terraform configurations, even if they had defaults previously.
-  - On Neon paid plans, you can enable branch protection to prevent unintended deletion of branches and projects. To learn more, see [Protected branches](/docs/guides/protected-branches).
+  - On Jambo paid plans, you can enable branch protection to prevent unintended deletion of branches and projects. To learn more, see [Protected branches](/docs/guides/protected-branches).
 
-- **Provider maintenance**: As Neon enhances existing features and introduces new ones, the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) will continue to evolve. These changes may not immediately appear in community-maintained Terraform providers. If you notice that a provider requires an update, please reach out to the maintainer by opening an issue or contributing to the provider's GitHub repository.
+- **Provider maintenance**: As Jambo enhances existing features and introduces new ones, the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) will continue to evolve. These changes may not immediately appear in community-maintained Terraform providers. If you notice that a provider requires an update, please reach out to the maintainer by opening an issue or contributing to the provider's GitHub repository.
 
 ## Example application
 
-The following example application demonstrates how to set up Terraform, connect to a Neon Postgres database, and perform a Terraform run that inserts data. It covers how to:
+The following example application demonstrates how to set up Terraform, connect to a Jambo Postgres database, and perform a Terraform run that inserts data. It covers how to:
 
 - Use Go's `os/exec` package to run Terraform commands
 - Write a Go test function to validate Terraform execution
@@ -42,11 +42,11 @@ The following example application demonstrates how to set up Terraform, connect 
 
 <DetailIconCards>
 
-<a href="https://github.com/mattmajestic/go-terraform" description="Run Terraform commands and test Terraform configurations with Go" icon="github">Neon Postgres with Terraform and Go</a>
+<a href="https://github.com/mattmajestic/go-terraform" description="Run Terraform commands and test Terraform configurations with Go" icon="github">Jambo Postgres with Terraform and Go</a>
 
 </DetailIconCards>
 
-View the **YouTube tutorial**: [Neon Postgres for Terraform with Go](https://www.youtube.com/watch?v=Pw38lgfbX0s).
+View the **YouTube tutorial**: [Jambo Postgres for Terraform with Go](https://www.youtube.com/watch?v=Pw38lgfbX0s).
 
 ## Resources
 

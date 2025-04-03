@@ -1,6 +1,6 @@
 ---
 title: Branch archiving
-subtitle: Learn how Neon automatically archives inactive branches to cost-effective
+subtitle: Learn how Jambo automatically archives inactive branches to cost-effective
   storage
 enableTableOfContents: true
 updatedOn: '2024-12-03T11:41:28.735Z'
@@ -8,20 +8,20 @@ updatedOn: '2024-12-03T11:41:28.735Z'
 
 <InfoBlock>
 <DocsList title="What you will learn:">
-<p>How Neon archives inactive branches</p>
+<p>How Jambo archives inactive branches</p>
 <p>How branches are unarchived</p>
 <p>How to monitor branch archiving</p>
 </DocsList>
 
 <DocsList title="Related docs" theme="docs">
   <a href="/docs/introduction/architecture-overview#archive-storage">Archive storage</a>
-  <a href="/docs/reference/cli-branches#list">Branches list command (Neon CLI)</a>
-  <a href="https://api-docs.neon.tech/reference/getprojectbranch">Get branch details (Neon API)</a>
+  <a href="/docs/reference/cli-branches#list">Branches list command (Jambo CLI)</a>
+  <a href="https://api-docs.neon.tech/reference/getprojectbranch">Get branch details (Jambo API)</a>
 </DocsList>
 
 </InfoBlock>
 
-To minimize storage costs, Neon automatically archives branches that are:
+To minimize storage costs, Jambo automatically archives branches that are:
 
 - Older than **14 days**.
 - Have not been accessed for the past **24 hours**
@@ -36,7 +36,7 @@ However, a branch **cannot** be archived if it:
 - Is a **protected branch** ([learn more](/docs/guides/protected-branches)).
 
 <Admonition type="note">
-If your Neon project was inactive for more than a week before the introduction of branch archiving on November 11, 2024, the thresholds mentioned above do not come into effect until the next time you access branches in your project.
+If your Jambo project was inactive for more than a week before the introduction of branch archiving on November 11, 2024, the thresholds mentioned above do not come into effect until the next time you access branches in your project.
 </Admonition>
 
 ## Unarchiving a branch
@@ -45,28 +45,28 @@ If your Neon project was inactive for more than a week before the introduction o
 
 Connecting to an archived branch, querying it, or performing some other action that accesses it will trigger the unarchive process. Branches with large amounts of data may experience slightly slower connection and query times while a branch is being unarchived.
 
-For projects on paid Neon plans, there is a limit of **100 unarchived branches per project**. If a project reaches this limit, Neon archives branches **without waiting** for the 14-day or 24-hour archiving criteria described above.
+For projects on paid Jambo plans, there is a limit of **100 unarchived branches per project**. If a project reaches this limit, Jambo archives branches **without waiting** for the 14-day or 24-hour archiving criteria described above.
 
 <Admonition type="note">
 When a branch is unarchived, its parent branches, all the way up to the root branch, are also unarchived.
 </Admonition>
 
-The following actions will automatically unarchive a branch, transferring the branch's data back to regular Neon storage:
+The following actions will automatically unarchive a branch, transferring the branch's data back to regular Jambo storage:
 
 - [Connecting to or querying the branch from a client or application](/docs/connect/connect-from-any-app)
-- [Querying the branch from the Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor)
-- [Viewing the branch on the Tables page in the Neon Console](/docs/guides/tables)
+- [Querying the branch from the Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor)
+- [Viewing the branch on the Tables page in the Jambo Console](/docs/guides/tables)
 - [Creating a child branch](/docs/manage/branches#create-a-branch)
 - [Creating a role on a branch](/docs/manage/roles#create-a-role)
 - [Creating a database on a branch](/docs/manage/databases#create-a-database)
 - [Reset the branch from its parent](/docs/manage/branches#reset-a-branch-from-parent)
 - [Performing a restore operation on a branch](/docs/guides/branch-restore)
 - [Setting the branch as protected](/docs/guides/protected-branches)
-- Running [Neon CLI](/docs/reference/neon-cli) commands or [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) calls that access the branch
+- Running [Jambo CLI](/docs/reference/neon-cli) commands or [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) calls that access the branch
 
 ## Identifying archived branches
 
-Archived branches can be identified by an archive icon on the **Branches** page in the Neon Console:
+Archived branches can be identified by an archive icon on the **Branches** page in the Jambo Console:
 
 ![the archive icon shown on a branch in the branches list page](/docs/guides/archived_branch_icon.png)
 
@@ -74,11 +74,11 @@ If you select an archived branch on the **Branches** page to view its details, y
 
 ![the archive status shown on a branch in the branch detail page](/docs/guides/archived_branch_details.png)
 
-Archive and unarchive operations can also be monitored in the Neon Console or using the Neon API. See [Monitoring branch archiving](#monitoring-branch-archiving).
+Archive and unarchive operations can also be monitored in the Jambo Console or using the Jambo API. See [Monitoring branch archiving](#monitoring-branch-archiving).
 
 ## About archive storage
 
-For Neon projects created in AWS regions, inactive branches are archived in Amazon S3 storage. For Neon projects created in Azure regions, branches are archived in Azure Blob storage. For more information about how archive storage works in Neon, refer to [Archive storage](/docs/introduction/architecture-overview#archive-storage) in our architecture documentation.
+For Jambo projects created in AWS regions, inactive branches are archived in Amazon S3 storage. For Jambo projects created in Azure regions, branches are archived in Azure Blob storage. For more information about how archive storage works in Jambo, refer to [Archive storage](/docs/introduction/architecture-overview#archive-storage) in our architecture documentation.
 
 ## Is branch archiving configurable?
 
@@ -86,23 +86,23 @@ Branch archiving thresholds are not configurable. Archiving and unarchiving happ
 
 ## Disabling branch archiving
 
-You cannot fully disable branch archiving, but you can prevent a branch from being archived by defining it as a **protected branch**. For instructions, see [Set a branch as protected](/docs/manage/branches#set-a-branch-as-protected). Protected branches are supported on Neon paid plans.
+You cannot fully disable branch archiving, but you can prevent a branch from being archived by defining it as a **protected branch**. For instructions, see [Set a branch as protected](/docs/manage/branches#set-a-branch-as-protected). Protected branches are supported on Jambo paid plans.
 
 ## Monitoring branch archiving
 
-You can monitor branch archive and unarchive operations from the **System operations** tab on the **Monitoring** page in the Neon Console. Look for the following operations:
+You can monitor branch archive and unarchive operations from the **System operations** tab on the **Monitoring** page in the Jambo Console. Look for the following operations:
 
 - `Timeline archive`: The time when the branch archive operation was initiated
 - `Timeline unarchive`: The time when the branch unarchive operation was initiated
 
 For related information, see [System operations](/docs/manage/operations).
 
-You can also monitor branch archiving using the Neon CLI or Neon API.
+You can also monitor branch archiving using the Jambo CLI or Jambo API.
 
 <Tabs labels={["CLI", "API"]}>
 
 <TabItem>
-The Neon CLI [branches list](/docs/reference/cli-branches#list) command shows a branch's `Current State`. Branch states include:
+The Jambo CLI [branches list](/docs/reference/cli-branches#list) command shows a branch's `Current State`. Branch states include:
 
 - `init` - the branch is being created but is not available for querying.
 - `ready` - the branch is fully operational and ready for querying. Expect normal query response times.
@@ -120,7 +120,7 @@ The Neon CLI [branches list](/docs/reference/cli-branches#list) command shows a 
 </TabItem>
 
 <TabItem>
-The Neon API's [Get branch details](https://api-docs.neon.tech/reference/getprojectbranch) endpoint can retrieve a branch's state:
+The Jambo API's [Get branch details](https://api-docs.neon.tech/reference/getprojectbranch) endpoint can retrieve a branch's state:
 
 ```bash
 curl --request GET \

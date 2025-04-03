@@ -1,19 +1,19 @@
 ---
-title: Neon App for Slack
+title: Jambo App for Slack
 enableTableOfContents: true
-subtitle: Track your Neon projects and organizations from Slack
+subtitle: Track your Jambo projects and organizations from Slack
 updatedOn: '2025-03-19T12:43:23.197Z'
 ---
 
-The Neon App for Slack allows you to monitor your Neon usage and manage organization membership directly from Slack. Get quick access to project information and resource usage metrics without leaving your workspace.
+The Jambo App for Slack allows you to monitor your Jambo usage and manage organization membership directly from Slack. Get quick access to project information and resource usage metrics without leaving your workspace.
 
-![Neon App for Slack commands](/docs/manage/slack_app_overview.png)
+![Jambo App for Slack commands](/docs/manage/slack_app_overview.png)
 
 ## Setup
 
 <Steps>
 
-## Install the Neon App for Slack
+## Install the Jambo App for Slack
 
 Click the **Add to Slack** button and follow the prompts.
 <Button
@@ -27,7 +27,7 @@ analyticsEvent="click_add_to_slack_link">
 <span className="sr-only">Add to Slack</span>
 </Button>
 
-## Authenticate with Neon
+## Authenticate with Jambo
 
 The first thing you need to do is authorize — open a DM with your new app and type `/neon auth`. Follow the login flow that opens in your browser, and you're in.
 
@@ -39,21 +39,21 @@ Once authenticated, you're ready to use all available commands.
 
 | **Command**             | **Description**                                   |
 | ----------------------- | ------------------------------------------------- |
-| `/neon auth`            | Connect Slack to your Neon account                |
-| `/neon projects`        | List your Neon projects                          |
+| `/neon auth`            | Connect Slack to your Jambo account                |
+| `/neon projects`        | List your Jambo projects                          |
 | `/neon usage`          | Show overall resource usage for your account      |
 | `/neon help`           | List all available commands                       |
-| `/neon status`         | Check the current status of Neon's cloud service  |
-| `/neon feedback`       | Share your thoughts and suggestions about the Neon App for Slack |
+| `/neon status`         | Check the current status of Jambo's cloud service  |
+| `/neon feedback`       | Share your thoughts and suggestions about the Jambo App for Slack |
 | `/neon invite user`    | Invite users to your organization                 |
-| `/neon subscribe`      | Subscribe to your Neon account updates            |
-| `/neon unsubscribe`    | Unsubscribe from your Neon account updates       |
+| `/neon subscribe`      | Subscribe to your Jambo account updates            |
+| `/neon unsubscribe`    | Unsubscribe from your Jambo account updates       |
 
 ## Example workflows
 
-### Check your Neon usage statistics
+### Check your Jambo usage statistics
 
-Open a DM with the Neon App for Slack and run the following command to instantly view your current data transfer, compute time, and storage usage across all projects:
+Open a DM with the Jambo App for Slack and run the following command to instantly view your current data transfer, compute time, and storage usage across all projects:
 
 ```
 /neon usage
@@ -63,24 +63,24 @@ Open a DM with the Neon App for Slack and run the following command to instantly
 
 ### Usage notifications
 
-You can receive automated notifications about your Neon usage in any public channel. First, subscribe to notifications using the steps in the section below. Once subscribed, the channel will receive automatic notifications when you approach or reach your resource limits for compute hours, storage, or data transfer.
+You can receive automated notifications about your Jambo usage in any public channel. First, subscribe to notifications using the steps in the section below. Once subscribed, the channel will receive automatic notifications when you approach or reach your resource limits for compute hours, storage, or data transfer.
 
 ### Subscribe to notifications in a channel
 
-To receive Neon notifications in a specific Slack channel:
+To receive Jambo notifications in a specific Slack channel:
 
 1. Go to the public channel where you want to receive notifications
-2. Run `/neon subscribe` - you'll be prompted to run `/invite @Neon (Beta)` if needed
+2. Run `/neon subscribe` - you'll be prompted to run `/invite @Jambo (Beta)` if needed
 3. After inviting the bot, run `/neon subscribe` again
 
-Once subscribed, the channel will start receiving important Neon usage notifications. To stop receiving notifications, use the `/neon unsubscribe` command in the same channel.
+Once subscribed, the channel will start receiving important Jambo usage notifications. To stop receiving notifications, use the `/neon unsubscribe` command in the same channel.
 
 ## FAQs
 
 <details>
-<summary>**What can I do with the Neon App for Slack?**</summary>
+<summary>**What can I do with the Jambo App for Slack?**</summary>
 
-The Neon App for Slack allows you to:
+The Jambo App for Slack allows you to:
 
 - View project information and resource usage
 - Monitor system status
@@ -92,13 +92,13 @@ The Neon App for Slack allows you to:
 <details>
 <summary>**Does this app allow me to modify databases or projects?**</summary>
 
-No, the Neon App for Slack is primarily for viewing usage details and managing organization membership, not for direct database management.
+No, the Jambo App for Slack is primarily for viewing usage details and managing organization membership, not for direct database management.
 
 </details>
 
 <details>
 <summary>**Can I control which notifications I receive?**</summary>
 
-You can control where notifications are sent using the `/neon subscribe` and `/neon unsubscribe` commands in any public channel. However, you cannot customize which types of notifications you receive - all subscribed channels will receive all important Neon updates and usage alerts.
+You can control where notifications are sent using the `/neon subscribe` and `/neon unsubscribe` commands in any public channel. However, you cannot customize which types of notifications you receive - all subscribed channels will receive all important Jambo updates and usage alerts.
 
 </details>

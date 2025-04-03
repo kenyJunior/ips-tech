@@ -1,5 +1,5 @@
 ---
-title: Migrate from Heroku to Neon Postgres
+title: Migrate from Heroku to Jambo Postgres
 enableTableOfContents: true
 redirectFrom:
   - /docs/how-to-guides/hasura-heroku-migration
@@ -8,7 +8,7 @@ redirectFrom:
 updatedOn: '2025-02-03T20:41:57.341Z'
 ---
 
-This guide describes how to import your data from Heroku Postgres to Neon.
+This guide describes how to import your data from Heroku Postgres to Jambo.
 
 <MigrationAssistant/>
 
@@ -16,12 +16,12 @@ The instructions assume that you have installed the Heroku CLI, which is used to
 
 <Steps>
 
-## Create a Neon project and copy the connection string
+## Create a Jambo project and copy the connection string
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
-4. After creating a project, you are directed to the Neon **Dashboard**, where you can click **Connect** to find your database connection details. Copy the connection string. It is required to import your data from Heroku.
+4. After creating a project, you are directed to the Jambo **Dashboard**, where you can click **Connect** to find your database connection details. Copy the connection string. It is required to import your data from Heroku.
 
    The example connection string used the instructions that follow is:
 
@@ -64,7 +64,7 @@ where:
 
 - `[app]` is the name of the Heroku app
 - `[heroku-pg-database]` is the name of the Heroku PostgreSQL database
-- `[neon-connection-string]` is the Neon connection string
+- `[neon-connection-string]` is the Jambo connection string
 
 For example:
 
@@ -144,8 +144,8 @@ heroku-cli: Pulling complete.
 
 ## Verify that your data was imported
 
-1. Log in to the [Neon Console](https://console.neon.tech/app/projects).
-2. Select the Neon project that you transferred data to.
+1. Log in to the [Jambo Console](https://console.neon.tech/app/projects).
+2. Select the Jambo project that you transferred data to.
 3. Select the **Tables** tab.
 4. In the sidebar, verify that your database tables appear under the **Tables** heading.
 

@@ -1,18 +1,18 @@
 ---
-title: Neon CLI commands — me
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — me
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-06-30T14:35:12.895Z'
 ---
 
 ## Before you begin
 
-- Before running the `me` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `me` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
 ## The `me` command
 
-This command shows information about the current Neon CLI user.
+This command shows information about the current Jambo CLI user.
 
 ### Usage
 

@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import fs from 'fs';
 
 import clsx from 'clsx';
@@ -42,7 +40,7 @@ const TechCards = ({ children = null, withToggler = false }) => (
             rel={isExternal ? 'noopener noreferrer' : undefined}
           >
             <div className="relative z-10">
-              <img
+              <Image
                 className={clsx('h-9 w-auto shrink-0', hasDarkIcon && 'dark:hidden')}
                 src={iconPath}
                 width={36}
@@ -51,7 +49,7 @@ const TechCards = ({ children = null, withToggler = false }) => (
                 loading={index > 3 ? 'lazy' : 'eager'}
               />
               {hasDarkIcon && (
-                <img
+                <Image
                   className="hidden dark:block"
                   src={iconPathDark}
                   width={36}

@@ -1,13 +1,13 @@
 ---
-title: Building AI-Powered Chatbots with Azure AI Studio and Neon
-subtitle: Learn how to create AI powered chatbot using Azure AI Studio with Neon Postgres as the backend database
+title: Building AI-Powered Chatbots with Azure AI Studio and Jambo
+subtitle: Learn how to create AI powered chatbot using Azure AI Studio with Jambo Postgres as the backend database
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-24T00:00:00.000Z'
 updatedOn: '2024-11-24T00:00:00.000Z'
 ---
 
-In this guide, we'll walk through creating an AI-powered chatbot from scratch. We will be using Azure AI Studio, Neon Postgres as the backend database, React for the frontend interface and Express for the backend API.
+In this guide, we'll walk through creating an AI-powered chatbot from scratch. We will be using Azure AI Studio, Jambo Postgres as the backend database, React for the frontend interface and Express for the backend API.
 
 We'll deploy a GPT-4 model to Azure AI Studio, which we will then use to build a support chatbot that can answer questions, store conversations, and learn from interactions over time.
 
@@ -16,7 +16,7 @@ We'll deploy a GPT-4 model to Azure AI Studio, which we will then use to build a
 Before we begin, make sure you have:
 
 - An [Azure account](https://azure.microsoft.com/free/) with an active subscription
-- A [Neon account](https://console.neon.tech/signup) and project
+- A [Jambo account](https://console.neon.tech/signup) and project
 - Basic familiarity with SQL and JavaScript/TypeScript
 - [Node.js](https://nodejs.org/) 18.x or later installed
 
@@ -24,9 +24,9 @@ Before we begin, make sure you have:
 
 If you haven't already, follow these steps to set up your development environment:
 
-### Create a Neon Project
+### Create a Jambo Project
 
-1. Navigate to the [Neon Console](https://console.neon.tech)
+1. Navigate to the [Jambo Console](https://console.neon.tech)
 2. Click "New Project"
 3. Select Azure as your cloud provider
 4. Choose East US 2 as your region
@@ -37,7 +37,7 @@ Save your connection details - you'll need these to configure your chatbot's dat
 
 ### Create the Database Schema
 
-A standard chatbot needs to store conversations and track how users interact with it. We'll create a database schema in Neon Postgres that stores messages, tracks user data, and helps us understand how well the chatbot is performing.
+A standard chatbot needs to store conversations and track how users interact with it. We'll create a database schema in Jambo Postgres that stores messages, tracks user data, and helps us understand how well the chatbot is performing.
 
 Our schema will include 4 tables:
 
@@ -46,7 +46,7 @@ Our schema will include 4 tables:
 - `messages`: Stores the messages between users and the bot
 - `feedback`: Records user ratings and comments
 
-Connect to your Neon database and execute the following SQL statements to create the tables:
+Connect to your Jambo database and execute the following SQL statements to create the tables:
 
 ```sql
 -- Create users table
@@ -99,7 +99,7 @@ With our 4 tables in place, we have a schema which allows us to:
 
 ### Set Up Azure AI Studio Project
 
-With your Neon database ready, let's set up Azure AI Studio to deploy our own GPT-4 model.
+With your Jambo database ready, let's set up Azure AI Studio to deploy our own GPT-4 model.
 
 In order to access the Azure OpenAI Studio, you need to create an Azure OpenAI resource. Here's how you can do that:
 
@@ -173,7 +173,7 @@ Additionally, you can add training data to help the model understand your specif
 
 ## Building the Backend
 
-With the Azure OpenAI model deployed, we can now build the backend API that will interact with the model and store chat data in our Neon database.
+With the Azure OpenAI model deployed, we can now build the backend API that will interact with the model and store chat data in our Jambo database.
 
 But before we start building our backend, let's quickly look at how to get the API code from Azure OpenAI Studio. This will help us make sure that we're using the correct API format.
 
@@ -225,7 +225,7 @@ npm install express pg dotenv cors axios
 The packages we're installing are:
 
 - `express`: Web framework for building our API endpoints
-- `pg`: PostgreSQL client for connecting to Neon
+- `pg`: PostgreSQL client for connecting to Jambo
 - `dotenv`: Environment variable management
 - `cors`: Handles Cross-Origin Resource Sharing for our frontend
 - `axios`: Makes HTTP requests to Azure OpenAI API
@@ -286,7 +286,7 @@ You can get your Azure OpenAI API key from the Azure OpenAI Studio portal under 
 
 ### Database Configuration
 
-Next, let's set up the database connection. We'll use the `pg` package to connect to our Neon Postgres database.
+Next, let's set up the database connection. We'll use the `pg` package to connect to our Jambo Postgres database.
 
 Create a `src/config/database.js` file with the following code:
 
@@ -306,7 +306,7 @@ pool.connect((err, client, release) => {
     console.error('Error connecting to the database:', err);
     return;
   }
-  console.log('Successfully connected to Neon database');
+  console.log('Successfully connected to Jambo database');
   release();
 });
 
@@ -316,7 +316,7 @@ module.exports = {
 };
 ```
 
-This sets up a connection to the Neon Postgres database using the `pg` package. We use the `DATABASE_URL` environment variable to connect to the database.
+This sets up a connection to the Jambo Postgres database using the `pg` package. We use the `DATABASE_URL` environment variable to connect to the database.
 
 ### OpenAI Service
 
@@ -544,7 +544,7 @@ This chat service manages all our conversations and messages. There is a lot goi
    - Starts new conversations
    - Processes incoming messages
    - Gets responses from Azure OpenAI
-   - Stores everything in our Neon database
+   - Stores everything in our Jambo database
 
 We are also using database transactions to make sure that all related data (messages, user info, and conversations) is saved correctly, with rollback support if anything fails. This helps maintain data consistency in our chat application.
 
@@ -668,7 +668,7 @@ We also include an error handling middleware to catch any unhandled exceptions a
 
 Starting the server is straightforward - just run `node server.js`. Once started, the server will:
 
-- Connect to your Neon database
+- Connect to your Jambo database
 - Listen for chat requests
 - Be ready to handle messages from the chat interface
 
@@ -1042,7 +1042,7 @@ export const ChatInterface = () => {
   return (
     <div className="flex flex-col h-[600px] bg-white rounded-lg shadow-lg">
       <div className="p-4 border-b bg-chatbot-primary text-white">
-        <h2 className="text-xl font-bold">Neon AI Assistant</h2>
+        <h2 className="text-xl font-bold">Jambo AI Assistant</h2>
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
@@ -1102,7 +1102,7 @@ Visit `http://localhost:5173` to test the chatbot interface. It will automatical
 
 ## Conclusion
 
-In this guide, we've built a simple AI-powered chatbot widget that combines Azure AI Studio with Neon's serverless Postgres database. This implementation works well for documentation websites and help systems, where the chatbot can be embedded as a widget to provide immediate assistance to users.
+In this guide, we've built a simple AI-powered chatbot widget that combines Azure AI Studio with Jambo's serverless Postgres database. This implementation works well for documentation websites and help systems, where the chatbot can be embedded as a widget to provide immediate assistance to users.
 
 When the Azure OpenAI model is trained on your specific documentation or knowledge base, the chatbot can provide accurate, relevant responses about your product or service. This creates a seamless experience for anonymous users who can get quick answers without searching through documentation.
 
@@ -1114,7 +1114,7 @@ As a next step, you can further train your Azure OpenAI model with more specific
 
 - [Azure Bot Service Documentation](https://docs.microsoft.com/en-us/azure/bot-service/)
 - [LUIS Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Bot Framework SDK](https://learn.microsoft.com/en-us/azure/bot-service/index-bf-sdk)
 
 <NeedHelp />

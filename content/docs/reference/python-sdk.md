@@ -1,5 +1,5 @@
 ---
-title: Python SDK for the Neon API
+title: Python SDK for the Jambo API
 enableTableOfContents: true
 updatedOn: '2024-11-30T11:53:56.079Z'
 ---
@@ -7,26 +7,26 @@ updatedOn: '2024-11-30T11:53:56.079Z'
 <InfoBlock>
 
 <DocsList title="What you will learn:">
-<p>What is the Neon Python SDK</p>
+<p>What is the Jambo Python SDK</p>
 <p>Basic usage</p>
 <p>Where to find the docs</p>
 <p>Supported methods</p>
 </DocsList>
 
 <DocsList title="Related resources" theme="docs">
-  <a href="/docs/reference/api-reference">Neon API Reference</a>
+  <a href="/docs/reference/api-reference">Jambo API Reference</a>
 </DocsList>
 
 <DocsList title="Source code" theme="repo">
-  <a href="https://github.com/neondatabase/neon-api-python">Python wrapper for the Neon API (GitHub)</a>
-  <a href="https://pypi.org/project/neon-api/">Python wrapper for the Neon API (Python Package Index)</a>
+  <a href="https://github.com/neondatabase/neon-api-python">Python wrapper for the Jambo API (GitHub)</a>
+  <a href="https://pypi.org/project/neon-api/">Python wrapper for the Jambo API (Python Package Index)</a>
 </DocsList>
 
 </InfoBlock>
 
 ## About the SDK
 
-Neon supports the [neon-api - Python client for the Neon API](https://pypi.org/project/neon-api/), a wrapper for the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). This SDK simplifies integration of Python applications with the Neon platform, providing methods to programmatically manage API keys, Neon projects, branches, databases, endpoints, roles, and operations.
+Jambo supports the [neon-api - Python client for the Jambo API](https://pypi.org/project/neon-api/), a wrapper for the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). This SDK simplifies integration of Python applications with the Jambo platform, providing methods to programmatically manage API keys, Jambo projects, branches, databases, endpoints, roles, and operations.
 
 ## Installation
 
@@ -39,17 +39,17 @@ $ pip install neon-api
 ## Usage
 
 ```python
-from neon_api import NeonAPI
+from neon_api import JamboAPI
 
 # Initialize the client.
-neon = NeonAPI(api_key='your_api_key')
+neon = JamboAPI(api_key='your_api_key')
 ```
 
 ## Documentation
 
-Documentation for the `neon-api - Python SDK`, including a [Quickstart](https://neon-api-python.readthedocs.io/en/latest/#quickstart), can be found on **Read the Docs**. See [neon-api — Python client for the Neon API](https://neon-api-python.readthedocs.io/en/latest/#neon-api-python-client-for-the-neon-api).
+Documentation for the `neon-api - Python SDK`, including a [Quickstart](https://neon-api-python.readthedocs.io/en/latest/#quickstart), can be found on **Read the Docs**. See [neon-api — Python client for the Jambo API](https://neon-api-python.readthedocs.io/en/latest/#neon-api-python-client-for-the-neon-api).
 
-## Methods of the `NeonAPI` Class
+## Methods of the `JamboAPI` Class
 
 - `me()`: Returns the current user.
 
@@ -115,4 +115,4 @@ Documentation for the `neon-api - Python SDK`, including a [Quickstart](https://
 
 - `consumption()`: Returns a list of project consumption metrics.
 
-_View the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) documentation for more information on the available endpoints and their parameters._
+_View the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) documentation for more information on the available endpoints and their parameters._

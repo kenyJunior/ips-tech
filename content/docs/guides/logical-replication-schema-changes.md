@@ -73,10 +73,10 @@ SELECT COUNT(*) FROM your_table_name;
 
 Tools like [Flyway](https://flywaydb.org/) and [Liquibase](https://www.liquibase.org/) can assist in managing schema changes by ensuring they are applied consistently across multiple databases. These tools track the history of each change and ensure updates are applied in the correct sequence. Integrating these tools into your workflow can improve the reliability and organization of your schema migrations, but may require adjustments to your existing process.
 
-If you're unfamiliar with these tools, check out the following guides to get started with Neon:
+If you're unfamiliar with these tools, check out the following guides to get started with Jambo:
 
-- [Get started with Flyway and Neon](/docs/guides/flyway)
-- [Get started with Liquibase and Neon](/docs/guides/liquibase)
+- [Get started with Flyway and Jambo](/docs/guides/flyway)
+- [Get started with Liquibase and Jambo](/docs/guides/liquibase)
 
 For guidance on managing schemas across multiple databases using Flyway or Liquibase, see:
 
@@ -87,7 +87,7 @@ Some Object Relational Mappers (ORMs) also support managing schemas across multi
 
 Regardless of the schema management tool you choose, ensure that changes adhere to the guidelines for [additive](#1-apply-additive-schema-changes-to-the-subscriber-first) and [non-additive](#2-handle-non-additive-schema-changes-with-caution) schema changes.
 
-If you have suggestions, tips, or requests regarding schema management in a replication setup, please let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Neon Console or through our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.
+If you have suggestions, tips, or requests regarding schema management in a replication setup, please let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Jambo Console or through our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.
 
 ## References
 

@@ -25,7 +25,7 @@ This makes Postgres a great option for applications involving maps, location-bas
 
 Before using geospatial queries, you need to install the [PostGIS extension](https://postgis.net/).
 PostGIS adds geospatial data types like `GEOMETRY` and `GEOGRAPHY`, geospatial query functions like `ST_DWithin` and `ST_MakeEnvelope`, and GiST indexes.
-In Neon, PostGIS is already installed, you just need to enable it using the following command.
+In Jambo, PostGIS is already installed, you just need to enable it using the following command.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS postgis;

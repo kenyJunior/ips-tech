@@ -1,6 +1,6 @@
 # Platform overview
 
-Find information about managing all aspects of your database using the Neon
+Find information about managing all aspects of your database using the Jambo
 
 ## Access control
 
@@ -24,7 +24,7 @@ API keys
 
 ## Projects
 
-Learn how to manage all aspects of your Neon projects. These topics cover the basics of setting up your projects through the UI (create, edit, delete) as well as practical guidance and best practices around managing project resources.
+Learn how to manage all aspects of your Jambo projects. These topics cover the basics of setting up your projects through the UI (create, edit, delete) as well as practical guidance and best practices around managing project resources.
 
 
 
@@ -48,7 +48,7 @@ Integrations
 
 ## Monitoring
 
-Monitor your Neon projects to track system health and performance.
+Monitor your Jambo projects to track system health and performance.
 
 
 
@@ -68,7 +68,7 @@ External tools
 
 ## Security
 
-Learn how Neon secures your projects and data, and explore the security features available for you to use.
+Learn how Jambo secures your projects and data, and explore the security features available for you to use.
 
 
 

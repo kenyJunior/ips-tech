@@ -1,6 +1,6 @@
 ---
-title: Migrate from Firebase Firestore to Neon Postgres
-subtitle: Learn how to migrate your data from Firebase Firestore to Neon Postgres using
+title: Migrate from Firebase Firestore to Jambo Postgres
+subtitle: Learn how to migrate your data from Firebase Firestore to Jambo Postgres using
   a custom Python script
 redirectFrom:
   - /docs/import/import-from-firebase
@@ -8,19 +8,19 @@ enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.341Z'
 ---
 
-This guide describes how to migrate data from Firebase Firestore to Neon Postgres.
+This guide describes how to migrate data from Firebase Firestore to Jambo Postgres.
 
-We'll use a custom Python script to export data from Firestore to a local file, and then import the data into Neon Postgres. This approach allows us to handle Firestore's document-based structure and convert it into the relational database format suitable for Postgres.
+We'll use a custom Python script to export data from Firestore to a local file, and then import the data into Jambo Postgres. This approach allows us to handle Firestore's document-based structure and convert it into the relational database format suitable for Postgres.
 
 ## Prerequisites
 
 - A Firebase project containing the Firestore data you want to migrate.
 
-- A Neon project to move the data to.
+- A Jambo project to move the data to.
 
-  For detailed information on creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
+  For detailed information on creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
 
-- Python 3.10 or later installed on your local machine. Additionally, add the following packages to your Python virtual environment: `firebase_admin`, which is Google's python SDK for Firebase and `psycopg`, which is used to connect to Neon Postgres database.
+- Python 3.10 or later installed on your local machine. Additionally, add the following packages to your Python virtual environment: `firebase_admin`, which is Google's python SDK for Firebase and `psycopg`, which is used to connect to Jambo Postgres database.
 
   You can install them using `pip`:
 
@@ -176,22 +176,22 @@ Each file contains a JSON object for each document. To illustrate, `order1` gets
 
 This structure allows for easy reconstruction of the hierarchical relationships between users, orders, and items, while also providing a flat file structure that's easy to process and import into other systems.
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your destination Neon Postgres database to receive the imported data.
+This section describes how to prepare your destination Jambo Postgres database to receive the imported data.
 
-### Create the Neon database
+### Create the Jambo database
 
-1. In the Neon Console, go to your project dashboard.
+1. In the Jambo Console, go to your project dashboard.
 2. In the sidebar, click on **Databases**.
 3. Click the **New Database** button.
 4. Enter a name for your database and click **Create**.
 
 For more information, see [Create a database](/docs/manage/databases#create-a-database).
 
-### Retrieve Neon connection details
+### Retrieve Jambo connection details
 
-1. In the Neon Console, go to your project dashboard.
+1. In the Jambo Console, go to your project dashboard.
 2. Click **Connect** to open the **Connect to your database** modal, and select your database.
 3. Copy the connection string. It will look similar to this:
 
@@ -199,9 +199,9 @@ For more information, see [Create a database](/docs/manage/databases#create-a-da
    postgresql://[user]:[password]@[neon_hostname]/[dbname]
    ```
 
-## Import data into Neon
+## Import data into Jambo
 
-We use another python script to import the firestore data we previously downloaded into Neon.
+We use another python script to import the firestore data we previously downloaded into Jambo.
 
 ```python
 import argparse
@@ -277,19 +277,19 @@ if __name__ == "__main__":
     main()
 ```
 
-Save this script as `neon-import.py`. To run the script, you need to provide the path to the input directory containing the JSON files and the Neon connection string. Run the following command in your terminal:
+Save this script as `neon-import.py`. To run the script, you need to provide the path to the input directory containing the JSON files and the Jambo connection string. Run the following command in your terminal:
 
 ```bash shouldWrap
 python neon-import.py --input firestore_data --postgres "<neon-connection-string>"
 ```
 
-This script iterates over each JSON file in the input directory, creates a table in the Neon database for each collection, and inserts the data into the table. It also handles conflicts by updating the existing data with the new data.
+This script iterates over each JSON file in the input directory, creates a table in the Jambo database for each collection, and inserts the data into the table. It also handles conflicts by updating the existing data with the new data.
 
 ## Verify the migration
 
-After running both the Firestore export and the Neon import scripts, you should verify that your data has been successfully migrated:
+After running both the Firestore export and the Jambo import scripts, you should verify that your data has been successfully migrated:
 
-1. Connect to your Neon database using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
+1. Connect to your Jambo database using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
 
 2. List all tables in your database:
 
@@ -317,7 +317,7 @@ While this guide focuses on using a custom Python script, there are other migrat
 
 - **Firestore managed export/import**
 
-  If you have a large volume of data to migrate, you can use the [Google Cloud Firestore managed export and import service](https://firebase.google.com/docs/firestore/manage-data/export-import). It allows you to export your Firestore data to a Google Cloud Storage bucket, from where you can download and ingest it into Neon.
+  If you have a large volume of data to migrate, you can use the [Google Cloud Firestore managed export and import service](https://firebase.google.com/docs/firestore/manage-data/export-import). It allows you to export your Firestore data to a Google Cloud Storage bucket, from where you can download and ingest it into Jambo.
 
 - **Open source utilities**
 
@@ -332,7 +332,7 @@ While this guide focuses on using a custom Python script, there are other migrat
 
 For more information on the tools and libraries used in this guide, refer to the following documentation:
 
-- [Migrating data to Neon](/docs/import/migrate-intro)
+- [Migrating data to Jambo](/docs/import/migrate-intro)
 - [Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)
 - [Cloud Firestore API](https://cloud.google.com/python/docs/reference/firestore/latest/index.html)
 - [psycopg](https://www.psycopg.org/docs/)

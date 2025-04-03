@@ -1,14 +1,14 @@
 # Partner guide
 
-Learn how to integrate your platform or service with Neon
+Learn how to integrate your platform or service with Jambo
 
-Learn how you can offer instant, managed Postgres databases to your users with Neon. This guide covers how to become a Neon partner, integrate your platform or service with Neon, set usage limits for your users, and more.
+Learn how you can offer instant, managed Postgres databases to your users with Jambo. This guide covers how to become a Jambo partner, integrate your platform or service with Jambo, set usage limits for your users, and more.
 
-Vercel, Replit, Retool, and Koyeb have integrated Neon into their platforms." isIntro>
+Vercel, Replit, Retool, and Koyeb have integrated Jambo into their platforms." isIntro>
 
-## Partnering with Neon
+## Partnering with Jambo
 
-Learn about the benefits of integrating with Neon and how to become a partner.
+Learn about the benefits of integrating with Jambo and how to become a partner.
 
 
 
@@ -18,15 +18,15 @@ Become a Partner
 
 
 
-## Integrate with Neon
+## Integrate with Jambo
 
-Find out how you can integrate with Neon.
+Find out how you can integrate with Jambo.
 
 
 
 Get started
 
-Neon API
+Jambo API
 
 OAuth
 

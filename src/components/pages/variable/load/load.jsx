@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import Section from '../section';
 
 import loadGraphicAWS from './images/load-graphic-aws.jpg';
-import loadGraphicNeon from './images/load-graphic-neon.jpg';
+import loadGraphicJambo from './images/load-graphic-neon.jpg';
 
 const Load = ({ title }) => (
   <Section className="load" title={title}>
@@ -32,7 +32,7 @@ const Load = ({ title }) => (
       />
       <Image
         className="w-[470px] shrink-0 rounded-lg lg:w-full lg:max-w-xl md:rounded"
-        src={loadGraphicNeon}
+        src={loadGraphicJambo}
         width={470}
         height={338}
         alt=""

@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import Image from 'next/image';
 
 import Container from 'components/shared/container';
-import Link from 'components/shared/link';
 import PauseableVideo from 'components/shared/pauseable-video';
 import phoneCameraIllustration from 'images/pages/home/lightning/phone-camera.png';
 
@@ -56,7 +55,7 @@ const Lightning = () => {
             'sm:min-w-[320px] sm:max-w-xs sm:bg-home-lightning-title-sm sm:text-[52px] sm:[mask-image:radial-gradient(49px_55px_at_93.6%_73%,transparent_97%,black)]'
           )}
         >
-          Lightning fast. Edge&nbsp;ready.
+          Des solutions rapides&nbsp;et performantes
         </h2>
 
         <div
@@ -102,24 +101,23 @@ const Lightning = () => {
           </div>
         </div>
         <p className="relative z-10 ml-32 mt-[-347px] max-w-[288px] font-light tracking-extra-tight text-gray-new-70 xl:ml-24 xl:mt-[-283px] xl:leading-snug lg:-mt-56 lg:ml-8 lg:max-w-[250px] sm:ml-0 sm:mt-[-203px] sm:max-w-[212px] sm:text-[15px]">
-          <span className="font-medium text-gray-new-94">The Neon serverless driver</span>, designed
-          for fast queries over HTTP
+          <span className="font-medium text-gray-new-94">Amélioration de l'éfficacité : </span>{' '}
+          Grâce à nos solutions d'intelligence artificielle et d'analyse de données, nos clients
+          clients constatent une nette amélioration de l'éfficacité de leurs processus.
         </p>
         <code className="relative z-10 ml-32 mt-5 flex max-w-xs flex-col gap-y-2.5 text-[13px] leading-dense text-gray-new-50 [mask-image:radial-gradient(110%_110%_at_29%_52%,rgba(0,0,0,.85),rgba(0,0,0,.8)_35%,transparent_96%)] xl:ml-24 xl:max-w-[300px] lg:ml-8 lg:max-w-[270px] lg:gap-y-2 lg:text-xs sm:ml-0 sm:max-w-[212px]">
-          <span>{`import { neon } from '@neondatabase/\nserverless';`}</span>
           <span>
-            {`const sql = neon('postgresql://\nusr:pass@proj.us-east-2.aws.neon.tech/db');`}
+            Nous optimisons la gestion des ressources, réduisons les coûts opérationnels et
+            accélérons la prise de décision, offrant à nos clients un avantage concurrenciel majeur
+            dans leur secteur.
           </span>
-          <span>{`const posts = await sql('SELECT * FROM posts');`}</span>
+          <span>
+            Nous proposons des solutions d'IA sur mesure, répondant à vos besoins dans divers
+            secteurs : Finance, Agroalimentaire, services publics, le renseignement et bien plus
+            encore.
+          </span>
         </code>
-        <Link
-          className="relative z-10 ml-32 mt-6 flex w-fit items-center text-[15px] font-medium leading-none tracking-[-0.03em] xl:ml-24 lg:ml-8 sm:ml-0 sm:mt-3.5"
-          to="/docs/serverless/serverless-driver"
-          theme="white"
-          withArrow
-        >
-          Get the Serverless Driver
-        </Link>
+
         <Image
           className="absolute right-[141px] top-[193px] z-10 h-9 w-auto xl:right-[69px] xl:top-[132px] xl:h-[27px] lg:left-[432px] lg:right-auto lg:top-[91px] lg:h-[21px] sm:left-[351px] sm:top-[66px]"
           src={phoneCameraIllustration}

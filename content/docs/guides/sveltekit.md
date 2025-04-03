@@ -1,24 +1,24 @@
 ---
-title: Connect a Sveltekit application to Neon
-subtitle: Set up a Neon project in seconds and connect from a Sveltekit application
+title: Connect a Sveltekit application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from a Sveltekit application
 enableTableOfContents: true
 updatedOn: '2025-03-05T21:09:38.752Z'
 ---
 
-Sveltekit is a modern JavaScript framework that compiles your code to tiny, framework-less vanilla JS. This guide explains how to connect Sveltekit with Neon using a secure server-side request.
+Sveltekit is a modern JavaScript framework that compiles your code to tiny, framework-less vanilla JS. This guide explains how to connect Sveltekit with Jambo using a secure server-side request.
 
-To create a Neon project and access it from a Sveltekit application:
+To create a Jambo project and access it from a Sveltekit application:
 
-1. [Create a Neon project](#create-a-neon-project)
+1. [Create a Jambo project](#create-a-neon-project)
 2. [Create a Sveltekit project and add dependencies](#create-a-sveltekit-project-and-add-dependencies)
 3. [Configure a Postgres client](#configure-the-postgres-client)
 4. [Run the app](#run-the-app)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -33,7 +33,7 @@ If you do not have one already, create a Neon project. Save your connection deta
 
 2. Add project dependencies using one of the following commands:
 
-   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+   <CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
    ```shell
    npm install pg dotenv
@@ -49,9 +49,9 @@ If you do not have one already, create a Neon project. Save your connection deta
 
    </CodeTabs>
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
@@ -59,13 +59,13 @@ DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port
 
 ## Configure the Postgres client
 
-There are two parts to connecting a SvelteKit application to Neon. The first is `db.server.ts`, which contains the database configuration. The second is the server-side route where the connection to the database will be used.
+There are two parts to connecting a SvelteKit application to Jambo. The first is `db.server.ts`, which contains the database configuration. The second is the server-side route where the connection to the database will be used.
 
 ### db.server
 
-Create a `db.server.ts` file at the root of your `/src` directory and add the following code snippet to connect to your Neon database:
+Create a `db.server.ts` file at the root of your `/src` directory and add the following code snippet to connect to your Jambo database:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```typescript
 import 'dotenv/config';
@@ -108,7 +108,7 @@ export { sql };
 
 Create a `+page.server.ts` file in your route directory and import the database configuration:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```typescript
 import { pool } from '../db.server';
@@ -181,7 +181,7 @@ You can find the source code for the application described in this guide on GitH
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-sveltekit" description="Get started with Sveltekit and Neon" icon="github">Get started with Sveltekit and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-sveltekit" description="Get started with Sveltekit and Jambo" icon="github">Get started with Sveltekit and Jambo</a>
 
 </DetailIconCards>
 

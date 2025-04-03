@@ -1,5 +1,5 @@
 ---
-title: Full Text Search using tsvector with Neon Postgres
+title: Full Text Search using tsvector with Jambo Postgres
 subtitle: A step-by-step guide describing how to implement full text search with tsvector in Postgres
 author: vkarpov15
 enableTableOfContents: true
@@ -19,7 +19,7 @@ The `tsvector` type enables you to use full text search on your text content in 
 
 ## Set up a table with a `tsvector` column
 
-To set up full text search, you need to create a column of type `tsvector` that will enable full text search. You can run the following `CREATE TABLE` statement in the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or from a client such as [psql](/docs/connect/query-with-psql-editor) that is connected to Neon. This statement will create a table with a column `searchable` of type `tsvector`.
+To set up full text search, you need to create a column of type `tsvector` that will enable full text search. You can run the following `CREATE TABLE` statement in the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or from a client such as [psql](/docs/connect/query-with-psql-editor) that is connected to Jambo. This statement will create a table with a column `searchable` of type `tsvector`.
 
 ```sql
 CREATE TABLE documents (
@@ -190,7 +190,7 @@ BEGIN
 END $$;
 ```
 
-Next, you can run an `EXPLAIN ANALYZE` query (or just click the **Explain** button in the Neon SQL Editor) to confirm that Postgres is using your GIN index.
+Next, you can run an `EXPLAIN ANALYZE` query (or just click the **Explain** button in the Jambo SQL Editor) to confirm that Postgres is using your GIN index.
 
 ```sql
 EXPLAIN ANALYZE

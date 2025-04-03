@@ -1,10 +1,10 @@
 ---
-title: Manage organizations using the Neon API
+title: Manage organizations using the Jambo API
 enableTableOfContents: true
 updatedOn: '2025-02-13T13:32:35.158Z'
 ---
 
-Learn how to manage Neon Organizations using the Neon API, including managing organization API keys, working with organization members, and handling member invitations.
+Learn how to manage Jambo Organizations using the Jambo API, including managing organization API keys, working with organization members, and handling member invitations.
 
 ## Personal vs organization API keys
 
@@ -157,7 +157,7 @@ Example response:
 Lists all members in your organization. Each entry includes:
 
 - Member ID (`id`): The unique identifier for the member
-- User ID (`user_id`): The unique ID of the user's Neon account
+- User ID (`user_id`): The unique ID of the user's Jambo account
 - Organization role and join date
 - User's email address
 
@@ -293,7 +293,7 @@ Example response:
 Creates invitations for new organization members. Each invited user:
 
 - Receives an email notification about the invitation
-- If they have an existing Neon account, they automatically join as a member
+- If they have an existing Jambo account, they automatically join as a member
 - If they don't have an account yet, the email invites them to create one
 
 You must use your personal API key and have admin-level permissions in the organization to use this endpoint. Organization API keys are not supported.

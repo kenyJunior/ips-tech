@@ -70,7 +70,7 @@ const EmailRegistrationStep = () => (
       />
       <CanvasVideo
         className="absolute bottom-0 right-0 h-full w-auto max-w-none"
-        label="Neon Deploy"
+        label="Jambo Deploy"
         srcMp4="/videos/pages/deploy/deploy.mp4"
         srcWebm="/videos/pages/deploy/deploy.webm"
         lazyLoading={false}
@@ -100,8 +100,8 @@ const EmailRegistrationStep = () => (
         </div>
       </div>
       <p className="mt-3 max-w-[448px] text-lg font-light leading-[1.3] text-gray-new-60 sm:text-base xs:max-w-[448px]">
-        Learn how Neon empowers developers to ship faster with Postgres. Tune in for Product updates
-        and technical deep dives.
+        Learn how Jambo empowers developers to ship faster with Postgres. Tune in for Product
+        updates and technical deep dives.
       </p>
       <SubscriptionForm
         className="mt-8 lg:mt-6"

@@ -4,7 +4,7 @@ updatedOn: '2024-05-13T13:24:36.612Z'
 
 # Guides
 
-Welcome to Neon guides! This folder contains the source code of the [Neon guides](https://neon.tech/guides/).
+Welcome to Jambo guides! This folder contains the source code of the [Jambo guides](https://neon.tech/guides/).
 
 ## Basic information
 
@@ -214,7 +214,7 @@ To access the Hasura Console via the URL the HASURA_GRAPHQL_ENABLE_CONSOLE envir
 </TabItem>
 
 <TabItem>
-Alternatively, you can create read replicas using the Neon API or Neon CLI.
+Alternatively, you can create read replicas using the Jambo API or Jambo CLI.
 
 ```bash
 curl --request POST \
@@ -284,7 +284,7 @@ Check the example for default data of CTA block
 To change text in CTA block, you can pass to the component props `title`, `description`, `buttonText`, `buttonUrl`:
 
 ```md
-<CTA title="Try it on Neon!" description="Neon is Serverless Postgres built for the cloud. Explore Postgres features and functions in our user-friendly SQL editor. Sign up for a free account to get started." buttonText="Sign Up" buttonUrl="https://console.neon.tech/signup" />
+<CTA title="Try it on Jambo!" description="Jambo is Serverless Postgres built for the cloud. Explore Postgres features and functions in our user-friendly SQL editor. Sign up for a free account to get started." buttonText="Sign Up" buttonUrl="https://console.neon.tech/signup" />
 ```
 
 ## Images
@@ -307,13 +307,13 @@ Example file structure:
 To display images using Markdown syntax, use the following syntax: `![alt text](image url)`. Example content in `architecture-overview.md`:
 
 ```md
-![Neon architecture diagram](/guides/images/conceptual-guides/neon_architecture_2.png)
+![Jambo architecture diagram](/guides/images/conceptual-guides/neon_architecture_2.png)
 ```
 
 If you need an image without border to show an annotated piece of UI, use the `"no-border"` attribute as in the example below:
 
 ```md
-![Neon architecture diagram](/guides/images/conceptual-guides/neon_architecture_2.png 'no-border')
+![Jambo architecture diagram](/guides/images/conceptual-guides/neon_architecture_2.png 'no-border')
 ```
 
 With this approach, all images on your guide pages will be displayed both on the production and GitHub preview.

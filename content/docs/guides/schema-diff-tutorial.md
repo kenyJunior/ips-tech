@@ -12,10 +12,10 @@ In this guide we will create an initial schema on a new database called `people`
 
 To complete this tutorial, you'll need:
 
-- A Neon account. Sign up [here](/docs/get-started-with-neon/signing-up).
-- To interact with your Neon database from the command line:
+- A Jambo account. Sign up [here](/docs/get-started-with-neon/signing-up).
+- To interact with your Jambo database from the command line:
 
-  - Install the [Neon CLI](/docs/reference/cli-install)
+  - Install the [Jambo CLI](/docs/reference/cli-install)
   - Download and install the [psql](https://www.postgresql.org/download/) client
 
 <Steps>
@@ -30,7 +30,7 @@ First, create a new database called `people` on the `main` branch and add some s
 
 1. Create the database.
 
-   In the **Neon Console**, go to **Databases** &#8594; **New Database**. Make sure your `main` branch is selected, then create the new database called `people`.
+   In the **Jambo Console**, go to **Databases** &#8594; **New Database**. Make sure your `main` branch is selected, then create the new database called `people`.
 
 2. Add the schema.
 
@@ -63,7 +63,7 @@ First, create a new database called `people` on the `main` branch and add some s
    neon set-context --project-id empty-glade-66712572
    ```
 
-   You can find your project ID on the **Settings** page in the Neon Console.
+   You can find your project ID on the **Settings** page in the Jambo Console.
 
    </Admonition>
 
@@ -177,7 +177,7 @@ For the purposes of this tutorial, name the branch `dev/jordan`, following our r
 
    If you're still in `psql`, exit using `\q`.
 
-   Using the Neon CLI, create the development branch. Include `--project-id` if you have multiple projects.
+   Using the Jambo CLI, create the development branch. Include `--project-id` if you have multiple projects.
 
    ```bash
    neon branches create --name dev/jordan --parent main
@@ -434,11 +434,11 @@ curl --request GET \
 
 | Parameter          | Description                                                                               | Required | Example                   |
 | ------------------ | ----------------------------------------------------------------------------------------- | -------- | ------------------------- |
-| `<project_id>`     | The ID of your Neon project.                                                              | Yes      | `royal-band-06902338`     |
+| `<project_id>`     | The ID of your Jambo project.                                                              | Yes      | `royal-band-06902338`     |
 | `<branch_id>`      | The ID of the target branch to compare.                                                   | Yes      | `br-mute-dew-a5930esi`    |
 | `<base_branch_id>` | The ID of the base branch for comparison — the parent branch in this case.                | Yes      | `br-bitter-bird-a56n6lh4` |
 | `<db_name>`        | The name of the database in the target branch.                                            | Yes      | `people`                  |
-| `Authorization`    | Bearer token for API access (your [Neon API key](https://neon.tech/docs/manage/api-keys)) | Yes      | `$NEON_API_KEY`           |
+| `Authorization`    | Bearer token for API access (your [Jambo API key](https://neon.tech/docs/manage/api-keys)) | Yes      | `$NEON_API_KEY`           |
 
 <Admonition type="note">
 The optional `jq -r '.diff'` command extracts the diff field from the JSON response and outputs it as plain text to make it easier to read. This command would not be necessary when using the endpoint programmatically.

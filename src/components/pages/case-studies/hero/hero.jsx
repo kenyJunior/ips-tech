@@ -104,26 +104,15 @@ const FeaturedCard = ({
 
 FeaturedCard.propTypes = CardPropTypes;
 
-const Hero = ({ items }) => {
-  const featuredItems = items.filter((item) => item.caseStudyPost.isFeatured === true);
-
-  return (
+const Hero = () => (
     <section className="hero safe-paddings pt-48 xl:pt-[152px] lg:pt-12 md:pt-9">
       <Container className="flex flex-col items-center lg:!max-w-3xl md:px-5" size="960">
         <h1 className="text-center font-title text-[68px] font-medium leading-none tracking-extra-tight xl:text-[56px] lg:text-5xl sm:text-[32px]">
-          Explore success stories
+          Formation entreprise – Transformez vos équipes avec des compétences numériques
         </h1>
-        {!!featuredItems.length && (
-          <ul className="mt-12 flex w-full flex-wrap gap-8 xl:mt-10 lg:mt-8 lg:gap-7 sm:mt-7 sm:flex-col sm:gap-5">
-            {featuredItems.map(({ title, caseStudyPost }, index) => (
-              <FeaturedCard {...caseStudyPost} title={title} index={index} key={index} />
-            ))}
-          </ul>
-        )}
       </Container>
     </section>
   );
-};
 
 Hero.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape(CardPropTypes)).isRequired,

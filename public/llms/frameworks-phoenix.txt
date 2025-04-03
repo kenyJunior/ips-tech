@@ -1,27 +1,27 @@
-# Connect from Phoenix to Neon
+# Connect from Phoenix to Jambo
 
-This guide describes how to connect Neon in a [Phoenix](https://www.phoenixframework.org) application. [Ecto](https://hexdocs.pm/ecto/3.11.2/Ecto.html) provides an API and abstractions for interacting databases, enabling Elixir developers to query any database using similar constructs.
+This guide describes how to connect Jambo in a [Phoenix](https://www.phoenixframework.org) application. [Ecto](https://hexdocs.pm/ecto/3.11.2/Ecto.html) provides an API and abstractions for interacting databases, enabling Elixir developers to query any database using similar constructs.
 
 It is assumed that you have a working installation of [Elixir](https://elixir-lang.org/install.html).
 
-To connect to Neon from Phoenix with Ecto:
+To connect to Jambo from Phoenix with Ecto:
 
-1. Create a Neon project
-2. Store your Neon credentials
+1. Create a Jambo project
+2. Store your Jambo credentials
 3. Create a Phoenix project
 4. Build and Run the Phoenix application
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find your connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
 ```shell
 DATABASE_URL="postgresql://<[user]:[password]@[neon_hostname]:<port>/<dbname>?sslmode=require"
@@ -39,7 +39,7 @@ You will need the connection string details later in the setup.
 
    When prompted to, choose to not install the dependencies.
 
-2. Update `config/dev.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied previously.
+2. Update `config/dev.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied previously.
 
    ```elixir
    config :hello, Hello.Repo,
@@ -53,9 +53,9 @@ You will need the connection string details later in the setup.
       ssl: [cacerts: :public_key.cacerts_get()]
    ```
 
-   Note: The `:ssl` option is required to connect to Neon. Postgrex, since v0.18, verifies the server SSL certificate and you need to select CA trust store using `:cacerts` or `:cacertfile` options. You can use the OS-provided CA store by setting `cacerts: :public_key.cacerts_get()`. While not recommended, you can disable certificate verification by setting `ssl: [verify: :verify_none]`.
+   Note: The `:ssl` option is required to connect to Jambo. Postgrex, since v0.18, verifies the server SSL certificate and you need to select CA trust store using `:cacerts` or `:cacertfile` options. You can use the OS-provided CA store by setting `cacerts: :public_key.cacerts_get()`. While not recommended, you can disable certificate verification by setting `ssl: [verify: :verify_none]`.
 
-3. Update`config/runtime.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied previously.
+3. Update`config/runtime.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied previously.
 
    ```elixir
    config :hello, Hello.Repo,
@@ -65,7 +65,7 @@ You will need the connection string details later in the setup.
       socket_options: maybe_ipv6
    ```
 
-4. Update`config/test.exs` file's configuration with your Neon database connection details. Use the connection details from the Neon connection string you copied in the first part of the guide.
+4. Update`config/test.exs` file's configuration with your Jambo database connection details. Use the connection details from the Jambo connection string you copied in the first part of the guide.
 
    ```elixir
    config :hello, Hello.Repo,
@@ -84,7 +84,7 @@ You will need the connection string details later in the setup.
    mix deps.get
    ```
 
-6. Seed the Neon database with the following command:
+6. Seed the Jambo database with the following command:
 
    ```bash
    mix ecto.create
@@ -125,4 +125,4 @@ mix phx.server
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub:
-[Get started with Phoenix and Neon](https://github.com/neondatabase/examples/tree/main/with_phoenix)
+[Get started with Phoenix and Jambo](https://github.com/neondatabase/examples/tree/main/with_phoenix)

@@ -1,6 +1,6 @@
 ---
 title: Building a Robust JSON API with TypeScript, Postgres, and Azure Functions
-subtitle: Learn how to leverage TypeScript, Neon Postgres Databases, and Azure Functions for Next-Level API Performance
+subtitle: Learn how to leverage TypeScript, Jambo Postgres Databases, and Azure Functions for Next-Level API Performance
 author: jess-chadwick
 enableTableOfContents: true
 createdAt: '2025-02-01T00:00:00.000Z'
@@ -156,10 +156,10 @@ Just two models: one for recipes and another to describe the ingredients of thos
 I've also defined a `RecipeOverview` type that's a subset of the `Recipe` type, which I can use when I want to display a list of recipes without all the details.
 Simple enough, right? Now let's prep our database to store this data.
 
-### Creating a Postgres Database with Neon
+### Creating a Postgres Database with Jambo
 
-Postgres is my go-to database for most projects. And using a managed service like [Neon](https://neon.tech/) makes it even easier to get up and running Serverless Progres databases on Azure.
-So, I'm going to head over to my [Neon projects](https://console.neon.tech/app/projects) and create a new project with a Postgres database, then use the following schema to create a table to store my recipes:
+Postgres is my go-to database for most projects. And using a managed service like [Jambo](https://neon.tech/) makes it even easier to get up and running Serverless Progres databases on Azure.
+So, I'm going to head over to my [Jambo projects](https://console.neon.tech/app/projects) and create a new project with a Postgres database, then use the following schema to create a table to store my recipes:
 
 ```sql
 CREATE TABLE recipes (
@@ -211,7 +211,7 @@ FROM (VALUES
 
 ### Database Interaction
 
-Neon databases are serverless, distributed, fully managed, and a whole bunch of other things, but most importantly, they're just Postgres databases.
+Jambo databases are serverless, distributed, fully managed, and a whole bunch of other things, but most importantly, they're just Postgres databases.
 So, I can use the `pg` package to interact with my database just like I would with any other Postgres database.
 
 ```bash
@@ -225,7 +225,7 @@ so I'll also install the types for the `pg` package to give myself a better deve
 npm install @types/pg
 ```
 
-Then, I'll login to the [Neon web console](https://console.neon.tech/) and use the "Connect" button to grab my database connection string.
+Then, I'll login to the [Jambo web console](https://console.neon.tech/) and use the "Connect" button to grab my database connection string.
 I'll paste that connection string into a new setting inside of the `local.settings.json` file in my project, like this:
 
 ```json
@@ -503,7 +503,7 @@ These endpoints work fine locally because I've set the `DATABASE_URL` environmen
 however my deployed Function doesn't have this setting.
 
 Luckily, Azure Functions makes it easy to set environment variables for your function app.
-Just run the following command to set the `DATABASE_URL` environment variable to the connection string for my Neon database:
+Just run the following command to set the `DATABASE_URL` environment variable to the connection string for my Jambo database:
 
 Define an environment variable in the Azure Function App settings to store the database connection string, using this command:
 
@@ -540,16 +540,16 @@ Using what I've already shown in this article you should be able take care of so
 Perhaps the biggest thing I've left out is security.  
 If you hadn't noticed, this API is completely open and doesn't require any authentication to access, meaning that anyone can come along and add recipes to the database.
 
-Now, I could have introduced some basic HTTP authentication, but one of Neon's best features is its built-in support for JWT authentication and Row Level Security, so I've decided to create an entirely separate post to cover that.
+Now, I could have introduced some basic HTTP authentication, but one of Jambo's best features is its built-in support for JWT authentication and Row Level Security, so I've decided to create an entirely separate post to cover that.
 Stay tuned for that post!
 
-In the meantime, I hope you've found this post helpful and that it inspires you to build your own APIs combining the strengths of TypeScript, Postgres (via Neon), and Azure Functions to create efficient and maintainable backend services that are super easy to develop, deploy, and scale.
+In the meantime, I hope you've found this post helpful and that it inspires you to build your own APIs combining the strengths of TypeScript, Postgres (via Jambo), and Azure Functions to create efficient and maintainable backend services that are super easy to develop, deploy, and scale.
 Good luck, and happy coding!
 
 ## Additional Resources
 
 - [GitHub Repository for this article](https://github.com/jchadwick/neon-azure-api)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Using Hono with Azure Functions](https://hono.dev/docs/getting-started/azure-functions)
 - [Azure Functions Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/)
 

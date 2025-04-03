@@ -232,7 +232,7 @@
   background-size: contain;
   background-image: url('/inkeep/images/user-dark.svg');
 }
-[data-theme='dark'] .ikp-message-header__avatar-user img {
+[data-theme='dark'] .ikp-message-header__avatar-user Image {
   display: none;
 }
 .ikp-chat-bubble__message-content-wrapper {

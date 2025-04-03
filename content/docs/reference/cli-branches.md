@@ -1,18 +1,18 @@
 ---
-title: Neon CLI commands — branches
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — branches
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2025-02-07T17:55:42.640Z'
 ---
 
 ## Before you begin
 
-- Before running the `branches` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `branches` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
 ## The `branches` command
 
-The `branches` command allows you to list, create, rename, delete, and retrieve information about branches in your Neon project. It also permits setting a branch as the default branch, adding a compute to a branch, adding a [read replica](/docs/introduction/read-replicas), or perforning a [schema diff](/docs/guides/schema-diff) between different branches.
+The `branches` command allows you to list, create, rename, delete, and retrieve information about branches in your Jambo project. It also permits setting a branch as the default branch, adding a compute to a branch, adding a [read replica](/docs/introduction/read-replicas), or perforning a [schema diff](/docs/guides/schema-diff) between different branches.
 
 ## Usage
 
@@ -35,7 +35,7 @@ neon branches <subcommand> [options]
 
 ## list
 
-This subcommand allows you to list branches in a Neon project.
+This subcommand allows you to list branches in a Jambo project.
 
 #### Usage
 
@@ -45,12 +45,12 @@ neon branches list [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `list` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 
 #### Examples
 
@@ -110,7 +110,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 ## create
 
-This subcommand allows you to create a branch in a Neon project.
+This subcommand allows you to create a branch in a Jambo project.
 
 #### Usage
 
@@ -120,12 +120,12 @@ neon branches create [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
 
 | Option              | Description                                                                                                                                                                                                                                                           | Type    |                      Required                       |
 | :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :-------------------------------------------------: |
 | `--context-file`    | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name                                                                                                                                                                         | string  |                                                     |
-| `--project-id`      | Project ID                                                                                                                                                                                                                                                            | string  | Only if your Neon account has more than one project |
+| `--project-id`      | Project ID                                                                                                                                                                                                                                                            | string  | Only if your Jambo account has more than one project |
 | `--name`            | The branch name                                                                                                                                                                                                                                                       | string  |                                                     |
 | `--parent`          | Parent branch name, id, timestamp, or LSN. Defaults to the default branch                                                                                                                                                                                             | string  |                                                     |
 | `--compute`         | Create a branch with or without a compute. By default, the branch is created with a read-write endpoint. The default value is `true`. To create a branch without a compute, use `--no-compute`                                                                        | boolean |                                                     |
@@ -165,7 +165,7 @@ When creating a branch from a protected parent branch, role passwords on the chi
   ```
 
     <Admonition type="note">
-    If the parent branch has more than one role or database, the `branches create` command does not output a connection URI. As an alternative, you can use the `connection-string` command to retrieve the connection URI for a branch. This command includes options for specifying the role and database. See [Neon CLI commands — connection-string](/docs/reference/cli-connection-string).
+    If the parent branch has more than one role or database, the `branches create` command does not output a connection URI. As an alternative, you can use the `connection-string` command to retrieve the connection URI for a branch. This command includes options for specifying the role and database. See [Jambo CLI commands — connection-string](/docs/reference/cli-connection-string).
     </Admonition>
 
 - Create a branch with the `--output` format of the command set to `json`. This output format returns all of the branch response data, whereas the default `table` output format (shown in the preceding example) is limited in the information it can display.
@@ -311,16 +311,16 @@ neon branches reset <id|name> --parent
 
 `<id|name>` refers to the branch ID or branch name. You can use either one for this operation.
 
-`--parent` specifies the type of reset operation. Currently, Neon only supports reset from parent. This parameter is required for the operation to work. In the future, Neon might add support for other reset types: for example, rewinding a branch to an earlier period in time.
+`--parent` specifies the type of reset operation. Currently, Jambo only supports reset from parent. This parameter is required for the operation to work. In the future, Jambo might add support for other reset types: for example, rewinding a branch to an earlier period in time.
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `reset` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `reset` subcommand supports these options:
 
 | Option                  | Description                                                                                   | Type    |                                 Required                                  |
 | ----------------------- | --------------------------------------------------------------------------------------------- | ------- | :-----------------------------------------------------------------------: |
 | `--context-file`        | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string  |                                                                           |
-| `--project-id`          | Project ID                                                                                    | string  | Only if your Neon account has more than one project or context is not set |
+| `--project-id`          | Project ID                                                                                    | string  | Only if your Jambo account has more than one project or context is not set |
 | `--parent`              | Reset to a parent branch                                                                      | boolean |                                                                           |
 | `--preserve-under-name` | The name under which to preserve the old branch                                               | string  |                                                                           |
 
@@ -355,12 +355,12 @@ neon branches restore <target-id|name> <source>[@(timestamp|lsn)]
 
 #### Options
 
-In addition to the Neon CLI global options, the `restore` subcommand supports these options:
+In addition to the Jambo CLI global options, the `restore` subcommand supports these options:
 
 | Option                  | Description                                 | Type   |                                 Required                                  |
 | ----------------------- | ------------------------------------------- | ------ | :-----------------------------------------------------------------------: |
 | `--context-file`        | Context file path and file name             | string |                                                                           |
-| `--project-id`          | Project ID                                  | string | Only if your Neon account has more than one project or context is not set |
+| `--project-id`          | Project ID                                  | string | Only if your Jambo account has more than one project or context is not set |
 | `--preserve-under-name` | Name for the backup created during restore. | string |                         When restoring to `^self`                         |
 
 #### Examples
@@ -439,7 +439,7 @@ Restored branch
 
 ## rename
 
-This subcommand allows you to update a branch in a Neon project.
+This subcommand allows you to update a branch in a Jambo project.
 
 #### Usage
 
@@ -451,12 +451,12 @@ neon branches rename <id|name> <new-name> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `rename` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `rename` subcommand supports these options:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 
 #### Example
 
@@ -497,12 +497,12 @@ This setting is **optional**. If you leave it out, the operation uses either of 
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `schema-diff` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `schema-diff` subcommand supports these options:
 
 | Option               | Description                                                                                   | Type   |                                 Required                                  |
 | -------------------- | --------------------------------------------------------------------------------------------- | ------ | :-----------------------------------------------------------------------: |
 | `--context-file`     | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                                           |
-| `--project-id`       | Project ID                                                                                    | string | Only if your Neon account has more than one project or context is not set |
+| `--project-id`       | Project ID                                                                                    | string | Only if your Jambo account has more than one project or context is not set |
 | `--database`, `--db` | Name of the database for which the schema comparison is performed                             | string |                                                                           |
 
 <Admonition type="note">
@@ -568,7 +568,7 @@ neon branches schema-diff main dev/jordan@2024-06-01T00:00:00.000Z
 
 ## set-default
 
-This subcommand allows you to set a branch as the default branch in your Neon project.
+This subcommand allows you to set a branch as the default branch in your Jambo project.
 
 #### Usage
 
@@ -580,12 +580,12 @@ neon branches set-default <id|name> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `set-default` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `set-default` subcommand supports this option:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 
 #### Example
 
@@ -600,7 +600,7 @@ neon branches set-default mybranch
 
 ## add-compute
 
-This subcommand allows you to add a compute to an existing branch in your Neon project.
+This subcommand allows you to add a compute to an existing branch in your Jambo project.
 
 #### Usage
 
@@ -612,12 +612,12 @@ neon branches add-compute <id|name>
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `add-compute` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `add-compute` subcommand supports these options:
 
 | Option           | Description                                                                                                                                                                                                                                         | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name                                                                                                                                                       | string |                                                     |
-| `--project-id`   | Project ID                                                                                                                                                                                                                                          | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                                                                                                                                                                          | string | Only if your Jambo account has more than one project |
 | `--type`         | Type of compute to add. Choices are `read_only` (the default) or `read_write`. A read-only compute is a [read replica](/docs/introduction/read-replicas). A branch can have a single primary read-write compute and multiple read replica computes. | string |                                                     |
 | `--cu`           | Sets the compute size in Compute Units. For a fixed size, enter a single number (e.g., "2"). For autoscaling, enter a range with a dash (e.g., "0.5-3").                                                                                            | string |                                                     |
 
@@ -648,7 +648,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 ## delete
 
-This subcommand allows you to delete a branch in a Neon project.
+This subcommand allows you to delete a branch in a Jambo project.
 
 #### Usage
 
@@ -660,12 +660,12 @@ neon branches delete <id|name> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports this option:
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 
 #### Example
 
@@ -690,14 +690,14 @@ neon branches get <id|name> [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `get` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `get` subcommand supports this option:
 
 #### Options
 
 | Option           | Description                                                                                   | Type   |                      Required                       |
 | ---------------- | --------------------------------------------------------------------------------------------- | ------ | :-------------------------------------------------: |
 | `--context-file` | [Context file](/docs/reference/cli-set-context#using-a-named-context-file) path and file name | string |                                                     |
-| `--project-id`   | Project ID                                                                                    | string | Only if your Neon account has more than one project |
+| `--project-id`   | Project ID                                                                                    | string | Only if your Jambo account has more than one project |
 
 #### Examples
 

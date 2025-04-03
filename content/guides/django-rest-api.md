@@ -1,6 +1,6 @@
 ---
-title: Building an API with Django, Django REST Framework, and Neon Postgres
-subtitle: Learn how to create a robust RESTful API for an AI Model Marketplace using Django, Django REST Framework, and Neon's serverless Postgres
+title: Building an API with Django, Django REST Framework, and Jambo Postgres
+subtitle: Learn how to create a robust RESTful API for an AI Model Marketplace using Django, Django REST Framework, and Jambo's serverless Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-09-15T00:00:00.000Z'
@@ -9,14 +9,14 @@ updatedOn: '2024-09-15T00:00:00.000Z'
 
 Django is one of the most popular Python web frameworks for building web applications and APIs. Django REST Framework extends Django to provide powerful tools for building RESTful APIs quickly and efficiently based on your Django models with minimal code.
 
-In this guide, we will go over how to build a RESTful API for a fictional AI Model Marketplace using Django and Django REST Framework with Neon's serverless Postgres as the database backend.
+In this guide, we will go over how to build a RESTful API for a fictional AI Model Marketplace using Django and Django REST Framework with Jambo's serverless Postgres as the database backend.
 
 ## Prerequisites
 
 To follow this guide, you'll need:
 
 - Python 3.8 or higher installed on your machine
-- A [Neon account](https://console.neon.tech/signup) with a project created
+- A [Jambo account](https://console.neon.tech/signup) with a project created
 - Basic familiarity with Django and RESTful API concepts
 
 ## Setting up the project
@@ -42,7 +42,7 @@ Now, let's install the necessary packages:
 pip install django djangorestframework psycopg2-binary python-dotenv
 ```
 
-This command installs Django, Django REST Framework, the PostgreSQL adapter for Python, and a package to manage environment variables. We'll use Django for the web framework, DRF for building the API, and psycopg2-binary to connect to the Neon Postgres database.
+This command installs Django, Django REST Framework, the PostgreSQL adapter for Python, and a package to manage environment variables. We'll use Django for the web framework, DRF for building the API, and psycopg2-binary to connect to the Jambo Postgres database.
 
 ### Create a new Django project
 
@@ -60,7 +60,7 @@ cd ai_marketplace
 
 ### Configure the database connection
 
-To connect to Neon's serverless Postgres database, we need to set up the database connection in the Django project.
+To connect to Jambo's serverless Postgres database, we need to set up the database connection in the Django project.
 
 Open the `settings.py` file to configure the database connection. By default, Django uses SQLite as the database backend. Replace the `DATABASES` section with the following:
 
@@ -77,7 +77,7 @@ DATABASES = {
 }
 ```
 
-Replace the placeholders with your Neon database details. You can find these details in the Neon Console under **Connection Details**.
+Replace the placeholders with your Jambo database details. You can find these details in the Jambo Console under **Connection Details**.
 
 To verify the connection, run the Django development server:
 
@@ -85,11 +85,11 @@ To verify the connection, run the Django development server:
 python manage.py runserver
 ```
 
-If the server starts without errors, you've successfully connected to the Neon database.
+If the server starts without errors, you've successfully connected to the Jambo database.
 
 ## Creating the API
 
-Now that we have the Django project set up and connected to the Neon database, let's create the simple API for our AI Model Marketplace.
+Now that we have the Django project set up and connected to the Jambo database, let's create the simple API for our AI Model Marketplace.
 
 ### Define the models
 
@@ -218,13 +218,13 @@ Migrations for 'models_api':
 
 You can review the generated migration files in the `models_api/migrations` directory to see the actual migration operations that will be applied to the database based on your models.
 
-Apply the migrations to create the corresponding tables in the Neon database:
+Apply the migrations to create the corresponding tables in the Jambo database:
 
 ```bash
 python manage.py migrate
 ```
 
-This command will create the tables for the models defined in the `models_api` app in the Neon database. The output should indicate that the migrations were applied successfully:
+This command will create the tables for the models defined in the `models_api` app in the Jambo database. The output should indicate that the migrations were applied successfully:
 
 ```
 Operations to perform:
@@ -233,7 +233,7 @@ Running migrations:
   Applying models_api.0001_initial... OK
 ```
 
-You can verify that the tables were created in the Neon Console or by connecting to the database using a PostgreSQL client like `psql`.
+You can verify that the tables were created in the Jambo Console or by connecting to the database using a PostgreSQL client like `psql`.
 
 ### Implement serializers
 
@@ -457,14 +457,14 @@ Alternatively, you can use tools like `curl` or Postman to interact with the API
 
 ## Conclusion
 
-In this guide, we've built a RESTful API for a simple AI Model Marketplace using Django, Django REST Framework, and Neon's serverless Postgres. We covered setting up the project, defining models for AI models, authors, purchases, usage scenarios, and benchmarks, creating serializers and views, and configuring URL routing.
+In this guide, we've built a RESTful API for a simple AI Model Marketplace using Django, Django REST Framework, and Jambo's serverless Postgres. We covered setting up the project, defining models for AI models, authors, purchases, usage scenarios, and benchmarks, creating serializers and views, and configuring URL routing.
 
-This API provides a solid foundation for an AI Model Marketplace platform. You can extend it with features like user authentication, advanced search and filtering, model versioning, and integration with payment systems. The combination of Django's powerful ORM, DRF's flexibility, and Neon's scalable Postgres database makes it easy to build and deploy robust, performant APIs for complex applications like AI model distribution platforms.
+This API provides a solid foundation for an AI Model Marketplace platform. You can extend it with features like user authentication, advanced search and filtering, model versioning, and integration with payment systems. The combination of Django's powerful ORM, DRF's flexibility, and Jambo's scalable Postgres database makes it easy to build and deploy robust, performant APIs for complex applications like AI model distribution platforms.
 
 ## Additional Resources
 
 - [Django REST Framework Documentation](https://www.django-rest-framework.org/)
 - [Django Documentation](https://docs.djangoproject.com/en/stable/)
-- [Neon Documentation](/docs/)
+- [Jambo Documentation](/docs/)
 
 <NeedHelp />

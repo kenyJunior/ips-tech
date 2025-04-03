@@ -12,8 +12,8 @@ export async function GET() {
   const feed = new Rss({
     id: BLOG_BASE_PATH,
     language: 'en',
-    title: `Blog — Neon Docs`,
-    description: 'The latest product updates from Neon',
+    title: `Blog — Jambo Docs`,
+    description: 'The latest product updates from Jambo',
     feed_url: `${SITE_URL}${BLOG_BASE_PATH}rss.xml`,
     site_url: SITE_URL,
   });

@@ -31,30 +31,26 @@ const ITEMS = [
   {
     video: {
       icon: scalingIcon,
-      title: 'Scaling',
+      title: 'Scalabilité pour vos Données',
       mp4: '/videos/pages/home/hero/scaling.mp4?updated=20240514120633',
       m3u8: '/videos/pages/home/hero/scaling.m3u8?updated=20240514120633',
       bgImage: '/videos/pages/home/hero/scaling.jpg',
     },
-    title: 'Scaling',
+    title: 'Scalabilité Intelligente pour vos Données',
     description:
-      'Focus on building applications with time and money-saving features like instant provisioning, autoscaling according to load, and scale to zero.',
-    linkLabel: 'Discover Autoscaling',
-    linkUrl: LINKS.autoscaling,
+      'Boostez la puissance de vos données avec un provisionnement instantané, une montée en charge automatique et une mise en veille des ressources inutilisées. Performance maximale, coût minimal.',
   },
   {
     video: {
       icon: branchingIcon,
-      title: 'Branching',
+      title: 'Branching pour vos Données',
       mp4: '/videos/pages/home/hero/branching.mp4?updated=20240508184252',
       m3u8: '/videos/pages/home/hero/branching.m3u8?updated=20240508184252',
       bgImage: '/videos/pages/home/hero/branching.jpg',
     },
-    title: 'Branching',
+    title: 'Branching pour vos Données',
     description:
-      'Instantly branch your data and schema to access isolated DB copies for development, CI/CD, and schema migrations with copy-on-write storage.',
-    linkLabel: 'Explore Branching',
-    linkUrl: LINKS.docsBranching,
+      "Divisez et gérez vos données et schémas en toute simplicité. Créez des copies isolées pour le développement, les tests CI/CD et les migrations de schémas, avec une gestion efficace de l'espace grâce au stockage copy-on-write.",
   },
 ];
 
@@ -108,22 +104,22 @@ const Hero = () => {
       <Container className="relative z-10 xl:px-8" size="1100">
         <div className="flex flex-col items-center text-center">
           <h1 className="font-title text-[72px] font-medium leading-none -tracking-[0.03em] text-white xl:text-[64px] lg:text-[56px] sm:text-[32px]">
-            Ship faster with Postgres
+            Conduire votre transformation numérique
           </h1>
           <p className="mt-2.5 max-w-xl text-lg font-light leading-snug tracking-tighter text-gray-new-80 lg:mt-2.5 lg:text-base">
-            The database you love, on a serverless platform designed to help you build reliable and
-            scalable applications faster.
+            Votre partenaire en matière de transformation et de conseil d'entreprise, nous vous
+            aidons à intégrer des solutions numériques adaptées pour optimiser vos processus et
+            améliorer votre performance
           </p>
           <Button
             className="pointer-events-auto relative mt-7 px-9 font-semibold xl:mt-6 md:px-7"
             theme="primary"
             size="md-new"
-            to={LINKS.signup}
-            target="_blank"
+            to={LINKS.contactSales}
             tagName="Hero"
             analyticsEvent="home_hero_get_started_clicked"
           >
-            Get Started
+            Contactez-Nous
           </Button>
         </div>
 

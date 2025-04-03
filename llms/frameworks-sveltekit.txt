@@ -1,19 +1,19 @@
-# Connect a Sveltekit application to Neon
+# Connect a Sveltekit application to Jambo
 
-Sveltekit is a modern JavaScript framework that compiles your code to tiny, framework-less vanilla JS. This guide explains how to connect Sveltekit with Neon using a secure server-side request.
+Sveltekit is a modern JavaScript framework that compiles your code to tiny, framework-less vanilla JS. This guide explains how to connect Sveltekit with Jambo using a secure server-side request.
 
-To create a Neon project and access it from a Sveltekit application:
+To create a Jambo project and access it from a Sveltekit application:
 
-1. Create a Neon project
+1. Create a Jambo project
 2. Create a Sveltekit project and add dependencies
 3. Configure a Postgres client
 4. Run the app
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -38,14 +38,14 @@ If you do not have one already, create a Neon project. Save your connection deta
    npm install postgres dotenv
    ```
 
-   For Neon serverless driver:
+   For Jambo serverless driver:
    ```shell
    npm install @neondatabase/serverless dotenv
    ```
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
 
 ```shell
 DATABASE_URL="postgresql://<[user]:[password]@[neon_hostname]:<port>/<dbname>?sslmode=require"
@@ -53,11 +53,11 @@ DATABASE_URL="postgresql://<[user]:[password]@[neon_hostname]:<port>/<dbname>?ss
 
 ## Configure the Postgres client
 
-There are two parts to connecting a SvelteKit application to Neon. The first is `db.server.ts`, which contains the database configuration. The second is the server-side route where the connection to the database will be used.
+There are two parts to connecting a SvelteKit application to Jambo. The first is `db.server.ts`, which contains the database configuration. The second is the server-side route where the connection to the database will be used.
 
 ### db.server
 
-Create a `db.server.ts` file at the root of your `/src` directory and add the following code snippet to connect to your Neon database:
+Create a `db.server.ts` file at the root of your `/src` directory and add the following code snippet to connect to your Jambo database:
 
 Using node-postgres:
 ```typescript
@@ -86,7 +86,7 @@ const sql = postgres(connectionString, { ssl: 'require' });
 export { sql };
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```typescript
 import 'dotenv/config';
 import { neon } from '@neondatabase/serverless';
@@ -132,7 +132,7 @@ export async function load() {
 }
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```typescript
 import { sql } from '../db.server';
 
@@ -170,4 +170,4 @@ PostgreSQL 17.2 on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14) 12.2.
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub:
-[Get started with Sveltekit and Neon](https://github.com/neondatabase/examples/tree/main/with-sveltekit)
+[Get started with Sveltekit and Jambo](https://github.com/neondatabase/examples/tree/main/with-sveltekit)

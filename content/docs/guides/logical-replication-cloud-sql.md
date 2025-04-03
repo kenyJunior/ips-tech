@@ -1,6 +1,6 @@
 ---
 title: Replicate data from Cloud SQL Postgres
-subtitle: Learn how to replicate data from Google Cloud SQL Postgres to Neon
+subtitle: Learn how to replicate data from Google Cloud SQL Postgres to Jambo
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-14T17:05:09.998Z'
@@ -18,15 +18,15 @@ This guide describes how to replicate data from Cloud SQL Postgres using native 
   SELECT LEFT(md5(i::TEXT), 10), random() FROM generate_series(1, 10) s(i);
   ```
 
-- A Neon project with a Postgres database to receive the replicated data. For information about creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin.
+- A Jambo project with a Postgres database to receive the replicated data. For information about creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin.
 - Review our [logical replication tips](/docs/guides/logical-replication-tips), based on real-world customer data migration experiences.
 
 <Steps>
 
 ## Prepare your Cloud SQL source database
 
-This section describes how to prepare your source Cloud SQL Postgres instance (the publisher) for replicating data to Neon.
+This section describes how to prepare your source Cloud SQL Postgres instance (the publisher) for replicating data to Jambo.
 
 ### Enable logical replication
 
@@ -49,9 +49,9 @@ Afterward, you can verify that logical replication is enabled by running `SHOW w
 
 ![show wal_level](/docs/guides/cloud_sql_show_wal_level.png)
 
-### Allow connections from Neon
+### Allow connections from Jambo
 
-You need to allow connections to your Cloud SQL Postgres instance from Neon. To do this in Google Cloud:
+You need to allow connections to your Cloud SQL Postgres instance from Jambo. To do this in Google Cloud:
 
 1. In the Google Cloud console, go to the Cloud SQL Instances page.
 1. Open the **Overview** page of your instance by clicking the instance name.
@@ -60,18 +60,18 @@ You need to allow connections to your Cloud SQL Postgres instance from Neon. To 
 1. Select the **Public IP** checkbox.
 1. Click **Add network**.
 1. Optionally, in the **Name** field, enter a name for this network.
-1. In the **Network** field, enter the IP address from which you want to allow connections. You will need to perform this step for each of the NAT gateway IP addresses associated with your Neon project's region. Neon uses 3 to 6 IP addresses per region for this outbound communication, corresponding to each availability zone in the region. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for Neon's NAT gateway IP addresses.
+1. In the **Network** field, enter the IP address from which you want to allow connections. You will need to perform this step for each of the NAT gateway IP addresses associated with your Jambo project's region. Jambo uses 3 to 6 IP addresses per region for this outbound communication, corresponding to each availability zone in the region. See [NAT Gateway IP addresses](/docs/introduction/regions#nat-gateway-ip-addresses) for Jambo's NAT gateway IP addresses.
 
    <Admonition type="note">
    Cloud SQL requires addresses to be specified in CIDR notation. You can do so by appending `/32` to the NAT Gateway IP address; for example: `18.217.181.229/32`
    </Admonition>
 
-   In the example shown below, you can see that three addresses were added, named `Neon1`, `Neon2`, and `Neon3`. You can name them whatever you like. The addresses were added in CIDR format by adding `/32`.
+   In the example shown below, you can see that three addresses were added, named `Jambo1`, `Jambo2`, and `Jambo3`. You can name them whatever you like. The addresses were added in CIDR format by adding `/32`.
 
    ![Cloud SQL network configuration](/docs/guides/cloud_sql_network_config.png)
 
 1. Click **Done** after adding a Network entry.
-1. Click **Save** when you are finished adding Network entries for all of your Neon project's NAT Gateway IP addresses.
+1. Click **Save** when you are finished adding Network entries for all of your Jambo project's NAT Gateway IP addresses.
 
 <Admonition type="note">
 You can specify a single Network entry using `0.0.0.0/0` to allow traffic from any IP address. However, this configuration is not considered secure and will trigger a warning.
@@ -79,7 +79,7 @@ You can specify a single Network entry using `0.0.0.0/0` to allow traffic from a
 
 ### Note your public IP address
 
-Record the public IP address of your Cloud SQL Postgres instance. You'll need this value later when you set up a subscription from your Neon database. You can find the public IP address on your Cloud SQL instance's **Overview** page.
+Record the public IP address of your Cloud SQL Postgres instance. You'll need this value later when you set up a subscription from your Jambo database. You can find the public IP address on your Cloud SQL instance's **Overview** page.
 
 <Admonition type="note">
 If you do not use a public IP address, you'll need to configure access via a private IP. Refer to the [Cloud SQL documentation](https://cloud.google.com/sql/docs/mysql/private-ip).
@@ -129,9 +129,9 @@ Defining specific tables lets you add or remove tables from the publication late
 
 For syntax details, see [CREATE PUBLICATION](https://www.postgresql.org/docs/current/sql-createpublication.html), in the PostgreSQL documentation.
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your source Neon Postgres database (the subscriber) to receive replicated data from your Cloud SQL Postgres instance.
+This section describes how to prepare your source Jambo Postgres database (the subscriber) to receive replicated data from your Cloud SQL Postgres instance.
 
 ### Prepare your database schema
 
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS playing_with_neon(id SERIAL PRIMARY KEY, name TEXT NO
 
 ### Create a subscription
 
-After creating a publication on the source database, you need to create a subscription on your Neon destination database.
+After creating a publication on the source database, you need to create a subscription on your Jambo destination database.
 
 1. Create the subscription using the using a `CREATE SUBSCRIPTION` statement.
 
@@ -157,7 +157,7 @@ After creating a publication on the source database, you need to create a subscr
 
    - `subscription_name`: A name you chose for the subscription.
    - `connection_string`: The connection string for the source Cloud SQL database where you defined the publication. For the `<primary_ip>`, use the IP address of your Cloud SQL Postgres instance that you noted earlier, and specify the name and password of your replication role. If you're replicating from a database other than `postgres`, be sure to specify that database name.
-   - `publication_name`: The name of the publication you created on the source Neon database.
+   - `publication_name`: The name of the publication you created on the source Jambo database.
 
 2. Verify the subscription was created by running the following command:
 
@@ -197,8 +197,8 @@ SELECT subname, received_lsn, latest_end_lsn, last_msg_receipt_time FROM pg_cata
 
 ## Switch over your application
 
-After the replication operation is complete, you can switch your application over to the destination database by swapping out your Cloud SQL source database connection details for your Neon destination database connection details.
+After the replication operation is complete, you can switch your application over to the destination database by swapping out your Cloud SQL source database connection details for your Jambo destination database connection details.
 
-You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
+You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 </Steps>

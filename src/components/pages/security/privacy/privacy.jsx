@@ -9,7 +9,7 @@ const CARDS = [
   {
     title: 'California Consumer Privacy Act (CCPA) / California Privacy Rights Act (CPRA)',
     description:
-      'Neon complies with CCPA and CPRA, ensuring data privacy and transparency. We don’t sell, share, or retain personal data beyond contractual obligations, allowing users to manage their preferences.',
+      'Jambo complies with CCPA and CPRA, ensuring data privacy and transparency. We don’t sell, share, or retain personal data beyond contractual obligations, allowing users to manage their preferences.',
     logo: {
       src: CCPALogo,
       width: 98,
@@ -23,7 +23,7 @@ const CARDS = [
   {
     title: 'European General Data Protection Regulation (GDPR)',
     description:
-      'Neon follows the GDPR framework, ensuring user rights, data minimization, and lawful processing. We offer Data Processing Agreements (DPA) and support compliant cross-border data transfers.',
+      'Jambo follows the GDPR framework, ensuring user rights, data minimization, and lawful processing. We offer Data Processing Agreements (DPA) and support compliant cross-border data transfers.',
     logo: {
       src: GDPRLogo,
       width: 108,
@@ -37,7 +37,7 @@ const CARDS = [
     title:
       'United States Health Insurance Portability and Accountability&nbsp;Act of&nbsp;1996 (HIPAA)',
     description:
-      'Neon has achieved HIPAA compliance to support customers handling protected health information (PHI). Our security measures include encryption of electronic PHI, least-privilege access control, security monitoring for unauthorized data access, and comprehensive audit logging.',
+      'Jambo has achieved HIPAA compliance to support customers handling protected health information (PHI). Our security measures include encryption of electronic PHI, least-privilege access control, security monitoring for unauthorized data access, and comprehensive audit logging.',
     banner: {
       src: HIPAALogo,
       width: 399,

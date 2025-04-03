@@ -1,4 +1,4 @@
-# Enable Autoscaling in Neon
+# Enable Autoscaling in Jambo
 
 
 
@@ -12,10 +12,10 @@ How the algorithm works
 
 
 
-This guide demonstrates how to enable autoscaling in your Neon project and how to [visualize](#monitor-autoscaling) your usage.
+This guide demonstrates how to enable autoscaling in your Jambo project and how to [visualize](#monitor-autoscaling) your usage.
 
 
-Neon's autoscaling feature instantly scales your compute and memory resources. **No manual intervention or restarts are required.** 
+Jambo's autoscaling feature instantly scales your compute and memory resources. **No manual intervention or restarts are required.** 
 
 
 ## Enable autoscaling for a compute
@@ -24,13 +24,13 @@ You can edit an individual compute to alter the compute configuration, which inc
 
 To edit a compute:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 1. Select a branch.
 1. On the **Computes** tab, identify the compute you want to configure and click **Edit**.
    ![Edit compute menu](/docs/guides/autoscaling_edit.png)
 1. On the **Edit compute** drawer, select **Autoscale** and use the slider to specify a minimum and maximum compute size.
 
-   Neon scales the compute size up and down within the specified range to meet workload demand. Autoscaling currently supports a range of 1/4 (.25) to 16 vCPUs. One vCPU has 4 GB of RAM, 2 vCPUs have 8 GB of RAM, and so on. The amount of RAM in GB is always 4 times the number of vCPUs. For an overview of available compute sizes, see [Compute size and autoscaling configuration](/docs/manage/endpoints#compute-size-and-autoscaling-configuration). Please note that when the autoscaling maximum is > 10, the autoscaling minimum must be ≥ (max / 8).
+   Jambo scales the compute size up and down within the specified range to meet workload demand. Autoscaling currently supports a range of 1/4 (.25) to 16 vCPUs. One vCPU has 4 GB of RAM, 2 vCPUs have 8 GB of RAM, and so on. The amount of RAM in GB is always 4 times the number of vCPUs. For an overview of available compute sizes, see [Compute size and autoscaling configuration](/docs/manage/endpoints#compute-size-and-autoscaling-configuration). Please note that when the autoscaling maximum is > 10, the autoscaling minimum must be ≥ (max / 8).
 
    
    You can configure the scale to zero setting for your compute at the same time. For more, see [Scale to Zero](/docs/introduction/scale-to-zero).
@@ -57,7 +57,7 @@ The next time you create a compute, these settings will be applied to it.
 
 ## Monitor autoscaling
 
-From the Neon Console, you can view how your vCPU and RAM usage have scaled for the past 24 hours. On the **Project Dashboard** page, navigate down the page to the **Monitoring** section.
+From the Jambo Console, you can view how your vCPU and RAM usage have scaled for the past 24 hours. On the **Project Dashboard** page, navigate down the page to the **Monitoring** section.
 
 Some key points about this Autoscaling graph:
 

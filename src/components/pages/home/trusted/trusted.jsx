@@ -4,9 +4,9 @@ import Container from 'components/shared/container';
 import LINKS from 'constants/links';
 import ArrowRightIcon from 'icons/arrow-right.inline.svg';
 import digitImage from 'images/pages/home/trusted/digit.jpg';
-import elephantImage from 'images/pages/home/trusted/elephant.jpg';
-import githubImage from 'images/pages/home/trusted/github.jpg';
-import socMdImage from 'images/pages/home/trusted/soc-md.jpg';
+import elephantImage from 'images/pages/home/trusted/goat.jpg';
+import socMdImage from 'images/pages/home/trusted/goat2.jpg';
+import githubImage from 'images/pages/home/trusted/linkedin.png';
 import socImage from 'images/pages/home/trusted/soc.jpg';
 
 import Card from './card';
@@ -21,7 +21,7 @@ const Trusted = () => (
           'xl:-mb-[46px] xl:text-[112px] lg:mb-8 lg:bg-none lg:text-[72px] lg:text-white sm:mb-7 sm:text-[40px] sm:leading-[0.95em] sm:tracking-tighter'
         )}
       >
-        Trusted Postgres
+        Trusted By IPS
       </h2>
       <div
         className={clsx(
@@ -34,10 +34,10 @@ const Trusted = () => (
           borderClassName="border-linear border-image-home-trusted-github-card"
           bgClassName="inset-0 sm:top-auto sm:bottom-[-26%]"
           bgImage={githubImage}
-          to={LINKS.github}
+          to={LINKS.linkedin}
         >
           <span className="mx-auto flex items-center font-medium text-white transition-colors duration-200 group-hover:text-green-45">
-            neondatabase/neon
+            ips technologies
             <ArrowRightIcon className="-mb-px ml-1.5 shrink-0 transition-transform duration-200 group-hover:translate-x-[3px]" />
           </span>
         </Card>
@@ -47,8 +47,8 @@ const Trusted = () => (
           bgClassName="inset-0"
           bgImage={digitImage}
         >
-          <strong className="font-medium text-white">Databases under management.</strong>{' '}
-          <span className="font-light">Postgres for the World.</span>
+          <strong className="font-medium text-white">Données Utilisées</strong>{' '}
+          <span className="font-light" />
         </Card>
         <Card
           className={clsx(
@@ -59,8 +59,7 @@ const Trusted = () => (
           bgClassName="w-[510px] left-[-39%] top-[-18%] xl:w-[382px] lg:w-[104%] lg:left-[-3%] lg:top-[-41%] sm:w-full sm:left-0"
           bgImage={elephantImage}
         >
-          <strong className="font-medium text-white">100% Postgres.</strong> Not a fork, not a
-          rewrite.
+          <strong className="font-medium text-white">Intelligence Artificielle.</strong>
         </Card>
         <Card
           className="aspect-[192/247] lg:order-4 lg:aspect-[310/220] lg:justify-center sm:aspect-[320/220]"
@@ -68,10 +67,9 @@ const Trusted = () => (
           bgClassName="top-[-43%] left-[-43%] w-[454px] xl:w-[342px] lg:inset-0 lg:w-full lg:h-full"
           bgImage={socImage}
           mobileBgImage={socMdImage}
-          to="/blog/soc2-type2"
         >
           <span className="flex items-end font-medium text-white transition-colors duration-200 group-hover:text-green-45">
-            <span>SOC2 Compliance</span>
+            <span>Automatisation</span>
             <ArrowRightIcon className="relative -left-5 -top-2 shrink-0 transition-transform duration-200 group-hover:translate-x-[3px] xl:-left-1 xl:-top-1 lg:-top-1.5 lg:left-1.5 sm:-top-1" />
           </span>
         </Card>

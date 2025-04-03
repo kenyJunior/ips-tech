@@ -5,17 +5,13 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useCookie from 'react-use/lib/useCookie';
-import useLocation from 'react-use/lib/useLocation';
 import * as yup from 'yup';
 
 import Button from 'components/shared/button';
 import Field from 'components/shared/field';
-import Link from 'components/shared/link';
-import { FORM_STATES, HUBSPOT_CONTACT_SALES_FORM_ID } from 'constants/forms';
-import LINKS from 'constants/links';
+import { FORM_STATES } from 'constants/forms';
 import { checkBlacklistEmails } from 'utils/check-blacklist-emails';
-import { doNowOrAfterSomeTime, sendHubspotFormData } from 'utils/forms';
+import { doNowOrAfterSomeTime } from 'utils/forms';
 
 const schema = yup
   .object({
@@ -45,14 +41,9 @@ const ContactForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const [hubspotutk] = useCookie('hubspotutk');
-  const { href } = useLocation();
   const [formError, setFormError] = useState('');
 
-  const context = {
-    hutk: hubspotutk,
-    pageUri: href,
-  };
+  // Dans ton composant ContactForm.js
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
@@ -62,35 +53,13 @@ const ContactForm = () => {
     setFormState(FORM_STATES.LOADING);
 
     try {
-      const response = await sendHubspotFormData({
-        formId: HUBSPOT_CONTACT_SALES_FORM_ID,
-        context,
-        values: [
-          {
-            name: 'full_name',
-            value: name,
-          },
-          {
-            name: 'email',
-            value: email,
-          },
-          {
-            name: 'company_website',
-            value: companyWebsite,
-          },
-          {
-            name: 'company_size',
-            value: companySize,
-          },
-          {
-            name: 'TICKET.subject',
-            value: 'Contact sales',
-          },
-          {
-            name: 'TICKET.content',
-            value: message,
-          },
-        ],
+      const response = await fetch('/api/send-email', {
+        // L'adresse de ta route API
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, companyWebsite, companySize, message }),
       });
 
       if (response.ok) {
@@ -100,7 +69,9 @@ const ContactForm = () => {
           setFormError('');
         }, loadingAnimationStartedTime);
       } else {
-        throw new Error('Something went wrong. Please reload the page and try again.');
+        throw new Error(
+          "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer."
+        );
       }
     } catch (error) {
       if (error.name !== 'AbortError') {
@@ -124,10 +95,10 @@ const ContactForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <Field
-        name="name"
-        label="Your Name *"
+        name="Nom et Prénom"
+        label="Nom et Prénom *"
         autoComplete="name"
-        placeholder="Marques Hansen"
+        placeholder="David Moulli"
         theme="transparent"
         labelClassName={labelClassName}
         errorClassName={errorClassName}
@@ -137,7 +108,7 @@ const ContactForm = () => {
       />
       <Field
         name="email"
-        label="Work Email *"
+        label="E-mail *"
         type="email"
         autoComplete="email"
         placeholder="info@acme.com"
@@ -197,21 +168,6 @@ const ContactForm = () => {
       />
 
       <div className="relative flex items-center justify-between gap-6 xl:gap-5 lg:gap-6 sm:flex-col sm:items-start sm:gap-5">
-        <p className="text-light text-sm leading-snug text-gray-new-70 xl:tracking-tighter">
-          By submitting you agree to the{' '}
-          <Link className="text-nowrap text-white" to={LINKS.terms} theme="white-underlined">
-            Terms Service
-          </Link>{' '}
-          and acknowledge the{' '}
-          <Link
-            className="text-nowrap text-white"
-            to={LINKS.privacyPolicy}
-            theme="white-underlined"
-          >
-            Privacy Policy
-          </Link>
-          .
-        </p>
         <Button
           className="min-w-[176px] py-[15px] font-medium 2xl:text-base xl:min-w-[138px] lg:min-w-[180px] sm:w-full sm:py-[13px]"
           type="submit"

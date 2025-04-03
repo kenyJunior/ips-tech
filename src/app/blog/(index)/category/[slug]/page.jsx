@@ -59,7 +59,7 @@ export async function generateMetadata({ params }) {
   if (!category) return notFound();
 
   return getMetadata({
-    title: `${category.name} Blog - Neon`,
+    title: `${category.name} Blog - Jambo`,
     description: getBlogCategoryDescription(params.slug),
     pathname: `${BLOG_CATEGORY_BASE_PATH}${params.slug}`,
     imagePath: '/images/social-previews/blog.jpg',

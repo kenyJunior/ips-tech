@@ -1,6 +1,6 @@
-# Query organization usage metrics with the Neon API
+# Query organization usage metrics with the Jambo API
 
-You can use the Neon API to retrieve three types of consumption metrics for your organization:
+You can use the Jambo API to retrieve three types of consumption metrics for your organization:
 
 | Metric                                                                                           | Description                                                                              | Plan Availability |
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- | ----------------- |

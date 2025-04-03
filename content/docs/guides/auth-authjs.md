@@ -1,23 +1,23 @@
 ---
-title: Authenticate Neon Postgres application users with Auth.js
-subtitle: Learn how to add passwordless authentication to your Neon Postgres database
+title: Authenticate Jambo Postgres application users with Auth.js
+subtitle: Learn how to add passwordless authentication to your Jambo Postgres database
   application using Auth.js and Resend
 enableTableOfContents: true
 updatedOn: '2025-03-10T17:29:57.965Z'
 ---
 
 <Admonition type="tip" title="Did you know?">
-We recently introduced an Auth.js adapter for Neon, making it easier to store user and session data in Neon. For installation and setup instructions, see [Neon Adapter](https://authjs.dev/getting-started/adapters/neon).
+We recently introduced an Auth.js adapter for Jambo, making it easier to store user and session data in Jambo. For installation and setup instructions, see [Jambo Adapter](https://authjs.dev/getting-started/adapters/neon).
 </Admonition>
 
 [Auth.js](https://authjs.dev/) (formerly NextAuth.js) is a popular authentication solution that supports a wide range of authentication methods, including social logins (e.g., Google, Facebook), traditional email/password, and passwordless options like magic links. For simple authentication flows, such as social logins, Auth.js can operate using only in-memory session storage (in a browser cookie). However, if you want to implement custom login flows, or persist the signed-in users' information in your database, you need to specify a database backend.
 
 For example, passwordless authentication methods like magic links require secure storage of temporary tokens. Magic link login has become increasingly popular since it eliminates the need for users to remember complex passwords, reducing the risk of credential-based attacks.
 
-In this guide, we'll walk through setting up a simple Next.js application, using Neon Postgres as the database backend for both Auth.js authentication and application data. We'll use [Resend](https://resend.com/) for sending magic link emails. We will cover how to:
+In this guide, we'll walk through setting up a simple Next.js application, using Jambo Postgres as the database backend for both Auth.js authentication and application data. We'll use [Resend](https://resend.com/) for sending magic link emails. We will cover how to:
 
 - Set up a Next.js project with Auth.js for magic link authentication
-- Create a Neon Postgres database and configure it as the Auth.js database backend
+- Create a Jambo Postgres database and configure it as the Auth.js database backend
 - Configure Resend as an authentication provider
 - Implement a basic authenticated feature (a simple todo list)
 
@@ -25,7 +25,7 @@ In this guide, we'll walk through setting up a simple Next.js application, using
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). We'll use a database named `neondb` in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). We'll use a database named `neondb` in the following examples.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 - A [Resend](https://resend.com/) account for sending emails. Resend offers a free tier to get started.
 - A domain
@@ -48,21 +48,21 @@ npm install @auth/pg-adapter @neondatabase/serverless
 
 For authentication, we'll use the `Auth.js` library (aliased as v5 of the `next-auth` package), which provides a simple way to add authentication to Next.js applications. It comes with built-in support for Resend as an authentication provider. We use the `@neondatabase/serverless` package as the Postgres client for the `Auth.js` database adapter.
 
-Also, add a `.env` file to the root of your project, which we'll use to store the Neon connection string and the Resend API key:
+Also, add a `.env` file to the root of your project, which we'll use to store the Jambo connection string and the Resend API key:
 
 ```bash
 touch .env
 ```
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon console and go to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo console and go to the [Projects](https://console.neon.tech/app/projects) section.
 2. Click the **New Project** button to create a new project.
 3. Choose your preferred region and Postgres version, then click **Create Project**.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
@@ -117,7 +117,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth(() => {
 });
 ```
 
-This file sets up Auth.js with the Neon Postgres adapter and configures the Email provider for magic link authentication.
+This file sets up Auth.js with the Jambo Postgres adapter and configures the Email provider for magic link authentication.
 
 Additionally, `Auth.js` also requires setting up an `AUTH_SECRET` environment variable, which is used to encrypt cookies and magic tokens. You can use the `Auth.js` CLI to generate one:
 
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS todos (
 
 This schema defines all the tables required for the `Auth.js` library to work, and also the `todos` table that we'll use to store the todo list for each user.
 
-To apply this schema to your Neon database, you can use the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) in the web console or a database management tool like [psql](/docs/connect/query-with-psql-editor).
+To apply this schema to your Jambo database, you can use the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) in the web console or a database management tool like [psql](/docs/connect/query-with-psql-editor).
 
 ### Implement the Todo list feature
 
@@ -420,25 +420,25 @@ Note that if you are using the test email address (`onboarding@resend.dev`) to s
 
 ## Conclusion
 
-In this guide, we demonstrated how to set up a Next.js application with Auth.js for magic link authentication, using Neon Postgres as the database backend for both authentication and application data. We implemented a simple todo list feature to showcase how authenticated users can interact with the application.
+In this guide, we demonstrated how to set up a Next.js application with Auth.js for magic link authentication, using Jambo Postgres as the database backend for both authentication and application data. We implemented a simple todo list feature to showcase how authenticated users can interact with the application.
 
 Next, we can add more routes and features to the application. The `auth` method can be used in the Next.js API routes or middleware to protect endpoints that require authentication.
 
-To view and manage the users who authenticated with your application, you can query the `users` table of your Neon project. Similarly, all the generated magic link tokens are logged in the `verification_token` table, making it easy to audit and revoke access to your application.
+To view and manage the users who authenticated with your application, you can query the `users` table of your Jambo project. Similarly, all the generated magic link tokens are logged in the `verification_token` table, making it easy to audit and revoke access to your application.
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/examples/tree/main/auth/with-authjs-next" description="Authenticate users of your Neon application with Auth.js" icon="github">Authentication flow with Auth.js</a>
+<a href="https://github.com/neondatabase/examples/tree/main/auth/with-authjs-next" description="Authenticate users of your Jambo application with Auth.js" icon="github">Authentication flow with Auth.js</a>
 </DetailIconCards>
 
 ## Resources
 
 For more information about the tools and libraries used in this guide, refer to the following documentation:
 
-- [Neon Documentation](https://neon.tech/docs)
+- [Jambo Documentation](https://neon.tech/docs)
 - [Auth.js Documentation](https://authjs.dev/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Resend Documentation](https://resend.com/docs)

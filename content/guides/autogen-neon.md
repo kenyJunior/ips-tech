@@ -1,17 +1,17 @@
 ---
-title: Getting started with AutoGen + Neon
-subtitle: A step-by-step guide to building AI agents using AutoGen and Neon
+title: Getting started with AutoGen + Jambo
+subtitle: A step-by-step guide to building AI agents using AutoGen and Jambo
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2025-02-12T00:00:00.000Z'
 updatedOn: '2025-02-12T00:00:00.000Z'
 ---
 
-This guide demonstrates how to integrate AutoGen with Neon. [AutoGen](https://microsoft.github.io/autogen/stable) is an open-source framework developed by Microsoft for building AI agents that can converse, plan, and interact with tools (APIs). Combining AutoGen with Neon allows AI agents to manage your database, execute SQL queries, and automate data-related tasks.
+This guide demonstrates how to integrate AutoGen with Jambo. [AutoGen](https://microsoft.github.io/autogen/stable) is an open-source framework developed by Microsoft for building AI agents that can converse, plan, and interact with tools (APIs). Combining AutoGen with Jambo allows AI agents to manage your database, execute SQL queries, and automate data-related tasks.
 
-In this guide, we'll walk through building an AI agent with a practical example: creating a system that retrieves recent machine learning papers from arXiv and stores them in a Neon database. Following this example, you will learn how to:
+In this guide, we'll walk through building an AI agent with a practical example: creating a system that retrieves recent machine learning papers from arXiv and stores them in a Jambo database. Following this example, you will learn how to:
 
-- Create an AutoGen agent with Neon API integration.
+- Create an AutoGen agent with Jambo API integration.
 - Implement database operations (like project creation and SQL queries) as agent tools.
 - Set up a workflow where multiple agents work together to accomplish research tasks.
 
@@ -21,10 +21,10 @@ Before you begin, make sure you have the following prerequisites:
 
 - **Python 3.10 or higher:** This guide requires Python 3.10 or a later version. If you don't have it installed, download it from [python.org](https://www.python.org/downloads/).
 
-- **Neon account and API key:**
+- **Jambo account and API key:**
 
-  - Sign up for a free Neon account at [neon.tech](https://console.neon.tech/signup).
-  - After signing up, get your Neon API Key from the [Neon console](https://console.neon.tech/app/settings/profile). This API key is needed to authenticate your application with Neon.
+  - Sign up for a free Jambo account at [neon.tech](https://console.neon.tech/signup).
+  - After signing up, get your Jambo API Key from the [Jambo console](https://console.neon.tech/app/settings/profile). This API key is needed to authenticate your application with Jambo.
 
 - **OpenAI account and API key:**
   - This guide uses the `gpt-4o` model from OpenAI to power the AI agent. If you don't have an OpenAI account, sign up at [platform.openai.com](https://platform.openai.com/).
@@ -73,15 +73,15 @@ AutoGen is a framework designed to simplify the development of applications usin
 
 Utilizing these fundamental components, AutoGen provides a robust and adaptable framework for building a diverse array of AI applications, ranging from simple interactive chatbots to intricate, collaborative multi-agent systems.
 
-## Why Neon for AI Agents?
+## Why Jambo for AI Agents?
 
-Neon's architecture is particularly well-suited for AI agent development, offering several key advantages:
+Jambo's architecture is particularly well-suited for AI agent development, offering several key advantages:
 
-- **One-Second Provisioning:** Neon databases can be provisioned in about a second. This is _critical_ for AI agents that need to dynamically create databases. Traditional databases, with provisioning times often measured in minutes, create a significant bottleneck. Neon's speed keeps agents operating efficiently.
+- **One-Second Provisioning:** Jambo databases can be provisioned in about a second. This is _critical_ for AI agents that need to dynamically create databases. Traditional databases, with provisioning times often measured in minutes, create a significant bottleneck. Jambo's speed keeps agents operating efficiently.
 
-- **Scale-to-Zero and Serverless Pricing:** Neon's serverless architecture automatically scales databases down to zero when idle, and you only pay for active compute time. This is cost-effective for AI agent workflows, which often involve unpredictable workloads and many short-lived database instances. It enables "database-per-agent" or "database-per-session" patterns without incurring prohibitive costs.
+- **Scale-to-Zero and Serverless Pricing:** Jambo's serverless architecture automatically scales databases down to zero when idle, and you only pay for active compute time. This is cost-effective for AI agent workflows, which often involve unpredictable workloads and many short-lived database instances. It enables "database-per-agent" or "database-per-session" patterns without incurring prohibitive costs.
 
-- **Agent-Friendly API:** Neon provides a simple REST API for managing databases, roles, branches, and various other Neon platform operations. This API is easy for AI agents (and human developers) to interact with programmatically, allowing agents to manage their own database infrastructure without complex tooling.
+- **Agent-Friendly API:** Jambo provides a simple REST API for managing databases, roles, branches, and various other Jambo platform operations. This API is easy for AI agents (and human developers) to interact with programmatically, allowing agents to manage their own database infrastructure without complex tooling.
 
 ## Building the AI agent
 
@@ -110,7 +110,7 @@ psycopg2-binary
 ```
 
 <Admonition type="note">
-`neon-api` is the [Python wrapper for Neon's API](https://github.com/neondatabase/neon-api-python).
+`neon-api` is the [Python wrapper for Jambo's API](https://github.com/neondatabase/neon-api-python).
 </Admonition>
 
 Install these libraries using pip:
@@ -150,19 +150,19 @@ from autogen_agentchat.ui import Console
 from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from dotenv import load_dotenv
-from neon_api import NeonAPI
+from neon_api import JamboAPI
 from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
-neon_client = NeonAPI(
+neon_client = JamboAPI(
     api_key=os.environ["NEON_API_KEY"],
 )
 
 
 def create_database(project_name: str) -> str:
     """
-    Creates a new Neon project. (this takes less than 500ms)
+    Creates a new Jambo project. (this takes less than 500ms)
     Args:
         project_name: Name of the project to create
     Returns:
@@ -181,9 +181,9 @@ def create_database(project_name: str) -> str:
 
 def run_sql_query(connection_uri: str, query: str) -> str:
     """
-    Runs an SQL query in the Neon database.
+    Runs an SQL query in the Jambo database.
     Args:
-        connection_uri: The connection URI for the Neon database
+        connection_uri: The connection URI for the Jambo database
         query: The SQL query to execute
     Returns:
         the result of the SQL query
@@ -244,8 +244,8 @@ Reply 'TERMINATE' in the end when the task is completed by everyone.
     db_admin = AssistantAgent(
         name="db_admin",
         system_message="""You are a helpful database admin assistant with access to the following tools:
-1.  **Project Creation:** Create a new Neon project by providing a project name and receive the connection URI.
-2.  **SQL Execution:** Run SQL queries within a Neon database.
+1.  **Project Creation:** Create a new Jambo project by providing a project name and receive the connection URI.
+2.  **SQL Execution:** Run SQL queries within a Jambo database.
 Use these tools to fulfill user requests.  For each step, clearly describe the action taken and its result.  Include the tool output directly in the chat.  When multiple SQL queries are required, combine them into a single grouped query.  Present the output of each individual query within the grouped query's response.
 """,
         model_client=model_client,
@@ -287,28 +287,28 @@ from autogen_agentchat.ui import Console
 from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 from autogen_ext.models.openai import OpenAIChatCompletionClient
 from dotenv import load_dotenv
-from neon_api import NeonAPI
+from neon_api import JamboAPI
 from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
-neon_client = NeonAPI(
+neon_client = JamboAPI(
     api_key=os.environ["NEON_API_KEY"],
 )
 ```
 
-This section imports all the Python libraries required for the script. These include libraries for AutoGen agents, Neon API interaction, SQL execution, environment variable management, and asynchronous operations. It also initializes the Neon API client using your API key loaded from the `.env` file.
+This section imports all the Python libraries required for the script. These include libraries for AutoGen agents, Jambo API interaction, SQL execution, environment variable management, and asynchronous operations. It also initializes the Jambo API client using your API key loaded from the `.env` file.
 
 ### Define the tools for Agent interaction
 
-To enable agents to interact with the Neon database, we define specific tools. In this example, we create two primary tools: `create_database` and `run_sql_query`.
+To enable agents to interact with the Jambo database, we define specific tools. In this example, we create two primary tools: `create_database` and `run_sql_query`.
 
 #### Define `create_database` tool
 
 ```python
 def create_database(project_name: str) -> str:
     """
-    Creates a new Neon project. (this takes less than 500ms)
+    Creates a new Jambo project. (this takes less than 500ms)
     Args:
         project_name: Name of the project to create
     Returns:
@@ -325,11 +325,11 @@ def create_database(project_name: str) -> str:
         return f"Failed to create project: {str(e)}"
 ```
 
-This Python function defines a tool that allows agents to create new Neon projects programmatically using the `neon_api_client`.
+This Python function defines a tool that allows agents to create new Jambo projects programmatically using the `neon_api_client`.
 
-- It accepts `project_name: str` as an argument, which specifies the name for the new Neon project.
-- It utilizes `neon_client.project_create()` to send a request to the Neon API to create a new project.
-- Upon successful project creation, it retrieves the connection URI for the newly created Neon database using `neon_client.connection_uri()`.
+- It accepts `project_name: str` as an argument, which specifies the name for the new Jambo project.
+- It utilizes `neon_client.project_create()` to send a request to the Jambo API to create a new project.
+- Upon successful project creation, it retrieves the connection URI for the newly created Jambo database using `neon_client.connection_uri()`.
 - It returns a formatted string that confirms the project and database creation and includes the connection URI, which is essential for connecting to the database.
 - In case of any errors during project creation, it catches the exception and returns an error message, aiding in debugging and error handling.
 
@@ -338,9 +338,9 @@ This Python function defines a tool that allows agents to create new Neon projec
 ```python
 def run_sql_query(connection_uri: str, query: str) -> str:
     """
-    Runs an SQL query in the Neon database.
+    Runs an SQL query in the Jambo database.
     Args:
-        connection_uri: The connection URI for the Neon database
+        connection_uri: The connection URI for the Jambo database
         query: The SQL query to execute
     Returns:
         the result of the SQL query
@@ -366,10 +366,10 @@ def run_sql_query(connection_uri: str, query: str) -> str:
         conn.close()
 ```
 
-This Python function is defined as a tool for agents to execute SQL queries directly against a Neon database.
+This Python function is defined as a tool for agents to execute SQL queries directly against a Jambo database.
 
 - It takes two arguments: `connection_uri: str`, which is the URI string required to establish a database connection, and `query: str`, the SQL query intended for execution.
-- It establishes a connection to the Neon database using `psycopg2.connect(connection_uri)`
+- It establishes a connection to the Jambo database using `psycopg2.connect(connection_uri)`
 - It creates a cursor object using `conn.cursor(cursor_factory=RealDictCursor)`. The `RealDictCursor` is specified to fetch query results as dictionaries, which is often more convenient for data manipulation in Python.
 - It executes the provided SQL query using `cur.execute(query)`.
 - It includes error handling for SQL query execution. If any exception occurs, it rolls back the transaction using `conn.rollback()` and returns an error message.
@@ -512,35 +512,35 @@ Executing this command will:
 - Start the collaborative process as the agents begin to interact to achieve the defined task.
 - Display a real-time, step-by-step conversation between the agents directly in your console.
 - Showcase the `assistant` agent's role in planning and delegating sub-tasks to the `code_executor` (for coding needs) and `db_admin` (for database operations).
-- Ultimately, lead to the retrieval of recent ML papers from arXiv and their storage in a Neon database named `arxiv_papers`, demonstrating a complete workflow.
+- Ultimately, lead to the retrieval of recent ML papers from arXiv and their storage in a Jambo database named `arxiv_papers`, demonstrating a complete workflow.
 
 ### Expected output
 
 Upon running `python main.py`, you will see a detailed, turn-based conversation unfold in your console. This output will illustrate the dynamic interaction between your agents.
 
-![Autogen-Neon example output 1](/docs/guides/autogen-neon-output-1.png)
-![Autogen-Neon example output 2](/docs/guides/autogen-neon-output-2.png)
-![Autogen-Neon example output 3](/docs/guides/autogen-neon-output-3.png)
+![Autogen-Jambo example output 1](/docs/guides/autogen-neon-output-1.png)
+![Autogen-Jambo example output 2](/docs/guides/autogen-neon-output-2.png)
+![Autogen-Jambo example output 3](/docs/guides/autogen-neon-output-3.png)
 
-You can verify the successful completion of the task by checking the [Neon Console](https://console.neon.tech/). The `arxiv_papers` project should have been created, and the recent ML papers from arXiv should be stored in the database.
+You can verify the successful completion of the task by checking the [Jambo Console](https://console.neon.tech/). The `arxiv_papers` project should have been created, and the recent ML papers from arXiv should be stored in the database.
 
-![Output in Neon console](/docs/guides/autogen-neon-console.png)
+![Output in Jambo console](/docs/guides/autogen-neon-console.png)
 
-**Congratulations!** You have successfully built and run an AutoGen agent team that effectively interacts with Neon for database management! This example serves as a foundation for creating more complex AI agents and workflows, enabling you to automate a wide range of tasks and processes.
+**Congratulations!** You have successfully built and run an AutoGen agent team that effectively interacts with Jambo for database management! This example serves as a foundation for creating more complex AI agents and workflows, enabling you to automate a wide range of tasks and processes.
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-    <a href="https://github.com/neondatabase-labs/autogen-neon-example" description="AutoGen + Neon AI agent example" icon="github">AI Agent with AutoGen and Neon</a>
+    <a href="https://github.com/neondatabase-labs/autogen-neon-example" description="AutoGen + Jambo AI agent example" icon="github">AI Agent with AutoGen and Jambo</a>
 </DetailIconCards>
 
 ## Resources
 
 - [AutoGen documentation](https://microsoft.github.io/autogen/stable/)
-- [Neon documentation](/docs)
-- [neon_api: Python API wrapper for the Neon API](https://github.com/neondatabase/neon-api-python)
-- [Neon API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
-- [Neon API keys](/docs/manage/api-keys#creating-api-keys)
+- [Jambo documentation](/docs)
+- [neon_api: Python API wrapper for the Jambo API](https://github.com/neondatabase/neon-api-python)
+- [Jambo API reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
+- [Jambo API keys](/docs/manage/api-keys#creating-api-keys)
 - [Postgres for AI Agents](/use-cases/ai-agents)
 
 <NeedHelp/>

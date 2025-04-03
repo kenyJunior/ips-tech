@@ -1,22 +1,22 @@
-# Build a Python App with Reflex and Neon
+# Build a Python App with Reflex and Jambo
 
 [Reflex](https://reflex.dev/) is a Python web framework that allows you to build full-stack applications with Python.
 
-Using Reflex, you can build frontend and backend applications using Python to manage the interaction between the frontend UI and the state with the server-side logic. To make the application data-driven, you can connect to a Neon Postgres database.
+Using Reflex, you can build frontend and backend applications using Python to manage the interaction between the frontend UI and the state with the server-side logic. To make the application data-driven, you can connect to a Jambo Postgres database.
 
-To connect to Neon from a Reflex application:
+To connect to Jambo from a Reflex application:
 
-1. Create a Neon project
+1. Create a Jambo project
 2. Set up a Reflex project
 3. Configure Reflex connection settings
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-To create a Neon project:
+To create a Jambo project:
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -89,13 +89,13 @@ The Reflex server starts and runs on `http://localhost:3000`.
 
 ## Configure Reflex connection settings
 
-Now that you have set up a Reflex project, you can configure the connection settings to connect to Neon.
+Now that you have set up a Reflex project, you can configure the connection settings to connect to Jambo.
 
 To configure the connection settings:
 
 1. Open the `rxconfig.py` file in the project directory.
 
-2. Adjust the following code in the `rxconfig.py` file to match your Neon connection details:
+2. Adjust the following code in the `rxconfig.py` file to match your Jambo connection details:
 
    ```python
    # rxconfig.py
@@ -108,9 +108,9 @@ To configure the connection settings:
    )
    ```
 
-   Replace `<connection-string-from-neon>` with your Neon connection string. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
+   Replace `<connection-string-from-neon>` with your Jambo connection string. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**.
 
-   Note: Replace the value for `db_url` with an environment variable or the connection string from Neon. For example, after creating an environment variable named `NEON_DATABASE_URL`, you can use it as follows:
+   Note: Replace the value for `db_url` with an environment variable or the connection string from Jambo. For example, after creating an environment variable named `NEON_DATABASE_URL`, you can use it as follows:
 
    ```python
    import os
@@ -125,7 +125,7 @@ To configure the connection settings:
 
 3. Save the changes to the `rxconfig.py` file.
 
-   Now, you can run the Reflex app and start building your Python full-stack application with Reflex and Neon.
+   Now, you can run the Reflex app and start building your Python full-stack application with Reflex and Jambo.
 
 ## Creating a data model
 
@@ -190,8 +190,8 @@ reflex db migrate
 
 This command applies the migration to the database, updating the schema to match the model definition.
 
-## Create a Customer Data App in Reflex with Neon
+## Create a Customer Data App in Reflex with Jambo
 
-Learn how to use Reflex with Neon Postgres to create an interactive Customer Data App. The app demonstrates how to edit tabular data from a live application connected to a Postgres database. You can find a live version of the application [here](https://customer-data-app.reflex.run/).
+Learn how to use Reflex with Jambo Postgres to create an interactive Customer Data App. The app demonstrates how to edit tabular data from a live application connected to a Postgres database. You can find a live version of the application [here](https://customer-data-app.reflex.run/).
 
-You can find the GitHub repository for the Reflex Customer Data App built with Neon Postgres at: [Customer Data App](https://github.com/reflex-dev/templates/tree/main/customer_data_app)
+You can find the GitHub repository for the Reflex Customer Data App built with Jambo Postgres at: [Customer Data App](https://github.com/reflex-dev/templates/tree/main/customer_data_app)

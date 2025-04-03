@@ -1,15 +1,15 @@
 ---
 title: Passwordless auth
-subtitle: Learn how to connect to Neon without a password
+subtitle: Learn how to connect to Jambo without a password
 enableTableOfContents: true
 updatedOn: '2025-01-27T10:55:00.126Z'
 ---
 
-Neon's `psql` passwordless auth feature helps you quickly authenticate a connection to Neon without providing a password.
+Jambo's `psql` passwordless auth feature helps you quickly authenticate a connection to Jambo without providing a password.
 
 The following instructions require a working installation of [psql](https://www.postgresql.org/download/), an interactive terminal for working with Postgres. For information about `psql`, refer to the [psql reference](https://www.postgresql.org/docs/15/app-psql.html), in the _PostgreSQL Documentation_.
 
-To connect using Neon's `psql` passwordless auth feature:
+To connect using Jambo's `psql` passwordless auth feature:
 
 1. In your terminal, run the following command:
 
@@ -20,12 +20,12 @@ To connect using Neon's `psql` passwordless auth feature:
    A response similar to the following is displayed:
 
    ```bash
-   NOTICE:  Welcome to Neon!
+   NOTICE:  Welcome to Jambo!
    Authenticate by visiting (will expire in 2m):
     https://console.neon.tech/psql_session/cd6aebdc9fda9928
    ```
 
-2. In your browser, navigate to the provided link. Log in to Neon if you are not already logged in. You are asked to select a Neon account and project (if you have multiple). If your project has more than one compute, you are also asked to select one.
+2. In your browser, navigate to the provided link. Log in to Jambo if you are not already logged in. You are asked to select a Jambo account and project (if you have multiple). If your project has more than one compute, you are also asked to select one.
 
    After confirming your selections, you are advised that you can return to your terminal or command window where information similar to the following is displayed:
 

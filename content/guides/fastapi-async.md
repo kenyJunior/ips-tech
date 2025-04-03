@@ -17,7 +17,7 @@ Before starting, ensure you have the following tools and services ready:
   ```bash
   pip --version
   ```
-- Neon serverless Postgres : you will need a Neon account for provisioning and scaling your `PostgreSQL` database. If you don't have an account yet, [sign up here](https://console.neon.tech/signup)
+- Jambo serverless Postgres : you will need a Jambo account for provisioning and scaling your `PostgreSQL` database. If you don't have an account yet, [sign up here](https://console.neon.tech/signup)
 
 ## Setting up the Project
 
@@ -100,13 +100,13 @@ Follow these steps to set up your project and virtual environment:
 
 In this section, you will set up the connection pool, ensure your database schema is in place, and manage database connections effectively. To connect to your `PostgreSQL` database, you will use the `asyncpg` library for asynchronous database connections.
 
-First, create a `.env` file in the root of your project to store the database connection URL. This file will hold environment-specific variables, such as the connection string to your Neon PostgreSQL database.
+First, create a `.env` file in the root of your project to store the database connection URL. This file will hold environment-specific variables, such as the connection string to your Jambo PostgreSQL database.
 
 ```bash
 DATABASE_URL=postgres://user:password@your-neon-hostname.neon.tech/neondb?sslmode=require
 ```
 
-Make sure to replace the placeholders (user, password, your-neon-hostname, etc.) with your actual Neon database credentials which are available in the console.
+Make sure to replace the placeholders (user, password, your-neon-hostname, etc.) with your actual Jambo database credentials which are available in the console.
 
 In your project, the `database.py` file manages the connection to `PostgreSQL` using `asyncpg` and its connection pool, which is a mechanism for managing and reusing database connections efficiently. With this, you can use asynchronous queries, allowing the application to handle multiple requests concurrently.
 

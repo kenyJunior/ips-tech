@@ -91,7 +91,6 @@ const Video = forwardRef(
                 !isTitleVisible ? '!-top-full opacity-0' : 'top-11 opacity-100 lt:top-10 md:top-6'
               )}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="ml-auto w-auto md:h-6 xs:h-4"
                 height={32}

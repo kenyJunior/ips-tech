@@ -1,6 +1,6 @@
 ---
-title: Authenticate Neon Postgres application users with Okta
-subtitle: Learn how to add authentication to a Neon Postgres database application with
+title: Authenticate Jambo Postgres application users with Okta
+subtitle: Learn how to add authentication to a Jambo Postgres database application with
   Okta
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.307Z'
@@ -8,10 +8,10 @@ updatedOn: '2025-02-03T20:41:57.307Z'
 
 User authentication is critical for web applications, especially for apps internal to an organization. [Okta Workforce Indentity Cloud](https://www.okta.com/workforce-identity/) is an identity and access management platform for organizations, that provides authentication, authorization, and user management capabilities.
 
-In this guide, we'll walk through building a simple Next.js application using [Neon's](https://neon.tech) Postgres database, and add user authentication to it using [Okta](https://www.okta.com/). We will cover how to:
+In this guide, we'll walk through building a simple Next.js application using [Jambo's](https://neon.tech) Postgres database, and add user authentication to it using [Okta](https://www.okta.com/). We will cover how to:
 
 - Set up a Next.js project with Okta for authentication
-- Create a Neon Postgres database and connect it to your application
+- Create a Jambo Postgres database and connect it to your application
 - Define a database schema using Drizzle ORM and generate migrations
 - Store and retrieve user data associated with Okta user IDs
 
@@ -23,7 +23,7 @@ Okta provides a different solution called [Customer Identity Cloud](https://www.
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - An [Okta](https://developer.okta.com/) administrator account for user authentication. Okta provides a free trial that you can use to set one up for your organization.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 
@@ -45,21 +45,21 @@ npm install next-auth@beta
 
 We use the `@neondatabase/serverless` package as the Postgres client, and `drizzle-orm`, a lightweight typescript ORM, to interact with the database. We also use `dotenv` to manage environment variables and the `drizzle-kit` CLI tool for generating database migrations. For authentication, we'll use the `auth.js` library (aliased as v5 of the `next-auth` package), which provides a simple way to add authentication to Next.js applications. It comes with built-in support for Okta.
 
-Also, add a `.env.local` file to the root of your project, which we'll use to store Neon/Okta connection parameters:
+Also, add a `.env.local` file to the root of your project, which we'll use to store Jambo/Okta connection parameters:
 
 ```bash
 touch .env.local
 ```
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 2. Select an existing project or click the **New Project** button to create a new one.
 3. Choose the desired region and Postgres version for your project, then click **Create Project**.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
@@ -82,7 +82,7 @@ DATABASE_URL=NEON_DB_CONNECTION_STRING
 1. Log in to your Okta developer account and navigate to the **Applications** section. Click the **Create App Integration** button.
 2. Select **OIDC - OpenID Connect** as the sign-in method.
 3. Select **Web Application** as the application type and click **Next**.
-4. Provide a name for your application, e.g., "Neon Next Guide".
+4. Provide a name for your application, e.g., "Jambo Next Guide".
 5. Set **Sign-in redirect URIs** to `http://localhost:3000/api/auth/callback/okta` and **Sign-out redirect URIs** to `http://localhost:3000`.
 6. Click **Save** to create the application.
 
@@ -127,7 +127,7 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import { UserMessages } from './schema';
 
 if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL must be a Neon postgres connection string');
+  throw new Error('DATABASE_URL must be a Jambo postgres connection string');
 }
 
 const sql = neon(process.env.DATABASE_URL);
@@ -137,7 +137,7 @@ export const db = drizzle(sql, {
 });
 ```
 
-This exports a `db` instance that we can use to execute queries against the Neon database.
+This exports a `db` instance that we can use to execute queries against the Jambo database.
 
 Next, create a `schema.ts` file inside the `app/db` directory to define the database schema:
 
@@ -192,7 +192,7 @@ This will create a `drizzle` folder at the project root with the migration files
 npx drizzle-kit push:pg
 ```
 
-The `user_messages` table will now be visible in the Neon console.
+The `user_messages` table will now be visible in the Jambo console.
 
 ### Configure Okta authentication
 
@@ -422,7 +422,7 @@ Once authenticated, you'll be able to visit the home page, add a quote, and see 
 
 ## Conclusion
 
-In this guide, we walked through setting up a simple Next.js application with user authentication using Okta and a Neon Postgres database. We defined a database schema using Drizzle ORM, generated migrations, and interacted with the database to store and retrieve user data.
+In this guide, we walked through setting up a simple Next.js application with user authentication using Okta and a Jambo Postgres database. We defined a database schema using Drizzle ORM, generated migrations, and interacted with the database to store and retrieve user data.
 
 Next, we can add more routes and features to the application. The `auth` method can be used in the Next.js API routes or middleware to protect endpoints that require authentication.
 
@@ -433,14 +433,14 @@ To view and manage the users who authenticated with your application, you can na
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/guide-neon-next-okta" description="Authenticate Neon application users with Okta" icon="github">Authentication flow with Okta</a>
+<a href="https://github.com/neondatabase/guide-neon-next-okta" description="Authenticate Jambo application users with Okta" icon="github">Authentication flow with Okta</a>
 </DetailIconCards>
 
 ## Resources
 
 For more information on the tools used in this guide, refer to the following documentation:
 
-- [Neon Serverless Driver](/docs/serverless/serverless-driver)
+- [Jambo Serverless Driver](/docs/serverless/serverless-driver)
 - [Drizzle ORM](https://orm.drizzle.team/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Auth.js Documentation](https://authjs.dev/getting-started/installation)

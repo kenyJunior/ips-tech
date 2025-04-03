@@ -96,7 +96,7 @@ const Partners = () => (
             Become a Partner
           </h2>
           <p className="mt-4 text-lg font-light leading-snug xl:text-base md:max-w-xs">
-            Unlock new revenue streams by partnering with Neon.{' '}
+            Unlock new revenue streams by partnering with Jambo.{' '}
             <Link
               className="inline-flex tracking-extra-tight underline-offset-[5px]"
               theme="green-underlined"
@@ -104,7 +104,7 @@ const Partners = () => (
             >
               Learn more
             </Link>{' '}
-            about participating in Neon's Partner program.
+            about participating in Jambo's Partner program.
           </p>
         </div>
       </div>

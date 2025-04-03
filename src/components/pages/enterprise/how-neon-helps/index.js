@@ -1,3 +1,3 @@
-import HowNeonHelps from './how-neon-helps';
+import HowJamboHelps from './how-neon-helps';
 
-export default HowNeonHelps;
+export default HowJamboHelps;

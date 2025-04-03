@@ -5,7 +5,7 @@ const baseSettings = {
   integrationId: process.env.INKEEP_INTEGRATION_ID,
   organizationId: process.env.INKEEP_ORGANIZATION_ID,
   primaryBrandColor: '#00E599',
-  organizationDisplayName: 'Neon',
+  organizationDisplayName: 'Jambo',
   customIcons: {
     close: { custom: closeIcon },
   },
@@ -29,7 +29,7 @@ const baseSettings = {
           },
         ],
       },
-      searchTabLabel: 'Neon Docs',
+      searchTabLabel: 'Jambo Docs',
     },
     {
       filters: {
@@ -58,13 +58,13 @@ const searchSettings = {
 };
 
 const aiChatSettings = {
-  botName: 'Neon AI',
+  botName: 'Jambo AI',
   placeholder: 'Ask anything...',
   quickQuestions: [
-    'What’s Neon?',
-    'How do I sign up for Neon?',
+    'What’s Jambo?',
+    'How do I sign up for Jambo?',
     'How to create a project?',
-    'How to get started with the Neon API?',
+    'How to get started with the Jambo API?',
   ],
   botAvatarSrcUrl: '/inkeep/images/bot.svg',
   botAvatarDarkSrcUrl: '/inkeep/images/bot-dark.svg',
@@ -82,7 +82,7 @@ const aiChatSettings = {
     {
       type: 'OPEN_LINK',
       icon: { builtIn: 'IoChatbubblesOutline' },
-      name: 'Neon Support',
+      name: 'Jambo Support',
       url: 'https://console.neon.tech/app/projects?modal=support',
     },
   ],

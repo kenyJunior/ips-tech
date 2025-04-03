@@ -1,6 +1,6 @@
 ---
-title: Secure your data with Stytch and Neon RLS
-subtitle: Implement Row-level Security policies in Postgres using Stytch and Neon RLS
+title: Secure your data with Stytch and Jambo RLS
+subtitle: Implement Row-level Security policies in Postgres using Stytch and Jambo RLS
 enableTableOfContents: true
 updatedOn: '2025-03-10T18:26:02.770Z'
 redirectFrom:
@@ -10,35 +10,35 @@ redirectFrom:
 
 <InfoBlock>
 <DocsList title="Sample project" theme="repo">
-  <a href="https://github.com/neondatabase-labs/stytch-nextjs-neon-rls">Stytch + Neon RLS</a>
+  <a href="https://github.com/neondatabase-labs/stytch-nextjs-neon-rls">Stytch + Jambo RLS</a>
 </DocsList>
 
 <DocsList title="Related docs" theme="docs">
-  <a href="/docs/guides/neon-rls-tutorial">Neon RLS Tutorial</a>
+  <a href="/docs/guides/neon-rls-tutorial">Jambo RLS Tutorial</a>
   <a href="/docs/guides/neon-rls-drizzle">Simplify RLS with Drizzle</a>
 </DocsList>
 </InfoBlock>
 
-Use Stytch with Neon RLS to add secure, database-level authorization to your application. This guide assumes you already have an application using Stytch for user authentication. It shows you how to integrate Stytch with Neon RLS, then provides sample Row-level Security (RLS) policies to help you model your own application schema.
+Use Stytch with Jambo RLS to add secure, database-level authorization to your application. This guide assumes you already have an application using Stytch for user authentication. It shows you how to integrate Stytch with Jambo RLS, then provides sample Row-level Security (RLS) policies to help you model your own application schema.
 
 ## How it works
 
-Stytch handles user authentication by generating JSON Web Tokens (JWTs), which are securely passed to Neon RLS. Neon RLS validates these tokens and uses the embedded user identity metadata to enforce the [Row-Level Security](https://neon.tech/postgresql/postgresql-administration/postgresql-row-level-security) policies that you define directly in Postgres, securing database queries based on that user identity. This authorization flow is made possible using the Postgres extension [pg_session_jwt](https://github.com/neondatabase/pg_session_jwt), which you'll install as part of this guide.
+Stytch handles user authentication by generating JSON Web Tokens (JWTs), which are securely passed to Jambo RLS. Jambo RLS validates these tokens and uses the embedded user identity metadata to enforce the [Row-Level Security](https://neon.tech/postgresql/postgresql-administration/postgresql-row-level-security) policies that you define directly in Postgres, securing database queries based on that user identity. This authorization flow is made possible using the Postgres extension [pg_session_jwt](https://github.com/neondatabase/pg_session_jwt), which you'll install as part of this guide.
 
 ## Prerequisites
 
 To follow along with this guide, you will need:
 
-- A Neon account. Sign up at [Neon](https://neon.tech) if you don't have one.
+- A Jambo account. Sign up at [Jambo](https://neon.tech) if you don't have one.
 - A [Stytch](https://stytch.com/) account with an existing application (e.g., a **todos** app) that uses Stytch for user authentication. If you don't have an app, check our [demo](https://github.com/neondatabase-labs/stytch-nextjs-neon-rls) for similar schema and policies in action.
 
-## Integrate Stytch with Neon RLS
+## Integrate Stytch with Jambo RLS
 
-In this first set of steps, we'll integrate Stytch as an authorization provider in Neon. When these steps are complete, Stytch will start passing JWTs to your Neon database, which you can then use to create policies.
+In this first set of steps, we'll integrate Stytch as an authorization provider in Jambo. When these steps are complete, Stytch will start passing JWTs to your Jambo database, which you can then use to create policies.
 
 ### 1. Get your Stytch JWKS URL
 
-When integrating Stytch with Neon, you'll need to provide the JWKS (JSON Web Key Set) URL. This allows your database to validate the JWT tokens and extract the user_id for use in RLS policies.
+When integrating Stytch with Jambo, you'll need to provide the JWKS (JSON Web Key Set) URL. This allows your database to validate the JWT tokens and extract the user_id for use in RLS policies.
 
 The Stytch JWKS URL follows this format:
 
@@ -56,19 +56,19 @@ https://test.stytch.com/v1/sessions/jwks/my-awesome-project
 The Stytch URL provided here corresponds to a test environment and should be updated to the production URL when you're ready to deploy your application.
 </Admonition>
 
-### 2. Add Stytch as an authorization provider in the Neon Console
+### 2. Add Stytch as an authorization provider in the Jambo Console
 
-Once you have the JWKS URL, go to the **Neon Console**, navigate to **Settings** > **RLS**, and add Stytch as an authentication provider. Paste your copied URL and Stytch will be automatically recognized and selected.
+Once you have the JWKS URL, go to the **Jambo Console**, navigate to **Settings** > **RLS**, and add Stytch as an authentication provider. Paste your copied URL and Stytch will be automatically recognized and selected.
 
 <div style={{ display: 'flex', justifyContent: 'center'}}>
   <img src="/docs/guides/stytch_jwks_url_in_neon.png" alt="Add Authentication Provider" style={{ width: '60%', maxWidth: '600px', height: 'auto' }} />
 </div>
 
-At this point, you can use the **Get Started** setup steps from RLS in Neon to complete the setup — this guide is modeled on those steps. Or feel free to keep following along in this guide, where we'll give you a bit more context.
+At this point, you can use the **Get Started** setup steps from RLS in Jambo to complete the setup — this guide is modeled on those steps. Or feel free to keep following along in this guide, where we'll give you a bit more context.
 
 ### 3. Install the pg_session_jwt extension in your database
 
-Neon RLS uses the [pg_session_jwt](https://github.com/neondatabase/pg_session_jwt) extension to handle authenticated sessions through JSON Web Tokens (JWTs). This extension allows secure transmission of authentication data from your application to Postgres, where you can enforce Row-Level Security (RLS) policies based on the user's identity.
+Jambo RLS uses the [pg_session_jwt](https://github.com/neondatabase/pg_session_jwt) extension to handle authenticated sessions through JSON Web Tokens (JWTs). This extension allows secure transmission of authentication data from your application to Postgres, where you can enforce Row-Level Security (RLS) policies based on the user's identity.
 
 To install the extension in the `neondb` database, run:
 
@@ -109,9 +109,9 @@ GRANT USAGE ON SCHEMA public TO anonymous;
 - **Authenticated role**: This role is intended for users who are logged in. Your application should send the authorization token when connecting using this role.
 - **Anonymous role**: This role is intended for users who are not logged in. It should allow limited access, such as reading public content (e.g., blog posts) without authentication.
 
-### 5. Install the Neon Serverless Driver
+### 5. Install the Jambo Serverless Driver
 
-Neon's Serverless Driver manages the connection between your application and the Neon Postgres database. For Neon RLS, you must use HTTP. While it is technically possible to access the HTTP API without using our driver, we recommend using the driver for best performance. The driver also supports WebSockets and TCP connections, so make sure you use the HTTP method when working with Neon RLS.
+Jambo's Serverless Driver manages the connection between your application and the Jambo Postgres database. For Jambo RLS, you must use HTTP. While it is technically possible to access the HTTP API without using our driver, we recommend using the driver for best performance. The driver also supports WebSockets and TCP connections, so make sure you use the HTTP method when working with Jambo RLS.
 
 Install it using the following command:
 
@@ -119,11 +119,11 @@ Install it using the following command:
 npm install @neondatabase/serverless
 ```
 
-To learn more about the driver, see [Neon Serverless Driver](/docs/serverless/serverless-driver).
+To learn more about the driver, see [Jambo Serverless Driver](/docs/serverless/serverless-driver).
 
 ### 6. Set up environment variables
 
-Here is an example of setting up administrative and authenticated database connections in your `.env` file. Copy the connection strings for both the `neondb_owner` and `authenticated` roles. You can find them by clicking **Connect** on the Neon **Project Dashboard**, or using the Neon CLI:
+Here is an example of setting up administrative and authenticated database connections in your `.env` file. Copy the connection strings for both the `neondb_owner` and `authenticated` roles. You can find them by clicking **Connect** on the Jambo **Project Dashboard**, or using the Jambo CLI:
 
 ```bash
 neon connection-string --role-name neondb_owner
@@ -136,7 +136,7 @@ Add these to your `.env` file.
 # Database owner connection string
 DATABASE_URL='<DB_OWNER_CONNECTION_STRING>'
 
-# Neon "authenticated" role connection string
+# Jambo "authenticated" role connection string
 DATABASE_AUTHENTICATED_URL='<AUTHENTICATED_CONNECTION_STRING>'
 ```
 
@@ -144,7 +144,7 @@ The `DATABASE_URL` is intended for admin tasks and can run any query while the `
 
 ## Add RLS policies
 
-Now that you've integrated Stytch with Neon RLS, you can securely pass JWTs to your Neon database. Let's start looking at how to add RLS policies to your schema and how you can execute authenticated queries from your application.
+Now that you've integrated Stytch with Jambo RLS, you can securely pass JWTs to your Jambo database. Let's start looking at how to add RLS policies to your schema and how you can execute authenticated queries from your application.
 
 ### 1. Add Row-Level Security policies
 

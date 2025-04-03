@@ -15,8 +15,8 @@ export async function GET() {
   const feed = new Rss({
     id: CHANGELOG_BASE_PATH,
     language: 'en',
-    title: `Changelog — Neon Docs`,
-    description: 'The latest product updates from Neon',
+    title: `Changelog — Jambo Docs`,
+    description: 'The latest product updates from Jambo',
     feed_url: `${SITE_URL}${CHANGELOG_BASE_PATH}rss.xml`,
     site_url: SITE_URL,
   });

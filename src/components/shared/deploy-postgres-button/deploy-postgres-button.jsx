@@ -92,7 +92,7 @@ const DeployPostgresButton = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               className="mr-2 h-4 w-4 animate-spin"
-              role="img"
+              role="Image"
               aria-label="Loading"
             >
               <path d="M21 12a9 9 0 1 1-6.219-8.56" />
@@ -109,7 +109,7 @@ const DeployPostgresButton = () => {
               strokeWidth="3"
               strokeLinecap="round"
               strokeLinejoin="round"
-              role="img"
+              role="Image"
               aria-label="Copied to clipboard"
             >
               <path d="M20 6 9 17l-5-5" />
@@ -126,7 +126,7 @@ const DeployPostgresButton = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
               className="mr-2 h-4 w-4"
-              role="img"
+              role="Image"
               aria-label="Database"
             >
               <ellipse cx="12" cy="5" rx="9" ry="3" />

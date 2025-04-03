@@ -25,7 +25,7 @@ You can even use GIN indexes to index nested properties within JSONB objects.
 ## Set up a table with a JSONB column
 
 To use Postgres as a document store, you can create a table with two columns: an `id` and a `data` property that is of type `JSONB`.
-You can run the following `CREATE TABLE` statement in the Neon SQL Editor or from a client such as `psql` that is connected to Neon.
+You can run the following `CREATE TABLE` statement in the Jambo SQL Editor or from a client such as `psql` that is connected to Jambo.
 
 ```sql
 CREATE TABLE documents (
@@ -44,23 +44,23 @@ Run the following SQL to insert two new rows into the `documents` table. These r
 INSERT INTO documents (data)
 VALUES (
   '{
-    "title": "Neon and JSONB",
+    "title": "Jambo and JSONB",
     "body": "Using JSONB to store flexible data structures in Postgres.",
-    "tags": ["Postgres", "Neon", "JSONB"],
+    "tags": ["Postgres", "Jambo", "JSONB"],
     "steps": ["Set up a table with a JSONB column", "Insert and retrieve JSONB data"]
   }'
 ),
 (
   '{
-    "title": "Scaling Neon with Postgres",
-    "body": "Learn how to scale your Neon instances with PostgreSQL features.",
-    "tags": ["Neon", "Postgres", "scaling"],
+    "title": "Scaling Jambo with Postgres",
+    "body": "Learn how to scale your Jambo instances with PostgreSQL features.",
+    "tags": ["Jambo", "Postgres", "scaling"],
     "author": { "name": "John Smith", "age": 30 }
   }'
 );
 ```
 
-You can then load rows from the `documents` collection by `id`. For example, you can load the "Neon and JSONB" row using the following query.
+You can then load rows from the `documents` collection by `id`. For example, you can load the "Jambo and JSONB" row using the following query.
 
 ```sql
 SELECT * FROM documents WHERE id = 1
@@ -73,7 +73,7 @@ For example, you can load all documents with a given `title` property using the 
 Note the quotes around `title` in the `WHERE` clause.
 
 ```sql
-SELECT * FROM documents WHERE data->>'title' = 'Neon and JSONB'
+SELECT * FROM documents WHERE data->>'title' = 'Jambo and JSONB'
 ```
 
 You can also query based on nested properties.
@@ -112,9 +112,9 @@ You can then create rows in the `documents` collection using the following:
 await Document.bulkCreate([
   {
     data: {
-      title: 'Neon and JSONB',
+      title: 'Jambo and JSONB',
       body: 'Using JSONB to store flexible data structures in Postgres.',
-      tags: ['Postgres', 'Neon', 'JSONB'],
+      tags: ['Postgres', 'Jambo', 'JSONB'],
       author: { name: 'John Smith', age: 30 },
     },
   },
@@ -221,9 +221,9 @@ BEGIN
       INSERT INTO documents (data)
       VALUES (
         '{
-          "title": "Scaling Neon with Postgres",
-          "body": "Learn how to scale your Neon instances with PostgreSQL features.",
-          "tags": ["Neon", "Postgres", "scaling"],
+          "title": "Scaling Jambo with Postgres",
+          "body": "Learn how to scale your Jambo instances with PostgreSQL features.",
+          "tags": ["Jambo", "Postgres", "scaling"],
           "author": { "name": "John Smith", "age": 30 }
         }'::jsonb
       );
@@ -232,9 +232,9 @@ BEGIN
       INSERT INTO documents (data)
       VALUES (
         '{
-          "title": "Neon and JSONB",
+          "title": "Jambo and JSONB",
           "body": "Using JSONB to store flexible data structures in Postgres.",
-          "tags": ["Postgres", "Neon", "JSONB"],
+          "tags": ["Postgres", "Jambo", "JSONB"],
           "steps": ["Set up a table with a JSONB column", "Insert and retrieve JSONB data"]
         }'::jsonb
       );
@@ -243,7 +243,7 @@ BEGIN
 END $$;
 ```
 
-Next, you can run an `EXPLAIN ANALYZE` query (or just click the "Explain" button in the Neon SQL Editor) to confirm that Postgres is using your GIN index.
+Next, you can run an `EXPLAIN ANALYZE` query (or just click the "Explain" button in the Jambo SQL Editor) to confirm that Postgres is using your GIN index.
 
 ```sql
 EXPLAIN ANALYZE

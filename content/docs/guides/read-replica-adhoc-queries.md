@@ -7,7 +7,7 @@ updatedOn: '2024-12-13T20:52:57.585Z'
 
 In many situations, you may need to run quick, one-time queries to retrieve specific data or test an idea. These are known as **ad-hoc queries**. Ad-hoc queries are particularly useful for tasks like analytics, troubleshooting, or exploring your data without setting up complex reports. However, running resource-intensive queries on your production database can degrade performance, especially if they target heavily used tables.
 
-This is where **Neon Read Replicas** come in handy. With read replicas, you can quickly create a replica that runs on dedicated read-only compute, allowing you to run ad-hoc queries without impacting your primary database’s performance. Once you're done, the read replica can automatically scale to zero, or you can delete it. The key advantages of using Neon Read Replicas for ad-hoc queries include the following:
+This is where **Jambo Read Replicas** come in handy. With read replicas, you can quickly create a replica that runs on dedicated read-only compute, allowing you to run ad-hoc queries without impacting your primary database’s performance. Once you're done, the read replica can automatically scale to zero, or you can delete it. The key advantages of using Jambo Read Replicas for ad-hoc queries include the following:
 
 - You can add a fully functional read replica in seconds.
 - There's no additional storage cost or data replication, as the replica uses the same storage as your primary compute.
@@ -31,13 +31,13 @@ Running ad-hoc queries on a read replica can help you:
 
 - **Avoid performance issues**: Heavy ad-hoc queries, such as large aggregations or joins, can slow down your production database. A read replica offloads that work.
 - **Isolate query load**: Since ad-hoc queries may be exploratory and involve significant data scanning, running them on a replica prevents unplanned queries from affecting your production traffic.
-- **Ensure data consistency**: With Neon, read replicas access the same data as your primary compute, ensuring your ad-hoc queries reflect up-to-date information.
+- **Ensure data consistency**: With Jambo, read replicas access the same data as your primary compute, ensuring your ad-hoc queries reflect up-to-date information.
 
 ## Setting up a read replica for ad-hoc queries
 
-You can add a read replica compute to any branch in your Neon project by following these steps:
+You can add a read replica compute to any branch in your Jambo project by following these steps:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new copmpute** dialog, select **Read replica** as the **Compute type**.
@@ -49,7 +49,7 @@ You can add a read replica compute to any branch in your Neon project by followi
 
 Your read replica is provisioned and appears on the **Computes** tab of the **Branches** page. The following section describes how to connect to your read replica.
 
-Alternatively, you can create read replicas using the [Neon CLI](/docs/reference/cli-branches#create) or [Neon API](https://api-docs.neon.tech/reference/createprojectendpoint).
+Alternatively, you can create read replicas using the [Jambo CLI](/docs/reference/cli-branches#create) or [Jambo API](https://api-docs.neon.tech/reference/createprojectendpoint).
 
 <CodeTabs labels={["CLI", "API"]}>
 

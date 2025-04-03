@@ -1,6 +1,6 @@
 ---
-title: Troubleshooting Neon RLS
-subtitle: Common issues and solutions when using Neon RLS
+title: Troubleshooting Jambo RLS
+subtitle: Common issues and solutions when using Jambo RLS
 enableTableOfContents: true
 updatedOn: '2025-03-10T18:26:02.771Z'
 redirectFrom:
@@ -8,12 +8,12 @@ redirectFrom:
   - /docs/guides/neon-authorize-troubleshooting
 ---
 
-This page covers common errors you might encounter when implementing Row-Level Security (RLS) policies with Neon RLS and your authentication provider.
+This page covers common errors you might encounter when implementing Row-Level Security (RLS) policies with Jambo RLS and your authentication provider.
 
 Errors:
 
-- [`NeonDbError: password authentication failed for user 'jwk not found'`](#password-authentication-error)
-- [`NeonDbError: permission denied for table X`](#permission-denied-error)
+- [`JamboDbError: password authentication failed for user 'jwk not found'`](#password-authentication-error)
+- [`JamboDbError: permission denied for table X`](#permission-denied-error)
 - [`invalid RSA Signing Algorithm`](#invalid-rsa-signing-algorithm)
 
 ---
@@ -21,10 +21,10 @@ Errors:
 <a id="password-authentication-error"></a>
 
 ```bash
-NeonDbError: password authentication failed for user 'jwk not found'
+JamboDbError: password authentication failed for user 'jwk not found'
 ```
 
-This error indicates that Neon couldn't locate the expected JSON Web Key (JWK) based on its key ID (`kid`) in the Authorize configuration.
+This error indicates that Jambo couldn't locate the expected JSON Web Key (JWK) based on its key ID (`kid`) in the Authorize configuration.
 
 This issue typically occurs when:
 
@@ -38,7 +38,7 @@ This issue typically occurs when:
 
 3. **Unsupported role name**
 
-   The Postgres username used in your connection string is not a role registered for Neon RLS. Currently, only the roles `anonymous` and `authenticated` are supported. Make sure that the role name in your connection string matches one of these supported roles.
+   The Postgres username used in your connection string is not a role registered for Jambo RLS. Currently, only the roles `anonymous` and `authenticated` are supported. Make sure that the role name in your connection string matches one of these supported roles.
 
 **Solution:**
 
@@ -56,7 +56,7 @@ This issue typically occurs when:
 <a id="permission-denied-error"></a>
 
 ```bash
-NeonDbError: permission denied for table X
+JamboDbError: permission denied for table X
 ```
 
 This error typically indicates that you haven't yet granted the necessary permissions to the `authenticated` and `anonymous` roles.
@@ -91,7 +91,7 @@ TO anonymous;
 ```
 
 <Admonition type="note">
-Neon RLS prompts you to run these commands when you first set up your authentication provider on the Neon RLS drawer in the Neon Console. If you're using a different database, you will have to run these commands manually.
+Jambo RLS prompts you to run these commands when you first set up your authentication provider on the Jambo RLS drawer in the Jambo Console. If you're using a different database, you will have to run these commands manually.
 </Admonition>
 
 ---
@@ -102,7 +102,7 @@ Neon RLS prompts you to run these commands when you first set up your authentica
 invalid RSA signing algorithm
 ```
 
-Neon RLS only supports JWTs signed with the `ES256` and `RS256` algorithms. If the Neon Proxy receives a JWT signed with any other algorithm, it will produce an error.
+Jambo RLS only supports JWTs signed with the `ES256` and `RS256` algorithms. If the Jambo Proxy receives a JWT signed with any other algorithm, it will produce an error.
 
 **Solution:**
 

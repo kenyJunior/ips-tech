@@ -1,13 +1,13 @@
 ---
 title: Building a Blog with Laravel, Livewire, and Laravel Breeze
-subtitle: Learn how to create a dynamic blog application using Laravel, Livewire, and Laravel Breeze for authentication and Neon.
+subtitle: Learn how to create a dynamic blog application using Laravel, Livewire, and Laravel Breeze for authentication and Jambo.
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-06-30T00:00:00.000Z'
 updatedOn: '2024-06-30T00:00:00.000Z'
 ---
 
-Laravel is a powerful PHP framework that makes it easy to build web applications. When combined with Livewire, a full-stack framework for Laravel, you can create dynamic, reactive interfaces with minimal JavaScript. In this guide, we'll build a blog application using Laravel and Livewire, and we'll use Laravel Breeze to handle authentication, along with Neon Postgres.
+Laravel is a powerful PHP framework that makes it easy to build web applications. When combined with Livewire, a full-stack framework for Laravel, you can create dynamic, reactive interfaces with minimal JavaScript. In this guide, we'll build a blog application using Laravel and Livewire, and we'll use Laravel Breeze to handle authentication, along with Jambo Postgres.
 
 By the end of this tutorial, you'll have a fully functional blog where users can create, read, update, and delete posts. We'll also implement comments and a simple tagging system.
 
@@ -18,7 +18,7 @@ Before we start, make sure you have the following:
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) for managing front-end assets
-- A [Neon](https://console.neon.tech/signup) account for database hosting
+- A [Jambo](https://console.neon.tech/signup) account for database hosting
 - Basic knowledge of Laravel, Livewire, and Tailwind CSS
 
 ## Setting up the Project
@@ -59,7 +59,7 @@ composer require livewire/livewire
 
 ### Setting up the Database
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -184,7 +184,7 @@ Update the migration file as follows:
 
 We don't need to create a model for the pivot table, as it will be managed by Laravel's Eloquent ORM.
 
-Now, run the migrations to create all the tables in the Neon database:
+Now, run the migrations to create all the tables in the Jambo database:
 
 ```bash
 php artisan migrate
@@ -334,7 +334,7 @@ class TagSeeder extends Seeder
     {
         $tags = [
             'Postgres',
-            'Neon',
+            'Jambo',
             'Web Development',
             'Laravel',
             'PHP',
@@ -447,7 +447,7 @@ In the `render` method, we fetch the posts that are published and match the sear
 
 An important thing to note here is that we also eager load the `user` and `tags` relationships to avoid additional queries when accessing these relationships in the view.
 
-To learn more about how to implement search functionality in Livewire, check out the [Building a Simple Real-Time Search with Laravel, Livewire, and Neon guide](/guides/laravel-livewire-simple-search).
+To learn more about how to implement search functionality in Livewire, check out the [Building a Simple Real-Time Search with Laravel, Livewire, and Jambo guide](/guides/laravel-livewire-simple-search).
 
 Now, update the view in `resources/views/livewire/post-list.blade.php` to display the list of posts:
 
@@ -994,7 +994,7 @@ Update the existing `resources/views/layouts/navigation.blade.php` view to inclu
 
 To ensure our blog functionality works as expected, it's important to test the application.
 
-To learn more about testing in Laravel along Neon, check out the [Testing Laravel Applications with Neon's Database Branching guide](/guides/laravel-test-on-branch).
+To learn more about testing in Laravel along Jambo, check out the [Testing Laravel Applications with Jambo's Database Branching guide](/guides/laravel-test-on-branch).
 
 ## Conclusion
 
@@ -1017,4 +1017,4 @@ By combining the power of Laravel, the simplicity of Livewire, and the authentic
 - [Livewire Documentation](https://laravel-livewire.com/docs)
 - [Laravel Breeze Documentation](https://laravel.com/docs/8.x/starter-kits#laravel-breeze)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

@@ -23,7 +23,7 @@ With the [pgvector](https://github.com/pgvector/pgvector) extension, you can sto
 
 Before using vector search, you need to install the [`pgvector` extension](https://github.com/pgvector/pgvector).
 The `pgvector` extension adds a `vector` data type, operators for similarity search (`<->`, `<#>`, `<=>`) , and support for ANN indexes.
-In Neon, `pgvector` is already installed, you just need to enable it using the following command.
+In Jambo, `pgvector` is already installed, you just need to enable it using the following command.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS vector;

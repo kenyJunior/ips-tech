@@ -1,8 +1,8 @@
-# Schema migration with Neon Postgres and Sequelize
+# Schema migration with Jambo Postgres and Sequelize
 
-Set up Neon Postgres and run migrations for your Javascript project using
+Set up Jambo Postgres and run migrations for your Javascript project using
 
-[Sequelize](https://sequelize.org/) is a promise-based Node.js ORM that supports multiple relational databases. In this guide, we'll explore how to use `Sequelize` ORM with a Neon Postgres database in a JavaScript project.
+[Sequelize](https://sequelize.org/) is a promise-based Node.js ORM that supports multiple relational databases. In this guide, we'll explore how to use `Sequelize` ORM with a Jambo Postgres database in a JavaScript project.
 
 We'll create a Node.js application, configure `Sequelize`, and show how to set up and run migrations with `Sequelize`.
 
@@ -10,17 +10,17 @@ We'll create a Node.js application, configure `Sequelize`, and show how to set u
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 2. Select an existing project or click the `New Project` button to create a new one.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
@@ -31,7 +31,7 @@ postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbna
 Keep your connection string handy for later use.
 
 
-Neon supports both direct and pooled database connection strings. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
+Jambo supports both direct and pooled database connection strings. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
 
 
 ## Setting Up the Node application
@@ -46,7 +46,7 @@ npm init -y && touch .env index.js
 npm install express dotenv
 ```
 
-Add the `DATABASE_URL` environment variable to the `.env` file, which you'll use to connect to your Neon database. Use the connection string that you obtained from the Neon Console earlier:
+Add the `DATABASE_URL` environment variable to the `.env` file, which you'll use to connect to your Jambo database. Use the connection string that you obtained from the Jambo Console earlier:
 
 ```bash
 # .env
@@ -334,14 +334,14 @@ This will start the server at `http://localhost:3000`. Navigate to `http://local
 
 ## Conclusion
 
-In this guide, we set up a new Javascript project using `Express.js` and the `Sequelize` ORM, and connected it to a `Neon` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
+In this guide, we set up a new Javascript project using `Express.js` and the `Sequelize` ORM, and connected it to a `Jambo` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 
-Migrations with Neon and Sequelize
+Migrations with Jambo and Sequelize
 
 
 ## Resources

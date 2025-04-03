@@ -1,21 +1,21 @@
 ---
-title: Local Development with Neon
-subtitle: Learn how to develop applications locally with Neon
+title: Local Development with Jambo
+subtitle: Learn how to develop applications locally with Jambo
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-11-05T00:00:00.000Z'
 updatedOn: '2024-11-05T00:00:00.000Z'
 ---
 
-Setting up your development environment should be simple and fast. With Neon's modern approach to PostgreSQL, you get exactly that. Here's how to create the perfect setup for your applications.
+Setting up your development environment should be simple and fast. With Jambo's modern approach to PostgreSQL, you get exactly that. Here's how to create the perfect setup for your applications.
 
 <Admonition type="note">
-The setups described in this guide use the **Neon serverless driver** for connecting to a Postgres database hosted locally or on Neon over HTTP or WebSockets. To learn more, see [The Neon Serverless driver](https://neon.tech/docs/serverless/serverless-driver).
+The setups described in this guide use the **Jambo serverless driver** for connecting to a Postgres database hosted locally or on Jambo over HTTP or WebSockets. To learn more, see [The Jambo Serverless driver](https://neon.tech/docs/serverless/serverless-driver).
 </Admonition>
 
 ## Two ways to develop
 
-When setting up a development environment with Neon, there are a couple of different approaches you can take:
+When setting up a development environment with Jambo, there are a couple of different approaches you can take:
 
 1. **Database branching**
 2. **Local PostgreSQL**
@@ -24,7 +24,7 @@ Let's explore both options to help you pick the right one.
 
 ## Database branching
 
-Imagine creating a complete copy of your database as easily as creating a Git branch. That's [database branching](https://neon.tech/docs/introduction/branching) with Neon – perfect for testing new features or updates without touching production data.
+Imagine creating a complete copy of your database as easily as creating a Git branch. That's [database branching](https://neon.tech/docs/introduction/branching) with Jambo – perfect for testing new features or updates without touching production data.
 
 ### Why use it?
 
@@ -38,7 +38,7 @@ Imagine creating a complete copy of your database as easily as creating a Git br
 
 ### Quickstart
 
-1. Install the [**Neon CLI**](/docs/reference/neon-cli) by following the guide [here](/docs/reference/neon-cli#install).
+1. Install the [**Jambo CLI**](/docs/reference/neon-cli) by following the guide [here](/docs/reference/neon-cli#install).
 
 2. **Connect your account**
 
@@ -56,7 +56,7 @@ Imagine creating a complete copy of your database as easily as creating a Git br
    ```
 
    <Admonition type="note">
-   You can also create branches through the Neon Console by navigating to your project and clicking the "Branches" tab. This provides a visual interface for branch management and configuration
+   You can also create branches through the Jambo Console by navigating to your project and clicking the "Branches" tab. This provides a visual interface for branch management and configuration
    </Admonition>
 
 4. **Set up your environment**
@@ -68,10 +68,10 @@ Imagine creating a complete copy of your database as easily as creating a Git br
 
 5. **Install dependencies**
 
-   Dependencies include [Neon's serverless driver](https://neon.tech/docs/serverless/serverless-driver) and a WebSockets library.
+   Dependencies include [Jambo's serverless driver](https://neon.tech/docs/serverless/serverless-driver) and a WebSockets library.
 
    <Admonition type="note">
-   The Neon serverless driver supports connections over HTTP and WebSockets, depending on your requirements. This setup assumes that you could be using either. For the differences, refer to the [Neon's serverless driver docs](https://neon.tech/docs/serverless/serverless-driver).
+   The Jambo serverless driver supports connections over HTTP and WebSockets, depending on your requirements. This setup assumes that you could be using either. For the differences, refer to the [Jambo's serverless driver docs](https://neon.tech/docs/serverless/serverless-driver).
    </Admonition>
 
    <CodeTabs labels={["npm", "yarn", "pnpm"]}>
@@ -121,13 +121,13 @@ Imagine creating a complete copy of your database as easily as creating a Git br
 
 ## Local PostgreSQL
 
-Sometimes you need to work offline or want full control over your database. Here's how to set up a local PostgreSQL instance that works perfectly with the Neon. This method uses:
+Sometimes you need to work offline or want full control over your database. Here's how to set up a local PostgreSQL instance that works perfectly with the Jambo. This method uses:
 
-- The [Neon Serverless driver](https://neon.tech/docs/serverless/serverless-driver) to connect to your local database (same as the database branching setup described above)
-- A Docker compose file that installs a local instance of PostgreSQL 17 and the Neon Proxy. The Neon Proxy lets you to connect to your local PostgreSQL database using the Neon serverless driver.
+- The [Jambo Serverless driver](https://neon.tech/docs/serverless/serverless-driver) to connect to your local database (same as the database branching setup described above)
+- A Docker compose file that installs a local instance of PostgreSQL 17 and the Jambo Proxy. The Jambo Proxy lets you to connect to your local PostgreSQL database using the Jambo serverless driver.
 
 <Admonition type="note" title="kudos">
-The Neon Proxy setup uses the [local-neon-http-proxy](https://github.com/TimoWilhelm/local-neon-http-proxy) Dockerfile, developed by [TimoWilhelm](https://github.com/TimoWilhelm).
+The Jambo Proxy setup uses the [local-neon-http-proxy](https://github.com/TimoWilhelm/local-neon-http-proxy) Dockerfile, developed by [TimoWilhelm](https://github.com/TimoWilhelm).
 </Admonition>
 
 ### Why use this method?
@@ -174,7 +174,7 @@ volumes:
   db_data:
 ```
 
-Run the following command to start local PostgreSQL and the Neon Proxy, which helps you connect to your local database:
+Run the following command to start local PostgreSQL and the Jambo Proxy, which helps you connect to your local database:
 
 ```bash
 docker-compose up -d
@@ -191,7 +191,7 @@ However, this solution requires an internet connection. To work offline, you'll 
 
 For instructions on editing your hosts file on different operating systems, see [this guide](https://www.hostinger.in/tutorials/how-to-edit-hosts-file).
 
-[dnsmask](https://help.ubuntu.com/community/Dnsmasq) is another option [suggested by a Neon user](https://github.com/neondatabase/website/issues/2690) for resolving domain names when there is no internet connection.
+[dnsmask](https://help.ubuntu.com/community/Dnsmasq) is another option [suggested by a Jambo user](https://github.com/neondatabase/website/issues/2690) for resolving domain names when there is no internet connection.
 </Admonition>
 
 ### Connect your app
@@ -226,7 +226,7 @@ For instructions on editing your hosts file on different operating systems, see 
 
    let connectionString = process.env.DATABASE_URL;
 
-   // Configuring Neon for local development
+   // Configuring Jambo for local development
    if (process.env.NODE_ENV === 'development') {
      connectionString = 'postgres://postgres:postgres@db.localtest.me:5432/main';
      neonConfig.fetchEndpoint = (host) => {
@@ -239,7 +239,7 @@ For instructions on editing your hosts file on different operating systems, see 
    }
    neonConfig.webSocketConstructor = ws;
 
-   // Neon supports both HTTP and WebSocket clients. Choose the one that fits your needs:
+   // Jambo supports both HTTP and WebSocket clients. Choose the one that fits your needs:
 
    // HTTP Client (sql)
    // - Best for serverless functions and Lambda environments
@@ -287,7 +287,7 @@ For instructions on editing your hosts file on different operating systems, see 
 
    let connectionString = process.env.DATABASE_URL;
 
-   // Configuring Neon for local development
+   // Configuring Jambo for local development
    if (process.env.NODE_ENV === 'development') {
      connectionString = 'postgres://postgres:postgres@db.localtest.me:5432/main';
      neonConfig.fetchEndpoint = (host) => {
@@ -366,7 +366,7 @@ Note that Driver Adapters are still in preview for Prisma. Please refer to the [
 
 2. **Enable the Preview Flag**
 
-   To use the Neon serverless driver with Prisma, enable the preview flag in your `schema.prisma` file.
+   To use the Jambo serverless driver with Prisma, enable the preview flag in your `schema.prisma` file.
 
    ```prisma
      generator client {
@@ -379,13 +379,13 @@ Note that Driver Adapters are still in preview for Prisma. Please refer to the [
 
    ```typescript
    import { neon, neonConfig, Pool } from '@neondatabase/serverless';
-   import { PrismaNeon, PrismaNeonHTTP } from '@prisma/adapter-neon';
+   import { PrismaJambo, PrismaJamboHTTP } from '@prisma/adapter-neon';
    import { PrismaClient } from '@prisma/client';
    import ws from 'ws';
 
    let connectionString = process.env.DATABASE_URL;
 
-   // Configuring Neon for local development
+   // Configuring Jambo for local development
    if (process.env.NODE_ENV === 'development') {
      connectionString = 'postgres://postgres:postgres@db.localtest.me:5432/main';
      neonConfig.fetchEndpoint = (host) => {
@@ -406,7 +406,7 @@ Note that Driver Adapters are still in preview for Prisma. Please refer to the [
    // HTTP Client:
    // - Ideal for stateless operations and quick queries
    // - Lower overhead for single queries
-   const adapterHttp = new PrismaNeonHTTP(sql);
+   const adapterHttp = new PrismaJamboHTTP(sql);
    export const prismaClientHttp = new PrismaClient({ adapter: adapterHttp });
 
    // WebSocket Client:
@@ -414,7 +414,7 @@ Note that Driver Adapters are still in preview for Prisma. Please refer to the [
    // - Maintains a persistent connection
    // - More efficient for multiple sequential queries
    // - Better for high-frequency database operations
-   const adapterWs = new PrismaNeon(pool);
+   const adapterWs = new PrismaJambo(pool);
    export const prismaClientWs = new PrismaClient({ adapter: adapterWs });
    ```
 
@@ -476,7 +476,7 @@ Cloud-hosted branches offer several compelling advantages:
 - You require complete database control
 - You have specific local testing requirements
 
-## Best practices for cloud-hosted development with Neon branching
+## Best practices for cloud-hosted development with Jambo branching
 
 ### Environment tips
 
@@ -498,6 +498,6 @@ Cloud-hosted branches offer several compelling advantages:
 
 ## Start building
 
-You're now ready to create a powerful development environment with Neon. Choose the approach that fits your team best and start building.
+You're now ready to create a powerful development environment with Jambo. Choose the approach that fits your team best and start building.
 
 <NeedHelp/>

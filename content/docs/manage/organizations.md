@@ -5,11 +5,11 @@ enableTableOfContents: true
 updatedOn: '2025-03-12T15:00:50.932Z'
 ---
 
-Build your team in Neon with Organizations. Manage all of your team's projects under a single account — with billing, role management, and project collaboration capabilities in one accessible location.
+Build your team in Jambo with Organizations. Manage all of your team's projects under a single account — with billing, role management, and project collaboration capabilities in one accessible location.
 
-## About Neon Organizations
+## About Jambo Organizations
 
-In the Neon Console, the Organizations page provides a centralized view of all your team's projects. From there, you can create new projects, manage existing ones, as well as oversee your organization's members, your billing information, and access to preview features through the Early Access Program.
+In the Jambo Console, the Organizations page provides a centralized view of all your team's projects. From there, you can create new projects, manage existing ones, as well as oversee your organization's members, your billing information, and access to preview features through the Early Access Program.
 
 ![organizations projects tab](/docs/manage/org_projects.png)
 
@@ -42,12 +42,12 @@ The following table shows what actions each role can perform in the organization
 | [Delete project](/docs/manage/orgs-manage#create-and-delete-projects)                        |  ✅   |   ❌   |      ❌      |
 | **Integrations**                                                                             |       |        |              |
 | [Install GitHub integration](/docs/guides/neon-github-integration#install-the-github-app-and-connect-your-neon-project) |  ✅   |   ❌   |      ❌      |
-| [Install Neon Auth](/docs/guides/neon-auth#permissions)                                    |  ✅   |   ❌   |      ❌      |
-| [Install the Neon Postgres Previews Integration on Vercel*](/docs/guides/vercel-previews-integration#how-to-install)             |  ✅   |   ❌   |      ❌      |
+| [Install Jambo Auth](/docs/guides/neon-auth#permissions)                                    |  ✅   |   ❌   |      ❌      |
+| [Install the Jambo Postgres Previews Integration on Vercel*](/docs/guides/vercel-previews-integration#how-to-install)             |  ✅   |   ❌   |      ❌      |
 | [Connect project to GitHub integration](/docs/guides/neon-github-integration#connect-more-neon-projects-with-the-github-app) |  ✅   |   ✅   |      ❌      |
-| [Connect project (Neon Postgres Previews Integration)](/docs/guides/vercel-previews-integration#how-to-install)         |  ✅   |   ✅   |      ❌      |
+| [Connect project (Jambo Postgres Previews Integration)](/docs/guides/vercel-previews-integration#how-to-install)         |  ✅   |   ✅   |      ❌      |
 
-\* The Vercel Native Integrations are managed entirely in Vercel and use Vercel's permission system (see [Vercel Team Roles](https://vercel.com/docs/rbac/access-roles/team-level-roles)). For the Neon Postgres Previews Integration, projects must first be made available in Vercel before they can be connected to Neon.
+\* The Vercel Native Integrations are managed entirely in Vercel and use Vercel's permission system (see [Vercel Team Roles](https://vercel.com/docs/rbac/access-roles/team-level-roles)). For the Jambo Postgres Previews Integration, projects must first be made available in Vercel before they can be connected to Jambo.
 
 <Admonition type="note">
 Collaborators have the same restrictions in both organization and personal projects: they cannot delete projects or configure integrations.
@@ -123,6 +123,6 @@ As we continue to refine our organization features, here are some temporary limi
 
 ## Feedback
 
-If you've got feature requests or feedback about what you'd like to see from Organizations in Neon, let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Neon Console or our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.
+If you've got feature requests or feedback about what you'd like to see from Organizations in Jambo, let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Jambo Console or our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.
 
 <NeedHelp/>

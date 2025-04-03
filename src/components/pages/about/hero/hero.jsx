@@ -16,31 +16,30 @@ const Hero = () => (
           tag="h1"
           theme="black"
         >
-          A better way to build with Postgres
+          Partenaire de transformation digitale
         </Heading>
         <div className="mt-7 flex items-center gap-6 lg:mt-6 md:mt-5 md:gap-x-[18px]">
           <Button
             className="h-11 w-[178px] !font-semibold tracking-tighter lg:h-10 md:h-9 md:w-40 md:text-sm"
             theme="primary"
-            to={LINKS.signup}
           >
-            Create an Account
+            Contactez-Nous
           </Button>
           <Link
             className="text-[15px] font-medium tracking-tight md:text-sm"
             to={LINKS.careers}
             theme="white"
           >
-            View Open Positions
+            Pour tous votre transformation numérique
           </Link>
         </div>
       </header>
       <p className="max-w-sm pt-3 text-lg leading-snug tracking-extra-tight text-gray-new-50 xl:max-w-[352px] xl:pt-1.5 lg:max-w-[288px] lg:pt-1 lg:text-base md:mt-7 md:max-w-none md:pt-0">
-        Neon is an open-source database company. <span className="text-white">Our mission</span> is
-        to take everything that developers love about Postgres — reliability, performance,
-        extensibility — and deliver it as a serverless product that helps teams {` `}
-        <span className="text-white">confidently ship reliable and scalable applications</span>{' '}
-        faster than ever before.
+        IPS Technologies est plus qu&apos;un fournisseur de technologie - nous sommes les
+        architectes de l&apos;avenir numérique de vos entreprises. Avec une compréhension
+        approfondie du paysage commercial unique du continent, nous fournissons des solutions
+        innovantes et sur mesure qui permettent aux organisations de prospérer dans une économie
+        numérique en constante évolution.
       </p>
     </Container>
   </section>

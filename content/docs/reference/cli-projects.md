@@ -1,20 +1,20 @@
 ---
-title: Neon CLI commands — projects
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — projects
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2025-02-20T17:57:40.910Z'
 ---
 
 ## Before you begin
 
-- Before running the `projects` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
-- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Neon CLI command automatically launches the Neon CLI browser authentication process. Alternatively, you can specify a Neon API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
+- Before running the `projects` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
+- If you have not authenticated with the [neon auth](/docs/reference/cli-auth) command, running a Jambo CLI command automatically launches the Jambo CLI browser authentication process. Alternatively, you can specify a Jambo API key using the `--api-key` option when running a command. See [Connect](/docs/reference/neon-cli#connect).
 
-For information about projects in Neon, see [Projects](/docs/manage/projects).
+For information about projects in Jambo, see [Projects](/docs/manage/projects).
 
 ## The `projects` command
 
-The `projects` command allows you to list, create, update, delete, and retrieve information about Neon projects.
+The `projects` command allows you to list, create, update, delete, and retrieve information about Jambo projects.
 
 ### Usage
 
@@ -32,7 +32,7 @@ neon projects <subcommand> [options]
 
 ### list
 
-This subcommand allows you to list projects that belong to your Neon account, as well as any projects that were shared with you.
+This subcommand allows you to list projects that belong to your Jambo account, as well as any projects that were shared with you.
 
 #### Usage
 
@@ -42,7 +42,7 @@ neon projects list [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `projects` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `projects` subcommand supports this option:
 
 | Option           | Description                                                                                                              | Type   | Required |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------ | ------ | :------: |
@@ -91,7 +91,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 ### create
 
-This subcommand allows you to create a Neon project.
+This subcommand allows you to create a Jambo project.
 
 #### Usage
 
@@ -101,7 +101,7 @@ neon projects create [options]
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `create` subcommand supports these options:
 
 | Option           | Description                                                                                                                                                                                                       | Type    | Required |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
@@ -116,7 +116,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 | `--cu`           | The compute size for the default branch's primary compute. Could be a fixed size (e.g., "2") or a range delimited by a dash (e.g., "0.5-3").                                                                      | string  |          |
 
 <Admonition type="note">
-Neon projects created using the CLI use the default Postgres version, which is Postgres 17. To create a project with a different Postgres version, you can use the [Neon Console](https://neon.tech/docs/manage/projects#create-a-project) or [Neon API](https://api-docs.neon.tech/reference/createproject). 
+Jambo projects created using the CLI use the default Postgres version, which is Postgres 17. To create a project with a different Postgres version, you can use the [Jambo Console](https://neon.tech/docs/manage/projects#create-a-project) or [Jambo API](https://api-docs.neon.tech/reference/createproject). 
 </Admonition>
 
 #### Examples
@@ -139,7 +139,7 @@ Neon projects created using the CLI use the default Postgres version, which is P
   ```
 
     <Admonition type="tip">
-    The Neon CLI provides a `neon connection-string` command you can use to extract a connection uri programmatically. See [Neon CLI commands — connection-string](/docs/reference/cli-connection-string).
+    The Jambo CLI provides a `neon connection-string` command you can use to extract a connection uri programmatically. See [Jambo CLI commands — connection-string](/docs/reference/cli-connection-string).
     </Admonition>
 
 - Create a project with the `--output` format of the command set to `json`. This output format returns all of the project response data, whereas the default `table` output format (shown in the preceding example) is limited in the information it can display.
@@ -216,7 +216,7 @@ Neon projects created using the CLI use the default Postgres version, which is P
   neon project create --psql -- -c "SELECT version()"
   ```
 
-- Create a project and set the Neon CLI project context.
+- Create a project and set the Jambo CLI project context.
 
   ```
   neon project create --psql --set-context
@@ -224,7 +224,7 @@ Neon projects created using the CLI use the default Postgres version, which is P
 
 ### update
 
-This subcommand allows you to update a Neon project.
+This subcommand allows you to update a Jambo project.
 
 #### Usage
 
@@ -232,11 +232,11 @@ This subcommand allows you to update a Neon project.
 neon projects update <id> [options]
 ```
 
-The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Neon Console.
+The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Jambo Console.
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `update` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `update` subcommand supports this option:
 
 | Option                       | Description                                                                                                                                  | Type    | Required |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
@@ -261,7 +261,7 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 - Block connections from the public internet:
 
-  This option is used with Neon's Private Networking feature to block access from the public internet. See [Private Networking — Restrict public internet access](/docs/guides/neon-private-networking#restrict-public-internet-access). You must specify the ID of you Neon project, as shown below.
+  This option is used with Jambo's Private Networking feature to block access from the public internet. See [Private Networking — Restrict public internet access](/docs/guides/neon-private-networking#restrict-public-internet-access). You must specify the ID of you Jambo project, as shown below.
 
   ```bash
   neon projects update orange-credit-12345678 --block-public-connections=true
@@ -269,13 +269,13 @@ In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-opt
 
 ### delete
 
-This subcommand allows you to delete a Neon project.
+This subcommand allows you to delete a Jambo project.
 
 ```bash
 neon projects delete <id> [options]
 ```
 
-The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Neon Console.
+The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Jambo Console.
 
 #### Options
 
@@ -296,7 +296,7 @@ Information about the deleted project is displayed. You can verify that the proj
 
 ### get
 
-This subcommand allows you to retrieve details about a Neon project.
+This subcommand allows you to retrieve details about a Jambo project.
 
 #### Usage
 
@@ -304,11 +304,11 @@ This subcommand allows you to retrieve details about a Neon project.
 neon projects get <id> [options]
 ```
 
-The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Neon Console.
+The `id` is the project ID, which you can obtain by listing your projects or from the **Settings** page in the Jambo Console.
 
 #### Options
 
-In addition to the Neon CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports this option:
+In addition to the Jambo CLI [global options](/docs/reference/neon-cli#global-options), the `delete` subcommand supports this option:
 
 | Option           | Description                                                                                    | Type   | Required |
 | ---------------- | ---------------------------------------------------------------------------------------------- | ------ | :------: |

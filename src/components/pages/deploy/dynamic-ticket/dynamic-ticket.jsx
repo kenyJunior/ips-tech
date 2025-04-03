@@ -206,7 +206,7 @@ const DynamicTicket = ({
                     'order-2 mb-4 ml-[43px] self-start 2xl:mb-3 2xl:ml-[42px] lg:mb-0 lg:ml-[38px] lg:mt-3 md:ml-0 md:mt-1'
                   )}
                 >
-                  <h2 className="sr-only">Neon Deploy</h2>
+                  <h2 className="sr-only">Jambo Deploy</h2>
                 </header>
                 <p
                   className={clsx(

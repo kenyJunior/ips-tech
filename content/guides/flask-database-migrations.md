@@ -1,6 +1,6 @@
 ---
-title: Managing database migrations and schema changes with Flask and Neon Postgres
-subtitle: Learn how to handle database migrations and schema changes in a Flask application using Flask-Migrate and Neon Postgres
+title: Managing database migrations and schema changes with Flask and Jambo Postgres
+subtitle: Learn how to handle database migrations and schema changes in a Flask application using Flask-Migrate and Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-09-14T00:00:00.000Z'
@@ -11,14 +11,14 @@ Flask is a lightweight and flexible web framework for Python that makes it easy 
 
 As your Flask application grows, so does your database schema and its complexity. Managing these changes effectively is important for maintaining data integrity and smooth deployments.
 
-This guide will walk you through the process of handling database migrations and schema changes in a Flask application using Flask-Migrate and Neon Postgres.
+This guide will walk you through the process of handling database migrations and schema changes in a Flask application using Flask-Migrate and Jambo Postgres.
 
 ## Prerequisites
 
 Before we begin, make sure you have:
 
 - Python 3.7 or later installed
-- A [Neon](https://console.neon.tech/signup) account for Postgres hosting
+- A [Jambo](https://console.neon.tech/signup) account for Postgres hosting
 - Basic familiarity with Flask and SQLAlchemy
 
 ## Setting up the Project
@@ -59,13 +59,13 @@ Before we begin, make sure you have:
    pip install -r requirements.txt
    ```
 
-4. Create a `.env` file in your project root and add your Neon Postgres connection string:
+4. Create a `.env` file in your project root and add your Jambo Postgres connection string:
 
    ```
    DATABASE_URL=postgresql://user:password@your-neon-host:5432/your-database
    ```
 
-   Replace the placeholders with your actual Neon database credentials.
+   Replace the placeholders with your actual Jambo database credentials.
 
    Note that you should never commit your `.env` file to version control. Add it to your `.gitignore` file to prevent accidental commits.
 
@@ -174,7 +174,7 @@ It is a good practice to review the generated migration script before applying i
 
 ## Applying the Migration
 
-After reviewing the migration script, to apply the migration and create the table in your Neon Postgres database, run:
+After reviewing the migration script, to apply the migration and create the table in your Jambo Postgres database, run:
 
 ```bash
 flask db upgrade
@@ -272,7 +272,7 @@ The `age` column should now be renamed to `years_old` in your database. Remember
 
 ## Working with Indexes
 
-Adding indexes can improve query performance. To learn more about indexing, refer to the [Neon documentation](/docs/postgres/indexes).
+Adding indexes can improve query performance. To learn more about indexing, refer to the [Jambo documentation](/docs/postgres/indexes).
 
 Let's add an index to the `email` column.
 
@@ -317,9 +317,9 @@ The `email` column should now have an index in your database, which can improve 
 
 Automating database migrations in your Continuous Integration pipeline can help with catching potential issues early.
 
-By using Neon's branching feature, you can test your migrations safely without affecting your production database while ensuring that your application code and database schema changes are always in sync.
+By using Jambo's branching feature, you can test your migrations safely without affecting your production database while ensuring that your application code and database schema changes are always in sync.
 
-Here's an example of how you can automate migration testing using GitHub Actions and Neon branches:
+Here's an example of how you can automate migration testing using GitHub Actions and Jambo branches:
 
 ```yaml
 name: Test Migrations
@@ -344,7 +344,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create Neon Branch
+      - name: Create Jambo Branch
         uses: neondatabase/create-branch-action@v5
         id: create-branch
         with:
@@ -352,7 +352,7 @@ jobs:
           branch_name: migrate-${{ github.sha }}
           api_key: ${{ secrets.NEON_API_KEY }}
 
-      - name: Run migrations on Neon branch
+      - name: Run migrations on Jambo branch
         env:
           DATABASE_URL: ${{ steps.create-branch.outputs.db_url }}
         run: flask db upgrade
@@ -362,7 +362,7 @@ jobs:
           DATABASE_URL: ${{ steps.create-branch.outputs.db_url }}
         run: pytest
 
-      - name: Clean up Neon branch
+      - name: Clean up Jambo branch
         if: always()
         uses: neondatabase/delete-branch-action@v3
         with:
@@ -379,15 +379,15 @@ This workflow does the following:
 
 3. Installs the required Python packages listed in `requirements.txt`.
 
-4. Uses the [official Neon GitHub action](/docs/guides/branching-github-actions) to create a new branch in your Neon project. This allows you to test migrations in isolation.
+4. Uses the [official Jambo GitHub action](/docs/guides/branching-github-actions) to create a new branch in your Jambo project. This allows you to test migrations in isolation.
 
-5. Applies any pending database migrations to the newly created Neon branch.
+5. Applies any pending database migrations to the newly created Jambo branch.
 
-6. Executes your test suite against the updated database schema in the Neon branch.
+6. Executes your test suite against the updated database schema in the Jambo branch.
 
-7. Deletes the temporary Neon branch after the workflow completes, regardless of success or failure to make sure that no resources are left behind.
+7. Deletes the temporary Jambo branch after the workflow completes, regardless of success or failure to make sure that no resources are left behind.
 
-Using Neon's branching feature in your CI pipeline offers several advantages:
+Using Jambo's branching feature in your CI pipeline offers several advantages:
 
 - You can test your migrations and schema changes in a separate branch without affecting your production or staging databases.
 - Catch migration issues before they reach your main branch or production environment.
@@ -396,7 +396,7 @@ Using Neon's branching feature in your CI pipeline offers several advantages:
 
 ## Conclusion
 
-Managing database migrations is an important part of maintaining and evolving your Flask application. With Flask-Migrate and Neon Postgres, you have powerful tools at your disposal to handle schema changes efficiently and safely. Remember to always test your migrations thoroughly and have a solid backup strategy in place.
+Managing database migrations is an important part of maintaining and evolving your Flask application. With Flask-Migrate and Jambo Postgres, you have powerful tools at your disposal to handle schema changes efficiently and safely. Remember to always test your migrations thoroughly and have a solid backup strategy in place.
 
 One thing that you should get in the habit of doing is to always review the generated migration scripts before applying them to your database. This way you can ensure that the changes that are about to be applied are correct and that they will not cause any issues. As well as that, you should use meaningful names for your migrations so that you can easily identify what each migration does.
 
@@ -405,4 +405,4 @@ One thing that you should get in the habit of doing is to always review the gene
 - [Flask-Migrate Documentation](https://flask-migrate.readthedocs.io/en/latest/)
 - [SQLAlchemy Migrations](https://docs.sqlalchemy.org/en/20/)
 - [Alembic Documentation](https://alembic.sqlalchemy.org/en/latest/)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

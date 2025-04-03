@@ -1,29 +1,29 @@
 ---
-title: Connect an Entity Framework application to Neon
-subtitle: Set up a Neon project in seconds and connect from an Entity Framework
+title: Connect an Entity Framework application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from an Entity Framework
   application
 enableTableOfContents: true
 updatedOn: '2025-02-23T11:08:58.898Z'
 ---
 
-This guide describes how to create a Neon project and connect to it from an Entity Framework Core application. The example demonstrates how to set up a basic ASP.NET Core Web API project with Entity Framework Core using Npgsql as the database provider.
+This guide describes how to create a Jambo project and connect to it from an Entity Framework Core application. The example demonstrates how to set up a basic ASP.NET Core Web API project with Entity Framework Core using Npgsql as the database provider.
 
 <Admonition type="note">
 The same configuration steps can be used for any .NET application using Entity Framework Core, including ASP.NET Core MVC, Blazor, or console applications.
 </Admonition>
 
-To connect to Neon from an Entity Framework application:
+To connect to Jambo from an Entity Framework application:
 
-1. [Create a Neon Project](#create-a-neon-project)
+1. [Create a Jambo Project](#create-a-neon-project)
 2. [Create a .NET project and add dependencies](#create-a-net-project-and-add-dependencies)
 3. [Configure Entity Framework](#configure-entity-framework)
 4. [Run the application](#run-the-application)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -32,8 +32,8 @@ If you do not have one already, create a Neon project.
 1. Create a new ASP.NET Core Web API project and change to the newly created directory:
 
    ```bash
-   dotnet new webapi -n NeonEfExample
-   cd NeonEfExample
+   dotnet new webapi -n JamboEfExample
+   cd JamboEfExample
    ```
 
 2. Delete the files `WeatherForecast.cs` and `Controllers/WeatherForecastController.cs` as we won't be using them:
@@ -59,7 +59,7 @@ If you do not have one already, create a Neon project.
 1. Create a model class in `Models/Todo.cs`:
 
    ```csharp
-   namespace NeonEfExample.Models
+   namespace JamboEfExample.Models
    {
        public class Todo
        {
@@ -74,9 +74,9 @@ If you do not have one already, create a Neon project.
 
    ```csharp
    using Microsoft.EntityFrameworkCore;
-   using NeonEfExample.Models;
+   using JamboEfExample.Models;
 
-   namespace NeonEfExample.Data
+   namespace JamboEfExample.Data
    {
        public class ApplicationDbContext : DbContext
        {
@@ -107,10 +107,10 @@ If you do not have one already, create a Neon project.
    ```csharp
    using Microsoft.AspNetCore.Mvc;
    using Microsoft.EntityFrameworkCore;
-   using NeonEfExample.Data;
-   using NeonEfExample.Models;
+   using JamboEfExample.Data;
+   using JamboEfExample.Models;
 
-   namespace NeonEfExample.Controllers
+   namespace JamboEfExample.Controllers
    {
        [ApiController]
        [Route("api/[controller]")]
@@ -144,7 +144,7 @@ If you do not have one already, create a Neon project.
 
    ```csharp
    using Microsoft.EntityFrameworkCore;
-   using NeonEfExample.Data;
+   using JamboEfExample.Data;
 
    var builder = WebApplication.CreateBuilder(args);
 
@@ -196,7 +196,7 @@ If you do not have one already, create a Neon project.
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/examples/tree/main/with-dotnet-entity-framework" description="Get started with Entity Framework and Neon" icon="github">Get started with Entity Framework and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-dotnet-entity-framework" description="Get started with Entity Framework and Jambo" icon="github">Get started with Entity Framework and Jambo</a>
 </DetailIconCards>
 
 ## Resources

@@ -1,6 +1,6 @@
 ---
 title: Automated Database Branching with GitHub Actions
-subtitle: Learn how to automate database branching for your application using Neon and GitHub Actions
+subtitle: Learn how to automate database branching for your application using Jambo and GitHub Actions
 enableTableOfContents: true
 author: dhanush-reddy
 createdAt: '2024-11-29T00:00:00.000Z'
@@ -9,7 +9,7 @@ createdAt: '2024-11-29T00:00:00.000Z'
 Database changes can be one of the trickiest parts of application development. When multiple developers work on features that require database modifications, they often face challenges like conflicting schema changes, difficulty in testing migrations, and the risk of breaking the production database.
 
 Database branching solves these problems by allowing developers to create isolated database environments for each feature branch, just like they do with code.
-This guide demonstrates how to implement automated database branching using Neon and GitHub Actions, where each pull request gets its own database branch, complete with the necessary schema changes. You'll build a Next.js Todo application that showcases this workflow, which automates several critical database operations, including:
+This guide demonstrates how to implement automated database branching using Jambo and GitHub Actions, where each pull request gets its own database branch, complete with the necessary schema changes. You'll build a Next.js Todo application that showcases this workflow, which automates several critical database operations, including:
 
 - Creating a new database branch when a pull request is opened
 - Automatically applying schema migrations to the new branch
@@ -20,14 +20,14 @@ By the end of this guide, you'll have a system where database changes are as sea
 
 ## Prerequisites
 
-- A [Neon account](https://console.neon.tech)
+- A [Jambo account](https://console.neon.tech)
 - A [GitHub account](https://github.com/)
 - Node.js installed on your machine
 - Basic familiarity with Next.js and TypeScript
 
-## Setting Up Your Neon Database
+## Setting Up Your Jambo Database
 
-1. Create a new Neon project from the [Neon Console](https://console.neon.tech). For instructions, see [Create a project](/docs/manage/projects#create-a-project).
+1. Create a new Jambo project from the [Jambo Console](https://console.neon.tech). For instructions, see [Create a project](/docs/manage/projects#create-a-project).
 2. Note your connection string from the connection details page.
 
    Your connection string will look similar to this:
@@ -105,16 +105,16 @@ By the end of this guide, you'll have a system where database changes are as sea
 
 5. Push your code to a Github repository.
 
-## Set up the Neon GitHub integration
+## Set up the Jambo GitHub integration
 
-The [Neon GitHub integration](/docs/guides/neon-github-integration) connects your Neon project to your application repository and automatically sets a `NEON_API_KEY` secret and `NEON_PROJECT_ID` variable for you. These variables will support the GitHub Actions workflow we'll create in a later step.
+The [Jambo GitHub integration](/docs/guides/neon-github-integration) connects your Jambo project to your application repository and automatically sets a `NEON_API_KEY` secret and `NEON_PROJECT_ID` variable for you. These variables will support the GitHub Actions workflow we'll create in a later step.
 
-1. In the Neon Console, navigate to the **Integrations** page in your Neon project.
+1. In the Jambo Console, navigate to the **Integrations** page in your Jambo project.
 2. Locate the **GitHub** card and click **Add**.
    ![GitHub App card](/docs/guides/github_card.png)
 3. On the **GitHub** drawer, click **Install GitHub App**.
 4. If you have more than one GitHub account, select the account where you want to install the GitHub app.
-5. Select the GitHub repository to connect to your Neon project, and click **Connect**.
+5. Select the GitHub repository to connect to your Jambo project, and click **Connect**.
 
    The final page of the GitHub integration setup provides a sample GitHub Actions workflow. With this workflow as a example, we'll create a custom GitHub Actions workflow in the next steps.
 
@@ -151,7 +151,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
   create_neon_branch:
-    name: Create Neon Branch
+    name: Create Jambo Branch
     outputs:
       db_url: ${{ steps.create_neon_branch_encode.outputs.db_url }}
       db_url_with_pooler: ${{ steps.create_neon_branch_encode.outputs.db_url_with_pooler }}
@@ -163,7 +163,7 @@ jobs:
       || github.event.action == 'reopened')
     runs-on: ubuntu-latest
     steps:
-      - name: Create Neon Branch
+      - name: Create Jambo Branch
         id: create_neon_branch
         uses: neondatabase/create-branch-action@v5
         with:
@@ -187,14 +187,14 @@ jobs:
           api_key: ${{ secrets.NEON_API_KEY }}
 
   delete_neon_branch:
-    name: Delete Neon Branch and Apply Migrations on Production Database
+    name: Delete Jambo Branch and Apply Migrations on Production Database
     needs: setup
     if: |
       github.event_name == 'pull_request' &&
       github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
-      - name: Delete Neon Branch
+      - name: Delete Jambo Branch
         uses: neondatabase/delete-branch-action@v3
         with:
           project_id: ${{ vars.NEON_PROJECT_ID }}
@@ -222,7 +222,7 @@ To set up GitHub Actions correctly:
    Go to your repository's GitHub Actions settings, navigate to **Actions** > **General**, and set **Workflow permissions** to **Read and write permissions**.
 
 2. **Add Database Connection String**:
-   Add a `DATABASE_URL` secret to your repository under **Settings** > **Secrets and variables** > **Actions**, using the connection string for your production database that you noted earlier. While you're here, you should see the `NEON_API_KEY` secret and `NEON_PROJECT_ID` variable that have already been set by the Neon GitHub integration.
+   Add a `DATABASE_URL` secret to your repository under **Settings** > **Secrets and variables** > **Actions**, using the connection string for your production database that you noted earlier. While you're here, you should see the `NEON_API_KEY` secret and `NEON_PROJECT_ID` variable that have already been set by the Jambo GitHub integration.
 
 </Admonition>
 
@@ -236,7 +236,7 @@ This job runs when a pull request is opened, reopened, or synchronized:
 
 1. **Branch Creation**:
 
-   - Uses Neon's `create-branch-action` to create a new database branch
+   - Uses Jambo's `create-branch-action` to create a new database branch
    - Names the branch using the pattern `preview/pr-{number}-{branch_name}`
    - Inherits the schema and data from the parent branch
 
@@ -248,7 +248,7 @@ This job runs when a pull request is opened, reopened, or synchronized:
    - Uses the branch-specific `DATABASE_URL` for migration operations
 
 3. **Schema Diff Generation**:
-   - Uses Neon's `schema-diff-action`
+   - Uses Jambo's `schema-diff-action`
    - Compares the schema of the new branch with the parent branch
    - Automatically posts the differences as a comment on the pull request
    - Helps reviewers understand database changes at a glance
@@ -264,7 +264,7 @@ This job executes when a pull request is closed (either merged or rejected):
    - Ensures production database stays in sync with merged changes
 
 2. **Cleanup**:
-   - Removes the preview branch using Neon's `delete-branch-action`
+   - Removes the preview branch using Jambo's `delete-branch-action`
 
 ## Flow Summary
 
@@ -340,12 +340,12 @@ The workflow will:
 You can find the complete source code for this example on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase-labs/neon-github-actions-integration" description="Get started with automated database branching using Neon and GitHub Actions" icon="github">Get started with automated database branching</a>
+<a href="https://github.com/neondatabase-labs/neon-github-actions-integration" description="Get started with automated database branching using Jambo and GitHub Actions" icon="github">Get started with automated database branching</a>
 </DetailIconCards>
 
 ## Resources
 
-- [Neon GitHub Integration Documentation](/docs/guides/neon-github-integration)
+- [Jambo GitHub Integration Documentation](/docs/guides/neon-github-integration)
 - [Database Branching Workflows](https://neon.tech/flow)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 

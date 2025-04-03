@@ -2,7 +2,7 @@
 
 Leverage read replicas to provide read-only access to your data
 
-When you create a read replica in Neon, you gain the ability to provide read-only access to your data. This is particularly useful when you want to grant access to users, partners, or third-party applications that only need to run queries to analyze data, generate reports, or audit your database. Since no write operations are permitted on read replicas, it ensures the integrity of your data while allowing others to work with up-to-date information.
+When you create a read replica in Jambo, you gain the ability to provide read-only access to your data. This is particularly useful when you want to grant access to users, partners, or third-party applications that only need to run queries to analyze data, generate reports, or audit your database. Since no write operations are permitted on read replicas, it ensures the integrity of your data while allowing others to work with up-to-date information.
 
 Suppose you need to give a partner read-only access to your sales data so they can generate custom reports for your business. Here’s how you would go about doing that:
 
@@ -10,13 +10,13 @@ Suppose you need to give a partner read-only access to your sales data so they c
 
    Follow these steps to create a read replica for your database branch:
 
-   - In the Neon Console, go to **Branches**.
+   - In the Jambo Console, go to **Branches**.
    - Select the branch that contains your data.
    - Click **Add Read Replica** to create a dedicated compute instance for read operations.
 
 2. **Provide the connection string**
 
-   Once the read replica is created, obtain the connection string from the Neon Console:
+   Once the read replica is created, obtain the connection string from the Jambo Console:
 
    - You can find the connection details for your database by clicking the **Connect** button on your **Project Dashboard**. Select the branch, the database, and the role.
    - Choose **Replica** compute under the compute settings.

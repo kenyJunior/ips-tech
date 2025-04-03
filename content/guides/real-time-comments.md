@@ -7,14 +7,14 @@ title: Building Real-Time Comments with a Serverless Postgres
 subtitle: A guide to building your own real-time comments in a Next.js application with Ably LiveSync and Postgres.
 ---
 
-Can a serverless Postgres database really handle the demands of a real-time application? The answer lies in pairing it with the right publish-subscribe model. In this guide, you will learn how to combine the real-time capabilities of Ably LiveSync with the structured power of Neon Postgres to build a optimistic and scalable comment system in your Next.js application.
+Can a serverless Postgres database really handle the demands of a real-time application? The answer lies in pairing it with the right publish-subscribe model. In this guide, you will learn how to combine the real-time capabilities of Ably LiveSync with the structured power of Jambo Postgres to build a optimistic and scalable comment system in your Next.js application.
 
 ## Prerequisites
 
 To follow this guide, you’ll need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - An [Ably](https://ably.com) account
 - A [Vercel](https://vercel.com) account
 
@@ -37,9 +37,9 @@ The libraries installed include:
 
 - `ws`: A WebSocket library for Node.js.
 - `ably`: A real-time messaging and data synchronization library.
-- `@neondatabase/serverless`: A serverless Postgres client designed for Neon.
+- `@neondatabase/serverless`: A serverless Postgres client designed for Jambo.
 - `@prisma/client`: Prisma’s auto-generated client for interacting with your database.
-- `@prisma/adapter-neon`: A Prisma adapter for connecting with Neon serverless Postgres.
+- `@prisma/adapter-neon`: A Prisma adapter for connecting with Jambo serverless Postgres.
 - `@ably-labs/models`: A library for working with data models and real-time updates in Ably.
 
 The development-specific libraries include:
@@ -55,7 +55,7 @@ cp .env.example .env
 
 ## Provision a Serverless Postgres
 
-To set up a serverless Postgres, go to the [Neon console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Neon database. The connection string will look like this:
+To set up a serverless Postgres, go to the [Jambo console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Jambo database. The connection string will look like this:
 
 ```bash shouldWrap
 postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -65,7 +65,7 @@ Replace `<user>`, `<password>`, `<endpoint_hostname>`, `<port>`, and `<dbname>` 
 
 Use this connection string as an environment variable designated as `DATABASE_URL` in the `.env` file.
 
-## Set up Ably LiveSync with Neon Postgres
+## Set up Ably LiveSync with Jambo Postgres
 
 Sign in into the [Ably Dashboard](https://ably.com/login), and click on `+ Create new app`.
 
@@ -122,9 +122,9 @@ async function prepare() {
 prepare();
 ```
 
-The code above defines a function that connects to a Neon serverless Postgres database using a `DATABASE_URL` environment variable and sets up the necessary schema for the real-time application. It creates two tables, `nodes` and `outbox`, to store data and manage message processing, respectively. A trigger function, `outbox_notify`, is implemented to send notifications using `pg_notify` whenever new rows are inserted into the `outbox` table. This ensures the database is ready for real-time updates and WebSocket-based communication.
+The code above defines a function that connects to a Jambo serverless Postgres database using a `DATABASE_URL` environment variable and sets up the necessary schema for the real-time application. It creates two tables, `nodes` and `outbox`, to store data and manage message processing, respectively. A trigger function, `outbox_notify`, is implemented to send notifications using `pg_notify` whenever new rows are inserted into the `outbox` table. This ensures the database is ready for real-time updates and WebSocket-based communication.
 
-To run the schema against your Neon Postgres, execute the following command:
+To run the schema against your Jambo Postgres, execute the following command:
 
 ```
 npm run db
@@ -132,7 +132,7 @@ npm run db
 
 If it runs succesfully, you should see `Database schema set up succesfully.` in the terminal.
 
-## Set up Prisma for Neon Postgres
+## Set up Prisma for Jambo Postgres
 
 In the directory `lib/prisma`, you would see the following code in `index.ts` file:
 
@@ -140,7 +140,7 @@ In the directory `lib/prisma`, you would see the following code in `index.ts` fi
 // File: lib/prisma/index.ts
 
 import { neonConfig, Pool } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
+import { PrismaJambo } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 import { WebSocket } from 'ws';
 
@@ -154,7 +154,7 @@ neonConfig.webSocketConstructor = WebSocket;
 neonConfig.poolQueryViaFetch = true;
 
 const pool = new Pool({ connectionString });
-const adapter = new PrismaNeon(pool);
+const adapter = new PrismaJambo(pool);
 const prisma = global.prisma || new PrismaClient({ adapter });
 
 if (process.env.NODE_ENV === 'development') global.prisma = prisma;
@@ -162,7 +162,7 @@ if (process.env.NODE_ENV === 'development') global.prisma = prisma;
 export default prisma;
 ```
 
-The code above sets up a Prisma client for Neon Postgres. It configures the Neon database connection using the `@neondatabase/serverless` library, with WebSocket and `fetch` support to execute queries. A global `prisma` instance is created using the `PrismaNeon` adapter, ensuring reuse in development to avoid multiple instances. Finally, the configured `prisma` client is exported for use throughout the application.
+The code above sets up a Prisma client for Jambo Postgres. It configures the Jambo database connection using the `@neondatabase/serverless` library, with WebSocket and `fetch` support to execute queries. A global `prisma` instance is created using the `PrismaJambo` adapter, ensuring reuse in development to avoid multiple instances. Finally, the configured `prisma` client is exported for use throughout the application.
 
 In the same directory, you would see the following code in the `api.ts` file:
 
@@ -647,6 +647,6 @@ The repository is now ready to deploy to Vercel. Use the following steps to depl
 
 ## Summary
 
-In this guide, you learned how to build a real-time comment system for a Next.js application by integrating Ably LiveSync with a serverless Neon Postgres database. The tutorial covered setting up the database schema, configuring Prisma for streamlined database access, and implementing Ably for real-time updates. You also explored how to handle optimistic updates, ensure data synchronization, and deploy the application to Vercel.
+In this guide, you learned how to build a real-time comment system for a Next.js application by integrating Ably LiveSync with a serverless Jambo Postgres database. The tutorial covered setting up the database schema, configuring Prisma for streamlined database access, and implementing Ably for real-time updates. You also explored how to handle optimistic updates, ensure data synchronization, and deploy the application to Vercel.
 
 <NeedHelp />

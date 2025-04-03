@@ -5,7 +5,6 @@ import React from 'react';
 
 import Container from 'components/shared/container/container';
 import Link from 'components/shared/link';
-import LINKS from 'constants/links';
 import arrowRightIcon from 'icons/enterprise/arrow-right.svg';
 
 import linesMd from './images/lines-md.svg';
@@ -22,25 +21,7 @@ const CaseStudies = ({ items }) => (
     <Container
       className="flex items-end justify-between gap-x-4 md:justify-center md:text-center"
       size="960"
-    >
-      <div>
-        <h2 className="font-title text-[52px] font-medium tracking-tighter xl:text-5xl lg:text-4xl md:text-[32px]">
-          Neon’s impact
-        </h2>
-        <p className="-mt-1 text-lg leading-snug tracking-tight text-gray-new-80 lg:text-base md:mt-0">
-          Discover how our solutions have made a real-world impact.
-        </p>
-      </div>
-      <Link
-        className="mb-1 text-lg font-medium leading-none tracking-tight xl:mb-0.5 xl:text-base md:hidden"
-        theme="white"
-        size="xs"
-        to={LINKS.caseStudies}
-        withArrow
-      >
-        Explore all case studies
-      </Link>
-    </Container>
+     />
     <Container className="relative mt-11 xl:mt-12 xl:!px-0 md:mt-10 md:!px-0" size="1216">
       <ul className="grid w-full grid-cols-3 px-6 xl:px-0 md:grid-cols-2">
         {items.map(({ title, description, logo, link }, index) => (
@@ -103,15 +84,7 @@ const CaseStudies = ({ items }) => (
           </li>
         ))}
       </ul>
-      <Link
-        className="mt-10 hidden w-full text-center !text-[16px] font-medium leading-none tracking-tight md:flex md:justify-center"
-        theme="white"
-        size="xs"
-        to={LINKS.caseStudies}
-        withArrow
-      >
-        Explore all case studies
-      </Link>
+
       <Image
         className="pointer-events-none absolute left-0 top-2 -z-10 w-[1216px] max-w-none xl:-left-[22px] xl:top-0 xl:w-[1070px] lg:-left-4 lg:top-[23px] lg:w-[800px] md:hidden"
         src={lines}

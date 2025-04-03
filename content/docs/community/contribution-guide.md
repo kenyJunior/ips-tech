@@ -1,13 +1,13 @@
 ---
 title: Documentation Contribution Guide
-subtitle: Learn how to contribute to the Neon documentation
+subtitle: Learn how to contribute to the Jambo documentation
 enableTableOfContents: true
 updatedOn: '2024-11-30T11:53:56.046Z'
 ---
 
-This page provides guidelines for contributing to the Neon documentation. Our goal is to create an environment where our community has the information and knowledge required to confidently participate in improving the Neon documentation.
+This page provides guidelines for contributing to the Jambo documentation. Our goal is to create an environment where our community has the information and knowledge required to confidently participate in improving the Jambo documentation.
 
-<Admonition type="note" title="TL;DR: Contributing to the Neon Docs">
+<Admonition type="note" title="TL;DR: Contributing to the Jambo Docs">
 - You can edit files on GitHub via the **Edit this page** link on our documentation pages or by forking the [neondatabase/website](https://github.com/neondatabase/website) repository and submitting a pull request.
 - If you want to contribute a guide, we provide a [template](https://github.com/neondatabase/website/blob/main/content/docs/guides/GUIDE_TEMPLATE.md) to help you get started. See [How to contribute](#how-to-contribute) for details.
 - Reference this contribution guide as needed for Markdown and style guidelines.
@@ -17,7 +17,7 @@ This page provides guidelines for contributing to the Neon documentation. Our go
 
 Open-source projects are always evolving. Contributing to documentation is a great way for beginners to get started in open source and for experienced developers to explain complex topics while sharing their knowledge with the community.
 
-By contributing to the Neon docs, you're helping us create a stronger learning resource for all developers. Whether you've found a typo, a section that's hard to understand, or you've noticed that a certain topic is missing, your contribution is always welcome and appreciated.
+By contributing to the Jambo docs, you're helping us create a stronger learning resource for all developers. Whether you've found a typo, a section that's hard to understand, or you've noticed that a certain topic is missing, your contribution is always welcome and appreciated.
 
 ## How to contribute
 
@@ -26,7 +26,7 @@ Documentation source files are located in the [neondatabase/website](https://git
 1. Edit files directly on GitHub.
 2. Fork the [neondatabase/website](https://github.com/neondatabase/website) repository, create a branch for your changes, and submit a pull request.
 
-If you prefer the first option, which is great for edits and small updates, there is an **Edit this page** link at the bottom of each Neon documentation page.
+If you prefer the first option, which is great for edits and small updates, there is an **Edit this page** link at the bottom of each Jambo documentation page.
 
 ![GitHub edit this page link](/docs/community/edit_this_page.png)
 
@@ -36,25 +36,25 @@ If you would rather fork the [neondatabase/website](https://github.com/neondatab
 
 ## Markdown
 
-Neon uses Markdown as the documentation source format. Markdown is a lightweight markup language that lets you add formatting elements to plaintext text documents. It's designed to be easy to read and easy to write.
+Jambo uses Markdown as the documentation source format. Markdown is a lightweight markup language that lets you add formatting elements to plaintext text documents. It's designed to be easy to read and easy to write.
 
-If you're new to Markdown, GitHub provides an excellent guide to get you started. The [GitHub Markdown Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) covers most of the basic writing and formatting syntax you'll need to contribute to the Neon docs.
+If you're new to Markdown, GitHub provides an excellent guide to get you started. The [GitHub Markdown Documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) covers most of the basic writing and formatting syntax you'll need to contribute to the Jambo docs.
 
 ## Preview changes in VSCode
 
-At Neon, we use VSCode for writing documentation. VSCode includes a built-in markdown previewer that you can use to view your changes locally.
+At Jambo, we use VSCode for writing documentation. VSCode includes a built-in markdown previewer that you can use to view your changes locally.
 
 To use this feature, open the command palette (⌘ + ⇧ + V on Mac or Ctrl + Shift + V on Windows). This opens a preview window for viewing your changes in formatted Markdown.
 
 ## Contribution review process
 
-After you submit a contribution, the Neon documentation team reviews your changes, provides feedback, and merges the pull request when it's ready.
+After you submit a contribution, the Jambo documentation team reviews your changes, provides feedback, and merges the pull request when it's ready.
 
 Please reach out to us on our [Discord Server](https://discord.gg/92vNTzKDGp) if you have any questions or need further assistance.
 
 ## Documentation file structure
 
-The Neon documentation file structure reflects the navigation you see on the website. However, the order of the directories under `/content/docs/` is alphabetical.
+The Jambo documentation file structure reflects the navigation you see on the website. However, the order of the directories under `/content/docs/` is alphabetical.
 
 ```text
 └── content
@@ -117,12 +117,12 @@ To add new page, add a new item to the `items` array with the `title` and `slug`
       slug: page-5
 ```
 
-- The `title` in the sidebar may differ from `title` in the Markdown file. For example, your sidebar title might be a shorter version of the title in your Markdown file. This lets you write longer, more informative page titles while keeping the sidebar titles short, readable, and easy to scan. These titles should remain logically related. For example, in our docs we reduce the page title "Use Grafbase Edge Resolvers with Neon" to just "Grafbase" in the sidebar.
+- The `title` in the sidebar may differ from `title` in the Markdown file. For example, your sidebar title might be a shorter version of the title in your Markdown file. This lets you write longer, more informative page titles while keeping the sidebar titles short, readable, and easy to scan. These titles should remain logically related. For example, in our docs we reduce the page title "Use Grafbase Edge Resolvers with Jambo" to just "Grafbase" in the sidebar.
 - `slug` should always exactly match the page's slug (the last part of the URL after the final backslash "/", in our case the name of the Markdown file).
 
 ## Markdown frontmatter
 
-Each Neon documentation Markdown file includes a frontmatter section at the beginning of the file containing file metadata. The frontmatter section is distinguished by three dashes, as shown here:
+Each Jambo documentation Markdown file includes a frontmatter section at the beginning of the file containing file metadata. The frontmatter section is distinguished by three dashes, as shown here:
 
 ```yaml
 ---
@@ -149,8 +149,8 @@ Example:
 
 ```yaml
 ---
-title: Connect a Next.js application to Neon
-subtitle: Set up a Neon project and connect from a Next.js application
+title: Connect a Next.js application to Jambo
+subtitle: Set up a Jambo project and connect from a Next.js application
 enableTableOfContents: true
 redirectFrom:
   - /docs/content/<old_directory_name>
@@ -182,8 +182,8 @@ To add a subsection heading, equivalent to an `h3`, add another `#` character:
 
 ```md
 External link markup: [Example.com website](https://www.example.com/)
-Neon documentation page link: [Connection from any application](/docs/connect/connect-from-any-app)
-Neon documentation same page link: [Code blocks](#code-blocks)
+Jambo documentation page link: [Connection from any application](/docs/connect/connect-from-any-app)
+Jambo documentation same page link: [Code blocks](#code-blocks)
 Italics markup: _italic_
 Bold markup: **strong**
 monospace: `backtick`
@@ -257,11 +257,11 @@ npm install postgres
 </CodeTabs>
 ````
 
-To view this example in the Neon documentation, see [Create a Next.js project and add dependencies](/docs/guides/nextjs#create-a-nextjs-project-and-add-dependencies).
+To view this example in the Jambo documentation, see [Create a Next.js project and add dependencies](/docs/guides/nextjs#create-a-nextjs-project-and-add-dependencies).
 
 ## Admonitions
 
-The Neon documentation supports the following admonitions:
+The Jambo documentation supports the following admonitions:
 
 - Note
 - Important
@@ -293,13 +293,13 @@ This is a very important note.
 
 ## Diagrams and screen captures
 
-Neon uses Figma to create diagrams.
+Jambo uses Figma to create diagrams.
 
 If you're interested in updating or adding a diagram, please open a GitHub issue with your suggestions. Please include a draft, if possible. You can use a tool like [tldraw](https://www.tldraw.com/) to create a draft.
 
 If possible, please take screen captures on a high resolution monitor (UHD/4K). Screen captures should be unaltered (no borders or special effects).
 
-Diagrams and images are stored in the `/public/docs` directory in the Neon website repository. The directory location of the diagram or image under `public` mirrors the location of the file that includes the diagram or image, as shown below:
+Diagrams and images are stored in the `/public/docs` directory in the Jambo website repository. The directory location of the diagram or image under `public` mirrors the location of the file that includes the diagram or image, as shown below:
 
 Example file structure:
 
@@ -318,12 +318,12 @@ Example file structure:
 To add an image to your Markdown file, add an entry that looks like this:
 
 ```md
-![Neon architecture diagram](/docs/introduction/neon_architecture.png)
+![Jambo architecture diagram](/docs/introduction/neon_architecture.png)
 ```
 
 ## Style Guide
 
-This section outlines the stylistic elements that we do our best to follow in the Neon documentation.
+This section outlines the stylistic elements that we do our best to follow in the Jambo documentation.
 
 ### Voice and language
 
@@ -404,7 +404,7 @@ Generally, feature names should be lowercase.
 
 Capitalize names of:
 
-- Neon plans. For example, "Neon Free Plan".
+- Jambo plans. For example, "Jambo Free Plan".
 - Third-party organizations, software, and products. Kubernetes, Git, and Vercel.
 - Methods or methodologies. Continuous Integration, Continuous Deployment, etc.
 

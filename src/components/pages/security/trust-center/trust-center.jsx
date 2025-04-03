@@ -10,7 +10,7 @@ import userLockIcon from 'icons/security/user-lock.svg';
 
 const FEATURES = [
   {
-    title: 'Neon PostgreSQL Service',
+    title: 'Jambo PostgreSQL Service',
     description: 'Secure, scalable, cloud-hosted PostgreSQL database.',
     icon: dataIcon,
   },

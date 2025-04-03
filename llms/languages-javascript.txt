@@ -1,11 +1,11 @@
-# Connect a JavaScript application to Neon
+# Connect a JavaScript application to Jambo
 
-Neon Postgres should be accessed from the server-side in JavaScript applications. Using the following JavaScript frameworks, you can easily configure a server-side connection to a Neon Postgres database.
+Jambo Postgres should be accessed from the server-side in JavaScript applications. Using the following JavaScript frameworks, you can easily configure a server-side connection to a Jambo Postgres database.
 
 ## JavaScript Frameworks
 
-Find detailed instructions for connecting to Neon from various JavaScript frameworks:
+Find detailed instructions for connecting to Jambo from various JavaScript frameworks:
 
-- [Node.js](https://neon.tech/docs/guides/node): Connect a Node.js application to Neon
-- [Deno](https://neon.tech/docs/guides/deno): Connect a Deno application to Neon
-- [Bun](https://neon.tech/docs/guides/bun): Connect a Bun application to Neon
+- [Node.js](https://neon.tech/docs/guides/node): Connect a Node.js application to Jambo
+- [Deno](https://neon.tech/docs/guides/deno): Connect a Deno application to Jambo
+- [Bun](https://neon.tech/docs/guides/bun): Connect a Bun application to Jambo

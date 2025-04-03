@@ -15,22 +15,22 @@ import backgroundGradient from './images/bg-gradient-hero.jpg';
 import bgShapeSvg from './images/bg-shape.svg';
 import StickerIcon from './images/sticker.inline.svg';
 
-const title = 'Neon is Live!';
-const description = 'Welcome to Neon Developer Days. December 6-8, 2022.';
+const title = 'Jambo is Live!';
+const description = 'Welcome to Jambo Developer Days. December 6-8, 2022.';
 
 const items = [
   {
-    text: 'Neon is Live!',
+    text: 'Jambo is Live!',
     linkText: 'Read blog post',
     linkUrl: '/blog/neon-serverless-postgres-is-live/',
   },
   {
-    text: 'Database branching with Neon',
+    text: 'Database branching with Jambo',
     linkText: 'Read blog post',
     linkUrl: '/blog/database-branching-for-postgres-with-neon/',
   },
   {
-    text: 'Twitter Space: Neon is Live Q&A',
+    text: 'Twitter Space: Jambo is Live Q&A',
     linkText: 'Listen the recording',
     linkUrl: 'https://twitter.com/i/spaces/1YpJkgDDEXPJj',
   },
@@ -42,7 +42,7 @@ const Hero = () => {
   useBodyLockScroll(isOpenModal);
   return (
     <section className="safe-paddings relative bg-black-pure pt-[182px] text-white xl:pt-[136px] lg:pt-[76px] md:pt-16 sm:pt-12">
-      <img
+      <Image
         className="absolute left-1/2 top-0 w-full max-w-[1920px] -translate-x-1/2 blur-[80px] lg:hidden"
         src={bgShapeSvg}
         width={1920}
@@ -72,7 +72,7 @@ const Hero = () => {
             />
           </div>
           <div className="relative isolate overflow-hidden rounded-xl md:rounded-b-none">
-            <img
+            <Image
               className="w-full"
               src={`data:image/svg+xml;charset=utf-8,%3Csvg width='940' height='520' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E`}
               alt=""

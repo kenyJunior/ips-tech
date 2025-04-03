@@ -1,20 +1,20 @@
 ---
-title: Building a RESTful API with ASP.NET Core, Swagger, and Neon
-subtitle: Learn how to connect your .NET applications to Neon's serverless Postgres database
+title: Building a RESTful API with ASP.NET Core, Swagger, and Jambo
+subtitle: Learn how to connect your .NET applications to Jambo's serverless Postgres database
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-03T00:00:00.000Z'
 updatedOn: '2024-11-03T00:00:00.000Z'
 ---
 
-In this guide, we'll walk through the process of developing a RESTful API using ASP.NET Core, connecting it to a Neon Postgres database. We will cover CRUD operations using Entity Framework Core (EF Core), generate interactive API documentation with Swagger, and explore best practices for testing your API endpoints. As a bonus, we'll also implement JWT authentication to secure your endpoints.
+In this guide, we'll walk through the process of developing a RESTful API using ASP.NET Core, connecting it to a Jambo Postgres database. We will cover CRUD operations using Entity Framework Core (EF Core), generate interactive API documentation with Swagger, and explore best practices for testing your API endpoints. As a bonus, we'll also implement JWT authentication to secure your endpoints.
 
 ## Prerequisites
 
 Before we start, make sure you have the following:
 
 - [.NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [Neon account](https://neon.tech) for setting up your Postgres database
+- [Jambo account](https://neon.tech) for setting up your Postgres database
 - [Postman](https://www.postman.com/downloads/) for API testing
 - Basic knowledge of C# and ASP.NET Core
 - Familiarity with Entity Framework Core
@@ -24,8 +24,8 @@ Before we start, make sure you have the following:
 First, create a new ASP.NET Core Web API project:
 
 ```bash
-dotnet new webapi -n NeonApi
-cd NeonApi
+dotnet new webapi -n JamboApi
+cd JamboApi
 ```
 
 Install the required NuGet packages using the `dotnet add package` command:
@@ -46,15 +46,15 @@ The above packages include:
 - `Microsoft.AspNetCore.Authentication.JwtBearer` - JWT authentication for securing endpoints
 - `Microsoft.EntityFrameworkCore.Design` - EF Core design tools for migrations
 
-### Configuring the Neon Database
+### Configuring the Jambo Database
 
-Head over to your [Neon Dashboard](https://neon.tech) and create a new project.
+Head over to your [Jambo Dashboard](https://neon.tech) and create a new project.
 
 Once done, grab your database connection string and add it to your `appsettings.json`:
 
 ```json
 "ConnectionStrings": {
-  "NeonDb": "Host=<your-host>;Database=<your-database>;Username=<your-username>;Password=<your-password>;Port=5432"
+  "JamboDb": "Host=<your-host>;Database=<your-database>;Username=<your-username>;Password=<your-password>;Port=5432"
 }
 ```
 
@@ -71,7 +71,7 @@ We will cover JWT authentication in more detail later in this guide, but for now
 Next, update your `Program.cs` file to include the database context, Swagger, and JWT authentication:
 
 ```csharp
-using NeonApi.Data;
+using JamboApi.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -80,9 +80,9 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
-// Add the Neon database context using Npgsql provider
-builder.Services.AddDbContext<NeonDbContext>(options =>
-    options.UseNpgsql(configuration.GetConnectionString("NeonDb")));
+// Add the Jambo database context using Npgsql provider
+builder.Services.AddDbContext<JamboDbContext>(options =>
+    options.UseNpgsql(configuration.GetConnectionString("JamboDb")));
 
 // Register controllers for handling incoming HTTP requests
 builder.Services.AddControllers();
@@ -124,9 +124,9 @@ app.MapControllers();
 app.Run();
 ```
 
-In the above, we configure the necessary services directly within `Program.cs` to connect our ASP.NET Core API to Neon and secure it with JWT authentication:
+In the above, we configure the necessary services directly within `Program.cs` to connect our ASP.NET Core API to Jambo and secure it with JWT authentication:
 
-1. We use `AddDbContext` to set up `NeonDbContext` with the Npgsql provider, connecting to the Neon database using the connection string defined in `appsettings.json`. Make sure to update `"NeonDb"` with your actual connection string key if it's named differently.
+1. We use `AddDbContext` to set up `JamboDbContext` with the Npgsql provider, connecting to the Jambo database using the connection string defined in `appsettings.json`. Make sure to update `"JamboDb"` with your actual connection string key if it's named differently.
 
 2. We register controllers with `AddControllers()`, which allows the application to handle incoming API requests and map them to their respective endpoints.
 
@@ -141,12 +141,12 @@ To avoid hardcoding sensitive information like the secret key, consider using en
 
 ## Creating the Entity Framework Core Models
 
-Data models define the structure of your database tables and the relationships between them. Here, we'll create a simple `Product` model to represent products in our Neon database.
+Data models define the structure of your database tables and the relationships between them. Here, we'll create a simple `Product` model to represent products in our Jambo database.
 
 In the `Models` folder, create a `Product.cs` file:
 
 ```csharp
-namespace NeonApi.Models
+namespace JamboApi.Models
 {
     public class Product
     {
@@ -169,18 +169,18 @@ Each property corresponds to a column in the database table that Entity Framewor
 
 ### Creating the Database Context
 
-Next, we need to create a database context class, which serves as a bridge between our C# code and the Neon database.
+Next, we need to create a database context class, which serves as a bridge between our C# code and the Jambo database.
 
-Create a new folder named `Data` and add a `NeonDbContext.cs` file:
+Create a new folder named `Data` and add a `JamboDbContext.cs` file:
 
 ```csharp
-namespace NeonApi.Data
+namespace JamboApi.Data
 {
-    public class NeonDbContext : DbContext
+    public class JamboDbContext : DbContext
     {
-        public NeonDbContext(DbContextOptions<NeonDbContext> options) : base(options) { }
+        public JamboDbContext(DbContextOptions<JamboDbContext> options) : base(options) { }
 
-        // This DbSet represents the Products table in the Neon database
+        // This DbSet represents the Products table in the Jambo database
         public DbSet<Product> Products { get; set; }
     }
 }
@@ -188,8 +188,8 @@ namespace NeonApi.Data
 
 The above code snippet does the following:
 
-- The `NeonDbContext` class inherits from `DbContext`, which is part of Entity Framework Core.
-- We pass `DbContextOptions` to the constructor to configure the connection to our Neon database.
+- The `JamboDbContext` class inherits from `DbContext`, which is part of Entity Framework Core.
+- We pass `DbContextOptions` to the constructor to configure the connection to our Jambo database.
 - The `DbSet<Product>` property represents the `Products` table. This allows us to perform CRUD operations on the `Product` model directly through this context.
 
 ### Running Migrations to Create the Database Schema
@@ -202,15 +202,15 @@ dotnet ef migrations add InitialCreate
 
 The above command generates a migration file based on the changes made to the database schema. The migration file contains instructions to create the `Products` table.
 
-Next, apply the migration to your Neon database:
+Next, apply the migration to your Jambo database:
 
 ```bash
 dotnet ef database update
 ```
 
-The `dotnet ef database update` command applies the migration to your Neon database, creating the `Products` table and any other necessary schema changes.
+The `dotnet ef database update` command applies the migration to your Jambo database, creating the `Products` table and any other necessary schema changes.
 
-> **Note**: Make sure your database connection string in `appsettings.json` is correctly configured before running the migrations. That way the changes are applied to your Neon database instance.
+> **Note**: Make sure your database connection string in `appsettings.json` is correctly configured before running the migrations. That way the changes are applied to your Jambo database instance.
 
 At this point, your database is set up and ready to store product data!
 
@@ -225,16 +225,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NeonApi.Data;
-using NeonApi.Models;
+using JamboApi.Data;
+using JamboApi.Models;
 
 [Route("api/[controller]")]
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    private readonly NeonDbContext _context;
+    private readonly JamboDbContext _context;
 
-    public ProductsController(NeonDbContext context)
+    public ProductsController(JamboDbContext context)
     {
         _context = context;
     }
@@ -299,7 +299,7 @@ public class ProductsController : ControllerBase
 
 In the code above, we define a `ProductsController` to handle all CRUD operations for our `Product` model. Here's a breakdown of how each endpoint works:
 
-1. The `GetProducts` method handles `GET /api/products` requests, fetching all products stored in the Neon database.
+1. The `GetProducts` method handles `GET /api/products` requests, fetching all products stored in the Jambo database.
 
 2. The `GetProduct` method handles `GET /api/products/{id}` requests to retrieve a single product by its unique ID. If no product with the given ID is found, it responds with a `404 Not Found`. This ensures the client is notified when attempting to access a non-existent product.
 
@@ -309,7 +309,7 @@ In the code above, we define a `ProductsController` to handle all CRUD operation
 
 5. The `DeleteProduct` method handles `DELETE /api/products/{id}` requests to remove a product by its ID. If the product doesn't exist, it returns a `404 Not Found` response.
 
-Each endpoint is fully asynchronous and interacts with the Neon database through the `NeonDbContext` context.
+Each endpoint is fully asynchronous and interacts with the Jambo database through the `JamboDbContext` context.
 
 ## Setting Up Swagger for API Documentation
 
@@ -326,7 +326,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     // Configure Swagger UI at the root URL
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Neon API V1");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jambo API V1");
     c.RoutePrefix = string.Empty;
 });
 ```
@@ -403,7 +403,7 @@ Open Postman and create the following requests:
    - Set to `DELETE`, enter `https://localhost:5001/api/products/1`, and click **Send**.
    - Expect a `204 No Content`.
 
-After testing, check that all changes are reflected in your Neon database. Use both Postman and Swagger UI to confirm the endpoints are functioning correctly.
+After testing, check that all changes are reflected in your Jambo database. Use both Postman and Swagger UI to confirm the endpoints are functioning correctly.
 
 ## Securing Your API with JWT Authentication (Bonus)
 
@@ -466,13 +466,13 @@ With this header in place, the server can authenticate the user without requirin
 
 ## Conclusion
 
-In this guide, we covered the process of building a RESTful API with ASP.NET Core, connecting it to a Neon Postgres database, and securing it with JWT authentication. We explored CRUD operations using Entity Framework Core, generated interactive API documentation with Swagger, and tested our endpoints using Postman.
+In this guide, we covered the process of building a RESTful API with ASP.NET Core, connecting it to a Jambo Postgres database, and securing it with JWT authentication. We explored CRUD operations using Entity Framework Core, generated interactive API documentation with Swagger, and tested our endpoints using Postman.
 
 As a next step, consider expanding your API with additional features, such as pagination, filtering, or sorting. You can also explore adding testing frameworks like xUnit or NUnit to write unit tests for your API endpoints.
 
 For more information, check out:
 
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Npgsql Documentation](https://www.npgsql.org/doc/index.html)
 - [Entity Framework Core Documentation](https://docs.microsoft.com/en-us/ef/core/)
 

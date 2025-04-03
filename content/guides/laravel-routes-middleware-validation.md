@@ -1,6 +1,6 @@
 ---
 title: "A Deep Dive into Laravel's Routes, Middleware, and Validation: Optimizing Database Interactions"
-subtitle: Explore Laravel's core features to build efficient and secure web applications with optimized database interactions using Neon Postgres
+subtitle: Explore Laravel's core features to build efficient and secure web applications with optimized database interactions using Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-07-14T00:00:00.000Z'
@@ -17,7 +17,7 @@ Before we begin, ensure you have the following:
 
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
-- A [Neon](https://console.neon.tech/signup) account for Postgres database hosting
+- A [Jambo](https://console.neon.tech/signup) account for Postgres database hosting
 - Basic knowledge of Laravel and database operations
 
 ## Setting up the Project
@@ -35,7 +35,7 @@ cd laravel-routes-middleware-validation
 
 ### Setting up the Database
 
-Update your `.env` file with your Neon Postgres database credentials:
+Update your `.env` file with your Jambo Postgres database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -550,7 +550,7 @@ This loads posts, their authors, comments on each post, and the user who made ea
 
 Indexes are crucial for query performance. They allow the database to find data without scanning the entire table.
 
-You can learn more about indexing in the [Neon documentation](https://neon.tech/docs/postgres/indexes/).
+You can learn more about indexing in the [Jambo documentation](https://neon.tech/docs/postgres/indexes/).
 
 In Laravel migrations, you can add indexes like this:
 
@@ -702,4 +702,4 @@ By following these practices and continually refining your approach, you'll be w
 - [Laravel Middleware Documentation](https://laravel.com/docs/11.x/middleware)
 - [Laravel Validation Documentation](https://laravel.com/docs/11.x/validation)
 - [Laravel Query Builder Documentation](https://laravel.com/docs/11.x/queries)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

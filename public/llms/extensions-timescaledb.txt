@@ -6,15 +6,15 @@ Work with time-series data in Postgres with the timescaledb extension
 
 
 
-This guide provides an introduction to the `timescaledb` extension. You’ll learn how to enable the extension in Neon, create hypertables, run simple queries, and analyze data using `timescaledb` functions. Finally, you’ll see how to delete data to free up space.
+This guide provides an introduction to the `timescaledb` extension. You’ll learn how to enable the extension in Jambo, create hypertables, run simple queries, and analyze data using `timescaledb` functions. Finally, you’ll see how to delete data to free up space.
 
 
-`timescaledb` is an open-source extension for Postgres that can be installed on any Neon Project using the instructions below.
+`timescaledb` is an open-source extension for Postgres that can be installed on any Jambo Project using the instructions below.
 
 
 **Version availability:**
 
-The version of `timescaledb` available on Neon depends on the version of Postgres you select for your Neon project.
+The version of `timescaledb` available on Jambo depends on the version of Postgres you select for your Jambo project.
 
 - Postgres 14 - `timescaledb` 2.10.1
 - Postgres 15 - `timescaledb` 2.10.1
@@ -25,13 +25,13 @@ _Only [Apache-2](https://docs.timescale.com/about/latest/timescaledb-editions/) 
 
 ## Enable the `timescaledb` extension
 
-You can enable the extension by running the following `CREATE EXTENSION` statement in the Neon **SQL Editor** or from a client such as `psql` that is connected to Neon.
+You can enable the extension by running the following `CREATE EXTENSION` statement in the Jambo **SQL Editor** or from a client such as `psql` that is connected to Jambo.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS timescaledb;
 ```
 
-For information about using the Neon SQL Editor, see [Query with Neon's SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor). For information about using the `psql` client with Neon, see [Connect with psql](/docs/connect/query-with-psql-editor).
+For information about using the Jambo SQL Editor, see [Query with Jambo's SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor). For information about using the `psql` client with Jambo, see [Connect with psql](/docs/connect/query-with-psql-editor).
 
 ## Create a hypertable
 
@@ -92,7 +92,7 @@ You should receive the following output:
 
 ## Load weather data
 
-You can use the [sample weather dataset from TimescaleDB](https://assets.timescale.com/docs/downloads/weather_small.tar.gz) and load it into your Neon database using [psql](/docs/connect/query-with-psql-editor).
+You can use the [sample weather dataset from TimescaleDB](https://assets.timescale.com/docs/downloads/weather_small.tar.gz) and load it into your Jambo database using [psql](/docs/connect/query-with-psql-editor).
 
 Download the weather data:
 
@@ -102,7 +102,7 @@ curl https://assets.timescale.com/docs/downloads/weather_small.tar.gz -o weather
 tar -xvzf weather_small.tar.gz
 ```
 
-Load the data into Neon database - enter the username, password, host and database name. You can find these details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+Load the data into Jambo database - enter the username, password, host and database name. You can find these details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
 ```shell shouldWrap
 psql 'postgresql://:@/?sslmode=require' -c "\COPY weather_conditions FROM weather_small_conditions.csv CSV"
@@ -319,7 +319,7 @@ You should receive the following output:
 
 ## Data deletion
 
-You may run into space concerns as data accumulates in timescaledb hypertables. While Neon's Postgres service does not support compression, deleting old data is an option if you don't need to hold on to it for long periods of time.
+You may run into space concerns as data accumulates in timescaledb hypertables. While Jambo's Postgres service does not support compression, deleting old data is an option if you don't need to hold on to it for long periods of time.
 
 You can use the [`drop_chunks`]() function outlined above to easily delete outdated chunks from a hypertable. For example, to delete all chunks older than 3 months:
 
@@ -336,14 +336,14 @@ To automatically run this deletion periodically, you can setup a cron task. For 
 ```
 
 
-Please be aware that Neon's [Scale to Zero](/docs/guides/scale-to-zero-guide) feature may affect the running of scheduled jobs. It may be necessary to start the compute before running a job.
+Please be aware that Jambo's [Scale to Zero](/docs/guides/scale-to-zero-guide) feature may affect the running of scheduled jobs. It may be necessary to start the compute before running a job.
 
 
 This will help ensure the hypertable size is managed by deleting old unneeded data. Tune the interval passed to drop_chunks and the cron schedule based on your data retention needs.
 
 ## Conclusion
 
-You were able to configure the timescaledb extension in Neon and create a hypertable to store `weather` data. Then you executed simple queries and analyzed data using a combination of standard SQL and `timescaledb` functions before finally using `drop_chunks()` to delete data.
+You were able to configure the timescaledb extension in Jambo and create a hypertable to store `weather` data. Then you executed simple queries and analyzed data using a combination of standard SQL and `timescaledb` functions before finally using `drop_chunks()` to delete data.
 
 ## Reference
 

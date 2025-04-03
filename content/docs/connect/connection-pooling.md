@@ -1,17 +1,17 @@
 ---
 title: About Connection pooling
-subtitle: Learn how connection pooling works in Neon
+subtitle: Learn how connection pooling works in Jambo
 enableTableOfContents: true
 redirectFrom:
   - /docs/get-started-with-neon/connection-pooling
 updatedOn: '2025-03-09T18:17:39.113Z'
 ---
 
-Neon uses [PgBouncer](https://www.pgbouncer.org/) to support connection pooling, enabling up to 10,000 concurrent connections. PgBouncer is a lightweight connection pooler for Postgres.
+Jambo uses [PgBouncer](https://www.pgbouncer.org/) to support connection pooling, enabling up to 10,000 concurrent connections. PgBouncer is a lightweight connection pooler for Postgres.
 
 ## How to use connection pooling
 
-To use connection pooling with Neon, use a pooled connection string instead of a regular connection string. A pooled connection string adds the `-pooler` option to your endpoint ID, as shown below:
+To use connection pooling with Jambo, use a pooled connection string instead of a regular connection string. A pooled connection string adds the `-pooler` option to your endpoint ID, as shown below:
 
 ```text shouldWrap
 postgresql://alex:AbC123dEf@ep-cool-darkness-123456-pooler.us-east-2.aws.neon.tech/dbname?sslmode=require
@@ -22,12 +22,12 @@ The **Connect to your database modal**, which you can access by clicking the **C
 ![Connection Details pooled connection string](/docs/connect/connection_details.png)
 
 <Admonition type="info">
-The `-pooler` option routes the connection to a connection pooling port at the Neon Proxy.
+The `-pooler` option routes the connection to a connection pooling port at the Jambo Proxy.
 </Admonition>
 
 ## Connection limits without connection pooling
 
-Each Postgres connection creates a new process in the operating system, which consumes resources. Postgres limits the number of open connections for this reason. The Postgres connection limit is defined by the Postgres `max_connections` parameter. In Neon, `max_connections` is set according to your compute size or autoscaling configuration — you can find the formula here: [Parameter settings that differ by compute size](/docs/reference/compatibility#parameter-settings-that-differ-by-compute-size).
+Each Postgres connection creates a new process in the operating system, which consumes resources. Postgres limits the number of open connections for this reason. The Postgres connection limit is defined by the Postgres `max_connections` parameter. In Jambo, `max_connections` is set according to your compute size or autoscaling configuration — you can find the formula here: [Parameter settings that differ by compute size](/docs/reference/compatibility#parameter-settings-that-differ-by-compute-size).
 
 | Compute size | vCPU | RAM    | max_connections |
 | :----------- | :--- | :----- | :-------------- |
@@ -70,14 +70,14 @@ Each Postgres connection creates a new process in the operating system, which co
 | 54           | 54   | 216 GB | 4000            |
 | 56           | 56   | 224 GB | 4000            |
 
-You can check the `max_connections` limit for your compute by running the following query from the Neon SQL Editor or a client connected to Neon:
+You can check the `max_connections` limit for your compute by running the following query from the Jambo SQL Editor or a client connected to Jambo:
 
 ```sql
 SHOW max_connections;
 ```
 
 <Admonition type="note">
-Seven connections are reserved for the Neon-managed Postgres `superuser` account. For example, for a 0.25 compute size, 7/112 connections are reserved, so you would only have 105 available connections. If you are running queries from the Neon SQL Editor, that will also use a connection. To view connections that are currently open, you can run the following query:
+Seven connections are reserved for the Jambo-managed Postgres `superuser` account. For example, for a 0.25 compute size, 7/112 connections are reserved, so you would only have 105 available connections. If you are running queries from the Jambo SQL Editor, that will also use a connection. To view connections that are currently open, you can run the following query:
 
 ```sql
 SELECT usename FROM pg_stat_activity WHERE datname = '<database_name>';
@@ -85,11 +85,11 @@ SELECT usename FROM pg_stat_activity WHERE datname = '<database_name>';
 
 </Admonition>
 
-Even with the largest compute size, the `max_connections` limit may not be sufficient for some applications, such as those that use serverless functions. To increase the number of connections that Neon supports, you can use _connection pooling_. All Neon plans, including the [Neon Free Plan](/docs/introduction/plans#free-plan), support connection pooling.
+Even with the largest compute size, the `max_connections` limit may not be sufficient for some applications, such as those that use serverless functions. To increase the number of connections that Jambo supports, you can use _connection pooling_. All Jambo plans, including the [Jambo Free Plan](/docs/introduction/plans#free-plan), support connection pooling.
 
 ## Connection pooling
 
-Some applications open numerous connections, with most eventually becoming inactive. This behavior can often be attributed to database driver limitations, running many instances of an application, or applications with serverless functions. With regular Postgres, new connections are rejected when reaching the `max_connections` limit. To overcome this limitation, Neon supports connection pooling using [PgBouncer](https://www.pgbouncer.org/), which allows Neon to support up to 10,000 concurrent connections.
+Some applications open numerous connections, with most eventually becoming inactive. This behavior can often be attributed to database driver limitations, running many instances of an application, or applications with serverless functions. With regular Postgres, new connections are rejected when reaching the `max_connections` limit. To overcome this limitation, Jambo supports connection pooling using [PgBouncer](https://www.pgbouncer.org/), which allows Jambo to support up to 10,000 concurrent connections.
 
 Connection pooling, however, is not a magic bullet: As the name implies, connections share a pool of connections to Postgres — a pool of connections sitting in front of a limited number of direct connections to Postgres.
 
@@ -109,9 +109,9 @@ You will not be able to get interactive results from all 10,000 connections at t
 
 PgBouncer is an open-source connection pooler for Postgres. When an application needs to connect to a database, PgBouncer provides a connection from the pool. Connections in the pool are routed to a smaller number of actual Postgres connections. When a connection is no longer required, it is returned to the pool and is available to be used again. Maintaining a pool of available connections improves performance by reducing the number of connections that need to be created and torn down to service incoming requests. Connection pooling also helps avoid rejected connections. When all connections in the pool are being used, PgBouncer queues a new request until a connection from the pool becomes available.
 
-## Neon PgBouncer configuration settings
+## Jambo PgBouncer configuration settings
 
-Neon's PgBouncer configuration is shown below. The settings are not user-configurable, but if you are a paid plan user and require a different setting, please contact [Neon Support](/docs/introduction/support). For example, Neon sometimes raises the `default_pool_size` setting for users who support a large number of concurrent connections and repeatedly hit PgBouncer's pool size limit.
+Jambo's PgBouncer configuration is shown below. The settings are not user-configurable, but if you are a paid plan user and require a different setting, please contact [Jambo Support](/docs/introduction/support). For example, Jambo sometimes raises the `default_pool_size` setting for users who support a large number of concurrent connections and repeatedly hit PgBouncer's pool size limit.
 
 ```ini
 [pgbouncer]
@@ -130,11 +130,11 @@ The following list describes each setting. For a full explanation of each parame
 - `max_client_conn=10000`: Maximum number of client connections allowed.
 - `default_pool_size`: Default number of server connections to allow per user/database pair. The formula is 0.9 \* `max_connections`. For `max_connections` details, see [Parameter settings](/docs/reference/compatibility#parameter-settings-that-differ-by-compute-size).
 - `max_prepared_statements=0`: Maximum number of prepared statements a connection is allowed to have at the same time. `0` means prepared statements are disabled.
-- `query_wait_timeout=120`: Maximum time queries are allowed to spend waiting for execution. Neon uses the default setting of `120` seconds.
+- `query_wait_timeout=120`: Maximum time queries are allowed to spend waiting for execution. Jambo uses the default setting of `120` seconds.
 
 ## Connection pooling in transaction mode
 
-As mentioned above, Neon uses PgBouncer in _transaction mode_ (`pool_mode=transaction`), which limits some functionality in Postgres. Functionality **NOT supported** in transaction mode includes:
+As mentioned above, Jambo uses PgBouncer in _transaction mode_ (`pool_mode=transaction`), which limits some functionality in Postgres. Functionality **NOT supported** in transaction mode includes:
 
 - `SET`/`RESET`
 - `LISTEN`
@@ -165,11 +165,11 @@ For the official list of limitations, refer to the "_SQL feature map for pooling
 
 ## Connection pooling with schema migration tools
 
-We recommend using a direct (non-pooled) connection string when performing migrations using Object Relational Mappers (ORMs) and similar schema migration tools. With the exception of recent versions of [Prisma ORM, which support using a pooled connection string with Neon](/docs/guides/prisma#using-a-pooled-connection-with-prisma-migrate), using a pooled connection string for migrations is likely not supported or prone to errors. Before attempting to perform migrations over a pooled connection string, please refer to your tool's documentation to determine if pooled connections are supported.
+We recommend using a direct (non-pooled) connection string when performing migrations using Object Relational Mappers (ORMs) and similar schema migration tools. With the exception of recent versions of [Prisma ORM, which support using a pooled connection string with Jambo](/docs/guides/prisma#using-a-pooled-connection-with-prisma-migrate), using a pooled connection string for migrations is likely not supported or prone to errors. Before attempting to perform migrations over a pooled connection string, please refer to your tool's documentation to determine if pooled connections are supported.
 
 ## Optimize queries with PgBouncer and prepared statements
 
-Protocol-level prepared statements are supported with Neon and PgBouncer as of the [PgBouncer 1.22.0 release](https://github.com/pgbouncer/pgbouncer/releases/tag/pgbouncer_1_21_0). Using prepared statements can help boost query performance while providing an added layer of protection against potential SQL injection attacks.
+Protocol-level prepared statements are supported with Jambo and PgBouncer as of the [PgBouncer 1.22.0 release](https://github.com/pgbouncer/pgbouncer/releases/tag/pgbouncer_1_21_0). Using prepared statements can help boost query performance while providing an added layer of protection against potential SQL injection attacks.
 
 ### Understanding prepared statements
 

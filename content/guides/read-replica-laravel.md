@@ -1,6 +1,6 @@
 ---
-title: Scale your Laravel application with Neon Postgres Read Replicas
-subtitle: Learn how to scale Laravel applications with Neon Postgres Read Replicas
+title: Scale your Laravel application with Jambo Postgres Read Replicas
+subtitle: Learn how to scale Laravel applications with Jambo Postgres Read Replicas
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-10-20T00:00:00.000Z'
@@ -9,22 +9,22 @@ updatedOn: '2024-10-20T00:00:00.000Z'
 
 ## Introduction
 
-[Neon read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications.
+[Jambo read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications.
 
-A key advantage of Neon's architecture is that adding a read replica doesn't require additional storage, making it a highly efficient scaling solution. This cost-effective approach is ideal for businesses of all sizes that need to improve database performance without increasing storage costs.
+A key advantage of Jambo's architecture is that adding a read replica doesn't require additional storage, making it a highly efficient scaling solution. This cost-effective approach is ideal for businesses of all sizes that need to improve database performance without increasing storage costs.
 
-This guide demonstrates how to leverage Neon read replicas to efficiently scale Laravel applications. You'll learn how to configure your Laravel database connections to work with read replicas, enabling you to optimize your database operations and improve overall application performance. We'll use a simple URL shortener application as an example.
+This guide demonstrates how to leverage Jambo read replicas to efficiently scale Laravel applications. You'll learn how to configure your Laravel database connections to work with read replicas, enabling you to optimize your database operations and improve overall application performance. We'll use a simple URL shortener application as an example.
 
 ## Prerequisites
 
-- A Neon account and a Project. If you don't have one, you can sign up for a Neon account and create a project by following the [Getting Started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
+- A Jambo account and a Project. If you don't have one, you can sign up for a Jambo account and create a project by following the [Getting Started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
 - Basic knowledge of [Laravel](https://laravel.com/docs) and PHP
 - [Composer](https://getcomposer.org/) installed on your local machine
 - [PHP](https://www.php.net/manual/en/install.php) installed on your local machine
 
 ## Build the URL Shortener app
 
-To demonstrate how to use Neon read replicas with Laravel, we'll build a simple URL shortener application that uses a Neon database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
+To demonstrate how to use Jambo read replicas with Laravel, we'll build a simple URL shortener application that uses a Jambo database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
 
 ### Part 1: Build the initial URL Shortener app with a single database
 
@@ -59,7 +59,7 @@ laravel new url-shortener
 
 #### Configure the database connection
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```
 DB_CONNECTION=pgsql
@@ -113,7 +113,7 @@ php artisan migrate
 ```
 
 <Admonition type="important">
-Neon supports both direct and pooled database connection strings, which can be copied from the **Connection Details** widget on your Neon Project Dashboard. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
+Jambo supports both direct and pooled database connection strings, which can be copied from the **Connection Details** widget on your Jambo Project Dashboard. A pooled connection string connects your application to the database via a PgBouncer connection pool, allowing for a higher number of concurrent connections. However, using a pooled connection string for migrations can be prone to errors. For this reason, we recommend using a direct (non-pooled) connection when performing migrations. For more information about direct and pooled connections, see [Connection pooling](/docs/connect/connection-pooling).
 </Admonition>
 
 #### Create the model
@@ -270,11 +270,11 @@ Visit `http://localhost:8000` to test the URL shortener app.
 
 ### Part 2: Use a read replica for read-only operations
 
-#### Create a read replica on Neon
+#### Create a read replica on Jambo
 
 To create a read replica:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new compute** dialog, select **Read replica** as the **Compute type**.
@@ -351,12 +351,12 @@ This automatic routing happens transparently, allowing you to scale your applica
 You can find the source code for the application described in this guide on GitHub.
 <DetailIconCards>
 <a href="https://github.com/dhanushreddy291/neon-read-replica-laravel" description="
-Learn how to scale Laravel applications with Neon Postgres Read Replicas" icon="github">Use read replicas with Laravel</a>
+Learn how to scale Laravel applications with Jambo Postgres Read Replicas" icon="github">Use read replicas with Laravel</a>
 </DetailIconCards>
 
 ## Conclusion
 
-By leveraging Neon's read replicas with Laravel, you can significantly improve your application's performance and scalability. Laravel's database configuration makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
+By leveraging Jambo's read replicas with Laravel, you can significantly improve your application's performance and scalability. Laravel's database configuration makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
 
 This setup allows you to distribute your read load across one or more read replicas while ensuring that all write operations are performed on the primary database. Monitor your application's performance and adjust the number of read replicas as needed to handle your specific load requirements.
 

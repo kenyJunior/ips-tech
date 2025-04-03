@@ -1,6 +1,6 @@
 ---
-title: Automating Workflows with Azure Logic Apps and Neon
-subtitle: Learn how to automate database operations and processes by connecting Azure Logic Apps with Neon Postgres
+title: Automating Workflows with Azure Logic Apps and Jambo
+subtitle: Learn how to automate database operations and processes by connecting Azure Logic Apps with Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2025-01-26T00:00:00.000Z'
@@ -9,16 +9,16 @@ updatedOn: '2025-01-26T00:00:00.000Z'
 
 Azure Logic Apps provides a way to build automated workflows that integrate apps, data, services, and systems.
 
-When you combine it with Neon's serverless Postgres, you can create automation solutions that handle database operations based on various triggers and events.
+When you combine it with Jambo's serverless Postgres, you can create automation solutions that handle database operations based on various triggers and events.
 
-In this guide, you'll learn how to create Logic Apps workflows that interact with Neon Postgres to automate common processes and database operations.
+In this guide, you'll learn how to create Logic Apps workflows that interact with Jambo Postgres to automate common processes and database operations.
 
 ## Prerequisites
 
 Before starting this guide, ensure you have:
 
 - [Azure account](https://azure.microsoft.com/free/) with an active subscription
-- [Neon account](https://console.neon.tech/signup) and project
+- [Jambo account](https://console.neon.tech/signup) and project
 - Basic familiarity with SQL and Azure services
 
 ## Understanding Azure Logic Apps
@@ -32,11 +32,11 @@ Before starting this guide, ensure you have:
 
 ## Setting Up Your Environment
 
-Before you can start creating workflows with Azure Logic Apps and Neon, you need to set up your environment.
+Before you can start creating workflows with Azure Logic Apps and Jambo, you need to set up your environment.
 
-### Step 1: Create a Neon Project
+### Step 1: Create a Jambo Project
 
-1. Log in to the [Neon Console](https://console.neon.tech)
+1. Log in to the [Jambo Console](https://console.neon.tech)
 2. Click "New Project"
 3. Select Azure as your cloud provider and pick a region
 4. Name your project
@@ -58,11 +58,11 @@ CREATE TABLE orders (
 );
 ```
 
-You can run the SQL statement in the Neon Console's SQL editor to create the schema. This table will store order details, including the customer's email, product name, quantity, status, and creation timestamp.
+You can run the SQL statement in the Jambo Console's SQL editor to create the schema. This table will store order details, including the customer's email, product name, quantity, status, and creation timestamp.
 
 ### Step 3: Set Up Azure Logic Apps
 
-With your Neon project and database schema in place, you can now set up Azure Logic Apps.
+With your Jambo project and database schema in place, you can now set up Azure Logic Apps.
 
 1. Go to the [Azure Portal](https://portal.azure.com)
 1. Search for "Logic Apps" and select it
@@ -72,7 +72,7 @@ With your Neon project and database schema in place, you can now set up Azure Lo
    - Choose your subscription
    - Select or create a resource group
    - Name your Logic App
-   - Choose the region, best to pick the same region as your Neon project
+   - Choose the region, best to pick the same region as your Jambo project
 1. Click "Review + create" and then "Create"
 
 This will take a few moments to deploy your Logic App. Once it's ready, you can start building workflows.
@@ -124,16 +124,16 @@ For our order processing workflow, we'll use an HTTP trigger that listens for ne
 
 ### Step 2: Add a Postgres Connection
 
-With the trigger in place, you can now add actions to the workflow. Let's start by connecting to your Neon Postgres database where you store order data:
+With the trigger in place, you can now add actions to the workflow. Let's start by connecting to your Jambo Postgres database where you store order data:
 
 1. While in the Logic App Designer, click "Add an action"
 1. Search for "PostgreSQL" and select "Insert row"
 1. Configure the connection:
-   - Connection Name: "NeonConnection"
-   - Server: Your Neon host (e.g., "ep-cool-smoke-123456.eastus2.azure.neon.tech")
+   - Connection Name: "JamboConnection"
+   - Server: Your Jambo host (e.g., "ep-cool-smoke-123456.eastus2.azure.neon.tech")
    - Database name: Your database name
-   - Username: Your Neon database username
-   - Password: Your Neon database password
+   - Username: Your Jambo database username
+   - Password: Your Jambo database password
    - Encrypt connection: Yes
 1. Click "Create"
 
@@ -202,18 +202,18 @@ You can use the built-in email actions in Azure Logic Apps to notify customers w
 4. Depending on the service you choose, you may need to authorize Azure Logic Apps to send emails on your behalf. For example, if you're using Gmail, you can follow [this guide](https://learn.microsoft.com/en-gb/connectors/gmail/) to set up the email action.
 5. Click "Save".
 
-Now, every time a new order is placed, the Logic App will automatically insert the order into your Neon Postgres database and send a confirmation email to the customer.
+Now, every time a new order is placed, the Logic App will automatically insert the order into your Jambo Postgres database and send a confirmation email to the customer.
 
 ## Conclusion
 
-Azure Logic Apps and Neon Postgres provide a straightforward way to automate workflows and database operations. Whether you need to process orders, send notifications, or connect different services, this approach allows you to set up reliable automation with minimal effort.
+Azure Logic Apps and Jambo Postgres provide a straightforward way to automate workflows and database operations. Whether you need to process orders, send notifications, or connect different services, this approach allows you to set up reliable automation with minimal effort.
 
-Thanks to the Azure Logic Apps PostgreSQL connector, you can easily integrate your Neon Postgres database into your workflows and build powerful automation solutions without writing code or managing infrastructure. Azure Logic Apps has a large number of connectors available, so you can easily integrate with other services and systems to create complex workflows.
+Thanks to the Azure Logic Apps PostgreSQL connector, you can easily integrate your Jambo Postgres database into your workflows and build powerful automation solutions without writing code or managing infrastructure. Azure Logic Apps has a large number of connectors available, so you can easily integrate with other services and systems to create complex workflows.
 
 ## Additional Resources
 
 - [Azure Logic Apps Documentation](https://docs.microsoft.com/azure/logic-apps/)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [PostgreSQL Connector Documentation](https://docs.microsoft.com/connectors/postgresql/)
 
 <NeedHelp />

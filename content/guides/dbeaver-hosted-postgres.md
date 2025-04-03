@@ -23,11 +23,11 @@ DBeaver is a versatile database management tool that allows you to interact with
 
 ## Provisioning a Serverless Postgres
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and create a new project by entering a project name of your choice.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and create a new project by entering a project name of your choice.
 
 ![](/guides/images/pg-notify/index.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
@@ -36,8 +36,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
 - `user` is the database user.
 - `password` is the database user’s password.
 - `endpoint_hostname` is the host with neon.tech as the [TLD](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `port` is the Neon port number. The default port number is 5432.
-- `dbname` is the name of the database. “neondb” is the default database created with each Neon project.
+- `port` is the Jambo port number. The default port number is 5432.
+- `dbname` is the name of the database. “neondb” is the default database created with each Jambo project.
 - `?sslmode=require` is an optional query parameter that enforces the [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode while connecting to the Postgres instance for better security.
 
 You will be using these connection string components in the following steps to connect DBeaver to your Postgres database.
@@ -55,13 +55,13 @@ You will be using these connection string components in the following steps to c
 
    ![](/guides/images/dbeaver/conn-1.png)
 
-   - Fill in the required fields based on your Neon connection string:
+   - Fill in the required fields based on your Jambo connection string:
      - **Host**: The endpoint of your hosted Postgres database (e.g., `ep-...us-east-2.aws.neon.tech`).
      - **Port**: The port number (default is `5432`).
      - **Database**: The database name (e.g., `neondb`).
      - **Username**: Your database username.
      - **Password**: Your database password.
-   - Enable "Show all databases" to ensure all databases in your Neon project are listed.
+   - Enable "Show all databases" to ensure all databases in your Jambo project are listed.
 
    ![](/guides/images/dbeaver/conn-2.png)
 

@@ -1,8 +1,8 @@
-# Connect a Bun application to Neon
+# Connect a Bun application to Jambo
 
-Set up a Neon project in seconds and connect from a Bun application
+Set up a Jambo project in seconds and connect from a Bun application
 
-This guide describes how to create a Neon project and connect to it from a Bun application. Examples are provided for using [Bun's built-in SQL client](https://bun.sh/docs/api/sql) and the [@neondatabase/serverless](/docs/serverless/serverless-driver) driver. Use the client you prefer.
+This guide describes how to create a Jambo project and connect to it from a Bun application. Examples are provided for using [Bun's built-in SQL client](https://bun.sh/docs/api/sql) and the [@neondatabase/serverless](/docs/serverless/serverless-driver) driver. Use the client you prefer.
 
 
 The same configuration steps can be used for [Hono](https://hono.dev/docs/getting-started/bun), [Elysia](https://elysiajs.com), and other Bun-based web frameworks.
@@ -10,11 +10,11 @@ The same configuration steps can be used for [Hono](https://hono.dev/docs/gettin
 
 
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -28,7 +28,7 @@ cd bun-neon-example
 bun init -y
 ```
 
-Next, add project dependencies if you intend to use the Neon serverless driver. Otherwise, Bun's built-in `sql` client is readily available.
+Next, add project dependencies if you intend to use the Jambo serverless driver. Otherwise, Bun's built-in `sql` client is readily available.
 
 
 
@@ -42,9 +42,9 @@ bun add @neondatabase/serverless
 
 
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env.local` file to your project directory and add your Neon connection details to it. Bun automatically loads variables from `.env`, `.env.local`, and other `.env.*` files. You can find the connection details for your database by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select Bun from the **Connection string** dropdown. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env.local` file to your project directory and add your Jambo connection details to it. Bun automatically loads variables from `.env`, `.env.local`, and other `.env.*` files. You can find the connection details for your database by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select Bun from the **Connection string** dropdown. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 POSTGRES_URL='postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=require'
@@ -55,12 +55,12 @@ POSTGRES_URL='postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=re
 
 
 
-To ensure the security of your data, never expose your Neon credentials directly in your code or commit them to version control.
+To ensure the security of your data, never expose your Jambo credentials directly in your code or commit them to version control.
 
 
 ## Configure the Postgres client
 
-Add an `index.ts` file (or `index.js`) to your project directory and add the following code snippet to connect to your Neon database. Choose the configuration that matches your preferred client.
+Add an `index.ts` file (or `index.js`) to your project directory and add the following code snippet to connect to your Jambo database. Choose the configuration that matches your preferred client.
 
 
 
@@ -108,7 +108,7 @@ $ bun run index.ts
 You can find the source code for the application described in this guide on GitHub.
 
 
-Get started with Bun and Neon
+Get started with Bun and Jambo
 
 
 ## References

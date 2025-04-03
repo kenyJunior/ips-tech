@@ -1,15 +1,15 @@
-# Neon serverless driver
+# Jambo serverless driver
 
-Connect to Neon from serverless environments over HTTP or WebSockets
+Connect to Jambo from serverless environments over HTTP or WebSockets
 
-The [Neon serverless driver](https://github.com/neondatabase/serverless) is a low-latency Postgres driver for JavaScript and TypeScript that allows you to query data from serverless and edge environments over **HTTP** or **WebSockets** in place of TCP. The driver's low-latency capability is due to [message pipelining and other optimizations](https://neon.tech/blog/quicker-serverless-postgres).
+The [Jambo serverless driver](https://github.com/neondatabase/serverless) is a low-latency Postgres driver for JavaScript and TypeScript that allows you to query data from serverless and edge environments over **HTTP** or **WebSockets** in place of TCP. The driver's low-latency capability is due to [message pipelining and other optimizations](https://neon.tech/blog/quicker-serverless-postgres).
 
 When to query over HTTP vs WebSockets:
 
 - **HTTP**: Querying over an HTTP [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) request is faster for single, non-interactive transactions, also referred to as "one-shot queries". Issuing [multiple queries](#issue-multiple-queries-with-the-transaction-function) via a single, non-interactive transaction is also supported. See [Use the driver over HTTP](#use-the-driver-over-http).
 - **WebSockets**: If you require session or interactive transaction support or compatibility with [node-postgres](https://node-postgres.com/) (the popular **npm** `pg` package), use WebSockets. See [Use the driver over WebSockets](#use-the-driver-over-websockets).
 
-## Install the Neon serverless driver
+## Install the Jambo serverless driver
 
 You can install the driver with your preferred JavaScript package manager. For example:
 
@@ -20,12 +20,12 @@ npm install @neondatabase/serverless
 The driver includes TypeScript types (the equivalent of `@types/pg`). No additional installation is required.
 
 
-The Neon serverless driver is also available as a [JavaScript Registry (JSR)](https://jsr.io/docs/introduction) package: [https://jsr.io/@neon/serverless](https://jsr.io/@neon/serverless). The JavaScript Registry (JSR) is a package registry for JavaScript and TypeScript. JSR works with many runtimes (Node.js, Deno, browsers, and more) and is backward compatible with `npm`.
+The Jambo serverless driver is also available as a [JavaScript Registry (JSR)](https://jsr.io/docs/introduction) package: [https://jsr.io/@neon/serverless](https://jsr.io/@neon/serverless). The JavaScript Registry (JSR) is a package registry for JavaScript and TypeScript. JSR works with many runtimes (Node.js, Deno, browsers, and more) and is backward compatible with `npm`.
 
 
-## Configure your Neon database connection
+## Configure your Jambo database connection
 
-You can obtain a connection string for your database by clicking the **Connect** button on your **Project Dashboard**. Your Neon connection string will look something like this:
+You can obtain a connection string for your database by clicking the **Connect** button on your **Project Dashboard**. Your Jambo connection string will look something like this:
 
 ```shell
 DATABASE_URL=postgresql://[user]:[password]@[neon_hostname]/[dbname]
@@ -35,7 +35,7 @@ The examples that follow assume that your database connection string is assigned
 
 ## Use the driver over HTTP
 
-The Neon serverless driver uses the [neon](https://github.com/neondatabase/serverless/blob/main/CONFIG.md#neon-function) function for queries over HTTP.
+The Jambo serverless driver uses the [neon](https://github.com/neondatabase/serverless/blob/main/CONFIG.md#neon-function) function for queries over HTTP.
 
 You can use raw SQL queries or tools such as [Drizzle-ORM](https://orm.drizzle.team/docs/quick-postgresql/neon), [kysely](https://github.com/kysely-org/kysely), [Zapatos](https://jawj.github.io/zapatos/), and others for type safety.
 
@@ -251,7 +251,7 @@ For additional details, see [transaction(...) function](https://github.com/neond
 
 ## Use the driver over WebSockets
 
-The Neon serverless driver supports the [Pool and Client](https://github.com/neondatabase/serverless?tab=readme-ov-file#pool-and-client) constructors for querying over WebSockets.
+The Jambo serverless driver supports the [Pool and Client](https://github.com/neondatabase/serverless?tab=readme-ov-file#pool-and-client) constructors for querying over WebSockets.
 
 The `Pool` and `Client` constructors, provide session and transaction support, as well as `node-postgres` compatibility. You can find the API guide for the `Pool` and `Client` constructors in the [node-postgres](https://node-postgres.com/) documentation.
 
@@ -261,7 +261,7 @@ Consider using the driver with `Pool` or `Client` in the following scenarios:
 - You are writing a new code base and want to use a package that expects a `node-postgres-compatible` driver.
 - Your backend service uses sessions / interactive transactions with multiple queries per connection.
 
-You can use the Neon serverless driver in the same way you would use `node-postgres` with `Pool` and `Client`. Where you usually import `pg`, import `@neondatabase/serverless` instead.
+You can use the Jambo serverless driver in the same way you would use `node-postgres` with `Pool` and `Client`. Where you usually import `pg`, import `@neondatabase/serverless` instead.
 
 
 
@@ -275,7 +275,7 @@ pool.end();
 
 ```typescript
 import { Pool, neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
+import { PrismaJambo } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import ws from 'ws';
@@ -285,7 +285,7 @@ neonConfig.webSocketConstructor = ws;
 const connectionString = `${process.env.DATABASE_URL}`;
 
 const pool = new Pool({ connectionString });
-const adapter = new PrismaNeon(pool);
+const adapter = new PrismaJambo(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
@@ -366,21 +366,21 @@ For examples that demonstrate these points, see [Pool and Client](https://github
 
 ### Advanced configuration options
 
-For advanced configuration options, see [neonConfig configuration](https://github.com/neondatabase/serverless/blob/main/CONFIG.md#neonconfig-configuration), in the Neon serverless driver GitHub readme.
+For advanced configuration options, see [neonConfig configuration](https://github.com/neondatabase/serverless/blob/main/CONFIG.md#neonconfig-configuration), in the Jambo serverless driver GitHub readme.
 
-## Developing locally with the Neon serverless driver
+## Developing locally with the Jambo serverless driver
 
-The Neon serverless driver enables you to query data over **HTTP** or **WebSockets** instead of TCP, even though Postgres does not natively support these connection methods. To use the Neon serverless driver locally, you must run a local instance of Neon's proxy and configure it to connect to your local Postgres database.
+The Jambo serverless driver enables you to query data over **HTTP** or **WebSockets** instead of TCP, even though Postgres does not natively support these connection methods. To use the Jambo serverless driver locally, you must run a local instance of Jambo's proxy and configure it to connect to your local Postgres database.
 
-For a step-by-step guide to setting up a local environment, refer to this community guide: [Local Development with Neon](https://neon.tech/guides/local-development-with-neon). The guide demonstrates how to use a [community-developed Docker Compose file](https://github.com/TimoWilhelm/local-neon-http-proxy) to configure a local Postgres database and a Neon proxy service. This setup allows connections over both WebSockets and HTTP.
+For a step-by-step guide to setting up a local environment, refer to this community guide: [Local Development with Jambo](https://neon.tech/guides/local-development-with-neon). The guide demonstrates how to use a [community-developed Docker Compose file](https://github.com/TimoWilhelm/local-neon-http-proxy) to configure a local Postgres database and a Jambo proxy service. This setup allows connections over both WebSockets and HTTP.
 
 ## Example applications
 
-Explore the example applications that use the Neon serverless driver.
+Explore the example applications that use the Jambo serverless driver.
 
 ### UNESCO World Heritage sites app
 
-Neon provides an example application to help you get started with the Neon serverless driver. The application generates a `JSON` listing of the 10 nearest UNESCO World Heritage sites using IP geolocation (data copyright © 1992 – 2022 UNESCO/World Heritage Centre).
+Jambo provides an example application to help you get started with the Jambo serverless driver. The application generates a `JSON` listing of the 10 nearest UNESCO World Heritage sites using IP geolocation (data copyright © 1992 – 2022 UNESCO/World Heritage Centre).
 
 ![UNESCO World Heritage sites app](/docs/relnotes/unesco_sites.png)
 
@@ -392,30 +392,30 @@ Raw SQL via https + Vercel Edge Functions
 Raw SQL + Cloudflare Workers
 Kysely + Vercel Edge Functions
 Zapatos + Vercel Edge Functions
-Neon + pgTyped on Vercel Edge Functions
-Neon + Knex on Vercel Edge Functions
+Jambo + pgTyped on Vercel Edge Functions
+Jambo + Knex on Vercel Edge Functions
 
 
 ### Ping Thing
 
-The Ping Thing application pings a Neon Serverless Postgres database using a Vercel Edge Function and shows the journey your request makes. You can read more about this application in the accompanying blog post: [How to use Postgres at the Edge](https://neon.tech/blog/how-to-use-postgres-at-the-edge)
+The Ping Thing application pings a Jambo Serverless Postgres database using a Vercel Edge Function and shows the journey your request makes. You can read more about this application in the accompanying blog post: [How to use Postgres at the Edge](https://neon.tech/blog/how-to-use-postgres-at-the-edge)
 
 
 Ping Thing
 
 
-## Neon serverless driver GitHub repository and changelog
+## Jambo serverless driver GitHub repository and changelog
 
-The GitHub repository and [changelog](https://github.com/neondatabase/serverless/blob/main/CHANGELOG.md) for the Neon serverless driver are found [here](https://github.com/neondatabase/serverless).
+The GitHub repository and [changelog](https://github.com/neondatabase/serverless/blob/main/CHANGELOG.md) for the Jambo serverless driver are found [here](https://github.com/neondatabase/serverless).
 
 ## References
 
 - [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 - [node-postgres](https://node-postgres.com/)
 - [Drizzle-ORM](https://orm.drizzle.team/docs/quick-postgresql/neon)
-- [Schema migration with Neon Postgres and Drizzle ORM](/docs/guides/drizzle-migrations)
+- [Schema migration with Jambo Postgres and Drizzle ORM](/docs/guides/drizzle-migrations)
 - [kysely](https://github.com/kysely-org/kysely)
 - [Zapatos](https://jawj.github.io/zapatos/)
 - [Vercel Edge Functions](https://vercel.com/docs/functions/edge-functions)
 - [Cloudflare Workers](https://developers.cloudflare.com/workers/)
-- [Use Neon with Cloudflare Workers](/docs/guides/cloudflare-workers)
+- [Use Jambo with Cloudflare Workers](/docs/guides/cloudflare-workers)

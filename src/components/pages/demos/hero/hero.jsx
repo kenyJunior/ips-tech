@@ -14,7 +14,7 @@ const items = [
     image: provisioningIllustration,
     imageWidth: 716,
     imageHeight: 548,
-    title: 'Postgres in under a second: Instantly provison a Postgres database on Neon',
+    title: 'Postgres in under a second: Instantly provison a Postgres database on Jambo',
     demoLink: '/demos/instant-postgres',
     sourceLink: 'https://github.com/neondatabase/instant-postgres',
   },
@@ -23,7 +23,7 @@ const items = [
     imageWidth: 464,
     imageHeight: 216,
     title:
-      "Tracking the latency between cloud hosting platforms and Neon's Postgres database regions",
+      "Tracking the latency between cloud hosting platforms and Jambo's Postgres database regions",
     demoLink: '/demos/regional-latency',
     sourceLink: 'https://github.com/neondatabase/regional-latency',
   },
@@ -44,10 +44,10 @@ const Hero = () => (
       <div className="col-span-10 col-start-2 lg:col-span-full lg:col-start-1">
         <h1 className="font-title text-6xl font-medium leading-none tracking-extra-tight xl:text-[56px] lg:text-5xl md:text-4xl sm:text-3xl">
           <span className="text-green-45">Serverless showcase:</span>
-          <br /> build with Neon
+          <br /> build with Jambo
         </h1>
         <p className="mt-5 text-xl font-light leading-snug tracking-extra-tight lg:text-xl md:text-base">
-          Explore interactive demos from the community and the Neon team.
+          Explore interactive demos from the community and the Jambo team.
         </p>
         <div className="mt-20 lg:mt-16 md:mt-10">
           <h2 className="flex items-center font-title text-xs font-medium uppercase leading-none -tracking-extra-tight text-green-45">

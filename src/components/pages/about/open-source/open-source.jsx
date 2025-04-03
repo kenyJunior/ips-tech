@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import Container from 'components/shared/container';
 import Heading from 'components/shared/heading';
-import Link from 'components/shared/link';
-import LINKS from 'constants/links';
 
 const OpenSource = ({ items }) => (
   <section className="open-source safe-paddings mt-[200px] xl:mt-[136px] lg:mt-[104px] md:mt-20">
@@ -18,26 +16,14 @@ const OpenSource = ({ items }) => (
           tag="h2"
           theme="black"
         >
-          Neon is
-          <br />
-          open-source
+          Qui sommes-nous ?
         </Heading>
         <p className="mt-9 text-xl leading-snug tracking-extra-tight text-gray-new-50 xl:mt-7 lg:mt-5 lg:text-lg md:mt-4 md:text-base sm:w-3/4 sm:min-w-[264px]">
-          We chose{' '}
-          <span className="text-white">the most permissive open-source license, Apache 2.0</span>,
-          and invited&nbsp;the world to participate. You can&nbsp;build and run your own self-hosted
-          instance of Neon.
+          IPS Technologies est la branche IT d'Industrial Power Solutions(IPS), dédiée à
+          l'innovation numérique. Nous développons des solutions sur mesure pour optimiser les
+          infrastructures, renforcer la cybersécurité et automatiser les processus, garantissant
+          ainsi performance et évolutivité aux entreprises.
         </p>
-        <Link
-          className="relative z-10 mt-5 flex w-fit items-center text-[15px] font-medium leading-none tracking-[-0.03em] lg:mt-4 md:mt-3.5"
-          to={LINKS.github}
-          theme="white"
-          target="_blank"
-          rel="noopener noreferrer"
-          withArrow
-        >
-          Neon GitHub repository
-        </Link>
       </header>
       <ul className="flex flex-col gap-y-20 xl:gap-y-[72px] lg:gap-y-14 md:gap-y-10">
         {items.map(({ label, number, isThousands, hasPlus }, index) => (

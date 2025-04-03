@@ -1,6 +1,6 @@
 ---
 title: Simplify RLS with Drizzle
-subtitle: Use Drizzle crudPolicy to manage Row-Level Security with Neon RLS
+subtitle: Use Drizzle crudPolicy to manage Row-Level Security with Jambo RLS
 enableTableOfContents: true
 updatedOn: '2025-03-06T15:24:01.899Z'
 redirectFrom:
@@ -15,7 +15,7 @@ redirectFrom:
 </DocsList>
 
 <DocsList title="Related docs" theme="docs">
-  <a href="/docs/guides/neon-rls">About Neon RLS</a>
+  <a href="/docs/guides/neon-rls">About Jambo RLS</a>
   <a href="https://orm.drizzle.team/docs/rls">RLS in Drizzle</a>
 </DocsList>
 
@@ -125,7 +125,7 @@ export const authUid = (userIdColumn: AnyPgColumn) =>
 
 This helper:
 
-1. Wraps Neon RLS's `auth.user_id()` function (from the [pg_session_jwt](/docs/guides/neon-rls#how-the-pgsessionjwt-extension-works) extension)
+1. Wraps Jambo RLS's `auth.user_id()` function (from the [pg_session_jwt](/docs/guides/neon-rls#how-the-pgsessionjwt-extension-works) extension)
 2. Compares the authenticated user's ID with a table column
 3. Returns a SQL expression suitable for use in `read` and `modify` parameters
 

@@ -1,11 +1,11 @@
-# Neon data migration guides
+# Jambo data migration guides
 
-Learn how to migrate data to Neon Postgres from different database providers
+Learn how to migrate data to Jambo Postgres from different database providers
 
-Find instructions for migrating data from Postgres, CSV, other Neon projects, and other database providers. For near-zero downtime data migrations from other Postgres providers, consider using logical replication. Additionally, if you're new to Neon and want to try it out, our sample data guide provides datasets for exploration and testing.
+Find instructions for migrating data from Postgres, CSV, other Jambo projects, and other database providers. For near-zero downtime data migrations from other Postgres providers, consider using logical replication. Additionally, if you're new to Jambo and want to try it out, our sample data guide provides datasets for exploration and testing.
 
 
-If you're planning to migrate a production workload to Neon, let us know&#8212;we'll connect you with an expert from our team. You can reach out to us [here](https://neon.tech/migration-assistance).
+If you're planning to migrate a production workload to Jambo, let us know&#8212;we'll connect you with an expert from our team. You can reach out to us [here](https://neon.tech/migration-assistance).
 
 
 ## Data migration guides
@@ -16,7 +16,7 @@ Import Data Assistant
 
 Migrate with pg_dump and pg_restore
 
-Migrate from another Neon project
+Migrate from another Jambo project
 
 Migrate schema only
 
@@ -44,4 +44,4 @@ Migrate from Supabase
 
 ## Use logical replication for near-zero downtime data migrations
 
-Postgres logical replication in Neon provides an efficient way to migrate data from other Postgres providers with minimal downtime. By replicating data in real-time, this method allows you to transition your applications to Neon without interrupting your services. Please refer to our logical replication guides for instructions.
+Postgres logical replication in Jambo provides an efficient way to migrate data from other Postgres providers with minimal downtime. By replicating data in real-time, this method allows you to transition your applications to Jambo without interrupting your services. Please refer to our logical replication guides for instructions.

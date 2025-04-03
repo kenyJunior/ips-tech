@@ -47,7 +47,7 @@ import Laptop from './images/laptop.inline.svg';
 import LlamaIndex from './images/llamaindex.inline.svg';
 import LockLandscape from './images/lock-landscape.inline.svg';
 import Metrics from './images/metrics.inline.svg';
-import Neon from './images/neon.inline.svg';
+import Jambo from './images/neon.inline.svg';
 import Network from './images/network.inline.svg';
 import Ollama from './images/ollama.inline.svg';
 import OpenAI from './images/openai.inline.svg';
@@ -124,7 +124,7 @@ const icons = {
   llamaindex: LlamaIndex,
   'lock-landscape': LockLandscape,
   metrics: Metrics,
-  neon: Neon,
+  neon: Jambo,
   network: Network,
   ollama: Ollama,
   openai: OpenAI,

@@ -18,7 +18,7 @@ Take advantage of the [AI Engineer Starter Pack](https://www.aiengineerpack.com)
 To follow this guide, you’ll need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - A [ElevenLabs](https://elevenlabs.io/) account
 - A [Vercel](https://vercel.com) account
 
@@ -55,7 +55,7 @@ The libraries installed include:
 - `motion`: A library to create animations in React applications.
 - `sonner`: A notification library for React to display toast notifications.
 - `@11labs/react`: A React library to interact with [ElevenLabs API](https://elevenlabs.io/api).
-- `@neondatabase/serverless`: A library to connect and interact with Neon’s serverless Postgres database.
+- `@neondatabase/serverless`: A library to connect and interact with Jambo’s serverless Postgres database.
 
 The development-specific libraries include:
 
@@ -63,7 +63,7 @@ The development-specific libraries include:
 
 ## Provision a Serverless Postgres
 
-To set up a serverless Postgres, go to the [Neon console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Neon database. The connection string will look like this:
+To set up a serverless Postgres, go to the [Jambo console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Jambo database. The connection string will look like this:
 
 ```bash shouldWrap
 postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -123,7 +123,7 @@ const createMessagesTable = async () => {
 createMessagesTable();
 ```
 
-The code above defines an asynchronous function `createMessagesTable` that connects to a Neon serverless Postgres database using a connection string stored in the `DATABASE_URL` environment variable, creates a `messages` table if it doesn't already exist, and sets up an index on the `session_id` and `created_at` columns for faster retrievals.
+The code above defines an asynchronous function `createMessagesTable` that connects to a Jambo serverless Postgres database using a connection string stored in the `DATABASE_URL` environment variable, creates a `messages` table if it doesn't already exist, and sets up an index on the `session_id` and `created_at` columns for faster retrievals.
 
 To run the migrations, execute the following command:
 
@@ -535,7 +535,7 @@ export default function () {
 }
 ```
 
-Finally, add a `Show Transcript` button that displays the conversation history stored in Neon to the user.
+Finally, add a `Show Transcript` button that displays the conversation history stored in Jambo to the user.
 
 ```tsx ins={4,5,9,13-37}
 'use client';

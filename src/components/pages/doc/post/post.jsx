@@ -45,7 +45,7 @@ const Post = ({
   const modal = MODALS.find(
     (modal) =>
       breadcrumbs.some((breadcrumb) => modal.pagesToShow.includes(breadcrumb.title)) ||
-      (isDocsIndex && modal.pagesToShow.includes('Neon Docs'))
+      (isDocsIndex && modal.pagesToShow.includes('Jambo Docs'))
   );
 
   return (

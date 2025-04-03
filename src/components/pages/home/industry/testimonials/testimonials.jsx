@@ -6,45 +6,44 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import PropTypes from 'prop-types';
 import { useRef, useState, useEffect, useMemo } from 'react';
 
-import alexKlarfeldImage from 'images/pages/home/industry/alex-klarfeld.jpg';
-import edouardBonlieuImage from 'images/pages/home/industry/edouard-bonlieu.jpg';
-import himanshuBhandohImage from 'images/pages/home/industry/himanshu-bhandoh.jpg';
-import koyebLogo from 'images/pages/home/industry/koyeb.svg';
-import leonardHenriquezImage from 'images/pages/home/industry/leonard-henriquez.jpg';
-import retoolLogo from 'images/pages/home/industry/retool.svg';
-import supergoodLogo from 'images/pages/home/industry/supergood.svg';
-import topoLogo from 'images/pages/home/industry/topo.svg';
+import supergoodLogo from 'images/pages/home/industry/1.svg';
+import koyebLogo from 'images/pages/home/industry/2.svg';
+import topoLogo from 'images/pages/home/industry/3.svg';
+import retoolLogo from 'images/pages/home/industry/4.svg';
+import number5 from 'images/pages/home/industry/5.svg';
 
 import Testimonial from './testimonial';
 
 const TESTIMONIALS = [
   {
-    quote: `Neon allows us to develop much faster than we’ve even been used to`,
-    avatar: alexKlarfeldImage,
-    name: 'Alex Klarfeld',
-    position: 'CEO and co-founder of Supergood.ai',
+    quote: `Nous commençons par collecter et analyser les données pour fournir des insights stratégiques`,
+    name: 'Analyse de données',
+    position: 'Collecte et Analyse de données',
     logo: { src: supergoodLogo, width: 124, height: 32, alt: 'Supergood.ai' },
   },
   {
-    quote: `Neon's serverless philosophy is aligned with our vision: no infrastructure to manage, no servers to provision, no database cluster to maintain`,
-    avatar: edouardBonlieuImage,
-    name: 'Edouard Bonlieu',
-    position: 'Co-founder at Koyeb',
-    logo: { src: koyebLogo, width: 123, height: 32, alt: 'Koyeb' },
+    quote: `Nous développons des solutions logicielles sur mesure, adaptées à vos objectifs`,
+    name: 'Conception des solutions',
+    position: 'Conception des solutions',
+    logo: { src: koyebLogo, width: 70, height: 20, alt: 'Koyeb' },
   },
   {
-    quote: `The killer feature that convinced us to use Neon was branching: it keeps our engineering velocity high`,
-    avatar: leonardHenriquezImage,
-    name: 'Léonard Henriquez',
-    position: 'Co-founder and CTO, Topo.io',
+    quote: `Nous pilotons la mise en œuvre complète de votre projet, tout en respectant les délais et budgets `,
+    name: 'Gestion de projet',
+    position: 'Gestion de projet',
     logo: { src: topoLogo, width: 109, height: 32, alt: 'Topo.io' },
   },
   {
-    quote: `We've been able to automate virtually all database tasks via the Neon API, saving us a tremendous amount of time and engineering effort`,
-    avatar: himanshuBhandohImage,
-    name: 'Himanshu Bhandoh',
-    position: 'Software Engineer at Retool',
-    logo: { src: retoolLogo, width: 112, height: 32, alt: 'Retool' },
+    quote: `Nous garantissons la sécurité et la comformité de vos systèmes avec les normes en vigueur.`,
+    name: 'Sécurité et comformité',
+    position: 'Sécurité et comformité',
+    logo: { src: retoolLogo, width: 70, height: 32, alt: 'Retool' },
+  },
+  {
+    quote: `Nous assurons un suivi constant pour optimiser les performances et anticiper vos besoins futurs.`,
+    name: 'Suivi et Optimisation',
+    position: 'Suivi et Optimisation',
+    logo: { src: number5, width: 112, height: 32, alt: 'Retool' },
   },
 ];
 

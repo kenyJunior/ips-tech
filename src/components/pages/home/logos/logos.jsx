@@ -48,7 +48,7 @@ const Logos = () => (
       size="1100"
     >
       <h2 className="max-w-[401px] text-[36px] font-medium leading-dense tracking-extra-tight text-white xl:text-[32px] lg:max-w-xs lg:text-[26px] sm:text-[22px]">
-        Trusted in production by&nbsp;thousands of&nbsp;teams.
+        Ils nous on fait confiance
       </h2>
       <ul className="grid max-w-[446px] shrink grid-cols-[0.7945fr_1fr_.630137fr] justify-between gap-12 xl:gap-x-12 xl:gap-y-10 lg:gap-x-8 lg:gap-y-7 sm:gap-y-5">
         {logos.map(({ logo, width, alt }, index) => (

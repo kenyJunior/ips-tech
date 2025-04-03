@@ -73,7 +73,7 @@ const Subscribe = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={icon} width={32} height={32} alt="" loading="lazy" />
+                  <Image src={icon} width={32} height={32} alt="" loading="lazy" />
                   <span className="sr-only">{name}</span>
                 </Link>
               </li>

@@ -1,16 +1,16 @@
-# Connect from Knex to Neon
+# Connect from Knex to Jambo
 
-Learn how to connect to Neon from Knex
+Learn how to connect to Jambo from Knex
 
 Knex is an open-source SQL query builder for Postgres. This guide covers the following topics:
 
-- [Connect to Neon from Knex](#connect-to-neon-from-knex)
+- [Connect to Jambo from Knex](#connect-to-neon-from-knex)
 - [Use connection pooling with Knex](#use-connection-pooling-with-knex)
 - [Performance tips](#performance-tips)
 
-## Connect to Neon from Knex
+## Connect to Jambo from Knex
 
-To establish a basic connection from Knex to Neon, perform the following steps:
+To establish a basic connection from Knex to Jambo, perform the following steps:
 
 1. Find your database connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a user, and the database you want to connect to. A connection string is constructed for you.
    ![Connection details modal](/docs/connect/connection_details.png)
@@ -27,7 +27,7 @@ To establish a basic connection from Knex to Neon, perform the following steps:
    });
    ```
 
-3. Add a `DATABASE_URL` variable to your `.env` file and set it to the Neon connection string that you copied in the previous step. We also recommend adding `?sslmode=require` to the end of the connection string to ensure a [secure connection](/docs/connect/connect-securely).
+3. Add a `DATABASE_URL` variable to your `.env` file and set it to the Jambo connection string that you copied in the previous step. We also recommend adding `?sslmode=require` to the end of the connection string to ensure a [secure connection](/docs/connect/connect-securely).
 
    Your setting will appear similar to the following:
 
@@ -37,18 +37,18 @@ To establish a basic connection from Knex to Neon, perform the following steps:
 
 ## Use connection pooling with Knex
 
-Serverless functions can require a large number of database connections as demand increases. If you use serverless functions in your application, we recommend that you use a pooled Neon connection string, as shown:
+Serverless functions can require a large number of database connections as demand increases. If you use serverless functions in your application, we recommend that you use a pooled Jambo connection string, as shown:
 
 ```ini shouldWrap
-# Pooled Neon connection string
+# Pooled Jambo connection string
 DATABASE_URL="postgresql://alex:AbC123dEf@ep-cool-darkness-123456-pooler.us-east-2.aws.neon.tech/dbname?sslmode=require"
 ```
 
-A pooled Neon connection string adds `-pooler` to the endpoint ID, which tells Neon to use a pooled connection. You can add `-pooler` to your connection string manually or copy a pooled connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Enable the **Connection pooling** toggle to add the `-pooler` suffix.
+A pooled Jambo connection string adds `-pooler` to the endpoint ID, which tells Jambo to use a pooled connection. You can add `-pooler` to your connection string manually or copy a pooled connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Enable the **Connection pooling** toggle to add the `-pooler` suffix.
 
 ## Performance tips
 
-This section outlines performance optimizations you can try when using Knex with Neon.
+This section outlines performance optimizations you can try when using Knex with Jambo.
 
 ### Enabling NODE_PG_FORCE_NATIVE
 
@@ -85,4 +85,4 @@ You can try this optimization yourself by downloading our [Get started with Knex
 
 
 
-Get started with Knex and Neon
+Get started with Knex and Jambo

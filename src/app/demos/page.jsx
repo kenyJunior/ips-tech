@@ -15,7 +15,7 @@ const DemoPage = () => (
     <CTAWithElephant
       titleClassName="flat-none md:!max-w-none md:flat-breaks"
       buttonClassName="px-[77px] xl:px-10 lg:px-9 sm:px-14"
-      title="Get started<br/> with Neon"
+      title="Get started<br/> with Jambo"
       description="The fully managed multi-cloud Postgres with a generous free tier. We separated storage and compute to offer autoscaling, branching, and bottomless storage."
       buttonText="Sign Up"
       buttonUrl={LINKS.signup}

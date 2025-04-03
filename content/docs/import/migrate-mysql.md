@@ -1,11 +1,11 @@
 ---
-title: Migrate from MySQL to Neon Postgres
+title: Migrate from MySQL to Jambo Postgres
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-03T20:41:57.343Z'
 ---
 
-This topic describes how to migrate your MySQL database to Neon Postgres using [pgloader](https://pgloader.readthedocs.io/en/latest/intro.html).
+This topic describes how to migrate your MySQL database to Jambo Postgres using [pgloader](https://pgloader.readthedocs.io/en/latest/intro.html).
 
 The `pgloader` utility transforms data to a Postgres-compatible format as it is read from your MySQL database. It uses the `COPY` Postgres protocol to stream the data into your Postgres database.
 
@@ -13,9 +13,9 @@ The `pgloader` utility transforms data to a Postgres-compatible format as it is 
 
 Before you begin, make sure that you have the following:
 
-- A Neon account and a project. See [Sign up](/docs/get-started-with-neon/signing-up).
-- A properly named database. For example, if you are migrating a database named `sakila`, you might want to create a database of the same name in Neon. See [Create a database](/docs/manage/databases#create-a-database) for instructions.
-- Neon's Free Plan supports 500 MiB of data. If your data size is more than 500 MiB, you'll need to upgrade to one of Neon's paid plans. See [Neon plans](/docs/introduction/plans) for more information.
+- A Jambo account and a project. See [Sign up](/docs/get-started-with-neon/signing-up).
+- A properly named database. For example, if you are migrating a database named `sakila`, you might want to create a database of the same name in Jambo. See [Create a database](/docs/manage/databases#create-a-database) for instructions.
+- Jambo's Free Plan supports 500 MiB of data. If your data size is more than 500 MiB, you'll need to upgrade to one of Jambo's paid plans. See [Jambo plans](/docs/introduction/plans) for more information.
 
 Also, a close review of the [Pgloader MySQL to Postgres Guide](https://pgloader.readthedocs.io/en/latest/ref/mysql.html) guide is recommended before you start. This guide will provide you with a good understanding of `pgloader` capabilities and how to configure your `pgloader` configuration file, if necessary.
 
@@ -34,15 +34,15 @@ Before starting the migration process, collect your MySQL database credentials:
 
 Keep your MySQL database connection details handy for later use.
 
-## Retrieve your Neon database connection string
+## Retrieve your Jambo database connection string
 
-Log in to the Neon Console. Find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
+Log in to the Jambo Console. Find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
 ```bash shouldWrap
 postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
 ```
 
-Now, modify the connection string as follows to pass your **endpoint ID** (`ep-cool-darkness-123456` in this example) to Neon with your password using the `endpoint` keyword, as shown here:
+Now, modify the connection string as follows to pass your **endpoint ID** (`ep-cool-darkness-123456` in this example) to Jambo with your password using the `endpoint` keyword, as shown here:
 
 ```bash shouldWrap
 postgresql://alex:endpoint=ep-cool-darkness-123456;AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
@@ -52,7 +52,7 @@ postgresql://alex:endpoint=ep-cool-darkness-123456;AbC123dEf@ep-cool-darkness-12
 Passing the `endpoint ID` with your password is a required workaround for some Postgres drivers, including the one used by `pgloader`. For more information about this workaround and why it's required, refer to our [connection workaround](/docs/connect/connection-errors#d-specify-the-endpoint-id-in-the-password-field) documentation. 
 </Admonition>
 
-Keep your Neon connection string handy for later use.
+Keep your Jambo connection string handy for later use.
 
 ### Install pgloader
 
@@ -62,7 +62,7 @@ Here's how you can set up `pgloader` for your database migration:
 
    See [Installing pgloader](https://pgloader.readthedocs.io/en/latest/install.html) for Debian (apt), RPM package, and Docker installation instructions.
 
-2. Create a `pgloader` configuration file (e.g., `config.load`). Use your MySQL database credentials to define the connection string for your database source. Use the Neon database connection string you retrieved and modified in the previous step as the destination.
+2. Create a `pgloader` configuration file (e.g., `config.load`). Use your MySQL database credentials to define the connection string for your database source. Use the Jambo database connection string you retrieved and modified in the previous step as the destination.
 
    <Admonition type="note">
    If you need to specify an SSL mode in your connection string, the following format is recommended: `sslmode=require`. Other formats may not work.

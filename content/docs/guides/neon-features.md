@@ -1,6 +1,6 @@
 ---
-title: Neon feature guides
-subtitle: Explore Neon's capabilities with our feature guides
+title: Jambo feature guides
+subtitle: Explore Jambo's capabilities with our feature guides
 enableTableOfContents: false
 updatedOn: '2025-01-10T00:37:35.166Z'
 ---
@@ -19,11 +19,11 @@ Automatically scale compute resources up and down based on demand.
 
 ### Scale to zero
 
-Enable or disable scale to zero for your Neon computes.
+Enable or disable scale to zero for your Jambo computes.
 
 <DetailIconCards>
 
-<a href="/docs/introduction/scale-to-zero" description="Discover how Neon can reduce your compute to zero when not in use" icon="hourglass">Learn about scale to zero</a>
+<a href="/docs/introduction/scale-to-zero" description="Discover how Jambo can reduce your compute to zero when not in use" icon="hourglass">Learn about scale to zero</a>
 
 <a href="/docs/guides/scale-to-zero-guide" description="Enable or disable scale to zero to control if your compute suspends due to inactivity" icon="setup">Configure scale to zero</a>
 
@@ -35,45 +35,45 @@ Branch data the same way you branch your code.
 
 <DetailIconCards>
 
-<a href="/docs/introduction/branching" description="With Neon, you can instantly branch your data in the same way that you branch your code" icon="branching">Learn about branching</a>
+<a href="/docs/introduction/branching" description="With Jambo, you can instantly branch your data in the same way that you branch your code" icon="branching">Learn about branching</a>
 
 <a href="/docs/guides/branching-pitr" description="Restore your data to a past state with database branching" icon="invert">Point-in-time restore</a>
 
 <a href="/docs/guides/branching-test-queries" description="Use branching to test queries before running them in production" icon="queries">Test queries on a branch</a>
 
-<a href="/docs/guides/branching-neon-cli" description="Create and manage branches with the Neon CLI" icon="cli">Branching with the CLI</a>
+<a href="/docs/guides/branching-neon-cli" description="Create and manage branches with the Jambo CLI" icon="cli">Branching with the CLI</a>
 
-<a href="/docs/guides/branching-neon-api" description="Create and manage branches with the Neon API" icon="transactions">Branching with the API</a>
+<a href="/docs/guides/branching-neon-api" description="Create and manage branches with the Jambo API" icon="transactions">Branching with the API</a>
 
 <a href="/docs/guides/branching-github-actions" description="Automate branching with GitHub Actions" icon="split-branch">Branching with GitHub Actions</a>
 
-<a href="/docs/guides/branch-refresh" description="Refresh a development branch with the Neon API" icon="split-branch">Refresh a branch</a>
+<a href="/docs/guides/branch-refresh" description="Refresh a development branch with the Jambo API" icon="split-branch">Refresh a branch</a>
 
 </DetailIconCards>
 
 ### Logical replication
 
-Replicate data from Neon to external data platforms and services.
+Replicate data from Jambo to external data platforms and services.
 
 <DetailIconCards>
 
-<a href="/docs/guides/logical-replication-guide" description="Get started with logical replication in Neon" icon="screen">Logical replication guide</a>
+<a href="/docs/guides/logical-replication-guide" description="Get started with logical replication in Jambo" icon="screen">Logical replication guide</a>
 
 <a href="/docs/guides/logical-replication-concepts" description="Learn about Postgres logical replication concepts" icon="scale-up">Logical replication concepts</a>
 
 <a href="/docs/guides/logical-replication-manage" description="Commands for managing your logical replication configuration" icon="cli">Logical replication commands</a>
 
-<a href="/docs/guides/logical-replication-neon" description="Information about logical replication specific to Neon" icon="screen">Logical replication in Neon</a>
+<a href="/docs/guides/logical-replication-neon" description="Information about logical replication specific to Jambo" icon="screen">Logical replication in Jambo</a>
 
 </DetailIconCards>
 
 ### Read replicas
 
-Learn how Neon read replicas can help you scale and manage read-only workloads.
+Learn how Jambo read replicas can help you scale and manage read-only workloads.
 
 <DetailIconCards>
 
-<a href="/docs/introduction/read-replicas" description="Learn how Neon maximizes scalability and more with read replicas" icon="scale-up">Learn about read replicas</a>
+<a href="/docs/introduction/read-replicas" description="Learn how Jambo maximizes scalability and more with read replicas" icon="scale-up">Learn about read replicas</a>
 
 <a href="/docs/guides/read-replica-guide" description="Learn how to create, connect to, configure, delete, and monitor read replicas" icon="ladder">Create and manage Read Replicas</a>
 
@@ -105,7 +105,7 @@ Compare your database branches.
 
 <DetailIconCards>
 
-<a href="/docs/guides/schema-diff" description="Learn how to use Neon's Schema Diff tool to compare branches of your database" icon="scale-up">Learn about Schema Diff</a>
+<a href="/docs/guides/schema-diff" description="Learn how to use Jambo's Schema Diff tool to compare branches of your database" icon="scale-up">Learn about Schema Diff</a>
 
 <a href="/docs/guides/schema-diff-tutorial" description="Step-by-step guide showing you how to compare two development branches using Schema Diff" icon="scale-up">Schema Diff tutorial</a>
 
@@ -113,11 +113,11 @@ Compare your database branches.
 
 ### Project collaboration
 
-Invite other users to collaborate on your Neon project.
+Invite other users to collaborate on your Jambo project.
 
 <DetailIconCards>
 
-<a href="/docs/guides/project-collaboration-guide" description="Give other users access to your project from the Neon Console, API, and CLI" icon="respond-arrow">Collaborate on your Neon project</a>
+<a href="/docs/guides/project-collaboration-guide" description="Give other users access to your project from the Jambo Console, API, and CLI" icon="respond-arrow">Collaborate on your Jambo project</a>
 
 </DetailIconCards>
 
@@ -137,7 +137,7 @@ Protect your production or sensitive data.
 
 <DetailIconCards>
 
-<a href="/docs/guides/protected-branches" description="Learn how to use Neon's protected branches feature to secure access to critical data" icon="respond-arrow">Configure protected branches</a>
+<a href="/docs/guides/protected-branches" description="Learn how to use Jambo's protected branches feature to secure access to critical data" icon="respond-arrow">Configure protected branches</a>
 
 </DetailIconCards>
 
@@ -147,6 +147,6 @@ Secure your database connections with private access.
 
 <DetailIconCards>
 
-<a href="/docs/guides/neon-private-networking" description="Learn how to connect your application to a Neon database via AWS PrivateLink, bypassing the open internet" icon="respond-arrow">Private Networking</a>
+<a href="/docs/guides/neon-private-networking" description="Learn how to connect your application to a Jambo database via AWS PrivateLink, bypassing the open internet" icon="respond-arrow">Private Networking</a>
 
 </DetailIconCards>

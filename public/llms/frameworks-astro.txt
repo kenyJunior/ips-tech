@@ -1,19 +1,19 @@
-# Connect Astro to Postgres on Neon
+# Connect Astro to Postgres on Jambo
 
-Astro builds fast content sites, powerful web applications, dynamic server APIs, and everything in-between. This guide describes how to create a Neon Postgres database and access it from an Astro site or application.
+Astro builds fast content sites, powerful web applications, dynamic server APIs, and everything in-between. This guide describes how to create a Jambo Postgres database and access it from an Astro site or application.
 
-To create a Neon project and access it from an Astro site or application:
+To create a Jambo project and access it from an Astro site or application:
 
-1. Create a Neon project
+1. Create a Jambo project
 2. Create an Astro project and add dependencies
 3. Configure a Postgres client
 4. Run the app
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project. Save your connection details including your password. They are required when defining connection settings.
+If you do not have one already, create a Jambo project. Save your connection details including your password. They are required when defining connection settings.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -33,14 +33,14 @@ For postgres.js:
 npm install postgres
 ```
 
-For Neon serverless driver:
+For Jambo serverless driver:
 ```shell
 npm install @neondatabase/serverless
 ```
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+Add a `.env` file to your project directory and add your Jambo connection string to it. You can find the connection string for your database by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
 ```shell
 DATABASE_URL="postgresql://<[user]:[password]@[neon_hostname]:<port>/<dbname>?sslmode=require"
@@ -52,7 +52,7 @@ There a multiple ways to make server side requests with Astro. See below for the
 
 ### .astro files
 
-In your `.astro` files, use the following code snippet to connect to your Neon database:
+In your `.astro` files, use the following code snippet to connect to your Jambo database:
 
 Using node-postgres:
 ```astro
@@ -93,7 +93,7 @@ const data = response[0].version;
 {data}
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```astro
 ---
 import { neon } from '@neondatabase/serverless';
@@ -117,7 +117,7 @@ PostgreSQL 16.0 on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1
 
 ### Server Endpoints (API Routes)
 
-In your server endpoints (API Routes) in Astro application, use the following code snippet to connect to your Neon database:
+In your server endpoints (API Routes) in Astro application, use the following code snippet to connect to your Jambo database:
 
 Using node-postgres:
 ```javascript
@@ -158,7 +158,7 @@ export async function GET() {
 }
 ```
 
-Using Neon serverless driver:
+Using Jambo serverless driver:
 ```javascript
 // File: src/pages/api/index.ts
 
@@ -184,5 +184,5 @@ When you run `npm run dev` you can expect to see the following when you visit th
 ## Source code
 
 You can find the source code for the applications described in this guide on GitHub:
-- [Get started with Astro and Neon](https://github.com/neondatabase/examples/tree/main/with-astro)
-- [Get started with Astro API Routes and Neon](https://github.com/neondatabase/examples/tree/main/with-astro-api-routes)
+- [Get started with Astro and Jambo](https://github.com/neondatabase/examples/tree/main/with-astro)
+- [Get started with Astro API Routes and Jambo](https://github.com/neondatabase/examples/tree/main/with-astro-api-routes)

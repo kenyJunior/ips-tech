@@ -12,7 +12,7 @@ updatedOn: '2024-06-11T00:00:00.000Z'
 To follow the steps in this guide, you will need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - An [OpenAI](https://platform.openai.com/api-keys) account
 - An [AWS](https://aws.amazon.com/free) account
 
@@ -55,13 +55,13 @@ To create vector embeddings, you will use OpenAI API with LlamaIndex. To set up 
 
 Using a serverless Postgres database lets you scale compute resources down to zero, which helps you save on compute costs.
 
-To get started, go to the [Neon Console](https://console.neon.tech/app/projects) and create a project.
+To get started, go to the [Jambo Console](https://console.neon.tech/app/projects) and create a project.
 
 You will then be presented with a dialog that provides a connection string of your database. You can enable the **Connection pooling** toggle for a pooled connection string.
 
 ![](/guides/images/chatbot-astro-postgres-llamaindex/c200c4ed-f62d-469c-9690-c572c482c536.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -70,8 +70,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmo
 - `user` is the database user.
 - `password` is the database user’s password.
 - `endpoint_hostname` is the host with `neon.tech` as the [top-level domain (TLD)](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `port` is the Neon port number. The default port number is 5432.
-- `dbname` is the name of the database. `neondb` is the default database created with a Neon project if you do not define your own database.
+- `port` is the Jambo port number. The default port number is 5432.
+- `dbname` is the name of the database. `neondb` is the default database created with a Jambo project if you do not define your own database.
 - `?sslmode=require` an optional query parameter that enforces [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode for better security when connecting to the Postgres instance.
 
 Save the connection string somewhere safe. It will be used to set the **POSTGRES_URL** variable later.
@@ -208,7 +208,7 @@ Let's move on to loading the Postgres URL through an environment variable in the
 Create an `.env` file in the root directory of your project with the following environment variable to initiate the setup of a database connection:
 
 ```bash
-# Neon Postgres Pooled Connection URL
+# Jambo Postgres Pooled Connection URL
 
 POSTGRES_URL="postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
 ```
@@ -923,6 +923,6 @@ Now, push the added GitHub workflow file to your GitHub repo. Follow the steps b
 
 ## Summary
 
-In this guide, you learned how to build a RAG Chatbot using LlamaIndex, Astro, and Neon Postgres. Additionally, you learned how to automate deployments of your Astro application using GitHub Actions to Amazon ECS on Amazon Fargate.
+In this guide, you learned how to build a RAG Chatbot using LlamaIndex, Astro, and Jambo Postgres. Additionally, you learned how to automate deployments of your Astro application using GitHub Actions to Amazon ECS on Amazon Fargate.
 
 <NeedHelp />

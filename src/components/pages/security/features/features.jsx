@@ -37,7 +37,7 @@ const DATA = [
       {
         title: 'Data Hosting',
         description:
-          'Neon’s infrastructure runs on AWS and Azure, certified for SOC 2, ISO 27001, FedRAMP, PCI-DSS, HIPAA, and other global security standards.',
+          'Jambo’s infrastructure runs on AWS and Azure, certified for SOC 2, ISO 27001, FedRAMP, PCI-DSS, HIPAA, and other global security standards.',
         icon: serverIcon,
       },
       {
@@ -49,7 +49,7 @@ const DATA = [
       {
         title: 'Physical & Environmental Security',
         description:
-          'Neon personnel have no physical access to AWS or Azure data centers, which have 24/7 surveillance, biometric controls, redundancy, and audits.',
+          'Jambo personnel have no physical access to AWS or Azure data centers, which have 24/7 surveillance, biometric controls, redundancy, and audits.',
         icon: lockIcon,
       },
       {
@@ -61,7 +61,7 @@ const DATA = [
       {
         title: 'Monitoring',
         description:
-          'Neon uses Grafana to monitor cloud operations. System failures trigger alerts, notifying key personnel for immediate response and resolution.',
+          'Jambo uses Grafana to monitor cloud operations. System failures trigger alerts, notifying key personnel for immediate response and resolution.',
         icon: chartsIcon,
       },
       {
@@ -78,13 +78,13 @@ const DATA = [
       {
         title: 'Network Vulnerability Scanning',
         description:
-          'Neon performs continuous vulnerability scans on all infrastructure components. Identified vulnerabilities are triaged and remediated based on severity.',
+          'Jambo performs continuous vulnerability scans on all infrastructure components. Identified vulnerabilities are triaged and remediated based on severity.',
         icon: warningIcon,
       },
       {
         title: 'Intrusion Detection & Prevention',
         description:
-          'Neon monitors for unauthorized access using traffic monitoring, anomaly detection, and threat intelligence.',
+          'Jambo monitors for unauthorized access using traffic monitoring, anomaly detection, and threat intelligence.',
         icon: crosshairIcon,
       },
       {
@@ -96,7 +96,7 @@ const DATA = [
       {
         title: 'Security Incident Response',
         description:
-          'Neon has a 24/7 incident response team following well-defined playbooks, including continuous training and annual tabletop exercises.',
+          'Jambo has a 24/7 incident response team following well-defined playbooks, including continuous training and annual tabletop exercises.',
         icon: userPrivacyIcon,
       },
     ],
@@ -107,7 +107,7 @@ const DATA = [
       {
         title: 'Data in Transit',
         description:
-          'Neon enforces TLS 1.2+ encryption for all data transmitted over public and private networks.',
+          'Jambo enforces TLS 1.2+ encryption for all data transmitted over public and private networks.',
         icon: dataTransitIcon,
       },
       {
@@ -119,7 +119,7 @@ const DATA = [
       {
         title: 'Key Management',
         description:
-          'Neon uses AWS KMS and Azure Key Vault for key management, with logging and access controls.',
+          'Jambo uses AWS KMS and Azure Key Vault for key management, with logging and access controls.',
         icon: keyIcon,
       },
     ],
@@ -130,19 +130,19 @@ const DATA = [
       {
         title: 'Redundancy',
         description:
-          'Neon’s infrastructure is designed for high availability, leveraging multi-region failover and automated scaling.',
+          'Jambo’s infrastructure is designed for high availability, leveraging multi-region failover and automated scaling.',
         icon: dataReplaceIcon,
       },
       {
         title: 'Backup Management',
         description:
-          'Neon performs daily encrypted backups stored across multiple availability zones, with automated integrity validation.',
+          'Jambo performs daily encrypted backups stored across multiple availability zones, with automated integrity validation.',
         icon: restoreIcon,
       },
       {
         title: 'Business Continuity and Disaster Recovery',
         description:
-          'Neon has a BCDR plan with annual disaster recovery tests and predefined restoration protocols to ensure resilience.',
+          'Jambo has a BCDR plan with annual disaster recovery tests and predefined restoration protocols to ensure resilience.',
         icon: gearIcon,
       },
     ],
@@ -153,20 +153,20 @@ const DATA = [
       {
         title: 'Bug Bounty Program',
         description:
-          'Neon runs a program via HackerOne, where verified researchers can securely report vulnerabilities and earn rewards for eligible findings.',
+          'Jambo runs a program via HackerOne, where verified researchers can securely report vulnerabilities and earn rewards for eligible findings.',
         link: LINKS.bugBounty,
         icon: bugIcon,
       },
       {
         title: 'Secure Development Lifecycle (SDLC)',
         description:
-          'Neon follows a secure development lifecycle with security testing, code reviews, dependency monitoring, and developer security training.',
+          'Jambo follows a secure development lifecycle with security testing, code reviews, dependency monitoring, and developer security training.',
         icon: privacyCycleIcon,
       },
       {
         title: 'Vulnerability Management',
         description:
-          'Neon scans for vulnerabilities with Orca and Oligo, patching per SLA: critical 7 days, high 30, medium 60, low 90.',
+          'Jambo scans for vulnerabilities with Orca and Oligo, patching per SLA: critical 7 days, high 30, medium 60, low 90.',
         icon: checkPrivacyIcon,
       },
       {
@@ -178,13 +178,13 @@ const DATA = [
       {
         title: 'CI/CD Security',
         description:
-          'Neon uses Step Security’s Harden Runner to secure CI/CD by restricting traffic, monitoring dependencies, and enforcing security policies.',
+          'Jambo uses Step Security’s Harden Runner to secure CI/CD by restricting traffic, monitoring dependencies, and enforcing security policies.',
         icon: circuitIcon,
       },
       {
         title: 'Github Secret Scanning Partner Program',
         description:
-          'Neon joined the GitHub Secret Scanning Partnership in to improve secret detection and remediation across repositories.',
+          'Jambo joined the GitHub Secret Scanning Partnership in to improve secret detection and remediation across repositories.',
         icon: radarIcon,
       },
     ],
@@ -194,7 +194,7 @@ const DATA = [
     items: [
       {
         title: 'Background Checks',
-        description: 'Neon conducts reference checks for all employees before onboarding.',
+        description: 'Jambo conducts reference checks for all employees before onboarding.',
         icon: searchIcon,
       },
       {
@@ -206,19 +206,19 @@ const DATA = [
       {
         title: 'Policies',
         description:
-          'Neon maintains a security policy framework, reviewed annually and enforced company-wide. Employees are required to acknowledge and comply with these policies each year.',
+          'Jambo maintains a security policy framework, reviewed annually and enforced company-wide. Employees are required to acknowledge and comply with these policies each year.',
         icon: policyIcon,
       },
       {
         title: 'Training and Awareness',
         description:
-          'Neon conducts annual security awareness training, covering HIPAA compliance, anti-harassment policies, and phishing simulations to strengthen employee resilience.',
+          'Jambo conducts annual security awareness training, covering HIPAA compliance, anti-harassment policies, and phishing simulations to strengthen employee resilience.',
         icon: graduationIcon,
       },
       {
         title: 'Endpoints',
         description:
-          'Neon centrally manages employee devices via JumpCloud MDM, enforcing full-disk encryption, automatic OS updates, enforced screen locks, anti-malware protection, and continuous monitoring.',
+          'Jambo centrally manages employee devices via JumpCloud MDM, enforcing full-disk encryption, automatic OS updates, enforced screen locks, anti-malware protection, and continuous monitoring.',
         icon: pcIcon,
       },
     ],

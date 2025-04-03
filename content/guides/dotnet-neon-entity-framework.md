@@ -1,25 +1,25 @@
 ---
-title: Building ASP.NET Core Applications with Neon and Entity Framework Core
-subtitle: Learn how to build a .NET application with Neon's serverless Postgres and Entity Framework Core
+title: Building ASP.NET Core Applications with Jambo and Entity Framework Core
+subtitle: Learn how to build a .NET application with Jambo's serverless Postgres and Entity Framework Core
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-02T00:00:00.000Z'
 updatedOn: '2024-11-02T00:00:00.000Z'
 ---
 
-When building .NET applications, choosing the right database solution is an important step to good performance and scalability. Neon's serverless Postgres is a great choice for .NET developers, thanks to features like automatic scaling, branching, and connection pooling that integrate well with .NET's ecosystem.
+When building .NET applications, choosing the right database solution is an important step to good performance and scalability. Jambo's serverless Postgres is a great choice for .NET developers, thanks to features like automatic scaling, branching, and connection pooling that integrate well with .NET's ecosystem.
 
-In this guide, we'll walk through setting up a Neon database with a .NET application and explore best practices for connecting and interacting with Neon Postgres and structuring your application using Entity Framework Core.
+In this guide, we'll walk through setting up a Jambo database with a .NET application and explore best practices for connecting and interacting with Jambo Postgres and structuring your application using Entity Framework Core.
 
 ## Prerequisites
 
 - .NET 8.0 or later installed
-- A [Neon account](https://console.neon.tech/signup)
+- A [Jambo account](https://console.neon.tech/signup)
 - Basic familiarity with Entity Framework Core
 
-## Setting Up Your Neon Database
+## Setting Up Your Jambo Database
 
-1. Create a new Neon project from the [Neon Console](https://console.neon.tech)
+1. Create a new Jambo project from the [Jambo Console](https://console.neon.tech)
 2. Note your connection string from the connection details page
 
 Your connection string will look similar to this:
@@ -28,14 +28,14 @@ Your connection string will look similar to this:
 postgres://[user]:[password]@[neon_hostname]/[dbname]?sslmode=require
 ```
 
-## Creating a .NET Project with Neon Integration
+## Creating a .NET Project with Jambo Integration
 
-With your Neon database set up, let's create a sample inventory management system to demonstrate Neon integration.
+With your Jambo database set up, let's create a sample inventory management system to demonstrate Jambo integration.
 
 1. Create a new .NET Web API project:
 
    ```bash
-   dotnet new webapi -n NeonInventoryApi
+   dotnet new webapi -n JamboInventoryApi
    ```
 
    This command creates a new Web API project with a basic structure including:
@@ -47,7 +47,7 @@ With your Neon database set up, let's create a sample inventory management syste
    Then navigate to the project directory:
 
    ```bash
-   cd NeonInventoryApi
+   cd JamboInventoryApi
    ```
 
 2. Install the required NuGet packages:
@@ -76,7 +76,7 @@ With your Neon database set up, let's create a sample inventory management syste
    using System;
    using System.ComponentModel.DataAnnotations;
 
-   namespace NeonInventoryApi.Models
+   namespace JamboInventoryApi.Models
    {
        public class Product
        {
@@ -125,10 +125,10 @@ With your Neon database set up, let's create a sample inventory management syste
 
    ```csharp
    using Microsoft.EntityFrameworkCore;
-   using NeonInventoryApi.Models;
+   using JamboInventoryApi.Models;
    using System.Reflection;
 
-   namespace NeonInventoryApi.Data
+   namespace JamboInventoryApi.Data
    {
        public class InventoryContext : DbContext
        {
@@ -181,19 +181,19 @@ We've set up the basic structure for our application. Next, we'll configure the 
 
 ## Configuring Database Connection
 
-With the database context in place, we need to configure the connection to our Neon database. Let's set this up securely.
+With the database context in place, we need to configure the connection to our Jambo database. Let's set this up securely.
 
 ### Basic Configuration
 
 Update `Program.cs` to include the database context:
 
 ```csharp
-using NeonInventoryApi.Data;
+using JamboInventoryApi.Data;
 
-var connectionString = builder.Configuration.GetConnectionString("NeonConnection");
+var connectionString = builder.Configuration.GetConnectionString("JamboConnection");
 
 builder.Services.AddDbContext<InventoryContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("NeonConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("JamboConnection")));
 ```
 
 ### Managing Connection Strings Securely
@@ -205,7 +205,7 @@ There are two main approaches to storing your connection string securely:
 ```json
 {
   "ConnectionStrings": {
-    "NeonConnection": "Server=your-neon-hostname;Database=neondb;User Id=your-username;Password=your-password;SSL Mode=Require;Trust Server Certificate=true"
+    "JamboConnection": "Server=your-neon-hostname;Database=neondb;User Id=your-username;Password=your-password;SSL Mode=Require;Trust Server Certificate=true"
   }
 }
 ```
@@ -215,7 +215,7 @@ There are two main approaches to storing your connection string securely:
 ```csharp
 // Program.cs
 var connectionString = Environment.GetEnvironmentVariable("NEON_CONNECTION_STRING")
-    ?? builder.Configuration.GetConnectionString("NeonConnection");
+    ?? builder.Configuration.GetConnectionString("JamboConnection");
 ```
 
 That way, you can set the `NEON_CONNECTION_STRING` environment variable in your production environment to securely store your connection string.
@@ -241,9 +241,9 @@ In our inventory system, we'll implement this pattern to handle all database ope
 First, let's define the interface that specifies what operations our repository can perform. Create a new file `Repositories/IProductRepository.cs` with the following content:
 
 ```csharp
-using NeonInventoryApi.Models;
+using JamboInventoryApi.Models;
 
-namespace NeonInventoryApi.Repositories
+namespace JamboInventoryApi.Repositories
 {
     public interface IProductRepository
     {
@@ -264,10 +264,10 @@ Next, let's implement the repository, starting with the `ProductRepository` clas
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using NeonInventoryApi.Data;
-using NeonInventoryApi.Models;
+using JamboInventoryApi.Data;
+using JamboInventoryApi.Models;
 
-namespace NeonInventoryApi.Repositories{
+namespace JamboInventoryApi.Repositories{
     public class ProductRepository : IProductRepository
     {
         private readonly InventoryContext _context;
@@ -337,12 +337,12 @@ Then you can inject it into your controllers or services, create a new controlle
 
 ```csharp
 using Microsoft.AspNetCore.Mvc;
-using NeonInventoryApi.Models;
-using NeonInventoryApi.Repositories;
+using JamboInventoryApi.Models;
+using JamboInventoryApi.Repositories;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace NeonInventoryApi.Controllers
+namespace JamboInventoryApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -408,7 +408,7 @@ After implementing the repository pattern, make sure to register the controllers
 app.MapControllers();
 ```
 
-With the repository pattern in place, we are nearly ready to start using our Neon database. Before that, let's add some sample data to the database using migrations.
+With the repository pattern in place, we are nearly ready to start using our Jambo database. Before that, let's add some sample data to the database using migrations.
 
 ## Migrations
 
@@ -456,7 +456,7 @@ Now if you run your application and navigate to `http://localhost:5221/api/produ
 
 ## Testing CRUD Operations
 
-With our API and database set up, we’re ready to test the CRUD operations. We’ll use simple HTTP requests to add, retrieve, update, and delete products from our Neon database.
+With our API and database set up, we’re ready to test the CRUD operations. We’ll use simple HTTP requests to add, retrieve, update, and delete products from our Jambo database.
 
 ### 1. Adding a New Product
 
@@ -529,13 +529,13 @@ If successful, the API will delete the product from the database and return a st
 
 ## Conclusion
 
-Connecting .NET applications to Neon gives you a strong and scalable database setup. By following these steps and using features like connection pooling and automatic scaling, you can create applications that perform well even as they grow.
+Connecting .NET applications to Jambo gives you a strong and scalable database setup. By following these steps and using features like connection pooling and automatic scaling, you can create applications that perform well even as they grow.
 
-As next steps, consider adding more features to your application, such as authentication and authorization. You can also explore advanced Neon features like branching and data replication to enhance your application's performance and reliability.
+As next steps, consider adding more features to your application, such as authentication and authorization. You can also explore advanced Jambo features like branching and data replication to enhance your application's performance and reliability.
 
 For more details, check out:
 
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Entity Framework Core Documentation](https://docs.microsoft.com/en-us/ef/core/)
 - [Npgsql Documentation](https://www.npgsql.org/doc/index.html)
 

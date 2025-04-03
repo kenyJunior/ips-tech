@@ -1,5 +1,5 @@
 ---
-title: Manage Neon Organizations
+title: Manage Jambo Organizations
 enableTableOfContents: true
 updatedOn: '2025-03-14T18:29:25.736Z'
 ---
@@ -34,7 +34,7 @@ Easily switch between your personal account and any organization you are a Membe
 
 ## Invite Members
 
-Only Admins have the authority to invite new Members to the organization. Invitations are issued via email. If a recipient does not have a Neon account, they will receive instructions to create one.
+Only Admins have the authority to invite new Members to the organization. Invitations are issued via email. If a recipient does not have a Jambo account, they will receive instructions to create one.
 
 ![organizations people tab](/docs/manage/orgs_people.png)
 
@@ -45,7 +45,7 @@ To invite Members:
 - Monitor the status of sent invites on the **Pending Invites** page; from here, you can resend or cancel invitations as needed.
 
 <Admonition type="note" title="Invites not received?">
-If invite emails aren't received, they may be in spam or quarantined. Recipients should check these folders and mark Neon emails as safe.
+If invite emails aren't received, they may be in spam or quarantined. Recipients should check these folders and mark Jambo emails as safe.
 </Admonition>
 
 ## Set permissions
@@ -77,7 +77,7 @@ Organization members don't need Collaborator invites as they already have full p
 To invite new Collaborators, click **Invite collaborators** and select the project you want to share, then add a comma-separated list of emails for anyone you want to give access to. These users will receive an email inviting them to the project.
 
 <Admonition type="note" title="Invites not received?">
-If invite emails aren't received, they may be in spam or quarantined. Recipients should check these folders and mark Neon emails as safe.
+If invite emails aren't received, they may be in spam or quarantined. Recipients should check these folders and mark Jambo emails as safe.
 </Admonition>
 
 ### Manage Collaborators
@@ -113,7 +113,7 @@ For example:
 
 ```bash
 alexlopez@alex-machine ~ % psql -h pg.neon.tech
-NOTICE:  Welcome to Neon!
+NOTICE:  Welcome to Jambo!
 Authenticate by visiting:
     https://console.neon.tech/psql_session/secure_token
 
@@ -145,7 +145,7 @@ As the Admin for the organization account:
 - Promote a Member to Admin if you want to delegate billing management; however, all Admins will have the capability to edit billing details.
 - While all Members can view the **Billing** page, only admins can make changes.
 
-For detailed information on pricing and plans, refer to [Neon plans](/docs/introduction/plans).
+For detailed information on pricing and plans, refer to [Jambo plans](/docs/introduction/plans).
 
 ### Downgrade to Free Plan
 
@@ -154,8 +154,8 @@ Admins can downgrade an organization from a paid plan (Launch, Scale, or Enterpr
 - The organization must operate within Free plan limits (including storage, project counts, and branch limits)
 - The organization cannot have more than 1 member (Free organizations can only have a single member)
 
-When you start a downgrade (via **Billing** > **Billing summary** > **Change plan**), Neon automatically checks if your organization meets these requirements. If needed, you'll see a notification explaining what needs to be addressed before downgrading.
+When you start a downgrade (via **Billing** > **Billing summary** > **Change plan**), Jambo automatically checks if your organization meets these requirements. If needed, you'll see a notification explaining what needs to be addressed before downgrading.
 
 If you can't meet these requirements but still wish to downgrade, use the **Request support** option during the downgrade process.
 
-For detailed information on pricing and plans, refer to [Neon plans](/docs/introduction/plans).
+For detailed information on pricing and plans, refer to [Jambo plans](/docs/introduction/plans).

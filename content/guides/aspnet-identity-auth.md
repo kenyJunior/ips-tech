@@ -1,20 +1,20 @@
 ---
-title: Authentication and Authorization in ASP.NET Core with ASP.NET Identity and Neon
-subtitle: Learn how to implement secure user authentication and authorization in ASP.NET Core applications using ASP.NET Identity with Neon Postgres
+title: Authentication and Authorization in ASP.NET Core with ASP.NET Identity and Jambo
+subtitle: Learn how to implement secure user authentication and authorization in ASP.NET Core applications using ASP.NET Identity with Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-03T00:00:00.000Z'
 updatedOn: '2024-11-03T00:00:00.000Z'
 ---
 
-In this guide, we'll explore how to implement secure authentication and authorization in an ASP.NET Core application using ASP.NET Core Identity with Neon Postgres as the database backend. We'll cover user management, role-based authorization, and JWT token generation for secure API access.
+In this guide, we'll explore how to implement secure authentication and authorization in an ASP.NET Core application using ASP.NET Core Identity with Jambo Postgres as the database backend. We'll cover user management, role-based authorization, and JWT token generation for secure API access.
 
 ## Prerequisites
 
 Before we begin, ensure you have:
 
 - .NET 8.0 or later installed
-- A [Neon account](https://console.neon.tech/signup)
+- A [Jambo account](https://console.neon.tech/signup)
 - Basic familiarity with ASP.NET Core and Entity Framework Core
 
 ## Project Setup
@@ -22,8 +22,8 @@ Before we begin, ensure you have:
 First, create a new ASP.NET Core Web API project with authentication:
 
 ```bash
-dotnet new webapi -n NeonApi
-cd NeonApi
+dotnet new webapi -n JamboApi
+cd JamboApi
 ```
 
 With the project created, install the necessary packages:
@@ -40,15 +40,15 @@ dotnet add package System.IdentityModel.Tokens.Jwt
 
 The above packages provide support for ASP.NET Identity, JWT authentication, and PostgreSQL database integration.
 
-### Configuring the Neon Database
+### Configuring the Jambo Database
 
-Head over to your [Neon Dashboard](https://neon.tech) and create a new project.
+Head over to your [Jambo Dashboard](https://neon.tech) and create a new project.
 
 Once done, grab your database connection string and add it to your `appsettings.json`:
 
 ```json
 "ConnectionStrings": {
-  "NeonConnection": "Host=<your-host>;Database=<your-database>;Username=<your-username>;Password=<your-password>;Port=5432"
+  "JamboConnection": "Host=<your-host>;Database=<your-database>;Username=<your-username>;Password=<your-password>;Port=5432"
 }
 ```
 
@@ -66,7 +66,7 @@ While editing `appsettings.json`, add JWT configuration as well right below the 
 
 The `Key` is a secret key used to sign and verify JWT tokens, while `Issuer` and `Audience` are used to validate the token's origin and intended recipient.
 
-## Configuring ASP.NET Identity with Neon
+## Configuring ASP.NET Identity with Jambo
 
 In order to store additional information about users, we need to create a custom user class that extends the default Identity user provided by ASP.NET Core Identity.
 
@@ -148,9 +148,9 @@ Open `Program.cs` and update it as follows:
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Neon database context
+// Add Jambo database context
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("NeonConnection")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("JamboConnection")));
 
 builder.Services.AddControllers();
 
@@ -221,7 +221,7 @@ app.UseAuthorization();
 
 We are doing quite a few things here:
 
-1. First, we configure our database context using the connection string we defined earlier in `appsettings.json`. This connects our application to the Neon Postgres database, allowing it to store and retrieve user data.
+1. First, we configure our database context using the connection string we defined earlier in `appsettings.json`. This connects our application to the Jambo Postgres database, allowing it to store and retrieve user data.
 1. Next, we set up ASP.NET Identity to manage user accounts which includes:
    - We enforce strong passwords.
    - We configure lockout settings to protect against brute force attacks.
@@ -439,7 +439,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ```
 
-If you were to make changes to your data models in the future, you would create a new migration and apply it using the same commands. Via the Neon console, you will now see the tables created by ASP.NET Identity.
+If you were to make changes to your data models in the future, you would create a new migration and apply it using the same commands. Via the Jambo console, you will now see the tables created by ASP.NET Identity.
 
 ## Testing Authentication
 
@@ -654,7 +654,7 @@ Unlike the standard login flow, the new flow involves three steps:
    }
    ```
 
-As a security measure, store refresh tokens securely in your Neon database while also making sure that clients use secure methods like HTTP-only cookies. Also, keep access tokens short-lived, rotate refresh tokens on refresh, and implement token expiration and revocation to enhance security.
+As a security measure, store refresh tokens securely in your Jambo database while also making sure that clients use secure methods like HTTP-only cookies. Also, keep access tokens short-lived, rotate refresh tokens on refresh, and implement token expiration and revocation to enhance security.
 
 ## Integrating Auth0 for Authentication and Authorization (Optional)
 
@@ -751,12 +751,12 @@ For a more information on integrating Auth0 with ASP.NET Core, refer to the [Aut
 
 ## Conclusion
 
-In this guide, we implemented a secure authentication and authorization system in an ASP.NET Core application using ASP.NET Identity with Neon Postgres as the backend. We walked through setting up user registration and login endpoints, securing API routes with JWT tokens, and implementing role-based authorization.
+In this guide, we implemented a secure authentication and authorization system in an ASP.NET Core application using ASP.NET Identity with Jambo Postgres as the backend. We walked through setting up user registration and login endpoints, securing API routes with JWT tokens, and implementing role-based authorization.
 
 For more information, check out:
 
 - [ASP.NET Core Identity Documentation](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity)
 - [JWT Authentication in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/jwt-bearer)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 
 <NeedHelp />

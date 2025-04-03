@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
   const encodedTitle = Buffer.from(name).toString('base64');
 
   return getMetadata({
-    title: `${name} - Neon Templates`,
+    title: `${name} - Jambo Templates`,
     description,
     imagePath: `${VERCEL_URL}/docs/og?title=${encodedTitle}&breadcrumb=${btoa('Templates')}`,
     pathname: `${LINKS.templates}/${slug}`,

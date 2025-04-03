@@ -1,41 +1,41 @@
 ---
 title: Replicate data with Airbyte
-subtitle: Learn how to replicate data from Neon with Airbyte
+subtitle: Learn how to replicate data from Jambo with Airbyte
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-11T11:32:44.535Z'
 ---
 
-Neon's logical replication feature allows you to replicate data from your Neon Postgres database to external destinations.
+Jambo's logical replication feature allows you to replicate data from your Jambo Postgres database to external destinations.
 
 [Airbyte](https://airbyte.com/) is an open-source data integration platform that moves data from a source to a destination system. Airbyte offers a large library of connectors for various data sources and destinations.
 
-In this guide, you will learn how to define your Neon Postgres database as a data source in Airbyte so that you can stream data to one or more of Airbyte's supported destinations.
+In this guide, you will learn how to define your Jambo Postgres database as a data source in Airbyte so that you can stream data to one or more of Airbyte's supported destinations.
 
 ## Prerequisites
 
 - An [Airbyte account](https://airbyte.com/)
-- A [Neon account](https://console.neon.tech/)
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin
+- A [Jambo account](https://console.neon.tech/)
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin
 
-## Prepare your source Neon database
+## Prepare your source Jambo database
 
-This section describes how to prepare your source Neon database (the publisher) for replicating data to your destination Neon database (the subscriber).
+This section describes how to prepare your source Jambo database (the publisher) for replicating data to your destination Jambo database (the subscriber).
 
-### Enable logical replication in Neon
+### Enable logical replication in Jambo
 
 <Admonition type="important">
-Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Neon project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Neon project, meaning active connections will be dropped and have to reconnect.
+Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Jambo project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Jambo project, meaning active connections will be dropped and have to reconnect.
 </Admonition>
 
-To enable logical replication in Neon:
+To enable logical replication in Jambo:
 
-1. Select your project in the Neon Console.
-2. On the Neon **Dashboard**, select **Settings**.
+1. Select your project in the Jambo Console.
+2. On the Jambo **Dashboard**, select **Settings**.
 3. Select **Logical Replication**.
 4. Click **Enable** to enable logical replication.
 
-You can verify that logical replication is enabled by running the following query from the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
+You can verify that logical replication is enabled by running the following query from the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
 
 ```sql
 SHOW wal_level;
@@ -46,13 +46,13 @@ SHOW wal_level;
 
 ### Create a Postgres role for replication
 
-It's recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Neon project and roles created using the Neon CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
+It's recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Jambo project and roles created using the Jambo CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
 
 <Tabs labels={["CLI", "Console", "API"]}>
 
 <TabItem>
 
-The following CLI command creates a role. To view the CLI documentation for this command, see [Neon CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
+The following CLI command creates a role. To view the CLI documentation for this command, see [Jambo CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
 
 ```bash
 neon roles create --name replication_user
@@ -62,9 +62,9 @@ neon roles create --name replication_user
 
 <TabItem>
 
-To create a role in the Neon Console:
+To create a role in the Jambo Console:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to create the role.
@@ -77,7 +77,7 @@ To create a role in the Neon Console:
 
 <TabItem>
 
-The following Neon API method creates a role. To view the API documentation for this method, refer to the [Neon API reference](/docs/reference/cli-roles).
+The following Jambo API method creates a role. To view the API documentation for this method, refer to the [Jambo API reference](/docs/reference/cli-roles).
 
 ```bash
 curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-blue-tooth-671580/roles' \
@@ -150,7 +150,7 @@ The Airbyte UI currently allows selecting any table for Change Data Capture (CDC
 ## Create a Postgres source in Airbyte
 
 1. From your Airbyte Cloud account, select **Sources** from the left navigation bar, search for **Postgres**, and then create a new Postgres source.
-2. Enter the connection details for your Neon database. You can find your database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+2. Enter the connection details for your Jambo database. You can find your database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
    For example, given a connection string like this:
 
    ```bash shouldWrap
@@ -166,7 +166,7 @@ The Airbyte UI currently allows selecting any table for Change Data Capture (CDC
    - **Password**: AbC123dEf
 
 3. Under **Optional fields**, list the schemas you want to sync. Schema names are case-sensitive, and multiple schemas may be specified. By default, `public` is the only selected schema.
-4. Select an SSL mode. You will most frequently choose `require` or `verify-ca`. Both of these options always require encryption. The `verify-ca` mode requires a certificate. Refer to [Connect securely](/docs/connect/connect-securely) for information about the location of certificate files you can use with Neon.
+4. Select an SSL mode. You will most frequently choose `require` or `verify-ca`. Both of these options always require encryption. The `verify-ca` mode requires a certificate. Refer to [Connect securely](/docs/connect/connect-securely) for information about the location of certificate files you can use with Jambo.
 5. Under **Advanced**:
 
    - Select **Read Changes using Write-Ahead Log (CDC)** from available replication methods.
@@ -176,15 +176,15 @@ The Airbyte UI currently allows selecting any table for Change Data Capture (CDC
 
 ## Allow inbound traffic
 
-If you are on Airbyte Cloud, and you are using Neon's **IP Allow** feature to limit IP addresses that can connect to Neon, you will need to allow inbound traffic from Airbyte's IP addresses. You can find a list of IPs that need to be allowlisted in the [Airbyte Security docs](https://docs.airbyte.com/operating-airbyte/security). For information about configuring allowed IPs in Neon, see [Configure IP Allow](/docs/manage/projects#configure-ip-allow).
+If you are on Airbyte Cloud, and you are using Jambo's **IP Allow** feature to limit IP addresses that can connect to Jambo, you will need to allow inbound traffic from Airbyte's IP addresses. You can find a list of IPs that need to be allowlisted in the [Airbyte Security docs](https://docs.airbyte.com/operating-airbyte/security). For information about configuring allowed IPs in Jambo, see [Configure IP Allow](/docs/manage/projects#configure-ip-allow).
 
 ## Complete the source setup
 
-To complete your source setup, click **Set up source** in the Airbyte UI. Airbyte will test the connection to your database. Once this succeeds, you've successfully configured an Airbyte Postgres source for your Neon database.
+To complete your source setup, click **Set up source** in the Airbyte UI. Airbyte will test the connection to your database. Once this succeeds, you've successfully configured an Airbyte Postgres source for your Jambo database.
 
 ## Configure a destination
 
-To complete your data integration setup, you can now add one of Airbyte's many supported destinations, such as [Snowflake](/docs/guides/logical-replication-airbyte-snowflake), BigQuery, or Kafka, to name a few. After configuring a destination, you'll need to set up a connection between your Neon source database and your chosen destination. Refer to the Airbyte documentation for instructions:
+To complete your data integration setup, you can now add one of Airbyte's many supported destinations, such as [Snowflake](/docs/guides/logical-replication-airbyte-snowflake), BigQuery, or Kafka, to name a few. After configuring a destination, you'll need to set up a connection between your Jambo source database and your chosen destination. Refer to the Airbyte documentation for instructions:
 
 - [Add a destination](https://docs.airbyte.com/using-airbyte/getting-started/add-a-destination)
 - [Set up a connection](https://docs.airbyte.com/using-airbyte/getting-started/set-up-a-connection)

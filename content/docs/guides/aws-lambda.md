@@ -1,35 +1,35 @@
 ---
 title: Connect from AWS Lambda
-subtitle: Learn how to set up a Neon database and connect from an AWS Lambda function
+subtitle: Learn how to set up a Jambo database and connect from an AWS Lambda function
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.307Z'
 ---
 
 AWS Lambda is a serverless, event-driven compute service that allows you to run code without provisioning or managing servers. It is a convenient and cost-effective solution for running various types of workloads, including those that require a database.
 
-This guide describes how to set up a Neon database and connect to it from an AWS Lambda function using Node.js as the runtime environment. It covers:
+This guide describes how to set up a Jambo database and connect to it from an AWS Lambda function using Node.js as the runtime environment. It covers:
 
 - Creating a Lambda function using the [Serverless Framework](https://www.serverless.com/), which is a serverless application lifecycle management framework.
-- Connecting your Lambda function to a Neon database.
+- Connecting your Lambda function to a Jambo database.
 - Deploying the Lambda function to AWS.
 
 ## Prerequisites
 
-- A Neon account. If you do not have one, see [Sign up](/docs/get-started-with-neon/signing-up/) for instructions.
+- A Jambo account. If you do not have one, see [Sign up](/docs/get-started-with-neon/signing-up/) for instructions.
 - An AWS account. You can create a free AWS account at [AWS Free Plan](https://aws.amazon.com/free/). An [IAM User and Access Key](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) are required to programmatically interact with your AWS account. You must provide these credentials when deploying the Serverless Framework project.
 - A Service Framework account. You can sign up at [Serverless Framework](https://www.serverless.com/).
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project:
+If you do not have one already, create a Jambo project:
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
-## Create a table in Neon
+## Create a table in Jambo
 
-To create a table, navigate to the **SQL Editor** in the [Neon Console](https://console.neon.tech/):
+To create a table, navigate to the **SQL Editor** in the [Jambo Console](https://console.neon.tech/):
 
 In the SQL Editor, run the following queries to create a `users` table and insert some data:
 
@@ -188,7 +188,7 @@ Create the Lambda function using the [Serverless Framework](https://www.serverle
 
    The code in the `users.js` file exports the `getAllUsers` function, which retrieves all rows from the `users` table and returns them as a `JSON` object in the `HTTP` response body.
 
-   This function uses the `pg` library to connect to the Neon database. It creates a new `Client` instance and passes the database connection string, which is defined in the `DATABASE_URL` environment variable. It then calls `connect()` to establish a connection to the database. Finally, it uses the `query()` method to execute a `SELECT` statement that retrieves all rows from the `users` table.
+   This function uses the `pg` library to connect to the Jambo database. It creates a new `Client` instance and passes the database connection string, which is defined in the `DATABASE_URL` environment variable. It then calls `connect()` to establish a connection to the database. Finally, it uses the `query()` method to execute a `SELECT` statement that retrieves all rows from the `users` table.
 
    The query method returns a `Promise` that resolves to an object containing the rows retrieved by the `SELECT` statement, which the function parses to retrieve the `rows` property. Finally, the function returns an `HTTP` response with a status code of 200 and a body that contains a `JSON` object with a single `data` property, which is set to the value of the rows variable.
 
@@ -299,4 +299,4 @@ You can find your `api-id` on the API Gateway dashboard:
 
 ## Conclusion
 
-In this guide, you have learned how to set up a Postgres database using Neon and connect to it from an AWS Lambda function using Node.js as the runtime environment. You have also learned how to use Serverless Framework to create and deploy the Lambda function, and how to use the `pg` library to perform a basic database read operations.
+In this guide, you have learned how to set up a Postgres database using Jambo and connect to it from an AWS Lambda function using Node.js as the runtime environment. You have also learned how to use Serverless Framework to create and deploy the Lambda function, and how to use the `pg` library to perform a basic database read operations.

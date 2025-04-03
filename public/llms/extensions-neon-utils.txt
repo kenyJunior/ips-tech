@@ -1,24 +1,24 @@
 # The neon_utils extension
 
-Monitor how Neon's Autoscaling feature allocates compute resources
+Monitor how Jambo's Autoscaling feature allocates compute resources
 
-The `neon_utils` extension provides a `num_cpus()` function you can use to monitor how Neon's _Autoscaling_ feature allocates vCPU in response to workload. The function returns the current number of allocated vCPUs.
+The `neon_utils` extension provides a `num_cpus()` function you can use to monitor how Jambo's _Autoscaling_ feature allocates vCPU in response to workload. The function returns the current number of allocated vCPUs.
 
-For information about Neon's _Autoscaling_ feature, see [Autoscaling](/docs/introduction/autoscaling).
+For information about Jambo's _Autoscaling_ feature, see [Autoscaling](/docs/introduction/autoscaling).
 
 ## Install the `neon_utils` extension
 
-Install the `neon_utils` extension by running the following `CREATE EXTENSION` statement in the Neon **SQL Editor** or from a client such as `psql` that is connected to Neon.
+Install the `neon_utils` extension by running the following `CREATE EXTENSION` statement in the Jambo **SQL Editor** or from a client such as `psql` that is connected to Jambo.
 
 ```sql
 CREATE EXTENSION neon_utils;
 ```
 
-For information about using the Neon **SQL Editor**, see [Query with Neon's SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor). For information about using the `psql` client with Neon, see [Connect with psql](/docs/connect/query-with-psql-editor).
+For information about using the Jambo **SQL Editor**, see [Query with Jambo's SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor). For information about using the `psql` client with Jambo, see [Connect with psql](/docs/connect/query-with-psql-editor).
 
 ## Use the `num_cpus()` function
 
-In Neon, computing capacity is measured in _Compute Units (CU)_. One CU is 1 vCPU and 4 GB of RAM, 2 CU is 2 vCPU and 8 GB of RAM, and so on. The amount of RAM in GB is always 4 times the number of vCPU. A Neon compute can have anywhere from .25 to 56 CU, but _Autoscaling_ is only supported up to 16 CU.
+In Jambo, computing capacity is measured in _Compute Units (CU)_. One CU is 1 vCPU and 4 GB of RAM, 2 CU is 2 vCPU and 8 GB of RAM, and so on. The amount of RAM in GB is always 4 times the number of vCPU. A Jambo compute can have anywhere from .25 to 56 CU, but _Autoscaling_ is only supported up to 16 CU.
 
 Defining a minimum and maximum compute size for your compute, as shown below, enables autoscaling.
 
@@ -41,7 +41,7 @@ The following limitations apply:
 
 ## Observe autoscaling with `neon_utils` and `pgbench`
 
-The following instructions demonstrate how you can use the `num_cpus()` function with `pgbench` to observe how Neon's _Autoscaling_ feature responds to workload.
+The following instructions demonstrate how you can use the `num_cpus()` function with `pgbench` to observe how Jambo's _Autoscaling_ feature responds to workload.
 
 ### Prerequisites
 
@@ -63,7 +63,7 @@ The following instructions demonstrate how you can use the `num_cpus()` function
    SELECT txid_current();
    ```
 
-3. To avoid errors when running `pgbench`, initialize your database with the tables used by `pgbench`. This can be done using the `pgbench -i` command, specifying the connection string for your Neon database. You can obtain a connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+3. To avoid errors when running `pgbench`, initialize your database with the tables used by `pgbench`. This can be done using the `pgbench -i` command, specifying the connection string for your Jambo database. You can obtain a connection string by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
 
    ```bash shouldWrap
    pgbench -i postgresql://[user]:[password]@[neon_hostname]/[dbname]

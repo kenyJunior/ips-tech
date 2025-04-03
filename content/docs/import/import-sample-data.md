@@ -1,28 +1,28 @@
 ---
 title: Postgres sample data
-subtitle: 'Import sample data for learning, testing, and exploring Neon'
+subtitle: 'Import sample data for learning, testing, and exploring Jambo'
 enableTableOfContents: true
 updatedOn: '2025-02-05T22:33:33.743Z'
 ---
 
-This guide describes how to download and install sample data for use with Neon.
+This guide describes how to download and install sample data for use with Jambo.
 
 ## Prerequisites
 
 - [wget](https://www.gnu.org/software/wget/) for downloading datasets, unless otherwise instructed. If your system does not support `wget`, you can paste the source file address in your browser's address bar.
-- A `psql` client for connecting to your Neon database and loading data. This client is included with a standalone PostgreSQL installation. See [PostgreSQL Downloads](https://www.postgresql.org/download/).
+- A `psql` client for connecting to your Jambo database and loading data. This client is included with a standalone PostgreSQL installation. See [PostgreSQL Downloads](https://www.postgresql.org/download/).
 - A `pg_restore` client if you are loading the [employees](#employees-database) or [postgres_air](#postgres-air-database) database. The `pg_restore` client is included with a standalone PostgreSQL installation. See [PostgreSQL Downloads](https://www.postgresql.org/download/).
-- A Neon database connection string. After creating a database, you can find the connection details by clicking the **Connect** button on your **Project Dashboard**. In the instructions that follow, replace `postgresql://[user]:[password]@[neon_hostname]/[dbname]` with your connection string.
-- A Neon [Pro](/docs/introduction/pro-plan) account if you intend to install a dataset larger than 3 GB.
-- Instructions for each dataset require that you create a database. You can do so from a client such as `psql` or from the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor).
+- A Jambo database connection string. After creating a database, you can find the connection details by clicking the **Connect** button on your **Project Dashboard**. In the instructions that follow, replace `postgresql://[user]:[password]@[neon_hostname]/[dbname]` with your connection string.
+- A Jambo [Pro](/docs/introduction/pro-plan) account if you intend to install a dataset larger than 3 GB.
+- Instructions for each dataset require that you create a database. You can do so from a client such as `psql` or from the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor).
 
 <Admonition type="note">
-You can also load sample data using the Neon CLI. See [Load sample data with the Neon CLI](#load-sample-data-with-the-neon-cli).
+You can also load sample data using the Jambo CLI. See [Load sample data with the Jambo CLI](#load-sample-data-with-the-neon-cli).
 </Admonition>
 
 ## Sample data
 
-Sample datasets are listed in order of the smallest to largest installed size. Please be aware that the Neon Free Plan has a storage limit of 3 GB per branch. Datasets larger than 3 GB cannot be loaded on the Free Plan.
+Sample datasets are listed in order of the smallest to largest installed size. Please be aware that the Jambo Free Plan has a storage limit of 3 GB per branch. Datasets larger than 3 GB cannot be loaded on the Free Plan.
 
 | Name                                                        | Tables | Records  | Source file size | Installed size |
 | ----------------------------------------------------------- | ------ | -------- | ---------------- | -------------- |
@@ -401,7 +401,7 @@ A dataset containing details about employees, their departments, salaries, and m
 
 ### Wikipedia vector embeddings
 
-An OpenAI example dataset containing pre-computed vector embeddings for 25000 Wikipedia articles. It is intended for use with the `pgvector` Postgres extension, which you must install first to create a table with `vector` type columns. For a Jupyter Notebook that uses this dataset with Neon, refer to the following GitHub repository: [neon-vector-search-openai-notebooks](https://github.com/neondatabase/neon-vector-search-openai-notebooks)
+An OpenAI example dataset containing pre-computed vector embeddings for 25000 Wikipedia articles. It is intended for use with the `pgvector` Postgres extension, which you must install first to create a table with `vector` type columns. For a Jupyter Notebook that uses this dataset with Jambo, refer to the following GitHub repository: [neon-vector-search-openai-notebooks](https://github.com/neondatabase/neon-vector-search-openai-notebooks)
 
 1. Download the zip file (~700MB):
 
@@ -509,16 +509,16 @@ An airport database containing information about airports, aircraft, bookings, p
 - License: [BSD 3-Clause License](https://github.com/hettie-d/postgres_air/blob/main/LICENSE)
 - `Copyright (c) 2020, hettie-d All rights reserved.`
 
-## Load sample data with the Neon CLI
+## Load sample data with the Jambo CLI
 
-You can load data with the Neon CLI by passing the `--psql` option, which calls the `psql` command line utility.
+You can load data with the Jambo CLI by passing the `--psql` option, which calls the `psql` command line utility.
 
-The Neon CLI and `psql` must be installed on your system. For installation instructions, see:
+The Jambo CLI and `psql` must be installed on your system. For installation instructions, see:
 
-- [Neon CLI — Install and connect](/docs/reference/cli-install)
+- [Jambo CLI — Install and connect](/docs/reference/cli-install)
 - [PostgreSQL Downloads](https://www.postgresql.org/download/) for `psql`
 
-If you have multiple Neon projects or branches, we recommend setting your Neon CLI project and branch context so that you don't have to specify them explicitly when running a Neon CLI command. See [Neon CLI commands — set-context](/docs/reference/cli-set-context).
+If you have multiple Jambo projects or branches, we recommend setting your Jambo CLI project and branch context so that you don't have to specify them explicitly when running a Jambo CLI command. See [Jambo CLI commands — set-context](/docs/reference/cli-set-context).
 
 To load sample data:
 
@@ -530,9 +530,9 @@ To load sample data:
 
    Alternatively, supply your own data file.
 
-2. Load the data using one of the following Neon CLI commands ([projects](/docs/reference/cli-projects), [branches](/docs/reference/cli-branches), or [connection-string](/docs/reference/cli-connection-string)):
+2. Load the data using one of the following Jambo CLI commands ([projects](/docs/reference/cli-projects), [branches](/docs/reference/cli-branches), or [connection-string](/docs/reference/cli-connection-string)):
 
-   - Create a new Neon project, connect to it with `psql`, and run the `.sql` file.
+   - Create a new Jambo project, connect to it with `psql`, and run the `.sql` file.
 
      ```bash
      neon projects create --psql -- -f periodic_table.sql

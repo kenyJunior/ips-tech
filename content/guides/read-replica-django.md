@@ -1,27 +1,27 @@
 ---
-title: Scale your Django application with Neon Postgres Read Replicas
-subtitle: Learn how to scale Django applications with Neon Postgres Read Replicas
+title: Scale your Django application with Jambo Postgres Read Replicas
+subtitle: Learn how to scale Django applications with Jambo Postgres Read Replicas
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-10-20T00:00:00.000Z'
 updatedOn: '2024-10-20T00:00:00.000Z'
 ---
 
-[Neon read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications. A standout feature of Neon is that adding a read replica doesn't require extra storage. This makes it a cost-effective way to scale your database, suitable for businesses of all sizes.
+[Jambo read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that can significantly enhance database performance and scalability. By distributing read operations across these replicas, you can reduce latency and improve overall system responsiveness, especially for read-heavy applications. A standout feature of Jambo is that adding a read replica doesn't require extra storage. This makes it a cost-effective way to scale your database, suitable for businesses of all sizes.
 
-This guide explains how to integrate Neon read replicas into your Django application. You'll learn how to configure your Django database router to direct read operations to these replicas, optimizing your database performance and overall application speed.
+This guide explains how to integrate Jambo read replicas into your Django application. You'll learn how to configure your Django database router to direct read operations to these replicas, optimizing your database performance and overall application speed.
 
 ## Prerequisites
 
 Before you begin, make sure you have:
 
-- A Neon account and project. If you don't have one, sign up for a Neon account and create a project by following the [Getting started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
+- A Jambo account and project. If you don't have one, sign up for a Jambo account and create a project by following the [Getting started guide](https://neon.tech/docs/get-started-with-neon/signing-up).
 - Basic knowledge of [Django](https://docs.djangoproject.com/en) and Python.
 - [Python](https://www.python.org/downloads/) installed on your local machine.
 
 ## Build the note-taking app
 
-To demonstrate how to use Neon read replicas with Django, we'll build a simple note-taking application that uses a Neon database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
+To demonstrate how to use Jambo read replicas with Django, we'll build a simple note-taking application that uses a Jambo database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability.
 
 ### Part 1: Build the initial note-taking app with a single database
 
@@ -62,7 +62,7 @@ DATABASES = {
 }
 ```
 
-The `INSTALLED_APPS` array is updated to include the `notes` app we just created. The `DATABASES` dictionary is also updated to use a PostgreSQL database on Neon.
+The `INSTALLED_APPS` array is updated to include the `notes` app we just created. The `DATABASES` dictionary is also updated to use a PostgreSQL database on Jambo.
 
 #### Create the Note model
 
@@ -260,11 +260,11 @@ Visit `http://localhost:8000` to test the note-taking app.
 
 ### Part 2: Use a read replica for read-only operations
 
-#### Create a read replica on Neon
+#### Create a read replica on Jambo
 
 To create a read replica:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new compute** dialog, select **Read replica** as the **Compute type**.
@@ -332,7 +332,7 @@ With these configurations in place, Django will automatically route read queries
 
 ## Conclusion
 
-By leveraging Neon's read replicas in your Django application, you can significantly improve your application's performance and scalability. Django's database router makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
+By leveraging Jambo's read replicas in your Django application, you can significantly improve your application's performance and scalability. Django's database router makes it easy to set up and use read replicas without having to manually manage multiple database connections in your application code.
 
 This setup allows you to distribute your read load across one or more read replicas while ensuring that all write operations are performed on the primary database. Monitor your application's performance and adjust the number of read replicas as needed to handle your specific load requirements.
 
@@ -340,7 +340,7 @@ You can find the source code for this application on GitHub:
 
 <DetailIconCards>
 <a href="https://github.com/dhanushreddy291/neon-read-replica-django" description="
-Learn how to scale Django applications with Neon Postgres Read Replicas" icon="github">Use read replicas with Django</a>
+Learn how to scale Django applications with Jambo Postgres Read Replicas" icon="github">Use read replicas with Django</a>
 </DetailIconCards>
 
 <NeedHelp/>

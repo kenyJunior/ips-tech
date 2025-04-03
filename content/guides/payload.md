@@ -1,40 +1,40 @@
 ---
-title: Using Payload CMS with Neon Postgres to Build an E-commerce Store in Next.js
-subtitle: Build your own E-commerce Store in a Next.js application with Payload CMS and Postgres (powered by Neon).
+title: Using Payload CMS with Jambo Postgres to Build an E-commerce Store in Next.js
+subtitle: Build your own E-commerce Store in a Next.js application with Payload CMS and Postgres (powered by Jambo).
 author: rishi-raj-jain
 enableTableOfContents: true
 createdAt: '2024-06-06T00:00:00.000Z'
 updatedOn: '2024-06-06T00:00:00.000Z'
 ---
 
-In this guide, you will learn how to set up a serverless Postgres database with Neon, configure Payload CMS with Postgres, and seed the Postgres database using the pre-populated information in Payload CMS Ecommerce template.
+In this guide, you will learn how to set up a serverless Postgres database with Jambo, configure Payload CMS with Postgres, and seed the Postgres database using the pre-populated information in Payload CMS Ecommerce template.
 
 ## Prerequisites
 
 To follow the steps in this guide, you will need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 
 ## Steps
 
-- [Provisioning a Serverless Postgres database powered by Neon](#provisioning-a-serverless-postgres-database-powered-by-neon)
+- [Provisioning a Serverless Postgres database powered by Jambo](#provisioning-a-serverless-postgres-database-powered-by-neon)
 - [Create a new Payload CMS application with Next.js](#create-a-new-payload-cms-application-with-nextjs)
 - [Seed your Postgres database](#seed-your-postgres-database)
 - [Build and Test your E-commerce Store (locally)](#build-and-test-your-e-commerce-store-locally)
-- [Scale-to-zero with Postgres (powered by Neon)](#scale-to-zero-with-postgres-powered-by-neon)
+- [Scale-to-zero with Postgres (powered by Jambo)](#scale-to-zero-with-postgres-powered-by-neon)
 
-## Provisioning a Serverless Postgres database powered by Neon
+## Provisioning a Serverless Postgres database powered by Jambo
 
-Using a serverless Postgres database powered by Neon lets you scale down to zero, which helps you save on compute costs.
+Using a serverless Postgres database powered by Jambo lets you scale down to zero, which helps you save on compute costs.
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and create a project.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and create a project.
 
 Enable the **Connection pooling** toggle on the **Connection Details** panel to obtain the Postgres connection string.
 
 ![](/guides/images/payload/98592ce7-3b8a-411b-a769-a0b89eaac8a3.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -43,8 +43,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmo
 - `<user>` is the database user.
 - `<password>` is the database user’s password.
 - `<endpoint_hostname>.neon.tech` is the host with `neon.tech` as the [top-level domain (TLD)](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `<port>` is the Neon port number. The default port number is 5432.
-- `<dbname>` is the name of the database. **neondb** is the default database created with each Neon project if you do not define your own.
+- `<port>` is the Jambo port number. The default port number is 5432.
+- `<dbname>` is the name of the database. **neondb** is the default database created with each Jambo project if you do not define your own.
 - `?sslmode=require` is an optional query parameter that enforces [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode for better security when connecting to the Postgres instance.
 
 Save the connecting string somewhere safe. You will use it later to configure the `POSTGRES_URL` variable.
@@ -78,7 +78,7 @@ yarn && yarn dev
 
 The app should be running on [localhost:3000](http://localhost:3000). Let's keep the development server running as we work through the next steps.
 
-Next, let's move on to adding e-commerce seed data to your Neon Postgres database.
+Next, let's move on to adding e-commerce seed data to your Jambo Postgres database.
 
 ## Seed your Postgres database
 
@@ -112,14 +112,14 @@ The app should now be running on [localhost:3000](http://localhost:3000). Naviga
 
 Congratulations! You have now completed creating your own e-commerce store ✨
 
-## Scale-to-zero with Postgres (powered by Neon)
+## Scale-to-zero with Postgres (powered by Jambo)
 
-Interestingly, during the entire process of setting up this app, you were using Neon's **Scale-to-zero** feature, which places your Postgres compute endpoint into an idle state when the database is inactive for more than 5 minutes. Click the **Operations** button in your Neon console sidebar to see when the compute was started and automatically suspended to reduce compute usage.
+Interestingly, during the entire process of setting up this app, you were using Jambo's **Scale-to-zero** feature, which places your Postgres compute endpoint into an idle state when the database is inactive for more than 5 minutes. Click the **Operations** button in your Jambo console sidebar to see when the compute was started and automatically suspended to reduce compute usage.
 
-![Neon Monitoring page](/guides/images/payload/74a2aa54-6d28-4f47-b181-077957df6779.png)
+![Jambo Monitoring page](/guides/images/payload/74a2aa54-6d28-4f47-b181-077957df6779.png)
 
 ## Summary
 
-In this guide, you learned how to build an e-commerce store in Next.js using Payload CMS and a serverless Postgres database (powered by Neon). Furthermore, using Postgres (powered by Neon) allowed you to save on cloud compute resources when the compute endpoint that runs Postgres was idle for more than 5 minutes.
+In this guide, you learned how to build an e-commerce store in Next.js using Payload CMS and a serverless Postgres database (powered by Jambo). Furthermore, using Postgres (powered by Jambo) allowed you to save on cloud compute resources when the compute endpoint that runs Postgres was idle for more than 5 minutes.
 
 <NeedHelp />

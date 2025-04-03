@@ -18,14 +18,14 @@ const Stage = () => {
   return (
     <>
       <div className="flex flex-col bg-live-video">
-        <h1 className="sr-only">Neon Developer Days Live translation</h1>
+        <h1 className="sr-only">Jambo Developer Days Live translation</h1>
         <div className="flex grow items-center">
           <div className="relative w-full pb-[56.25%]">
             <iframe
               className="absolute left-0 top-0 h-full w-full"
               allow="autoplay; picture-in-picture; web-share"
               src={videoSource}
-              title="Neon Live"
+              title="Jambo Live"
               width="100%"
               height="100%"
               allowFullScreen
@@ -34,7 +34,7 @@ const Stage = () => {
         </div>
         <div className="flex h-20 items-center justify-between bg-black px-8 py-10 lg:h-14 lg:px-11 lg:py-2 md:h-12 md:px-8 md:py-0 sm:h-10 sm:px-4">
           <h2 className="ml-6 text-[28px] font-semibold leading-none tracking-tighter text-white lg:ml-0 md:text-2xl xs:text-lg">
-            Neon Live
+            Jambo Live
           </h2>
           <TwitterShareButton
             className="!gap-0 !px-0 !text-sm !font-light tracking-extra-tight"

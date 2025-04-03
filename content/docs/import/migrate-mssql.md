@@ -1,12 +1,12 @@
 ---
-title: Migrate from Microsoft SQL Server to Neon Postgres
-subtitle: Learn how to migrate a Microsoft SQL Server database to Neon Postgres using
+title: Migrate from Microsoft SQL Server to Jambo Postgres
+subtitle: Learn how to migrate a Microsoft SQL Server database to Jambo Postgres using
   pgloader
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.342Z'
 ---
 
-This guide describes how to migrate your database from a Microsoft SQL Server (MSSQL) database to Neon Postgres using [pgloader](https://pgloader.readthedocs.io/en/latest/intro.html).
+This guide describes how to migrate your database from a Microsoft SQL Server (MSSQL) database to Jambo Postgres using [pgloader](https://pgloader.readthedocs.io/en/latest/intro.html).
 
 The `pgloader` utility transforms data to a Postgres-compatible format as it reads from your MSSQL database. It uses the Postgres `COPY` protocol to stream the data into your Postgres database.
 
@@ -16,11 +16,11 @@ The `pgloader` utility transforms data to a Postgres-compatible format as it rea
 
   For this guide, we use `Azure SQL`, which is a managed cloud-based offering of Microsoft SQL server. We set up an Azure SQL Database and populate it with the [Northwind sample dataset](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs). This dataset contains sales data corresponding to a fictional company that imports and exports food products, organized across multiple tables.
 
-- A Neon project to move the data to.
+- A Jambo project to move the data to.
 
-  For detailed information on creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
+  For detailed information on creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
 
-- Neon's Free Plan supports 500 MiB of data. If your data size is more than 500 MiB, you'll need to upgrade to one of Neon's paid plans. See [Neon plans](/docs/introduction/plans) for more information.
+- Jambo's Free Plan supports 500 MiB of data. If your data size is more than 500 MiB, you'll need to upgrade to one of Jambo's paid plans. See [Jambo plans](/docs/introduction/plans) for more information.
 
 - Review the [Pgloader MSSQL to Postgres Guide](https://pgloader.readthedocs.io/en/latest/ref/mssql.html) guide. It will provide you with a good understanding of `pgloader` capabilities and how to configure your `pgloader` configuration file, if necessary.
 
@@ -43,7 +43,7 @@ Before starting the migration process, collect your MSSQL database credentials. 
 
 Keep the database connection details handy for later use.
 
-### Allow inbound traffic from Neon
+### Allow inbound traffic from Jambo
 
 If you are using Azure SQL, you need to allow inbound traffic from your local machine, so `pgloader` can connect to your database. To do this, follow these steps:
 
@@ -55,29 +55,29 @@ If you are using Azure SQL, you need to allow inbound traffic from your local ma
 
 4. CLick `Save` at the bottom to make sure all changes are saved.
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your destination Neon PostgreSQL database to receive the migrated data.
+This section describes how to prepare your destination Jambo PostgreSQL database to receive the migrated data.
 
-### Create the Neon database
+### Create the Jambo database
 
-To maintain parity with the MSSQL deployment, you might want to create a new database in Neon with the same name. Refer to the [Create a database](/docs/manage/databases#create-a-database) guide for more information.
+To maintain parity with the MSSQL deployment, you might want to create a new database in Jambo with the same name. Refer to the [Create a database](/docs/manage/databases#create-a-database) guide for more information.
 
-For this example, we will create a new database named `Northwind` in the Neon project. Use `psql` to connect to your Neon project (alternatively, you can use the `Query editor` in the Neon console) and run the following query:
+For this example, we will create a new database named `Northwind` in the Jambo project. Use `psql` to connect to your Jambo project (alternatively, you can use the `Query editor` in the Jambo console) and run the following query:
 
 ```sql
 CREATE DATABASE "Northwind";
 ```
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
-Log in to the Neon Console. Find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
+Log in to the Jambo Console. Find the connection string for your database by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
 ```bash shouldWrap
 postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
 ```
 
-Now, modify the connection string as follows to pass your **endpoint ID** (`ep-cool-darkness-123456` in this example) to Neon with your password using the `endpoint` keyword, as shown here:
+Now, modify the connection string as follows to pass your **endpoint ID** (`ep-cool-darkness-123456` in this example) to Jambo with your password using the `endpoint` keyword, as shown here:
 
 ```bash shouldWrap
 postgresql://alex:endpoint=ep-cool-darkness-123456;AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
@@ -87,7 +87,7 @@ postgresql://alex:endpoint=ep-cool-darkness-123456;AbC123dEf@ep-cool-darkness-12
 Passing the `endpoint ID` with your password is a required workaround for some Postgres drivers, including the one used by `pgloader`. For more information about this workaround and why it's required, refer to our [connection workaround](/docs/connect/connection-errors#d-specify-the-endpoint-id-in-the-password-field) documentation. 
 </Admonition>
 
-Keep your Neon connection string handy for later use.
+Keep your Jambo connection string handy for later use.
 
 ## Install pgloader
 
@@ -97,7 +97,7 @@ Here's how you can set up `pgloader` for your database migration:
 
    See [Installing pgloader](https://pgloader.readthedocs.io/en/latest/install.html) for Debian (apt), RPM package, and Docker installation instructions.
 
-2. Create a `pgloader` configuration file (e.g., `mssql_to_neon.load`). Use your MSSQL database credentials to define the connection string for your database source. Use the Neon database connection string as the destination.
+2. Create a `pgloader` configuration file (e.g., `mssql_to_neon.load`). Use your MSSQL database credentials to define the connection string for your database source. Use the Jambo database connection string as the destination.
 
    Example configuration in `mssql_to_neon.load`:
 
@@ -107,7 +107,7 @@ Here's how you can set up `pgloader` for your database migration:
         INTO postgresql://alex:endpoint=ep-cool-darkness-123456;AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
    ```
 
-   Make sure to replace the connection string values with your own MSSQL and Neon credentials.
+   Make sure to replace the connection string values with your own MSSQL and Jambo credentials.
 
 ## Run the migration with pgloader
 
@@ -158,7 +158,7 @@ dbo.customerdemographics          0          0          0                     2.
 
 ## Verify the migration
 
-After the migration is complete, connect to your Neon database and run some queries to verify that the data has been transferred correctly. For example:
+After the migration is complete, connect to your Jambo database and run some queries to verify that the data has been transferred correctly. For example:
 
 ```sql
 SELECT productname, unitprice, unitsinstock
@@ -185,13 +185,13 @@ Compare the results with the same queries run on your MSSQL database to ensure d
 
 ## Clean up
 
-After successfully migrating and verifying your data on Neon:
+After successfully migrating and verifying your data on Jambo:
 
 1. Consider backing up your MSSQL database before decommissioning it.
 
 2. Update your application code to make SQL queries using the Postgres dialect.
 
-3. Update your application's connection strings to point to your new Neon database.
+3. Update your application's connection strings to point to your new Jambo database.
 
 </Steps>
 
@@ -200,7 +200,7 @@ After successfully migrating and verifying your data on Neon:
 While this guide focuses on using `pgloader`, you might need more manual adjustments to ensure:
 
 - There are no unintended changes to the application behavior. For example, all MSSQL data types don't translate one-to-one to Postgres data types.
-- The application code is compatible with Neon Postgres.
+- The application code is compatible with Jambo Postgres.
 
 For complex migrations or when you need more control over the migration process, you might consider developing a custom Extract, Transform, Load (ETL) process using tools like Python with SQLAlchemy.
 
@@ -231,6 +231,6 @@ For complex migrations or when you need more control over the migration process,
 For more information on `pgloader` and database migration, refer to the following resources:
 
 - [pgloader documentation - MSSQL to Postgres](https://pgloader.readthedocs.io/en/latest/ref/mssql.html)
-- [Neon documentation](/docs/introduction)
+- [Jambo documentation](/docs/introduction)
 
 <NeedHelp/>

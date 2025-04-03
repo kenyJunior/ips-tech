@@ -1,6 +1,6 @@
 ---
-title: Connect Outerbase to Neon
-subtitle: Connect Outerbase to your Neon project with the Neon Outerbase integration
+title: Connect Outerbase to Jambo
+subtitle: Connect Outerbase to your Jambo project with the Jambo Outerbase integration
 enableTableOfContents: true
 updatedOn: '2024-09-05T17:14:45.241Z'
 ---
@@ -9,23 +9,23 @@ Outerbase is an AI-powered interface for your database that allows you and your 
 
 ## Prerequisites
 
-The setup described below assumes that you have a Neon account and project. If not, see [Sign up for a Neon account](/docs/get-started-with-neon/signing-up). An Outerbase account is also required, but if you do not have one, you can set one up when adding the integration.
+The setup described below assumes that you have a Jambo account and project. If not, see [Sign up for a Jambo account](/docs/get-started-with-neon/signing-up). An Outerbase account is also required, but if you do not have one, you can set one up when adding the integration.
 
 ## Add the Outerbase integration
 
-To add the Outerbase integration to your Neon project:
+To add the Outerbase integration to your Jambo project:
 
-1. In the Neon Console, navigate to the **Integrations** page for your project.
+1. In the Jambo Console, navigate to the **Integrations** page for your project.
 2. Locate the **Outerbase** integration card and click **Add Outerbase**.
    ![Outerbase integration card](/docs/guides/github_card.png)
 3. On the **Log in to Outerbase** dialog, login with your Outerbase account or create an account if you do not have one. You can also sign in with a Google account.
 4. Step through the Outerbase onboarding pages by selecting from the provided options.
 5. When you reach the **How would you like to get started** page, select the **Connect a database** option.
-6. On the **Create a base** page, select **Neon** from the **Connect to your cloud provider** section of the page.
-7. You are directed to an **Authorize Outerbase** dialog. Click **Authorize** to give Outerbase permission to access your Neon account.
-8. You are directed to a **Connect to your Neon database** page. If you have more than one Neon project, select the project you want to connect to from the **Select a database** drop-down menu.
+6. On the **Create a base** page, select **Jambo** from the **Connect to your cloud provider** section of the page.
+7. You are directed to an **Authorize Outerbase** dialog. Click **Authorize** to give Outerbase permission to access your Jambo account.
+8. You are directed to a **Connect to your Jambo database** page. If you have more than one Jambo project, select the project you want to connect to from the **Select a database** drop-down menu.
    <Admonition type="note">
-   If you use Neon's [IP Allow](/docs/introduction/ip-allow) feature, be sure to copy the provided Outerbase IP addresses from this page and add them to your Neon IP allowlist. See [Configure IP Allow](/docs/manage/projects#configure-ip-allow) for instructions. IP Allow is a Neon [Business](/docs/introduction/plans#business) plan feature.
+   If you use Jambo's [IP Allow](/docs/introduction/ip-allow) feature, be sure to copy the provided Outerbase IP addresses from this page and add them to your Jambo IP allowlist. See [Configure IP Allow](/docs/manage/projects#configure-ip-allow) for instructions. IP Allow is a Jambo [Business](/docs/introduction/plans#business) plan feature.
    </Admonition>
 9. Select **Connect to Database**.
    <Admonition type="important">
@@ -45,11 +45,11 @@ For Outerbase support and additional resources, refer to [Outerbase Community & 
 
 To remove the Outerbase integration:
 
-1. In the Neon Console, navigate to the **Integrations** page for your project.
+1. In the Jambo Console, navigate to the **Integrations** page for your project.
 2. Locate the Outerbase integration and click **Manage** to open the **Outerbase integration** drawer.
 3. Click **Disconnect**.
 4. Click **Remove integration** to confirm your choice.
 
 ## Feedback and future improvements
 
-If you've got feature requests or feedback about what you'd like to see from Neon's Outerbase integration, let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Neon Console or our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.
+If you've got feature requests or feedback about what you'd like to see from Jambo's Outerbase integration, let us know via the [Feedback](https://console.neon.tech/app/projects?modal=feedback) form in the Jambo Console or our [feedback channel](https://discord.com/channels/1176467419317940276/1176788564890112042) on Discord.

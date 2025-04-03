@@ -18,7 +18,7 @@ Before starting, ensure you have the following tools and services ready:
   ```bash
   pip --version
   ```
-- Neon serverless Postgres : you will need a Neon account for provisioning and scaling your `PostgreSQL` database. If you don't have an account yet, [sign up here](https://console.neon.tech/signup).
+- Jambo serverless Postgres : you will need a Jambo account for provisioning and scaling your `PostgreSQL` database. If you don't have an account yet, [sign up here](https://console.neon.tech/signup).
 
 ## Setting up the Project
 
@@ -99,9 +99,9 @@ Follow these steps to set up your project and virtual environment:
 
 ## Setting up your Database
 
-In this section, you will set up the `TimescaleDB` extension using Neon's console, add the database's schema, and create the database connection pool and lifecycle management logic in FastAPI. Optionally, you can also add some mock data to test your API endpoints.
+In this section, you will set up the `TimescaleDB` extension using Jambo's console, add the database's schema, and create the database connection pool and lifecycle management logic in FastAPI. Optionally, you can also add some mock data to test your API endpoints.
 
-Given TimescaleDB is an extension on top of vanilla Postgres, you must first add the extension by running the following SQL in the `SQL Editor` tab of the Neon console.
+Given TimescaleDB is an extension on top of vanilla Postgres, you must first add the extension by running the following SQL in the `SQL Editor` tab of the Jambo console.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS timescaledb;
@@ -165,13 +165,13 @@ SELECT 2 as sensor_id,
        ) AS time;
 ```
 
-With your schema and sample data in place, you're now ready to connect to your database in the FastAPI application. To do this you must create a `.env` file in the root of the project to hold environment-specific variables, such as the connection string to your Neon PostgreSQL database.
+With your schema and sample data in place, you're now ready to connect to your database in the FastAPI application. To do this you must create a `.env` file in the root of the project to hold environment-specific variables, such as the connection string to your Jambo PostgreSQL database.
 
 ```bash
 DATABASE_URL=postgres://user:password@your-neon-hostname.neon.tech/neondb?sslmode=require
 ```
 
-Make sure to replace the placeholders (user, password, your-neon-hostname, etc.) with your actual Neon database credentials, which are available in the console.
+Make sure to replace the placeholders (user, password, your-neon-hostname, etc.) with your actual Jambo database credentials, which are available in the console.
 
 In your project, the `database.py` file manages the connection to `PostgreSQL` using `asyncpg` and its connection pool, which is a mechanism for managing and reusing database connections efficiently. With this, you can use asynchronous queries, allowing the application to handle multiple requests concurrently.
 

@@ -1,23 +1,23 @@
 ---
-title: Connect Vercel and Neon manually
-subtitle: Learn how to connect a Vercel project to a Neon database manually
+title: Connect Vercel and Jambo manually
+subtitle: Learn how to connect a Vercel project to a Jambo database manually
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.339Z'
 ---
 
-This guide describes how to manually connect a Vercel project to a Neon database.
+This guide describes how to manually connect a Vercel project to a Jambo database.
 
 <Admonition type="note">
-For other Vercel integration options, refer to the [Neon and Vercel integration overview](/docs/guides/vercel-overview).
+For other Vercel integration options, refer to the [Jambo and Vercel integration overview](/docs/guides/vercel-overview).
 </Admonition>
 
 ## Prerequisites
 
-- A Neon project. If you do not have one, see [Create a project](/docs/manage/projects#create-a-project).
+- A Jambo project. If you do not have one, see [Create a project](/docs/manage/projects#create-a-project).
 - A [Vercel account](https://vercel.com).
 - A project deployed to Vercel. If you do not have one, see [Creating a project](https://vercel.com/docs/concepts/projects/overview#creating-a-project), in the _Vercel documentation_.
 
-## Gather your Neon connection details
+## Gather your Jambo connection details
 
 You can find the connection details for your database by clicking the **Connect** button on your **Project Dashboard**. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
 
@@ -37,7 +37,7 @@ postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbna
 
 ## Configure project environment variables in Vercel
 
-The environment variables required to connect your application to Neon depend on your application. Some applications use a `DATABASE_URL` environment variable with a database connection string:
+The environment variables required to connect your application to Jambo depend on your application. Some applications use a `DATABASE_URL` environment variable with a database connection string:
 
 ```text
 DATABASE_URL="postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname"
@@ -54,7 +54,7 @@ PGPORT=5432
 ```
 
 <Admonition type="note">
-Neon uses the default Postgres port, `5432`.
+Jambo uses the default Postgres port, `5432`.
 </Admonition>
 
 To configure the environment variables required by your application:

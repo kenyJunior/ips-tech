@@ -43,7 +43,7 @@ const AiChatPage = async () => {
           size="1408"
         >
           <ModeToggler className="hidden shrink-0 md:flex" isAiChatPage />
-          <h1 className="sr-only">Neon AI Chat</h1>
+          <h1 className="sr-only">Jambo AI Chat</h1>
           <div className="col-span-7 col-start-2 -ml-6 flex w-full max-w-[832px] flex-1 items-center justify-center 3xl:ml-0 2xl:col-span-9 2xl:col-start-1 lg:max-w-full">
             <InkeepEmbedded />
           </div>

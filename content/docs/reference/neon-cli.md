@@ -1,13 +1,13 @@
 ---
-title: Neon CLI
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 redirectFrom:
   - /docs/reference/cli-create-app
 updatedOn: '2025-03-18T22:36:48.410Z'
 ---
 
-The Neon CLI is a command-line interface that lets you manage Neon directly from the terminal. This documentation references all commands and options available in the Neon CLI.
+The Jambo CLI is a command-line interface that lets you manage Jambo directly from the terminal. This documentation references all commands and options available in the Jambo CLI.
 
 ## Install
 
@@ -123,10 +123,10 @@ neon <command> [options]
 
 </Tabs>
 
-For more about installing, upgrading, and connecting, see [Neon CLI — Install and connect](/docs/reference/cli-install).
+For more about installing, upgrading, and connecting, see [Jambo CLI — Install and connect](/docs/reference/cli-install).
 
-<Admonition title="Use the Neon CLI without installing" type="note">
-You can run the Neon CLI without installing it using **npx** (Node Package eXecute) or the `bun` equivalent, **bunx**. For example:
+<Admonition title="Use the Jambo CLI without installing" type="note">
+You can run the Jambo CLI without installing it using **npx** (Node Package eXecute) or the `bun` equivalent, **bunx**. For example:
 
 ```shell
 # npx
@@ -193,17 +193,17 @@ Options:
 
 ## Global options
 
-Global options are supported with any Neon CLI command.
+Global options are supported with any Jambo CLI command.
 
 | Option                      | Description                                                 | Type    | Default                             |
 | :-------------------------- | :---------------------------------------------------------- | :------ | :---------------------------------- |
-| [-o, --output](#output)     | Set the Neon CLI output format (`json`, `yaml`, or `table`) | string  | table                               |
-| [--config-dir](#config-dir) | Path to the Neon CLI configuration directory                | string  | `/home/<user>/.config/neonctl`      |
-| [--api-key](#api-key)       | Neon API key                                                | string  | `NEON_API_KEY` environment variable |
+| [-o, --output](#output)     | Set the Jambo CLI output format (`json`, `yaml`, or `table`) | string  | table                               |
+| [--config-dir](#config-dir) | Path to the Jambo CLI configuration directory                | string  | `/home/<user>/.config/neonctl`      |
+| [--api-key](#api-key)       | Jambo API key                                                | string  | `NEON_API_KEY` environment variable |
 | [--color](#color)           | Colorize the output. Example: `--no-color`, `--color false` | boolean | true                                |
 | [--analytics](#analytics)   | Manage analytics                                            | boolean | true                                |
-| [-v, --version](#version)   | Show the Neon CLI version number                            | boolean | -                                   |
-| [-h, --help](#help)         | Show the Neon CLI help                                      | boolean | -                                   |
+| [-v, --version](#version)   | Show the Jambo CLI version number                            | boolean | -                                   |
+| [-h, --help](#help)         | Show the Jambo CLI help                                      | boolean | -                                   |
 
 - <a id="output"></a>`-o, --output`
 
@@ -223,7 +223,7 @@ Global options are supported with any Neon CLI command.
 
 - <a id="api-key"></a>`--api-key`
 
-  Specifies your Neon API key. You can authenticate using a Neon API key when running a Neon CLI command instead of using `neon auth`. For information about obtaining an Neon API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+  Specifies your Jambo API key. You can authenticate using a Jambo API key when running a Jambo CLI command instead of using `neon auth`. For information about obtaining an Jambo API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
 
   ```bash
   neon <command> --api-key <neon_api_key>
@@ -235,25 +235,25 @@ Global options are supported with any Neon CLI command.
   export NEON_API_KEY=<neon_api_key>
   ```
 
-  The authentication flow for the Neon CLI follows this order:
+  The authentication flow for the Jambo CLI follows this order:
 
   - If the `--api-key` option is provided, it takes precedence and is used for authentication.
   - If the `--api-key` option is not provided, the `NEON_API_KEY` environment variable is used if it is set.
   - If both `--api-key` option and `NEON_API_KEY` environment variable are not provided or set, the CLI falls back to the
     `credentials.json` file created by the `neon auth` command.
-  - If the credentials file is not found, the Neon CLI initiates the `neon auth` web authentication process.
+  - If the credentials file is not found, the Jambo CLI initiates the `neon auth` web authentication process.
 
 - <a id="color"></a>`--color`
 
-  Colorize the output. This option is enabled by default, but you can disable it by specifying `--no-color` or `--color false`, which is useful when using Neon CLI commands in your automation pipelines.
+  Colorize the output. This option is enabled by default, but you can disable it by specifying `--no-color` or `--color false`, which is useful when using Jambo CLI commands in your automation pipelines.
 
 - <a id="analytics"></a>`--analytics`
 
-  Analytics are enabled by default to gather information about the CLI commands and options that are used by our customers. This data collection assists in offering support, and allows for a better understanding of typical usage patterns so that we can improve user experience. Neon does not collect user-defined data, such as project IDs or command payloads. To opt-out of analytics data collection, specify `--no-analytics` or `--analytics false`.
+  Analytics are enabled by default to gather information about the CLI commands and options that are used by our customers. This data collection assists in offering support, and allows for a better understanding of typical usage patterns so that we can improve user experience. Jambo does not collect user-defined data, such as project IDs or command payloads. To opt-out of analytics data collection, specify `--no-analytics` or `--analytics false`.
 
 - <a id="version"></a>`-v, --version`
 
-  Shows the Neon CLI version number.
+  Shows the Jambo CLI version number.
 
   ```bash
   $ neon --version
@@ -286,8 +286,8 @@ Global options are supported with any Neon CLI command.
   neon branches list --context-file path/to/context_file_name
   ```
 
-  To define a context file, see [Neon CLI commands — set-context](/docs/reference/cli-set-context).
+  To define a context file, see [Jambo CLI commands — set-context](/docs/reference/cli-set-context).
 
 ## GitHub repository
 
-The GitHub repository for the Neon CLI is found [here](https://github.com/neondatabase/neonctl).
+The GitHub repository for the Jambo CLI is found [here](https://github.com/neondatabase/neonctl).

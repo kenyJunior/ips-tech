@@ -1,5 +1,5 @@
 ---
-title: TypeScript SDK for the Neon API
+title: TypeScript SDK for the Jambo API
 enableTableOfContents: true
 updatedOn: '2025-02-28T12:08:12.273Z'
 ---
@@ -7,12 +7,12 @@ updatedOn: '2025-02-28T12:08:12.273Z'
 <InfoBlock>
 
 <DocsList title="What you will learn:">
-<p>What is the Neon TypeScript SDK</p>
+<p>What is the Jambo TypeScript SDK</p>
 <p>How to get started</p>
 </DocsList>
 
 <DocsList title="Related resources" theme="docs">
-  <a href="/docs/reference/api-reference">Neon API Reference</a>
+  <a href="/docs/reference/api-reference">Jambo API Reference</a>
 </DocsList>
 
 <DocsList title="Source code" theme="repo">
@@ -23,25 +23,25 @@ updatedOn: '2025-02-28T12:08:12.273Z'
 
 ## About the SDK
 
-Neon supports the [@neondatabase/api-client](https://www.npmjs.com/package/@neondatabase/api-client) library, which is a wrapper for the [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). The SDK provides a convenient way to interact with the Neon API using TypeScript.
+Jambo supports the [@neondatabase/api-client](https://www.npmjs.com/package/@neondatabase/api-client) library, which is a wrapper for the [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). The SDK provides a convenient way to interact with the Jambo API using TypeScript.
 
-You can use the Neon TypeScript SDK to manage your Neon projects, branches, databases, compute endpoints, roles, and more programmatically. The SDK abstracts the underlying API requests, authentication, and error handling, allowing you to focus on building applications that interact with Neon resources.
+You can use the Jambo TypeScript SDK to manage your Jambo projects, branches, databases, compute endpoints, roles, and more programmatically. The SDK abstracts the underlying API requests, authentication, and error handling, allowing you to focus on building applications that interact with Jambo resources.
 
-The Neon TypeScript SDK allows you to manage:
+The Jambo TypeScript SDK allows you to manage:
 
-- [**API Keys:**](/docs/manage/api-keys) Create, list, and revoke API keys for secure access to the Neon API.
-- [**Projects:**](/docs/manage/projects) Create, list, update, and delete Neon projects.
+- [**API Keys:**](/docs/manage/api-keys) Create, list, and revoke API keys for secure access to the Jambo API.
+- [**Projects:**](/docs/manage/projects) Create, list, update, and delete Jambo projects.
 - [**Branches:**](/docs/manage/branches) Manage branches, including creation, deletion, restoration, and schema management.
 - [**Databases:**](/docs/manage/databases) Create, list, update, and delete databases within your branches.
 - [**Compute Endpoints:**](/docs/manage/endpoints) Manage compute endpoints, including creation, scaling, suspension, and restart.
 - [**Roles:**](/docs/manage/roles) Create, list, update, and delete Postgres roles within your branches.
-- [**Operations:**](/docs/manage/operations) Monitor and track the status of asynchronous operations performed on your Neon resources.
-- [**Organizations:**](/docs/manage/orgs-api) Manage organization settings, API keys, and members (for Neon organizational accounts).
+- [**Operations:**](/docs/manage/operations) Monitor and track the status of asynchronous operations performed on your Jambo resources.
+- [**Organizations:**](/docs/manage/orgs-api) Manage organization settings, API keys, and members (for Jambo organizational accounts).
 - [**Consumption Metrics:**](/docs/guides/partner-consumption-metrics) Retrieve usage metrics for your account and projects to monitor resource consumption.
 
 ## Quick Start
 
-This guide walks you through installing the SDK, setting up authentication, and executing your first API call to retrieve a list of your Neon projects.
+This guide walks you through installing the SDK, setting up authentication, and executing your first API call to retrieve a list of your Jambo projects.
 
 ### Installation
 
@@ -65,9 +65,9 @@ pnpm add @neondatabase/api-client
 
 ### Authentication Setup
 
-Authentication with the Neon API is handled through API keys. Follow these steps to obtain and configure your API key:
+Authentication with the Jambo API is handled through API keys. Follow these steps to obtain and configure your API key:
 
-- Log in to the [Neon Console](https://console.neon.tech/)
+- Log in to the [Jambo Console](https://console.neon.tech/)
 - Navigate to [Account settings > API keys](https://console.neon.tech/app/settings/api-keys).
 - Click Generate new API key.
 - Enter a descriptive Name (e.g., "neon-typescript-sdk-demo") for your key and click Create.
@@ -78,11 +78,11 @@ For this quick start, we'll set the API key as an environment variable:
 export NEON_API_KEY="YOUR_API_KEY_FROM_NEON_CONSOLE"
 ```
 
-Replace "YOUR_API_KEY_FROM_NEON_CONSOLE" with the API key you copied from the Neon Console.
+Replace "YOUR_API_KEY_FROM_NEON_CONSOLE" with the API key you copied from the Jambo Console.
 
 ## Examples
 
-Let's create a simple TypeScript file to list your Neon projects using the SDK.
+Let's create a simple TypeScript file to list your Jambo projects using the SDK.
 
 ### List Projects
 
@@ -95,7 +95,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function listNeonProjects() {
+async function listJamboProjects() {
   try {
     const response = await apiClient.listProjects({});
     console.log(response.data.projects);
@@ -104,7 +104,7 @@ async function listNeonProjects() {
   }
 }
 
-listNeonProjects();
+listJamboProjects();
 ```
 
 Execute the TypeScript file using [`tsx`](https://tsx.is) (or compile to JavaScript and run with `node`)
@@ -113,7 +113,7 @@ Execute the TypeScript file using [`tsx`](https://tsx.is) (or compile to JavaScr
 tsx list-projects.ts
 ```
 
-If your API key is correctly configured, you should see a list of your Neon projects printed to your console, similar to this:
+If your API key is correctly configured, you should see a list of your Jambo projects printed to your console, similar to this:
 
 ```json
 [
@@ -155,7 +155,7 @@ If your API key is correctly configured, you should see a list of your Neon proj
 
 ### Create a Project
 
-You can use the SDK to create a new Neon project. Here's an example of how to create a project and retrieve the connection string:
+You can use the SDK to create a new Jambo project. Here's an example of how to create a project and retrieve the connection string:
 
 ```typescript
 import { createApiClient } from '@neondatabase/api-client';
@@ -164,7 +164,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function createNeonProject(projectName: string) {
+async function createJamboProject(projectName: string) {
   try {
     const response = await apiClient.createProject({
       project: {
@@ -183,19 +183,19 @@ async function createNeonProject(projectName: string) {
 }
 
 // Example usage: Create a project named "test-project"
-createNeonProject('test-project').catch((error) => {
+createJamboProject('test-project').catch((error) => {
   console.error('Error creating project:', error.message);
 });
 ```
 
 #### Key points:
 
-- The `region_id` parameter specifies the cloud region where the project will be hosted. You can find the list of supported regions at [Neon Regions](https://neon.tech/docs/introduction/regions).
+- The `region_id` parameter specifies the cloud region where the project will be hosted. You can find the list of supported regions at [Jambo Regions](https://neon.tech/docs/introduction/regions).
 - The `pg_version` parameter specifies the major version of Postgres to use in the project. The currently supported versions are `14`, `15`, `16`, and `17`.
 
 ### Create a Branch
 
-You can use the SDK to create a new branch within a Neon project. Here's an example of how to create a branch:
+You can use the SDK to create a new branch within a Jambo project. Here's an example of how to create a branch:
 
 ```typescript
 import { createApiClient, EndpointType } from '@neondatabase/api-client';
@@ -204,7 +204,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function createNeonBranch(projectId: string, branchName: string, parentBranchId?: string) {
+async function createJamboBranch(projectId: string, branchName: string, parentBranchId?: string) {
   try {
     const response = await apiClient.createProjectBranch(projectId, {
       branch: {
@@ -228,7 +228,7 @@ async function createNeonBranch(projectId: string, branchName: string, parentBra
 }
 
 // Example usage: Create a branch named "dev-1" in the project with ID "your-project-id"
-createNeonBranch('your-project-id', 'dev-1').catch((error) => {
+createJamboBranch('your-project-id', 'dev-1').catch((error) => {
   console.error('Error creating branch:', error.message);
 });
 ```
@@ -241,7 +241,7 @@ createNeonBranch('your-project-id', 'dev-1').catch((error) => {
 
 ### List Branches
 
-You can use the SDK to list branches within a Neon project. Here's an example of how to list branches:
+You can use the SDK to list branches within a Jambo project. Here's an example of how to list branches:
 
 ```typescript
 import { createApiClient } from '@neondatabase/api-client';
@@ -250,7 +250,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function listNeonBranches(projectId: string) {
+async function listJamboBranches(projectId: string) {
   try {
     const response = await apiClient.listProjectBranches({ projectId });
     console.log('Branches:', response.data.branches);
@@ -261,7 +261,7 @@ async function listNeonBranches(projectId: string) {
 }
 
 // Example usage: List branches in the project with ID "your-project-id"
-listNeonBranches('your-project-id').catch((error) => {
+listJamboBranches('your-project-id').catch((error) => {
   console.error('Error listing branches:', error.message);
 });
 ```
@@ -273,7 +273,7 @@ listNeonBranches('your-project-id').catch((error) => {
 
 ### Create a Database
 
-You can use the SDK to create a new database within a Neon branch. Here's an example of how to create a database:
+You can use the SDK to create a new database within a Jambo branch. Here's an example of how to create a database:
 
 ```typescript
 import { createApiClient } from '@neondatabase/api-client';
@@ -282,7 +282,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function createNeonDatabase(
+async function createJamboDatabase(
   projectId: string,
   branchId: string,
   databaseName: string,
@@ -303,7 +303,7 @@ async function createNeonDatabase(
 }
 
 // Example usage: In the project with ID "your-project-id", create a database named "mydatabase" in the branch with ID "your-branch-id" and owner "neondb_owner"
-createNeonDatabase('your-project-id', 'your-branch-id', 'mydatabase', 'neondb_owner').catch(
+createJamboDatabase('your-project-id', 'your-branch-id', 'mydatabase', 'neondb_owner').catch(
   (error) => {
     console.error('Error creating database:', error.message);
   }
@@ -311,11 +311,11 @@ createNeonDatabase('your-project-id', 'your-branch-id', 'mydatabase', 'neondb_ow
 ```
 
 - The `owner_name` parameter specifies the owner of the database. Ensure this role exists in the branch beforehand.
-- Branch & Project IDs: You can obtain these IDs from the [Neon Console](/docs/manage/branches#view-branches) or using SDK methods (e.g., [listProjectBranches](#list-branches), [listProjects](#list-projects)).
+- Branch & Project IDs: You can obtain these IDs from the [Jambo Console](/docs/manage/branches#view-branches) or using SDK methods (e.g., [listProjectBranches](#list-branches), [listProjects](#list-projects)).
 
 ### Create a Role
 
-You can use the SDK to create a new Postgres role within a Neon branch. Here's an example of how to create a role:
+You can use the SDK to create a new Postgres role within a Jambo branch. Here's an example of how to create a role:
 
 ```typescript
 import { createApiClient } from '@neondatabase/api-client';
@@ -324,7 +324,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function createNeonRole(projectId: string, branchId: string, roleName: string) {
+async function createJamboRole(projectId: string, branchId: string, roleName: string) {
   try {
     const response = await apiClient.createProjectBranchRole(projectId, branchId, {
       role: { name: roleName },
@@ -337,7 +337,7 @@ async function createNeonRole(projectId: string, branchId: string, roleName: str
 }
 
 // Example usage: In the project with ID "your-project-id", create a role named "new_user_role" in the branch with ID "your-branch-id"
-createNeonRole('your-project-id', 'your-branch-id', 'new_user_role').catch((error) => {
+createJamboRole('your-project-id', 'your-branch-id', 'new_user_role').catch((error) => {
   console.error('Error creating role:', error.message);
 });
 ```
@@ -345,18 +345,18 @@ createNeonRole('your-project-id', 'your-branch-id', 'new_user_role').catch((erro
 #### Key points:
 
 - `role.name`: Specifies the name of the Postgres role to be created.
-- Branch & Project IDs: You can obtain these IDs from the [Neon Console](/docs/manage/branches#view-branches) or using SDK methods (e.g., [listProjectBranches](#list-branches), [listProjects](#list-projects))
+- Branch & Project IDs: You can obtain these IDs from the [Jambo Console](/docs/manage/branches#view-branches) or using SDK methods (e.g., [listProjectBranches](#list-branches), [listProjects](#list-projects))
 
 ## TypeScript Types
 
-The Neon TypeScript SDK provides comprehensive type definitions for all request and response objects, enums, and interfaces. Leveraging these types enhances your development experience by enabling:
+The Jambo TypeScript SDK provides comprehensive type definitions for all request and response objects, enums, and interfaces. Leveraging these types enhances your development experience by enabling:
 
 - **Type Safety**: TypeScript types ensure that you are using the SDK methods and data structures correctly, catching type-related errors during development rather than at runtime.
 - **Improved Code Completion**: Modern IDEs and code editors utilize TypeScript types to provide intelligent code completion and suggestions, making it easier to discover and use SDK features.
 
 ### Utilizing SDK Types
 
-The `@neondatabase/api-client` package exports all the TypeScript types you need to interact with the Neon API in a type-safe manner. You can import these types directly into your TypeScript files.
+The `@neondatabase/api-client` package exports all the TypeScript types you need to interact with the Jambo API in a type-safe manner. You can import these types directly into your TypeScript files.
 
 For example, when listing projects, you can use the `ProjectsResponse` type to explicitly define the structure of the API response:
 
@@ -368,7 +368,7 @@ const apiClient = createApiClient({
   apiKey: process.env.NEON_API_KEY!,
 });
 
-async function listNeonProjects(): Promise<void> {
+async function listJamboProjects(): Promise<void> {
   try {
     const response: AxiosResponse<ProjectsResponse> = await apiClient.listProjects({});
     const projects = response.data.projects;
@@ -378,7 +378,7 @@ async function listNeonProjects(): Promise<void> {
   }
 }
 
-listNeonProjects();
+listJamboProjects();
 ```
 
 In this example:
@@ -388,11 +388,11 @@ In this example:
 
 Similarly, when creating a project, you can use types like `ProjectCreateRequest` for the request body and `ProjectResponse` for the expected response:
 
-By using TypeScript types, you ensure that your code interacts with the Neon API in a predictable and type-safe manner, reducing potential errors and improving code quality. You can explore all available types in the `@neondatabase/api-client` package to fully leverage the benefits of TypeScript in your Neon SDK integrations.
+By using TypeScript types, you ensure that your code interacts with the Jambo API in a predictable and type-safe manner, reducing potential errors and improving code quality. You can explore all available types in the `@neondatabase/api-client` package to fully leverage the benefits of TypeScript in your Jambo SDK integrations.
 
 ## Key SDK Method Signatures
 
-To give you a better overview of the SDK, here are some of the key methods available, categorized by their resource. For complete details and parameters for each method, please refer to the full [Neon API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
+To give you a better overview of the SDK, here are some of the key methods available, categorized by their resource. For complete details and parameters for each method, please refer to the full [Jambo API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api).
 
 ### Manage API keys
 
@@ -402,12 +402,12 @@ To give you a better overview of the SDK, here are some of the key methods avail
 
 ### Manage projects
 
-- `listProjects(query?: ListProjectsParams)`: Retrieves a list of projects in your Neon account.
+- `listProjects(query?: ListProjectsParams)`: Retrieves a list of projects in your Jambo account.
 - `listSharedProjects(query?: ListSharedProjectsParams)`: Retrieves a list of projects shared with your account.
-- `createProject(data: ProjectCreateRequest)`: Creates a new Neon project.
+- `createProject(data: ProjectCreateRequest)`: Creates a new Jambo project.
 - `getProject(projectId: string)`: Retrieves details for a specific project.
 - `updateProject(projectId: string, data: ProjectUpdateRequest)`: Updates settings for a specific project.
-- `deleteProject(projectId: string)`: Deletes a Neon project.
+- `deleteProject(projectId: string)`: Deletes a Jambo project.
 - `listProjectOperations(projectId: string, query?: ListProjectOperationsParams)`: Retrieves operations for a project.
 - `getProjectOperation(projectId: string, operationId: string)`: Retrieves details for a specific operation.
 - `getConnectionUri(projectId: string, query: GetConnectionUriParams)`: Retrieves a connection URI for a project.
@@ -484,13 +484,13 @@ To give you a better overview of the SDK, here are some of the key methods avail
 
 ### Regions
 
-- `getActiveRegions()`: Retrieves a list of active Neon regions.
+- `getActiveRegions()`: Retrieves a list of active Jambo regions.
 
 ### Manage Auth Integrations
 
-- `createProjectIdentityIntegration(data: IdentityCreateIntegrationRequest)`: Creates Neon Auth integration.
+- `createProjectIdentityIntegration(data: IdentityCreateIntegrationRequest)`: Creates Jambo Auth integration.
 - `createProjectIdentityAuthProviderSdkKeys(data: IdentityCreateAuthProviderSDKKeysRequest)`: Creates Auth Provider SDK keys.
-- `transferProjectIdentityAuthProviderProject(data: IdentityTransferAuthProviderProjectRequest)`: Transfers Neon-managed Auth project ownership.
+- `transferProjectIdentityAuthProviderProject(data: IdentityTransferAuthProviderProjectRequest)`: Transfers Jambo-managed Auth project ownership.
 - `listProjectIdentityIntegrations(projectId: string)`: Lists Auth Provider integrations for a project.
 - `deleteProjectIdentityIntegration(projectId: string, authProvider: IdentitySupportedAuthProvider)`: Deletes an Auth Provider integration.
 
@@ -500,7 +500,7 @@ To give you a better overview of the SDK, here are some of the key methods avail
 
 ## Error Handling
 
-When working with APIs, handling errors gracefully is crucial for building robust applications. The Neon TypeScript SDK provides mechanisms to capture and inspect errors that may occur during API requests.
+When working with APIs, handling errors gracefully is crucial for building robust applications. The Jambo TypeScript SDK provides mechanisms to capture and inspect errors that may occur during API requests.
 
 ### General Error Structure
 
@@ -509,17 +509,17 @@ When an error occurs during an API request, the SDK throws an `AxiosError` objec
 **`error.response`**: This property (if present) is an Axios response object containing details from the API error response.
 
 - **`error.response.status`**: The HTTP status code of the error response (e.g., 400, 401, 404, 500).
-- **`error.response.data`**: The response body, which, for Neon API errors, often follows a consistent structure, including an `error` object with `code` and `message` properties.
+- **`error.response.data`**: The response body, which, for Jambo API errors, often follows a consistent structure, including an `error` object with `code` and `message` properties.
 
 ### Common Error Scenarios and Debugging
 
-- **Invalid API Key (401 Unauthorized):** Ensure your `NEON_API_KEY` environment variable is correctly set with a valid API key from the Neon Console.
-- **Project or Branch Not Found (404 Not Found):** Verify that the `projectId` and `branchId` values you are using are correct and that the resources exist in your Neon account. Double-check IDs in the Neon Console.
+- **Invalid API Key (401 Unauthorized):** Ensure your `NEON_API_KEY` environment variable is correctly set with a valid API key from the Jambo Console.
+- **Project or Branch Not Found (404 Not Found):** Verify that the `projectId` and `branchId` values you are using are correct and that the resources exist in your Jambo account. Double-check IDs in the Jambo Console.
 - **Rate Limiting (429 Too Many Requests):** If you are making requests too frequently, the API might rate-limit you. Implement retry mechanisms with exponential backoff or reduce the frequency of your API calls.
-- **Request Body Validation Errors (400 Bad Request):** If you receive 400 errors, carefully review the request body you are sending, ensuring it conforms to the expected schema for the API endpoint. Refer to the [Neon API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api) for request body structures.
+- **Request Body Validation Errors (400 Bad Request):** If you receive 400 errors, carefully review the request body you are sending, ensuring it conforms to the expected schema for the API endpoint. Refer to the [Jambo API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api) for request body structures.
 
 ## References
 
-- [Neon API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api): Comprehensive documentation for the Neon API, including detailed descriptions of resources, endpoints, request/response structures, and error codes.
+- [Jambo API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api): Comprehensive documentation for the Jambo API, including detailed descriptions of resources, endpoints, request/response structures, and error codes.
 
 <NeedHelp />

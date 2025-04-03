@@ -19,11 +19,11 @@ import vercelLineSvg from './images/vercel-line.svg';
 
 const title = 'All-Things-Branching';
 const description =
-  ' Join us Wednesday, December 7th, to learn about database branching with Neon.';
+  ' Join us Wednesday, December 7th, to learn about database branching with Jambo.';
 
 const items = [
   {
-    text: 'Branching Postgres databases with the Neon API',
+    text: 'Branching Postgres databases with the Jambo API',
     linkText: 'Read blog post',
     linkUrl: '/blog/branching-postgres-databases-with-the-neon-api/',
   },
@@ -77,7 +77,7 @@ const Branching = () => {
               />
             </div>
             <div className="relative isolate w-[940px] overflow-hidden rounded-2xl xl:w-auto md:rounded-b-none">
-              <img
+              <Image
                 className="w-full"
                 src={`data:image/svg+xml;charset=utf-8,%3Csvg width='940' height='520' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E`}
                 alt=""

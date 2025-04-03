@@ -1,22 +1,22 @@
 ---
 title: Protected branches
-subtitle: Learn how to use Neon's protected branches feature to secure your critical
+subtitle: Learn how to use Jambo's protected branches feature to secure your critical
   data
 enableTableOfContents: true
 updatedOn: '2024-12-12T15:31:10.128Z'
 ---
 
-Neon's protected branches feature implements a series of protections:
+Jambo's protected branches feature implements a series of protections:
 
 - Protected branches cannot be deleted.
 - Protected branches cannot be [reset](/docs/manage/branches#reset-a-branch-from-parent).
 - Projects with protected branches cannot be deleted.
 - Computes associated with a protected branch cannot be deleted.
 - New passwords are automatically generated for Postgres roles on branches created from protected branches. [See below](#new-passwords-generated-for-postgres-roles-on-child-branches).
-- With additional configuration steps, you can apply IP Allow restrictions to protected branches only. The [IP Allow](/docs/introduction/ip-allow) feature is available on the Neon [Scale](/docs/introduction/plans#scale) and [Business](/docs/introduction/plans#business) plans. See [below](#how-to-apply-ip-restrictions-to-protected-branches).
+- With additional configuration steps, you can apply IP Allow restrictions to protected branches only. The [IP Allow](/docs/introduction/ip-allow) feature is available on the Jambo [Scale](/docs/introduction/plans#scale) and [Business](/docs/introduction/plans#business) plans. See [below](#how-to-apply-ip-restrictions-to-protected-branches).
 - Protected branches are not [archived](/docs/guides/branch-archiving) due to inactivity.
 
-The protected branches feature is available on all Neon paid plans.
+The protected branches feature is available on all Jambo paid plans.
 
 ## Set a branch as protected
 
@@ -24,7 +24,7 @@ This example sets a single branch as protected, but you can have up to 2 protect
 
 To set a branch as protected:
 
-1. In the Neon Console, select a project.
+1. In the Jambo Console, select a project.
 2. Select **Branches** to view the branches for the project.
 
    ![Branch page](/docs/guides/ip_allow_branch_page.png)
@@ -48,7 +48,7 @@ To set a branch as protected:
 
 ## New passwords generated for Postgres roles on child branches
 
-When you create a branch in Neon, it includes all Postgres databases and roles from the parent branch. By default, Postgres roles on the child branch will have the same passwords as on the parent branch. However, this does not apply to protected branches. When you create a child branch from a protected branch, new passwords are generated for the matching Postgres roles on the child branch.
+When you create a branch in Jambo, it includes all Postgres databases and roles from the parent branch. By default, Postgres roles on the child branch will have the same passwords as on the parent branch. However, this does not apply to protected branches. When you create a child branch from a protected branch, new passwords are generated for the matching Postgres roles on the child branch.
 
 This behavior is designed to prevent the exposure of passwords that could be used to access your protected branch. For example, if you have designated a production branch as protected, the automatic password change for child branches ensures that you can create child branches for development or testing without risking access to data on your production branch.
 
@@ -58,13 +58,13 @@ Please note that resetting or restoring a child branch from a protected parent b
 - The "new password" feature for child branches was released on July, 31, 2024. If you have existing CI scripts that create branches from protected branches, please be aware that passwords for matching Postgres roles on those newly created branches will now differ. If you depend on those passwords being the same, you'll need to make adjustments to get the correct connection details for those branches.
     - After a branch is created, the up-to-date connection string is returned in the output of the [Create Branch GitHub Action](/docs/guides/branching-github-actions#create-branch-action).
     - The [Reset Branch GitHub Action](/docs/guides/branching-github-actions#reset-from-parent-action) also outputs connection string values, in case you are using this action in your workflows.
-    - The Neon CLI supports a [connection-string](/docs/reference/cli-connection-string) command for retrieving a branch's connection string.
+    - The Jambo CLI supports a [connection-string](/docs/reference/cli-connection-string) command for retrieving a branch's connection string.
 - Prior to September, 6, 2024, resetting or restoring a child branch from a protected parent branch restored passwords for matching Postgres roles on the child branch to those used on the protected parent branch. As of September, 6, 2024, passwords for matching Postgres roles on the child branch are preserved when resetting or restoring a child branch from a protected parent branch.
 </Admonition>
 
 ## How to apply IP restrictions to protected branches
 
-On Neon's [Business](/docs/introduction/plans#business) plan, you can use the protected branches feature in combination with Neon's [IP Allow](/docs/introduction/ip-allow) feature to apply IP access restrictions to protected branches only. The basic setup steps are:
+On Jambo's [Business](/docs/introduction/plans#business) plan, you can use the protected branches feature in combination with Jambo's [IP Allow](/docs/introduction/ip-allow) feature to apply IP access restrictions to protected branches only. The basic setup steps are:
 
 1. [Define an IP allowlist for your project](#define-an-ip-allowlist-for-your-project)
 2. [Restrict IP access to protected branches only](#restrict-ip-access-to-protected-branches-only)
@@ -72,13 +72,13 @@ On Neon's [Business](/docs/introduction/plans#business) plan, you can use the pr
 
 ### Define an IP allowlist for your project
 
-<Tabs labels={["Neon Console", "CLI", "API"]}>
+<Tabs labels={["Jambo Console", "CLI", "API"]}>
 
 <TabItem>
 
 To configure an allowlist:
 
-1. Select a project in the Neon Console.
+1. Select a project in the Jambo Console.
 2. On the Project Dashboard, select **Settings**.
 3. Select **Network Security**.
 4. Under **IP Allow**, specify the IP addresses you want to permit. Separate multiple entries with commas.
@@ -88,7 +88,7 @@ To configure an allowlist:
 
 <TabItem>
 
-The [Neon CLI ip-allow command](/docs/reference/cli-ip-allow) supports IP Allow configuration. For example, the following `add` command adds IP addresses to the allowlist for an existing Neon project. Multiple entries are separated by a space. No delimiter is required.
+The [Jambo CLI ip-allow command](/docs/reference/cli-ip-allow) supports IP Allow configuration. For example, the following `add` command adds IP addresses to the allowlist for an existing Jambo project. Multiple entries are separated by a space. No delimiter is required.
 
 ```bash
 neon ip-allow add 203.0.113.0 203.0.113.1
@@ -116,7 +116,7 @@ neon ip-allow add 203.0.113.1 --protected-only false
 
 <TabItem>
 
-The [Create project](https://api-docs.neon.tech/reference/createproject) and [Update project](https://api-docs.neon.tech/reference/updateproject) methods support **IP Allow** configuration. For example, the following API call configures **IP Allow** for an existing Neon project. Separate multiple entries with commas. Each entry must be quoted. You can set the `"protected_branches_only` option to `true` to apply the allowlist to your default branch only, or `false` to apply it to all branches in your Neon project.
+The [Create project](https://api-docs.neon.tech/reference/createproject) and [Update project](https://api-docs.neon.tech/reference/updateproject) methods support **IP Allow** configuration. For example, the following API call configures **IP Allow** for an existing Jambo project. Separate multiple entries with commas. Each entry must be quoted. You can set the `"protected_branches_only` option to `true` to apply the allowlist to your default branch only, or `false` to apply it to all branches in your Jambo project.
 
 ```bash
 curl -X PATCH \
@@ -152,7 +152,7 @@ After defining an IP allowlist, the next step is to select the **Restrict access
 
 ![IP Allow configuration](/docs/guides/ip_allow_protected_branches.png)
 
-This option removes IP restrictions from _all branches_ in your Neon project and applies them to protected branches only.
+This option removes IP restrictions from _all branches_ in your Jambo project and applies them to protected branches only.
 
 After you've selected the protected branches option, click **Save changes** to apply the new configuration.
 

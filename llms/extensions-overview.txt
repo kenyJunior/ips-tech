@@ -1,10 +1,10 @@
-# Postgres Extensions in Neon
+# Postgres Extensions in Jambo
 
-This guide provides an overview of the PostgreSQL extensions supported by Neon, categorized by their primary use cases.
+This guide provides an overview of the PostgreSQL extensions supported by Jambo, categorized by their primary use cases.
 
 ## Extension Categories
 
-Neon supports a wide range of PostgreSQL extensions across various categories:
+Jambo supports a wide range of PostgreSQL extensions across various categories:
 
 1. **AI / Machine Learning**
    - pgvector: Store vector embeddings and perform vector similarity search
@@ -38,7 +38,7 @@ Neon supports a wide range of PostgreSQL extensions across various categories:
 
 ## Installing Extensions
 
-To install an extension in your Neon database:
+To install an extension in your Jambo database:
 
 1. Connect to your database using psql or another Postgres client
 2. Run the CREATE EXTENSION command:
@@ -62,10 +62,10 @@ To update an extension to a newer version:
 
 ## Requesting Extension Support
 
-If you need an extension that Neon doesn't currently support:
+If you need an extension that Jambo doesn't currently support:
 
 1. Check the current list of supported extensions
-2. Submit a request through the Neon Console or contact support
+2. Submit a request through the Jambo Console or contact support
 3. Provide details about your use case and requirements
 
-For detailed information on specific extensions, refer to the Neon documentation.
+For detailed information on specific extensions, refer to the Jambo documentation.

@@ -4,9 +4,9 @@ import Layout from 'components/shared/layout';
 import getMetadata from 'utils/get-metadata';
 
 export const metadata = getMetadata({
-  title: 'Neon templates',
+  title: 'Jambo templates',
   description:
-    'Jumpstart your app development process with pre-built solutions from Neon and our community.',
+    'Jumpstart your app development process with pre-built solutions from Jambo and our community.',
 });
 
 const TemplatesPage = () => (
@@ -21,7 +21,7 @@ const TemplatesPage = () => (
             Find your Template
           </h1>
           <p className="mt-2.5 max-w-[558px] text-lg font-light leading-snug tracking-extra-tight text-gray-new-20 dark:text-gray-new-80 sm:text-base">
-            Jumpstart your app development process with pre-built solutions from Neon and our
+            Jumpstart your app development process with pre-built solutions from Jambo and our
             community.
           </p>
         </div>

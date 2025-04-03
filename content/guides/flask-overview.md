@@ -1,6 +1,6 @@
 ---
-title: Developing a Scalable Flask Application with Neon Postgres
-subtitle: Learn how to build a scalable Flask application with Neon Postgres
+title: Developing a Scalable Flask Application with Jambo Postgres
+subtitle: Learn how to build a scalable Flask application with Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-09-14T00:00:00.000Z'
@@ -9,13 +9,13 @@ updatedOn: '2024-09-14T00:00:00.000Z'
 
 Building scalable web applications requires careful planning and the right tools. Flask is a Python web framework well-suited for building small to large web applications. It provides flexibility and extensibility, making it a popular choice for developers.
 
-In this guide, we'll walk through developing a Flask application that uses Neon Postgres. We'll cover setting up the project structure, defining models, creating routes, and handling database migrations. We'll also explore frontend development using Tailwind CSS for responsive styling.
+In this guide, we'll walk through developing a Flask application that uses Jambo Postgres. We'll cover setting up the project structure, defining models, creating routes, and handling database migrations. We'll also explore frontend development using Tailwind CSS for responsive styling.
 
 ## Prerequisites
 
 - Python 3.7 or later installed
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account for Postgres hosting
+- A [Jambo](https://console.neon.tech/signup) account for Postgres hosting
 - Basic familiarity with Flask and SQLAlchemy
 
 ## Project Setup
@@ -49,7 +49,7 @@ In this guide, we'll walk through developing a Flask application that uses Neon 
    DATABASE_URL=postgresql://user:password@your-neon-host:5432/your-database
    ```
 
-   Replace `user`, `password`, `your-neon-host`, and `your-database` with your Neon Postgres credentials.
+   Replace `user`, `password`, `your-neon-host`, and `your-database` with your Jambo Postgres credentials.
 
 ## Application Structure
 
@@ -117,7 +117,7 @@ This setup initializes Flask, SQLAlchemy, and Flask-Migrate. It loads the databa
 
 Blueprints are a way to organize related routes and views in Flask applications. We will cover blueprints and routes in the next sections.
 
-To learn more about Flask-Migrate, check out the [Managing database migrations and schema changes with Flask and Neon Postgres](/guides/flask-database-migrations) guide.
+To learn more about Flask-Migrate, check out the [Managing database migrations and schema changes with Flask and Jambo Postgres](/guides/flask-database-migrations) guide.
 
 ## Model Definition
 
@@ -285,13 +285,13 @@ To integrate Tailwind CSS with Flask templates, you can follow these steps:
      <head>
        <meta charset="UTF-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <title>{% block title %}Flask Neon App{% endblock %}</title>
+       <title>{% block title %}Flask Jambo App{% endblock %}</title>
        <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}" />
      </head>
      <body class="bg-gray-100">
        <nav class="bg-blue-500 p-4 text-white">
          <div class="container mx-auto">
-           <a href="/" class="text-2xl font-bold">Flask Neon App</a>
+           <a href="/" class="text-2xl font-bold">Flask Jambo App</a>
          </div>
        </nav>
        <main class="container mx-auto mt-8">{% block content %}{% endblock %}</main>
@@ -376,7 +376,7 @@ For more advanced usage, Flask-Migrate provides additional commands:
 
 You should commit your migration files to version control so that all developers and deployment environments can maintain consistent database schemas.
 
-To learn more about managing database migrations with Flask and Neon Postgres, check out the [Managing database migrations and schema changes with Flask and Neon Postgres](/guides/flask-database-migrations) guide.
+To learn more about managing database migrations with Flask and Jambo Postgres, check out the [Managing database migrations and schema changes with Flask and Jambo Postgres](/guides/flask-database-migrations) guide.
 
 ## Scalability Considerations
 
@@ -384,16 +384,16 @@ Besides the above steps, as your Flask application grows, you can consider a few
 
 1. Connection pooling is a technique used to manage database connections efficiently. Instead of opening and closing a new connection for each database operation, a pool of reusable connections is maintained.
 
-   Neon Postgres supports connection pooling, which can significantly improve your application's performance by reducing the overhead of creating new connections.
+   Jambo Postgres supports connection pooling, which can significantly improve your application's performance by reducing the overhead of creating new connections.
 
-   To use connection pooling with Neon:
+   To use connection pooling with Jambo:
 
    ```python
    # Update your DATABASE_URL to use the pooled connection string
    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:password@pooler.address:5432/database'
    ```
 
-   Refer to the [Neon documentation on connection pooling](https://neon.tech/docs/connect/connection-pooling) for detailed instructions.
+   Refer to the [Jambo documentation on connection pooling](https://neon.tech/docs/connect/connection-pooling) for detailed instructions.
 
 2. For performance optimization, consider caching frequently accessed data. Caching reduces the load on your database and speeds up response times for users.
 
@@ -476,15 +476,15 @@ Besides the above steps, as your Flask application grows, you can consider a few
 
 ## Conclusion
 
-By following these practices, you've set up a scalable Flask application with Neon Postgres, including a responsive frontend using Tailwind CSS. This structure allows for easy expansion and maintenance as your project grows.
+By following these practices, you've set up a scalable Flask application with Jambo Postgres, including a responsive frontend using Tailwind CSS. This structure allows for easy expansion and maintenance as your project grows.
 
 As a next step, consider adding authentication, authorization, and error handling to your application. These features are essential for securing your application and providing a good user experience.
 
-You should also consider testing your application to ensure its reliability and performance. Unit tests, integration tests, and end-to-end tests can help you catch bugs early and maintain code quality. Testing your application with Neon's branching feature can help you test new features in isolation before deploying them to production.
+You should also consider testing your application to ensure its reliability and performance. Unit tests, integration tests, and end-to-end tests can help you catch bugs early and maintain code quality. Testing your application with Jambo's branching feature can help you test new features in isolation before deploying them to production.
 
 ## Additional Resources
 
 - [Flask-Migrate Documentation](https://flask-migrate.readthedocs.io/en/latest/)
 - [SQLAlchemy Migrations](https://docs.sqlalchemy.org/en/20/)
 - [Alembic Documentation](https://alembic.sqlalchemy.org/en/latest/)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

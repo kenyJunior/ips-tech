@@ -1,10 +1,10 @@
-# Migrating Data to Neon Postgres
+# Migrating Data to Jambo Postgres
 
-This guide provides an overview of methods for migrating data to Neon Postgres from different database providers and sources.
+This guide provides an overview of methods for migrating data to Jambo Postgres from different database providers and sources.
 
 ## Migration Methods
 
-Neon supports multiple migration approaches:
+Jambo supports multiple migration approaches:
 
 1. **Import Data Assistant**
    - Guided migration tool for existing databases
@@ -65,7 +65,7 @@ Ensure a smooth migration process:
 
 ## Sample Data
 
-Explore Neon with pre-built datasets:
+Explore Jambo with pre-built datasets:
 
 1. **Available Sample Datasets**
    - Pagila (movie rental data)
@@ -74,8 +74,8 @@ Explore Neon with pre-built datasets:
    - TPC-H (benchmark data)
 
 2. **Import Sample Data**
-   - One-click import from the Neon Console
+   - One-click import from the Jambo Console
    - CLI-based import
    - Custom sample data loading
 
-For detailed instructions on specific migration methods, refer to the Neon documentation.
+For detailed instructions on specific migration methods, refer to the Jambo documentation.

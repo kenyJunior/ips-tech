@@ -1,24 +1,24 @@
 ---
-title: Using Strapi CMS with Neon Postgres and Astro to build a blog
-subtitle: A step-by-step guide for building your own blog in an Astro application with Strapi CMS and Postgres powered by Neon
+title: Using Strapi CMS with Jambo Postgres and Astro to build a blog
+subtitle: A step-by-step guide for building your own blog in an Astro application with Strapi CMS and Postgres powered by Jambo
 author: rishi-raj-jain
 enableTableOfContents: true
 createdAt: '2024-06-06T00:00:00.000Z'
 updatedOn: '2024-06-06T00:00:00.000Z'
 ---
 
-In this guide, you will learn how to set up a serverless Postgres database with Neon, configure Strapi CMS with Postgres, define a blog schema, and author content using Strapi CMS. The guide also covers configuring API read permissions and building a dynamic frontend with Astro to display blog pages based on Strapi content.
+In this guide, you will learn how to set up a serverless Postgres database with Jambo, configure Strapi CMS with Postgres, define a blog schema, and author content using Strapi CMS. The guide also covers configuring API read permissions and building a dynamic frontend with Astro to display blog pages based on Strapi content.
 
 ## Prerequisites
 
 To follow the steps in this guide, you will need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 
 ## Steps
 
-- [Provisioning a serverless Postgres database powered by Neon](#provisioning-a-serverless-postgres-database-powered-by-neon)
+- [Provisioning a serverless Postgres database powered by Jambo](#provisioning-a-serverless-postgres-database-powered-by-neon)
 - [Setting up Strapi locally with Postgres](#setting-up-strapi-locally-with-postgres)
 - [Configure a blog schema in Strapi CMS](#configure-a-blog-schema-in-strapi-cms)
 - [Configure API read permissions in Strapi CMS](#configure-api-read-permissions-in-strapi-cms)
@@ -26,19 +26,19 @@ To follow the steps in this guide, you will need the following:
 - [Integrate Tailwind CSS in your Astro application](#integrate-tailwind-css-in-your-astro-application)
 - [Create dynamic blog routes in Astro](#create-dynamic-blog-routes-in-astro)
 - [Build and test your Astro application locally](#build-and-test-your-astro-application-locally)
-- [Scale-to-zero with Postgres (powered by Neon)](#scale-to-zero-with-postgres-powered-by-neon)
+- [Scale-to-zero with Postgres (powered by Jambo)](#scale-to-zero-with-postgres-powered-by-neon)
 
-## Provisioning a serverless Postgres database powered by Neon
+## Provisioning a serverless Postgres database powered by Jambo
 
-Using a serverless Postgres database powered by Neon lets you scale compute resources down to zero, which helps you save on compute costs.
+Using a serverless Postgres database powered by Jambo lets you scale compute resources down to zero, which helps you save on compute costs.
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and create a project.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and create a project.
 
 You will then be presented with a dialog that provides a connection string of your database. Enable the **Connection pooling** toggle for a pooled connection string.
 
-![Neon Connection Details](/guides/images/strapi-cms/20b94d5f-aff4-4594-b60b-3a65d4fc884c.png)
+![Jambo Connection Details](/guides/images/strapi-cms/20b94d5f-aff4-4594-b60b-3a65d4fc884c.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -47,8 +47,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmo
 - `<user>` is the database user.
 - `<password>` is the database user’s password.
 - `<endpoint_hostname>.neon.tech` is the host with `neon.tech` as the [top-level domain (TLD)](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `<port>` is the Neon port number. The default port number is 5432.
-- `<dbname>` is the name of the database. **neondb** is the default database created with each Neon project if you do not define your own.
+- `<port>` is the Jambo port number. The default port number is 5432.
+- `<dbname>` is the name of the database. **neondb** is the default database created with each Jambo project if you do not define your own.
 - `?sslmode=require` is an optional query parameter that enforces [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode for better security when connecting to the Postgres instance.
 
 Each of the above values (except `sslmode`) is used in the next step &#8212; creating a local instance of the Strapi CMS application with Postgres.
@@ -84,7 +84,7 @@ cd blog-api
 yarn develop
 ```
 
-The command `strapi develop` runs, which takes care of creating the minimal schema required by Strapi CMS in the Neon Postgres database. When the setup is complete, you will be taken to `http://localhost:1337/admin` automatically. You will need to create an account for your locally hosted Strapi CMS instance. Strapi CMS makes sure to store the credentials (and all other data) in your Neon Postgres database.
+The command `strapi develop` runs, which takes care of creating the minimal schema required by Strapi CMS in the Jambo Postgres database. When the setup is complete, you will be taken to `http://localhost:1337/admin` automatically. You will need to create an account for your locally hosted Strapi CMS instance. Strapi CMS makes sure to store the credentials (and all other data) in your Jambo Postgres database.
 
 ![](/guides/images/strapi-cms/52fbde59-04bd-4af0-9e85-5bb33694d7a5.png)
 
@@ -136,7 +136,7 @@ Click on the **Content Manager** button in the sidebar to start adding your firs
 
 ![Content Manager](/guides/images/strapi-cms/c735741c-1b1d-49f0-8f61-4ba210f799a6.png)
 
-Enter the **Title**, select the **Image**, and input the markdown associated with the blog. You are now done writing your first post in the local Strapi CMS instance. All the data is synchronized in Postgres (powered by Neon). To finish off the content creation process, click **Save** and **Publish**.
+Enter the **Title**, select the **Image**, and input the markdown associated with the blog. You are now done writing your first post in the local Strapi CMS instance. All the data is synchronized in Postgres (powered by Jambo). To finish off the content creation process, click **Save** and **Publish**.
 
 ![Create an entry](/guides/images/strapi-cms/045777e9-a898-490a-bf2b-271858e7ba6a.png)
 
@@ -318,14 +318,14 @@ To test the Astro application in action, prepare a build and run the preview ser
 npm run build && npm run preview
 ```
 
-## Scale-to-zero with Postgres (powered by Neon)
+## Scale-to-zero with Postgres (powered by Jambo)
 
-Interestingly, during the entire process of building this application, you have used Neon's **Scale-to-zero** feature which places your Postgres compute endpoint into an idle state after 5 minutes of inactivity. Click the **Operations** button in your Neon console sidebar to see when the compute was started and automatically suspended to reduce compute usage.
+Interestingly, during the entire process of building this application, you have used Jambo's **Scale-to-zero** feature which places your Postgres compute endpoint into an idle state after 5 minutes of inactivity. Click the **Operations** button in your Jambo console sidebar to see when the compute was started and automatically suspended to reduce compute usage.
 
-![Neon Monitoring page](/guides/images/strapi-cms/ee753f7d-3da8-4a4c-84c5-be7b6cdce486.png)
+![Jambo Monitoring page](/guides/images/strapi-cms/ee753f7d-3da8-4a4c-84c5-be7b6cdce486.png)
 
 ## Summary
 
-In this guide, you learned how to build a blog in an Astro application using Strapi CMS and a serverless Postgres database (powered by Neon). Additionally, you learned how to create content collections in Strapi CMS and dynamic blog routes in an Astro application.
+In this guide, you learned how to build a blog in an Astro application using Strapi CMS and a serverless Postgres database (powered by Jambo). Additionally, you learned how to create content collections in Strapi CMS and dynamic blog routes in an Astro application.
 
 <NeedHelp />

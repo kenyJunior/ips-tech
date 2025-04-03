@@ -1,6 +1,6 @@
 ---
-title: Creating a Multi-Tenant Application with Laravel and Neon
-subtitle: Learn how to build a scalable multi-tenant application using Laravel and Neon's powerful database features
+title: Creating a Multi-Tenant Application with Laravel and Jambo
+subtitle: Learn how to build a scalable multi-tenant application using Laravel and Jambo's powerful database features
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-06-30T00:00:00.000Z'
@@ -9,7 +9,7 @@ updatedOn: '2024-06-30T00:00:00.000Z'
 
 Multi-tenancy is a software architecture where a single instance of an application serves multiple tenants or clients.
 
-Each tenant's data is isolated and remains invisible to other tenants. This approach is commonly used in Software as a Service (SaaS) applications. In this tutorial, we'll build the foundation for a multi-tenant SaaS application using Laravel and Neon.
+Each tenant's data is isolated and remains invisible to other tenants. This approach is commonly used in Software as a Service (SaaS) applications. In this tutorial, we'll build the foundation for a multi-tenant SaaS application using Laravel and Jambo.
 
 By the end of this tutorial, you'll have a fully functional multi-tenant SaaS application where tenants can manage their own books, users, and settings, all while maintaining data isolation between tenants.
 
@@ -20,7 +20,7 @@ Before we start, make sure you have the following:
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
 - [Node.js](https://nodejs.org/) and npm for managing front-end assets
-- A [Neon](https://console.neon.tech/signup) account for database hosting
+- A [Jambo](https://console.neon.tech/signup) account for database hosting
 - Basic knowledge of Laravel and Livewire
 
 ## Setting up the Project
@@ -80,7 +80,7 @@ npm run dev
 
 ### Setting up the Database
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -335,7 +335,7 @@ This completes the tenant registration process. Tenants can now register and cre
 
 To verify that the registration process works, visit `http://laravel-multi-tenant-saas.test/register` and register a new tenant. After registration, you should see the success message with the tenant's domain.
 
-Next go to your Neon dashboard and verify that the new tenant's database has been created:
+Next go to your Jambo dashboard and verify that the new tenant's database has been created:
 
 ```sql
 SELECT * FROM tenants;
@@ -577,21 +577,21 @@ This will show you the user account created during the onboarding process for th
 
 ## Conclusion
 
-In this tutorial, we've built a simple multi-tenant application using Laravel and Neon. We've covered:
+In this tutorial, we've built a simple multi-tenant application using Laravel and Jambo. We've covered:
 
 1. Setting up the project and implementing multi-tenancy
 2. Creating a tenant registration process
 3. Implementing tenant onboarding
 4. Adding a tenant dashboard for individual tenants
 
-This implementation provides a foundation for building more complex SaaS applications with Laravel and Neon. You can further expand on this system by:
+This implementation provides a foundation for building more complex SaaS applications with Laravel and Jambo. You can further expand on this system by:
 
 - Adding more features to the tenant dashboard
 - Implementing billing and subscription management
 - Enhancing security with two-factor authentication
 - Adding more tenant-specific customizations
 
-Using the `stancl/tenancy` package along with Neon, each tenant will have its own database. Thanks to Neon's autoscaling feature, you can easily scale your application as you onboard more tenants.
+Using the `stancl/tenancy` package along with Jambo, each tenant will have its own database. Thanks to Jambo's autoscaling feature, you can easily scale your application as you onboard more tenants.
 
 There are other packages and tools available to help you build multi-tenant applications with Laravel. You can explore these options based on your requirements and choose the one that best fits your needs. Some of the popular packages include:
 
@@ -602,4 +602,4 @@ There are other packages and tools available to help you build multi-tenant appl
 
 - [Laravel Documentation](https://laravel.com/docs)
 - [stancl/tenancy Documentation](https://tenancyforlaravel.com/)
-- [Neon Documentation](https://neon.tech/docs/)
+- [Jambo Documentation](https://neon.tech/docs/)

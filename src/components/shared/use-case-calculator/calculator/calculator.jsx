@@ -49,8 +49,8 @@ const totalsBlock = [
     valueClassName: 'bg-variable-value-3',
   },
   {
-    name: 'inNeon',
-    title: 'Neon',
+    name: 'inJambo',
+    title: 'Jambo',
     valueClassName: 'bg-variable-value-2',
   },
   {
@@ -119,7 +119,7 @@ const Calculator = () => {
   const neonCost = useMemo(() => {
     const freeUsersStorageCost = 0.5 * derivedValues.freeUsers * neonCostParams.storageCostPerGB; // B35
     const proUsersStorageCost = 20 * derivedValues.proUsers * neonCostParams.storageCostPerGB; // B36
-    const totalNeonStorageCost = freeUsersStorageCost + proUsersStorageCost; // B37
+    const totalJamboStorageCost = freeUsersStorageCost + proUsersStorageCost; // B37
     const freeUsersComputeCost =
       4 *
       inputParams.freeUsersDbHours *
@@ -132,26 +132,26 @@ const Calculator = () => {
       neonCostParams.computeCostPerCUHour *
       derivedValues.proUsers *
       neonCostParams.cuConfigurationPro; // B39
-    const totalNeonComputeCost = freeUsersComputeCost + proUsersComputeCost; // B40
-    const totalNeonMonthlyCost = totalNeonComputeCost + totalNeonStorageCost; // B41
+    const totalJamboComputeCost = freeUsersComputeCost + proUsersComputeCost; // B40
+    const totalJamboMonthlyCost = totalJamboComputeCost + totalJamboStorageCost; // B41
 
     return {
       freeUsersStorageCost,
       proUsersStorageCost,
-      totalNeonStorageCost,
+      totalJamboStorageCost,
       freeUsersComputeCost,
       proUsersComputeCost,
-      totalNeonComputeCost,
-      totalNeonMonthlyCost,
+      totalJamboComputeCost,
+      totalJamboMonthlyCost,
     };
   }, [derivedValues, inputParams]);
 
   const totals = useMemo(() => {
     const costSavings =
-      ((rsdCost.totalRdsMonthly - neonCost.totalNeonMonthlyCost) / rsdCost.totalRdsMonthly) * 100;
+      ((rsdCost.totalRdsMonthly - neonCost.totalJamboMonthlyCost) / rsdCost.totalRdsMonthly) * 100;
     return {
       inRds: prettifiedTotal(rsdCost.totalRdsMonthly, '$'), // B10
-      inNeon: prettifiedTotal(neonCost.totalNeonMonthlyCost, '$'), // B11
+      inJambo: prettifiedTotal(neonCost.totalJamboMonthlyCost, '$'), // B11
       costSavings: prettifiedTotal(costSavings, '%', false), // F11
     };
   }, [rsdCost, neonCost]);
@@ -204,7 +204,7 @@ const Calculator = () => {
       <DashedBorder />
       <div className="relative z-10 pt-6">
         <h3 className="mb-5 text-2xl font-medium leading-snug tracking-tighter xl:text-xl sm:text-lg">
-          Monthly cost: AWS RDS vs Neon
+          Monthly cost: AWS RDS vs Jambo
         </h3>
         <div className="flex justify-between sm:flex-col sm:gap-6">
           {totalsBlock.map(({ name, title, valueClassName }) => (

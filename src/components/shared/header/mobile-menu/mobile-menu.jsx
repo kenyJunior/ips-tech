@@ -191,8 +191,8 @@ MobileMenuItem.propTypes = {
 const mobileMenuItems = [
   ...MENUS.header,
   {
-    text: 'Discord',
-    to: LINKS.discord,
+    text: 'LinkedIn',
+    to: LINKS.linkedin,
   },
 ];
 

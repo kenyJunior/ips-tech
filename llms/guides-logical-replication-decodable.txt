@@ -1,35 +1,35 @@
 # Replicate data with Decodable
 
-Learn how to replicate data from Neon with Decodable
+Learn how to replicate data from Jambo with Decodable
 
-Neon's logical replication feature allows you to replicate data from your Neon Postgres database to external destinations.
+Jambo's logical replication feature allows you to replicate data from your Jambo Postgres database to external destinations.
 
 [Decodable](https://www.decodable.co/) is a fully managed platform for ETL, ELT, and stream processing,
 powered by Apache Flink® and Debezium.
 
-In this guide, you will learn how to configure a Postgres source connector in Decodable for ingesting changes from your Neon database so that you can replicate data from Neon to any of Decodable's [supported data sinks](https://docs.decodable.co/connect/destinations.html),
+In this guide, you will learn how to configure a Postgres source connector in Decodable for ingesting changes from your Jambo database so that you can replicate data from Jambo to any of Decodable's [supported data sinks](https://docs.decodable.co/connect/destinations.html),
 optionally processing the data with SQL or custom Flink jobs.
 
 ## Prerequisites
 
 - A [Decodable account](https://www.decodable.co/) ([start free](https://app.decodable.co/-/accounts/create), no credit card required)
-- A [Neon account](https://console.neon.tech/)
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin
+- A [Jambo account](https://console.neon.tech/)
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin
 
-## Enable logical replication in Neon
-
-
-Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Neon project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Neon project, meaning active connections will be dropped and have to reconnect.
+## Enable logical replication in Jambo
 
 
-To enable logical replication in Neon:
+Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Jambo project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication also restarts all computes in your Jambo project, meaning active connections will be dropped and have to reconnect.
 
-1. Select your project in the Neon Console.
-2. On the Neon **Dashboard**, select **Settings**.
+
+To enable logical replication in Jambo:
+
+1. Select your project in the Jambo Console.
+2. On the Jambo **Dashboard**, select **Settings**.
 3. Select **Logical Replication**.
 4. Click **Enable** to enable logical replication.
 
-You can verify that logical replication is enabled by running the following query from the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
+You can verify that logical replication is enabled by running the following query from the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor):
 
 ```sql
 SHOW wal_level;
@@ -40,13 +40,13 @@ SHOW wal_level;
 
 ## Create a Postgres role for replication
 
-It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Neon project and roles created using the Neon CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
+It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Jambo project and roles created using the Jambo CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
 
 
 
 
 
-The following CLI command creates a role. To view the CLI documentation for this command, see [Neon CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
+The following CLI command creates a role. To view the CLI documentation for this command, see [Jambo CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
 
 ```bash
 neon roles create --name replication_user
@@ -56,9 +56,9 @@ neon roles create --name replication_user
 
 
 
-To create a role in the Neon Console:
+To create a role in the Jambo Console:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to create the role.
@@ -71,7 +71,7 @@ To create a role in the Neon Console:
 
 
 
-The following Neon API method creates a role. To view the API documentation for this method, refer to the [Neon API reference](/docs/reference/cli-roles).
+The following Jambo API method creates a role. To view the API documentation for this method, refer to the [Jambo API reference](/docs/reference/cli-roles).
 
 ```bash
 curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-blue-tooth-671580/roles' \
@@ -104,7 +104,7 @@ Granting `SELECT ON ALL TABLES IN SCHEMA` instead of naming the specific tables 
 ## Create a publication
 
 For each table you would like to ingest into Decodable, set its [replica identity](https://www.postgresql.org/docs/current/logical-replication-publication.html) to `FULL`.
-To do so, issue the following statement in the **Neon SQL Editor**:
+To do so, issue the following statement in the **Jambo SQL Editor**:
 
 ```sql
 ALTER TABLE  REPLICA IDENTITY FULL;
@@ -123,15 +123,15 @@ The slot's name will be prefixed with `decodable_`, followed by a unique identif
 
 ## Allow inbound traffic
 
-If you are using Neon's **IP Allow** feature to limit the IP addresses that can connect to Neon, you will need to allow inbound traffic from Decodable's IP addresses.
+If you are using Jambo's **IP Allow** feature to limit the IP addresses that can connect to Jambo, you will need to allow inbound traffic from Decodable's IP addresses.
 Refer to the [Decodable documentation](https://docs.decodable.co/reference/regions-and-ip-addresses.html#ip-addresses) for the list of IPs that need to be allowlisted for the Decodable region of your account.
-For information about configuring allowed IPs in Neon, see [Configure IP Allow](/docs/manage/projects#configure-ip-allow).
+For information about configuring allowed IPs in Jambo, see [Configure IP Allow](/docs/manage/projects#configure-ip-allow).
 
 ## Create a Postgres source connector in Decodable
 
 1. In the Decodable web UI, select **Connections** from the left navigation bar and click **New Connection**.
 2. In the connector catalog, choose **Postgres CDC** and click **Connect**.
-3. Enter the connection details for your Neon database. You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
+3. Enter the connection details for your Jambo database. You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal.
    Your connection string will look like this:
 
    ```bash shouldWrap
@@ -167,12 +167,12 @@ By clicking **Run Preview**, you can examine the change events ingested by the c
 
 ## Next steps
 
-At this point, you have a running connector, which continuously ingests changes from a Neon database into Decodable with low latency.
+At this point, you have a running connector, which continuously ingests changes from a Jambo database into Decodable with low latency.
 Next, you could set up one of the supported Decodable **sink connectors** which will propagate the data to a wide range of data stores and systems, such as Snowflake, Elasticsearch, Apache Kafka, Apache Iceberg, Amazon S3, any many more.
 
 If needed, you also can add a **processing step**, either using SQL or by deploying your own Apache Flink job,
 for instance, to filter and transform the data before propagating it to an external system.
-Of course, you also can take your processed data back to another Neon database, using the Decodable sink connector for Postgres.
+Of course, you also can take your processed data back to another Jambo database, using the Decodable sink connector for Postgres.
 
 ## References
 

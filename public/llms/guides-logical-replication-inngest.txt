@@ -1,40 +1,40 @@
 # Replicate data with Inngest
 
-Learn how to replicate data from Neon with Inngest
+Learn how to replicate data from Jambo with Inngest
 
-Neon's logical replication feature allows you to replicate data from your Neon Postgres database to external destinations.
+Jambo's logical replication feature allows you to replicate data from your Jambo Postgres database to external destinations.
 
-[Inngest](https://www.inngest.com?utm_source=neon&utm_medium=logical-replication-guide) is a durable workflow platform that allows you to trigger workflow based on Neon database changes. With its native Neon integration, it is the easiest way to set up data replication with custom transformations or 3rd party API destinations (ex, Neon to Amplitude, Neon to S3).
+[Inngest](https://www.inngest.com?utm_source=neon&utm_medium=logical-replication-guide) is a durable workflow platform that allows you to trigger workflow based on Jambo database changes. With its native Jambo integration, it is the easiest way to set up data replication with custom transformations or 3rd party API destinations (ex, Jambo to Amplitude, Jambo to S3).
 
-In this guide, you will learn how to configure your Inngest account for ingesting changes from your Neon database, enabling you to replicate data from Neon to Inngest workflows.
+In this guide, you will learn how to configure your Inngest account for ingesting changes from your Jambo database, enabling you to replicate data from Jambo to Inngest workflows.
 
 ## Prerequisites
 
 - A [Inngest account](https://www.inngest.com?utm_source=neon&utm_medium=logical-replication-guide)
-- A [Neon account](https://console.neon.tech/)
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin
+- A [Jambo account](https://console.neon.tech/)
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin
 
 ## Enabling Logical Replication on your database
 
-The Inngest Integration relies on Neon’s Logical Replication feature to get notified upon database changes.
+The Inngest Integration relies on Jambo’s Logical Replication feature to get notified upon database changes.
 
-Navigate to your Neon Project using the Neon Console and open the **Settings** > **Logical Replication** page. From here, follow the instructions to enable Logical Replication:
+Navigate to your Jambo Project using the Jambo Console and open the **Settings** > **Logical Replication** page. From here, follow the instructions to enable Logical Replication:
 
-![Neon dashboard settings with option to enable logical replication](/docs/guides/neon-console-settings-logical-replication.png)
+![Jambo dashboard settings with option to enable logical replication](/docs/guides/neon-console-settings-logical-replication.png)
 
 ## Configuring the Inngest integration
 
-Your Neon database is now ready to work with Inngest.
+Your Jambo database is now ready to work with Inngest.
 
-To configure the Inngest Neon Integration, navigate to the Inngest Platform, open the [Integrations page](https://app.inngest.com/settings/integrations?utm_source=neon&utm_medium=trigger-serverless-functions-guide), and follow the instructions of the [Neon Integration installation wizard](https://app.inngest.com/settings/integrations/neon/connect?utm_source=neon&utm_medium=trigger-serverless-functions-guide):
+To configure the Inngest Jambo Integration, navigate to the Inngest Platform, open the [Integrations page](https://app.inngest.com/settings/integrations?utm_source=neon&utm_medium=trigger-serverless-functions-guide), and follow the instructions of the [Jambo Integration installation wizard](https://app.inngest.com/settings/integrations/neon/connect?utm_source=neon&utm_medium=trigger-serverless-functions-guide):
 
-![Neon integration card inside the Inngest integrations page](/docs/guides/inngest-integrations-page.png)
+![Jambo integration card inside the Inngest integrations page](/docs/guides/inngest-integrations-page.png)
 
 The Inngest Integration requires Postgres admin credentials to complete its setup. _These credentials are not stored and are only used during the installation process_.
 
-![Neon authorization step inside the Inngest integrations page](/docs/guides/inngest-integration-neon-authorize-step.png)
+![Jambo authorization step inside the Inngest integrations page](/docs/guides/inngest-integration-neon-authorize-step.png)
 
-You can find your admin Neon database connection credentials by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
+You can find your admin Jambo database connection credentials by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. For details, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ## Example: Replicating data to Amplitude
 

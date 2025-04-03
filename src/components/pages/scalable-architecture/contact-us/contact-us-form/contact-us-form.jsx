@@ -11,9 +11,8 @@ import * as yup from 'yup';
 
 import Button from 'components/shared/button';
 import Field from 'components/shared/field';
-import Link from 'components/shared/link';
 import { FORM_STATES, HUBSPOT_CONTACT_SALES_FORM_ID } from 'constants/forms';
-import LINKS from 'constants/links';
+import { checkBlacklistEmails } from 'utils/check-blacklist-emails';
 import { doNowOrAfterSomeTime, sendHubspotFormData } from 'utils/forms';
 
 const schema = yup
@@ -22,28 +21,31 @@ const schema = yup
     email: yup
       .string()
       .email('Please enter a valid email')
-      .required('Email address is a required field'),
-    companySize: yup
-      .string()
-      .notOneOf(['hidden'], 'Please select a company size')
-      .required('Company size is a required field'),
+      .required('Email address is a required field')
+      .test(checkBlacklistEmails({ validation: { useDefaultBlockList: true } })),
+    companySize: yup.string().notOneOf(['hidden'], 'Required field'),
     message: yup.string().required('Message is a required field'),
   })
   .required();
 
-const ContactUsForm = ({ className = null }) => {
+const labelClassName = 'text-sm text-gray-new-90';
+const errorClassName = '!top-0';
+
+const ContactForm = () => {
   const [formState, setFormState] = useState(FORM_STATES.DEFAULT);
-  const [hubspotutk] = useCookie('hubspotutk');
-  const { href } = useLocation();
-  const [formError, setFormError] = useState('');
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [hubspotutk] = useCookie('hubspotutk');
+  const { href } = useLocation();
+  const [formError, setFormError] = useState('');
 
   const context = {
     hutk: hubspotutk,
@@ -92,6 +94,7 @@ const ContactUsForm = ({ className = null }) => {
       if (response.ok) {
         doNowOrAfterSomeTime(() => {
           setFormState(FORM_STATES.SUCCESS);
+          reset();
           setFormError('');
         }, loadingAnimationStartedTime);
       } else {
@@ -107,65 +110,71 @@ const ContactUsForm = ({ className = null }) => {
     }
   };
 
+  const isDisabled = formState === FORM_STATES.LOADING || formState === FORM_STATES.SUCCESS;
+
   return (
     <form
       className={clsx(
-        'relative z-10 grid gap-x-5 gap-y-6 rounded-xl border border-gray-new-10 bg-[radial-gradient(128.16%_100%_at_38.89%_0%,#18191B80_0%,#18191B4D_47.96%,#18191B00_100%)] p-9 xl:p-6 xs:p-5',
-        className
+        'relative z-10 grid gap-y-6 rounded-xl border border-gray-new-10 bg-[#020203] p-8 shadow-contact xl:gap-y-5 xl:p-[30px] lg:gap-y-6 sm:p-5',
+        'bg-[radial-gradient(131.75%_102.44%_at_16.67%_0%,_rgba(20,24,31,.5),_rgba(20,24,31,0.30)_47.96%,_rgba(20,24,31,0))]'
       )}
       method="POST"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Field
-        labelClassName="text-sm text-gray-new-90"
-        theme="transparent"
-        name="name"
-        label="Your name *"
+        name="Nom et Prénom"
+        label="Nom et Prénom *"
         autoComplete="name"
+        placeholder="David Moulli"
+        theme="transparent"
+        labelClassName={labelClassName}
+        errorClassName={errorClassName}
         error={errors.name?.message}
-        errorClassName="left-0"
-        isDisabled={formState === FORM_STATES.LOADING}
+        isDisabled={isDisabled}
         {...register('name')}
       />
       <Field
-        labelClassName="text-sm text-gray-new-90"
-        theme="transparent"
         name="email"
-        label="Email address *"
+        label="E-mail *"
         type="email"
         autoComplete="email"
-        isDisabled={formState === FORM_STATES.LOADING}
+        placeholder="info@acme.com"
+        theme="transparent"
+        labelClassName={labelClassName}
+        errorClassName={errorClassName}
+        isDisabled={isDisabled}
         error={errors.email?.message}
-        errorClassName="left-0"
         {...register('email')}
       />
-      <div className="flex space-x-6 sm:grid sm:gap-y-5 sm:space-x-0">
+      <div className="flex gap-5 xl:gap-4 md:flex-col sm:contents sm:flex-col">
         <Field
-          className="shrink-0 basis-[54%] 2xl:basis-[45%] lg:basis-[49%]"
-          labelClassName="text-sm text-gray-new-90"
-          theme="transparent"
+          className="shrink-0 basis-[55%]"
           name="companyWebsite"
-          label="Company website"
-          isDisabled={formState === FORM_STATES.LOADING}
+          label="Company Website"
+          theme="transparent"
+          labelClassName={labelClassName}
+          errorClassName={errorClassName}
+          isDisabled={isDisabled}
           {...register('companyWebsite')}
         />
         <Field
           className="grow"
-          labelClassName="text-sm text-gray-new-90"
-          theme="transparent"
           name="companySize"
-          label="Company size *"
+          label="Company Size *"
           tag="select"
           defaultValue="hidden"
-          isDisabled={formState === FORM_STATES.LOADING}
+          theme="transparent"
+          labelClassName={labelClassName}
+          errorClassName={errorClassName}
+          isDisabled={isDisabled}
           error={errors.companySize?.message}
-          errorClassName="left-0"
           {...register('companySize')}
         >
           <option value="hidden" disabled hidden>
             &nbsp;
           </option>
-          <option value="1_4">1-4 employees</option>
+          <option value="0_1">0-1 employees</option>
+          <option value="2_4">2-4 employees</option>
           <option value="5_19">5-19 employees</option>
           <option value="20_99">20-99 employees</option>
           <option value="100_499">100-499 employees</option>
@@ -173,37 +182,31 @@ const ContactUsForm = ({ className = null }) => {
         </Field>
       </div>
       <Field
-        labelClassName="text-sm text-gray-new-90"
-        inputClassName="!min-h-16 h-16"
-        theme="transparent"
         name="message"
         label="Message *"
         tag="textarea"
-        isDisabled={formState === FORM_STATES.LOADING}
+        theme="transparent"
+        labelClassName={labelClassName}
+        textareaClassName="min-h-[170px] xl:min-h-[148px]"
+        errorClassName={errorClassName}
+        isDisabled={isDisabled}
         error={errors.message?.message}
-        errorClassName="left-0"
         {...register('message')}
       />
-      <div className="relative mt-2.5 flex items-center justify-between gap-5 xl:-mt-1.5 lg:-mt-1.5 sm:flex-col">
-        <p className="text-left text-sm font-light leading-snug text-gray-new-70">
-          By submitting, you agree to{' '}
-          <Link className="pb-1" to={LINKS.privacyPolicy} theme="white-underlined" size="2xs">
-            Neon’s&nbsp;Privacy&nbsp;Policy
-          </Link>
-          .
-        </p>
+
+      <div className="relative flex items-center justify-between gap-6 xl:gap-5 lg:gap-6 sm:flex-col sm:items-start sm:gap-5">
         <Button
-          className="w-[168px] shrink-0  md:order-1 sm:mt-6 sm:w-full"
+          className="min-w-[176px] py-[15px] font-medium 2xl:text-base xl:min-w-[138px] lg:min-w-[180px] sm:w-full sm:py-[13px]"
           type="submit"
           theme="primary"
-          size="md-new"
+          size="xs"
           disabled={formState === FORM_STATES.LOADING || formState === FORM_STATES.SUCCESS}
         >
-          {formState === FORM_STATES.SUCCESS ? 'Submitted' : 'Submit'}
+          {formState === FORM_STATES.SUCCESS ? 'Sent!' : 'Submit'}
         </Button>
         {formError && (
           <span
-            className="absolute left-1/2 top-[calc(100%+0.5rem)] -translate-x-1/2 text-sm leading-none text-secondary-1"
+            className="absolute left-1/2 top-[calc(100%+1rem)] w-full -translate-x-1/2 text-sm leading-none text-secondary-1"
             data-test="error-message"
           >
             {formError}
@@ -214,8 +217,9 @@ const ContactUsForm = ({ className = null }) => {
   );
 };
 
-ContactUsForm.propTypes = {
-  className: PropTypes.string,
+ContactForm.propTypes = {
+  formState: PropTypes.oneOf(Object.values(FORM_STATES)).isRequired,
+  setFormState: PropTypes.func.isRequired,
 };
 
-export default ContactUsForm;
+export default ContactForm;

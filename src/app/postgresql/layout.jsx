@@ -6,7 +6,7 @@ import Layout from 'components/shared/layout';
 import { POSTGRESQL_BASE_PATH } from 'constants/docs';
 import { getSidebar } from 'utils/api-postgresql';
 
-const NeonPostgresLayout = async ({ children }) => {
+const JamboPostgresLayout = async ({ children }) => {
   const sidebar = await getSidebar();
 
   const customType = {
@@ -53,4 +53,4 @@ const NeonPostgresLayout = async ({ children }) => {
   );
 };
 
-export default NeonPostgresLayout;
+export default JamboPostgresLayout;

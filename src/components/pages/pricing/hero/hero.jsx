@@ -63,13 +63,13 @@ const Hero = () => {
           tag="h1"
           size="lg"
         >
-          <span>Neon Pricing</span>
+          <span>Jambo Pricing</span>
         </Heading>
         <p className="mx-auto mt-3 max-w-[680px] text-center text-xl font-light leading-snug tracking-extra-tight text-gray-new-80 xl:max-w-[560px] lg:text-lg md:text-base">
           Pricing plans that grow with you. From prototype to Enterprise.
         </p>
         <div className="relative mx-auto mt-16 xl:mt-14 xl:max-w-[644px] lg:mt-11 md:mt-9">
-          <h2 className="sr-only">Neon pricing plans</h2>
+          <h2 className="sr-only">Jambo pricing plans</h2>
           <ul className="grid-gap relative z-10 grid grid-cols-4 gap-x-8 2xl:gap-x-6 xl:grid-cols-2 lg:gap-y-4 md:grid-cols-1 md:gap-y-6">
             {plans.map(
               (

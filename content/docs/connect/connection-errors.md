@@ -8,7 +8,7 @@ redirectFrom:
 updatedOn: '2025-02-03T20:41:57.300Z'
 ---
 
-This topic describes how to resolve connection errors you may encounter when using Neon. The errors covered include:
+This topic describes how to resolve connection errors you may encounter when using Jambo. The errors covered include:
 
 - [The endpoint ID is not specified](#the-endpoint-id-is-not-specified)
 - [Password authentication failed for user](#password-authentication-failed-for-user)
@@ -26,12 +26,12 @@ This topic describes how to resolve connection errors you may encounter when usi
 - [Terminating connection due to idle-in-transaction timeout](#terminating-connection-due-to-idle-in-transaction-timeout)
 
 <Admonition type="info">
-Connection problems are sometimes related to a system issue. To check for system issues, please refer to the [Neon status page](https://neonstatus.com/).  
+Connection problems are sometimes related to a system issue. To check for system issues, please refer to the [Jambo status page](https://neonstatus.com/).  
 </Admonition>
 
 ## The endpoint ID is not specified
 
-With older clients and some native Postgres clients, you may receive the following error when attempting to connect to Neon:
+With older clients and some native Postgres clients, you may receive the following error when attempting to connect to Jambo:
 
 ```txt shouldWrap
 ERROR: The endpoint ID is not specified. Either upgrade the Postgres client library (libpq) for SNI support or pass the endpoint ID (the first part of the domain name) as a parameter: '&options=endpoint%3D'. See [https://neon.tech/sni](https://neon.tech/sni) for more information.
@@ -39,15 +39,15 @@ ERROR: The endpoint ID is not specified. Either upgrade the Postgres client libr
 
 This error occurs if your client library or application does not support the **Server Name Indication (SNI)** mechanism in TLS.
 
-Neon uses computet IDs (the first part of a Neon domain name) to route incoming connections. However, the Postgres wire protocol does not transfer domain name information, so Neon relies on the Server Name Indication (SNI) extension of the TLS protocol to do this.
+Jambo uses computet IDs (the first part of a Jambo domain name) to route incoming connections. However, the Postgres wire protocol does not transfer domain name information, so Jambo relies on the Server Name Indication (SNI) extension of the TLS protocol to do this.
 
 SNI support was added to `libpq` (the official Postgres client library) in Postgres 14, which was released in September 2021. Clients that use your system's `libpq` library should work if your Postgres version is >= 14. On Linux and macOS, you can check Postgres version by running `pg_config --version`. On Windows, check the `libpq.dll` version in your Postgres installation's `bin` directory. Right-click on the file, select **Properties** > **Details**.
 
-If a library or application upgrade does not help, there are several workarounds, described below, for providing the required domain name information when connecting to Neon.
+If a library or application upgrade does not help, there are several workarounds, described below, for providing the required domain name information when connecting to Jambo.
 
 ### A. Pass the endpoint ID as an option
 
-Neon supports a connection option named `endpoint`, which you can use to identify the compute you are connecting to. Specifically, you can add `options=endpoint%3D[endpoint_id]` as a parameter to your connection string, as shown in the example below. The `%3D` is a URL-encoded `=` sign. Replace `[endpoint_id]` with your compute's ID, which you can find in your Neon connection string. It looks similar to this: `ep-cool-darkness-123456`.
+Jambo supports a connection option named `endpoint`, which you can use to identify the compute you are connecting to. Specifically, you can add `options=endpoint%3D[endpoint_id]` as a parameter to your connection string, as shown in the example below. The `%3D` is a URL-encoded `=` sign. Replace `[endpoint_id]` with your compute's ID, which you can find in your Jambo connection string. It looks similar to this: `ep-cool-darkness-123456`.
 
 ```txt shouldWrap
 postgresql://[user]:[password]@[neon_hostname]/[dbname]?options=endpoint%3D[endpoint-id]
@@ -61,7 +61,7 @@ The `endpoint` option works if your application or library permits it to be set.
 
 ### B. Use libpq key=value syntax in the database field
 
-If your application or client is based on `libpq` but you cannot upgrade the library, such as when the library is compiled inside of a an application, you can take advantage of the fact that `libpq` permits adding options to the database name. So, in addition to the database name, you can specify the `endpoint` option, as shown below. Replace `[endpoint_id]` with your compute's endpoint ID, which you can find in your Neon connection string. It looks similar to this: `ep-cool-darkness-123456`.
+If your application or client is based on `libpq` but you cannot upgrade the library, such as when the library is compiled inside of a an application, you can take advantage of the fact that `libpq` permits adding options to the database name. So, in addition to the database name, you can specify the `endpoint` option, as shown below. Replace `[endpoint_id]` with your compute's endpoint ID, which you can find in your Jambo connection string. It looks similar to this: `ep-cool-darkness-123456`.
 
 ```txt
 dbname=neondb options=endpoint=[endpoint_id]
@@ -73,7 +73,7 @@ If your application or service uses golang Postgres clients like `pgx` and `lib/
 
 ### D. Specify the endpoint ID in the password field
 
-Another supported workaround involves specifying the endpoint ID in the password field. So, instead of specifying only your password, you provide a string consisting of the `endpoint` option and your password, separated by a semicolon (`;`) or dollar sign character (`$`), as shown in the examples below. Replace `[endpoint_id]` with your compute's endpoint ID, which you can find in your Neon connection string. It looks similar to this: `ep-cool-darkness-123456`.
+Another supported workaround involves specifying the endpoint ID in the password field. So, instead of specifying only your password, you provide a string consisting of the `endpoint` option and your password, separated by a semicolon (`;`) or dollar sign character (`$`), as shown in the examples below. Replace `[endpoint_id]` with your compute's endpoint ID, which you can find in your Jambo connection string. It looks similar to this: `ep-cool-darkness-123456`.
 
 ```txt
 endpoint=<endpoint_id>;<password>
@@ -101,7 +101,7 @@ This approach causes the authentication method to be downgraded from `scram-sha-
 
 Clients on the [list of drivers](https://wiki.postgresql.org/wiki/List_of_drivers) on the PostgreSQL community wiki that use your system's `libpq` library should work if your `libpq` version is >= 14.
 
-Neon has tested the following drivers for SNI support:
+Jambo has tested the following drivers for SNI support:
 
 | Driver            | Language   | SNI Support | Notes                                                                                                                                             |
 | ----------------- | ---------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -127,29 +127,29 @@ The following error is often the result of an incorrectly defined connection inf
 ERROR:  password authentication failed for user '<user_name>' connection to server at "ep-billowing-fun-123456.us-west-2.aws.neon.tech" (12.345.67.89), port 5432 failed: ERROR:  connection is insecure (try using `sslmode=require`)
 ```
 
-Check your connection to see if it is defined correctly. Your Neon connection string can be obtained by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. It appears similar to this:
+Check your connection to see if it is defined correctly. Your Jambo connection string can be obtained by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. It appears similar to this:
 
 ```text shouldWrap
 postgresql://[user]:[password]@[neon_hostname]/[dbname]
 ```
 
-For clients or applications that require specifying connection parameters such as user, password, and hostname separately, the values in a Neon connection string correspond to the following:
+For clients or applications that require specifying connection parameters such as user, password, and hostname separately, the values in a Jambo connection string correspond to the following:
 
 - **User**: `daniel`
 - **Password**: `f74wh99w398H`
 - **Hostname**: `ep-white-morning-123456.us-east-2.aws.neon.tech`
-- **Port number**: `5432` (Neon uses default Postgres port, `5432`, and is therefore not included in the connection string)
-- **Database name**: `neondb` (`neondb` is the ready-to-use database created with each Neon project. Your database name may differ.)
+- **Port number**: `5432` (Jambo uses default Postgres port, `5432`, and is therefore not included in the connection string)
+- **Database name**: `neondb` (`neondb` is the ready-to-use database created with each Jambo project. Your database name may differ.)
 
 If you find that your connection string is defined correctly, see the instructions regarding SNI support outlined in the preceding section: [The endpoint ID is not specified](#the-endpoint-id-is-not-specified).
 
 ## Couldn't connect to compute node
 
-This error arises when the Neon proxy, which accepts and handles connections from clients that use the Postgres protocol, fails to establish a connection with your compute. This issue sometimes occurs due to repeated connection attempts during the compute's restart phase after it has been idle due to [scale to zero](/docs/reference/glossary#scale-to-zero). The transition from an idle to an active state only takes a few hundred milliseconds.
+This error arises when the Jambo proxy, which accepts and handles connections from clients that use the Postgres protocol, fails to establish a connection with your compute. This issue sometimes occurs due to repeated connection attempts during the compute's restart phase after it has been idle due to [scale to zero](/docs/reference/glossary#scale-to-zero). The transition from an idle to an active state only takes a few hundred milliseconds.
 
 Consider these recommended steps:
 
-- Visit the [Neon status page](https://neonstatus.com/) to ensure there are no ongoing issues.
+- Visit the [Jambo status page](https://neonstatus.com/) to ensure there are no ongoing issues.
 - Pause for a short period to allow your compute to restart, then try reconnecting.
 - Try [connecting with psql](/docs/connect/query-with-psql-editor) to see if a connection can be established.
 - Review the strategies in [Connection latency and timeouts](/docs/connect/connection-latency) for avoiding connection issues due to compute startup time.
@@ -158,20 +158,20 @@ If the connection issue persists, please reach out to [Support](/docs/introducti
 
 ## Can't reach database server
 
-This error is sometimes encountered when using Prisma Client with Neon.
+This error is sometimes encountered when using Prisma Client with Jambo.
 
 ```text shouldWrap
 Error: P1001: Can't reach database server at `ep-white-thunder-826300.us-east-2.aws.neon.tech`:`5432`
 Please make sure your database server is running at `ep-white-thunder-826300.us-east-2.aws.neon.tech`:`5432`.
 ```
 
-A compute in Neon has two main states: **Active** and **Idle**. Active means that Postgres is currently running. If there are no active queries for 5 minutes, the activity monitor gracefully places the compute into an idle state to reduce compute usage.
+A compute in Jambo has two main states: **Active** and **Idle**. Active means that Postgres is currently running. If there are no active queries for 5 minutes, the activity monitor gracefully places the compute into an idle state to reduce compute usage.
 
-When you connect to an idle compute, Neon automatically activates it. Activation typically happens within a few seconds. If the error above is reported, it most likely means that the Prisma query engine timed out before your Neon compute was activated. For dealing with this connection timeout scenario, refer to the [connection timeout](/docs/guides/prisma#connection-timeouts) instructions in our Prisma documentation. Our [connection latency and timeout](/docs/connect/connection-latency) documentation may also be useful in addressing this issue.
+When you connect to an idle compute, Jambo automatically activates it. Activation typically happens within a few seconds. If the error above is reported, it most likely means that the Prisma query engine timed out before your Jambo compute was activated. For dealing with this connection timeout scenario, refer to the [connection timeout](/docs/guides/prisma#connection-timeouts) instructions in our Prisma documentation. Our [connection latency and timeout](/docs/connect/connection-latency) documentation may also be useful in addressing this issue.
 
 ## Error undefined: Database error
 
-This error is sometimes encountered when using Prisma Migrate with Neon.
+This error is sometimes encountered when using Prisma Migrate with Jambo.
 
 ```text
 Error undefined: Database error
@@ -179,13 +179,13 @@ Error querying the database: db error: ERROR: prepared statement
 "s0" already exists
 ```
 
-Prisma Migrate requires a direct connection to the database. It does not support a pooled connection with PgBouncer, which is the connection pooler used by Neon. Attempting to run Prisma Migrate commands, such as `prisma migrate dev`, with a pooled connection causes this error. To resolve this issue, please refer to our [Connection pooling with Prisma Migrate](/docs/guides/prisma#connect-pooling-with-prisma-migrate) instructions.
+Prisma Migrate requires a direct connection to the database. It does not support a pooled connection with PgBouncer, which is the connection pooler used by Jambo. Attempting to run Prisma Migrate commands, such as `prisma migrate dev`, with a pooled connection causes this error. To resolve this issue, please refer to our [Connection pooling with Prisma Migrate](/docs/guides/prisma#connect-pooling-with-prisma-migrate) instructions.
 
 ## Terminating connection due to administrator command
 
-The `terminating connection due to administrator command` error is typically encountered when running a query from a connection that has sat idle long enough for the compute to suspend due to inactivity. Neon automatically suspends a compute after 5 minutes of inactivity, by default. You can reproduce this error by connecting to your database from an application or client such as `psql`, letting the connection remain idle until the compute suspends, and then running a query from the same connection.
+The `terminating connection due to administrator command` error is typically encountered when running a query from a connection that has sat idle long enough for the compute to suspend due to inactivity. Jambo automatically suspends a compute after 5 minutes of inactivity, by default. You can reproduce this error by connecting to your database from an application or client such as `psql`, letting the connection remain idle until the compute suspends, and then running a query from the same connection.
 
-If you encounter this error, you can try adjusting the timing of your query or reestablishing the connection before running the query. Alternatively, if you are a paying user, you can disable scale to zero. For instructions, see [Configuring Scale to zero for Neon computes](/docs/guides/scale-to-zero-guide). [Neon Free Plan](/docs/introduction/plans#free-plan) users cannot disable scale to zero.
+If you encounter this error, you can try adjusting the timing of your query or reestablishing the connection before running the query. Alternatively, if you are a paying user, you can disable scale to zero. For instructions, see [Configuring Scale to zero for Jambo computes](/docs/guides/scale-to-zero-guide). [Jambo Free Plan](/docs/introduction/plans#free-plan) users cannot disable scale to zero.
 
 ## Unsupported startup parameter
 
@@ -199,13 +199,13 @@ unsupported startup parameter: <...>
 unsupported startup parameter in options: <...>
 ```
 
-The error occurs when using a pooled Neon connection string with startup options that are not supported by PgBouncer. PgBouncer allows only startup parameters it can keep track of in startup packets. These include: `client_encoding`, `datestyle`, `timezone`, `standard_conforming_strings`, and `application_name`. See **track_extra_parameters**, in the [PgBouncer documentation](https://www.pgbouncer.org/config.html#track_extra_parameters). To resolve this error, you can either remove the unsupported parameter from your connection string or use an unpooled Neon connection string. For information about pooled and unpooled connections in Neon, see [Connection pooling](/docs/connect/connection-pooling).
+The error occurs when using a pooled Jambo connection string with startup options that are not supported by PgBouncer. PgBouncer allows only startup parameters it can keep track of in startup packets. These include: `client_encoding`, `datestyle`, `timezone`, `standard_conforming_strings`, and `application_name`. See **track_extra_parameters**, in the [PgBouncer documentation](https://www.pgbouncer.org/config.html#track_extra_parameters). To resolve this error, you can either remove the unsupported parameter from your connection string or use an unpooled Jambo connection string. For information about pooled and unpooled connections in Jambo, see [Connection pooling](/docs/connect/connection-pooling).
 
 ## You have exceeded the limit of concurrently active endpoints
 
 This error can also appear as: `active endpoints limit exceeded`.
 
-Neon has a default limit of 20 concurrently active computes to protect your account from unintended usage. The compute associated with the default branch is exempt from this limit, ensuring that it is always available. When you exceed the limit, any compute associated with a non-default branch will remain suspended and you will see this error when attempting to connect to it. You can suspend computes and try again. Alternatively, if you encounter this error often, you can reach out to [Support](/docs/introduction/support) to request a limit increase.
+Jambo has a default limit of 20 concurrently active computes to protect your account from unintended usage. The compute associated with the default branch is exempt from this limit, ensuring that it is always available. When you exceed the limit, any compute associated with a non-default branch will remain suspended and you will see this error when attempting to connect to it. You can suspend computes and try again. Alternatively, if you encounter this error often, you can reach out to [Support](/docs/introduction/support) to request a limit increase.
 
 ## Remaining connection slots are reserved for roles with the SUPERUSER attribute
 
@@ -217,7 +217,7 @@ To resolve this issue, you have several options:
 - Use a larger compute, with a higher `max_connections` configuration. See [How to size your compute](/docs/manage/endpoints#how-to-size-your-compute).
 - Enable [connection pooling](/docs/connect/connection-pooling).
 
-If you are already using connection pooling, you may need to reach out to Neon Support to request a higher `default_pool_size` setting for PgBouncer. See [Neon PgBouncer configuration settings for more information](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings).
+If you are already using connection pooling, you may need to reach out to Jambo Support to request a higher `default_pool_size` setting for PgBouncer. See [Jambo PgBouncer configuration settings for more information](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings).
 
 ## Relation not found
 
@@ -225,7 +225,7 @@ This error is often encountered when attempting to set the Postgres `search_path
 
 ## Postgrex: DBConnection ConnectionError ssl send: closed
 
-Postgrex has an `:idle_interval` connection parameter that defines an interval for pinging connections after a period of inactivity. The default setting is `1000ms`. If you rely on Neon's [autosuspend](https://neon.tech/docs/introduction/auto-suspend) feature to scale your compute to zero when your database is not active, this setting will prevent that and you may encounter a `(DBConnection.ConnectionError) ssl send: closed (ecto_sql 3.12.0)` error as a result. As a workaround, you can set the interval to a higher value to allow your Neon compute to suspend. For example:
+Postgrex has an `:idle_interval` connection parameter that defines an interval for pinging connections after a period of inactivity. The default setting is `1000ms`. If you rely on Jambo's [autosuspend](https://neon.tech/docs/introduction/auto-suspend) feature to scale your compute to zero when your database is not active, this setting will prevent that and you may encounter a `(DBConnection.ConnectionError) ssl send: closed (ecto_sql 3.12.0)` error as a result. As a workaround, you can set the interval to a higher value to allow your Jambo compute to suspend. For example:
 
 ```elixir
 config :app_name, AppName.Repo
@@ -239,15 +239,15 @@ For additional details, refer to this discussion on our Discord server: [Compute
 
 ## query_wait_timeout SSL connection has been closed unexpectedly
 
-The `query_wait_timeout` setting is a PgBouncer configuration option that determines the maximum time a query can wait in the queue before being executed. Neon’s default value for this setting is **120 seconds**. If a query exceeds this timeout while in the queue, it will not be executed. For more details about this setting, refer to [Neon PgBouncer configuration settings](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings).
+The `query_wait_timeout` setting is a PgBouncer configuration option that determines the maximum time a query can wait in the queue before being executed. Jambo’s default value for this setting is **120 seconds**. If a query exceeds this timeout while in the queue, it will not be executed. For more details about this setting, refer to [Jambo PgBouncer configuration settings](/docs/connect/connection-pooling#neon-pgbouncer-configuration-settings).
 
 To avoid this error, we recommend reviewing your workload. If it includes batch processing with `UPDATE` or `INSERT` statements, review their performance. Slow queries may be the root cause. Try optimizing these queries to reduce execution time, which can help prevent them from exceeding the timeout.
 
-Alternatively, Neon can increase the `query_wait_timeout` value for you, but this is not typically recommended, as increasing the timeout can lead to higher latency or blocked queries under heavy workloads.
+Alternatively, Jambo can increase the `query_wait_timeout` value for you, but this is not typically recommended, as increasing the timeout can lead to higher latency or blocked queries under heavy workloads.
 
 ## The request could not be authorized due to an internal error
 
-This error page in the Neon Console is most often the result of attempting to access a Neon project in one browser window after you've have logged in under a different Neon user account from another browser window. The error occurs because the currently logged in Neon user account does not have access to the Neon project. To avoid this issue, ensure that you're logged in with a Neon user account that has access to the Neon project you're trying to access.
+This error page in the Jambo Console is most often the result of attempting to access a Jambo project in one browser window after you've have logged in under a different Jambo user account from another browser window. The error occurs because the currently logged in Jambo user account does not have access to the Jambo project. To avoid this issue, ensure that you're logged in with a Jambo user account that has access to the Jambo project you're trying to access.
 
 ## Terminating connection due to idle-in-transaction timeout
 

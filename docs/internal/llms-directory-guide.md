@@ -1,10 +1,10 @@
 # Adding Files to the llms.txt Directory
 
-This guide explains how to add new files to the llms.txt directory for the Neon Postgres documentation website.
+This guide explains how to add new files to the llms.txt directory for the Jambo Postgres documentation website.
 
 ## Overview
 
-The Neon website implements the [llms.txt standard](https://llmstxt.org/) to provide LLM-friendly documentation. This involves two components:
+The Jambo website implements the [llms.txt standard](https://llmstxt.org/) to provide LLM-friendly documentation. This involves two components:
 
 1. The repository files in `/llms/` directory (for version control and documentation)
 2. The public files in `/public/llms/` directory (for serving via the website)
@@ -24,16 +24,16 @@ When adding new framework or language guides to the llms.txt system, follow thes
 
 Example:
 ```markdown
-# Connect a [Framework/Language] application to Neon
+# Connect a [Framework/Language] application to Jambo
 
-This guide describes how to create a Neon project and connect to it from a [Framework/Language] application.
+This guide describes how to create a Jambo project and connect to it from a [Framework/Language] application.
 
-1. Create a Neon project
+1. Create a Jambo project
 2. Configure the connection
 
-## Create a Neon project
+## Create a Jambo project
 
-[Standard instructions for creating a Neon project]
+[Standard instructions for creating a Jambo project]
 
 ## Configure the connection
 
@@ -52,7 +52,7 @@ This guide describes how to create a Neon project and connect to it from a [Fram
 2. Add a new entry in the appropriate section (Frameworks or Languages)
 3. Follow the existing format:
    ```
-   - [Neon Frameworks - {Framework Name}](https://neon.tech/llms/frameworks-{framework-name}.txt): Brief description
+   - [Jambo Frameworks - {Framework Name}](https://neon.tech/llms/frameworks-{framework-name}.txt): Brief description
    ```
 4. Copy the updated `llms.txt` file to the public directory: `cp llms.txt public/`
 

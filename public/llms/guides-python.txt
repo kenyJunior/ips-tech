@@ -1,22 +1,22 @@
-# Connect a Python application to Neon using Psycopg
+# Connect a Python application to Jambo using Psycopg
 
-Set up a Neon project in seconds and connect from a Python application using
+Set up a Jambo project in seconds and connect from a Python application using
 
-This guide describes how to create a Neon project and connect to it from a simple Python application using [Psycopg (psycopg2)](https://pypi.org/project/psycopg2/), a popular Postgres database adapter for the Python programming language. The application connects to Neon and retrieves the current time and Postgres version.
+This guide describes how to create a Jambo project and connect to it from a simple Python application using [Psycopg (psycopg2)](https://pypi.org/project/psycopg2/), a popular Postgres database adapter for the Python programming language. The application connects to Jambo and retrieves the current time and Postgres version.
 
 To connect:
 
-1. [Create a Neon Project](#create-a-neon-project)
+1. [Create a Jambo Project](#create-a-neon-project)
 2. [Create a Python project](#create-a-python-project)
-3. [Store your Neon credentials](#store-your-neon-credentials)
+3. [Store your Jambo credentials](#store-your-neon-credentials)
 4. [Configure your Python script](#configure-your-python-script)
 5. [Test your connection](#test-your-connection)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -57,9 +57,9 @@ The project is created with a ready-to-use `neondb` database, which you will con
 
    
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project's root directory and add your Neon connection string to it.
+Add a `.env` file to your project's root directory and add your Jambo connection string to it.
 
 You can find the connection details for your database by clicking the **Connect** button on your **Project Dashboard**. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
@@ -71,7 +71,7 @@ DATABASE_URL=postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=req
 
 ## Configure your python script
 
-Add a `neon-connect.py` file to your project's root directory and add the following code. The script connects to your Neon database and retrieves the current time and Postgres version.
+Add a `neon-connect.py` file to your project's root directory and add the following code. The script connects to your Jambo database and retrieves the current time and Postgres version.
 
 
 
@@ -178,6 +178,6 @@ You can find the source code for the applications described in this guide on Git
 
 
 
-Get started with Python and Neon using asyncpg
+Get started with Python and Jambo using asyncpg
 
-Get started with Python and Neon using psycopg2
+Get started with Python and Jambo using psycopg2

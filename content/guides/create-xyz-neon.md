@@ -11,18 +11,18 @@ The landscape of application development is rapidly changing, with AI-powered to
 
 This guide will introduce you to Create and demonstrate how you can use it to make building database-backed applications incredibly easy and fast. We'll walk through creating a simple AI Image Generator, showcasing how you can go from a text prompt to a functional, full-stack application.
 
-## Create & Neon
+## Create & Jambo
 
-Create leverages Neon as the database backend for its AI-powered app development platform. This integration delivers a fully managed database solution, which is fundamental to Create's rapid app development experience. By abstracting away database complexities, Create users can concentrate solely on their application's functionality and design.
+Create leverages Jambo as the database backend for its AI-powered app development platform. This integration delivers a fully managed database solution, which is fundamental to Create's rapid app development experience. By abstracting away database complexities, Create users can concentrate solely on their application's functionality and design.
 
-This experience is immediately apparent during app creation. Neon's instant database provisioning lets users bypass database setup and and focus on developing their application. Neon operates invisibly in the background. To learn more about how Create.xyz uses Neon, see [From Idea to Full Stack App in One Conversation with Create](https://neon.tech/blog/from-idea-to-full-stack-app-in-one-conversation-with-create).
+This experience is immediately apparent during app creation. Jambo's instant database provisioning lets users bypass database setup and and focus on developing their application. Jambo operates invisibly in the background. To learn more about how Create.xyz uses Jambo, see [From Idea to Full Stack App in One Conversation with Create](https://neon.tech/blog/from-idea-to-full-stack-app-in-one-conversation-with-create).
 
 ## Prerequisites
 
 Before you start, ensure you have a **Create Account**. You can sign up for a free account at [create.xyz](https://create.xyz/). The free plan is sufficient to follow this guide.
 
 <Admonition type="important" title="Vibe Coding Ahead 😎">
-Follow this guide only if you're ready to experience the future of app development through AI-powered tools. You'll be amazed at how quickly you can build a full-stack application with Create and Neon that really works!
+Follow this guide only if you're ready to experience the future of app development through AI-powered tools. You'll be amazed at how quickly you can build a full-stack application with Create and Jambo that really works!
 </Admonition>
 
 ## Building an AI Image Generator app

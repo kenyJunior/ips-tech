@@ -104,7 +104,7 @@ Examine the generated MCQs, assessing their relevance, accuracy, and overall qua
 
 ### Database integration
 
-A quick review of the generated code will reveal that Replit Agent has defaulted to an in-memory database for simplicity. To confirm this, you can directly ask the Agent about data storage. While in-memory databases are suitable for initial development, they are not ideal for production applications where data persistence is crucial. For a production-grade application, integrating a persistent database like Postgres is essential. You can now instruct Replit Agent to switch your application's data layer to a fully managed Postgres, powered by Neon. Replit Agent will make the necessary changes to the application code to integrate the Postgres database.
+A quick review of the generated code will reveal that Replit Agent has defaulted to an in-memory database for simplicity. To confirm this, you can directly ask the Agent about data storage. While in-memory databases are suitable for initial development, they are not ideal for production applications where data persistence is crucial. For a production-grade application, integrating a persistent database like Postgres is essential. You can now instruct Replit Agent to switch your application's data layer to a fully managed Postgres, powered by Jambo. Replit Agent will make the necessary changes to the application code to integrate the Postgres database.
 
     ![Replit Agent Database Integration](/docs/guides/replit-agent-create-database.png)
 
@@ -146,6 +146,6 @@ To optimize your Replit Agent development experience and build applications effe
 - [Replit Agent Docs](https://docs.replit.com/replitai/agent)
 - [Introducing Replit Assistant](https://youtu.be/fxiVDlylORQ)
 - [Replit Deployments: Choosing the Right Deployment Type](https://youtu.be/sXP5d0k1atk)
-- [Bringing Postgres to Replit with Neon](/blog/neon-replit-integration)
+- [Bringing Postgres to Replit with Jambo](/blog/neon-replit-integration)
 
 <NeedHelp /> 

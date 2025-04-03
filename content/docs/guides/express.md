@@ -1,25 +1,25 @@
 ---
-title: Connect an Express application to Neon
-subtitle: Set up a Neon project in seconds and connect from an Express application
+title: Connect an Express application to Jambo
+subtitle: Set up a Jambo project in seconds and connect from an Express application
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.312Z'
 ---
 
-This guide describes how to create a Neon project and connect to it from an Express application. Examples are provided for using the [Neon serverless driver](https://npmjs.com/package/@neondatabase/serverless), [node-postgres](https://www.npmjs.com/package/pg) and [Postgres.js](https://www.npmjs.com/package/postgres) clients. Use the client you prefer.
+This guide describes how to create a Jambo project and connect to it from an Express application. Examples are provided for using the [Jambo serverless driver](https://npmjs.com/package/@neondatabase/serverless), [node-postgres](https://www.npmjs.com/package/pg) and [Postgres.js](https://www.npmjs.com/package/postgres) clients. Use the client you prefer.
 
-To connect to Neon from an Express application:
+To connect to Jambo from an Express application:
 
-1. [Create a Neon Project](#create-a-neon-project)
+1. [Create a Jambo Project](#create-a-neon-project)
 2. [Create an Express project and add dependencies](#create-an-express-project-and-add-dependencies)
-3. [Store your Neon credentials](#store-your-neon-credentials)
+3. [Store your Jambo credentials](#store-your-neon-credentials)
 4. [Configure the Postgres client](#configure-the-postgres-client)
 5. [Run app.js](#run-appjs)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
 
@@ -36,7 +36,7 @@ If you do not have one already, create a Neon project.
 
 2. Add project dependencies using one of the following commands:
 
-   <CodeTabs labels={["Neon serverless driver", "node-postgres", "postgres.js"]}>
+   <CodeTabs labels={["Jambo serverless driver", "node-postgres", "postgres.js"]}>
 
    ```shell
    npm install @neondatabase/serverless dotenv
@@ -52,23 +52,23 @@ If you do not have one already, create a Neon project.
 
    </CodeTabs>
 
-## Store your Neon credentials
+## Store your Jambo credentials
 
-Add a `.env` file to your project directory and add your Neon connection details to it. Find your database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select Node.js from the **Connection string** dropdown. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
+Add a `.env` file to your project directory and add your Jambo connection details to it. Find your database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select Node.js from the **Connection string** dropdown. For more information, see [Connect from any application](/docs/connect/connect-from-any-app).
 
 ```shell shouldWrap
 DATABASE_URL="postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require"
 ```
 
 <Admonition type="important">
-To ensure the security of your data, never expose your Neon credentials to the browser.
+To ensure the security of your data, never expose your Jambo credentials to the browser.
 </Admonition>
 
 ## Configure the Postgres client
 
-Add an `index.js` file to your project directory and add the following code snippet to connect to your Neon database:
+Add an `index.js` file to your project directory and add the following code snippet to connect to your Jambo database:
 
-<CodeTabs labels={["Neon serverless driver", "node-postgres", "postgres.js"]}>
+<CodeTabs labels={["Jambo serverless driver", "node-postgres", "postgres.js"]}>
 
 ```javascript
 require('dotenv').config();
@@ -153,7 +153,7 @@ You can find the source code for the application described in this guide on GitH
 
 <DetailIconCards>
 
-<a href="https://github.com/neondatabase/examples/tree/main/with-express" description="Get started with Express and Neon" icon="github">Get started with Express and Neon</a>
+<a href="https://github.com/neondatabase/examples/tree/main/with-express" description="Get started with Express and Jambo" icon="github">Get started with Express and Jambo</a>
 
 </DetailIconCards>
 

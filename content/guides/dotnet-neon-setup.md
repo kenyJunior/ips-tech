@@ -1,27 +1,27 @@
 ---
-title: Connecting .NET Applications to Neon Database
-subtitle: Learn how to connect your .NET applications to Neon's serverless Postgres database
+title: Connecting .NET Applications to Jambo Database
+subtitle: Learn how to connect your .NET applications to Jambo's serverless Postgres database
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-11-02T00:00:00.000Z'
 updatedOn: '2024-11-02T00:00:00.000Z'
 ---
 
-In this guide, we'll walk through the process of connecting a .NET application to Neon Postgres, exploring best practices for connection management and basic performance optimization.
+In this guide, we'll walk through the process of connecting a .NET application to Jambo Postgres, exploring best practices for connection management and basic performance optimization.
 
 ## Prerequisites
 
 Before we begin, make sure you have:
 
 - .NET 8.0 or later installed
-- A [Neon account](https://console.neon.tech/signup)
+- A [Jambo account](https://console.neon.tech/signup)
 - Basic familiarity with .NET development
 
-## Setting Up Your Neon Database
+## Setting Up Your Jambo Database
 
-First, let's create a Neon database that we'll connect to from our .NET application.
+First, let's create a Jambo database that we'll connect to from our .NET application.
 
-1. Log in to the [Neon Console](https://console.neon.tech)
+1. Log in to the [Jambo Console](https://console.neon.tech)
 2. Click "New Project" and follow the creation wizard
 3. Once created, you'll see your connection details. Your connection string will look like this:
 
@@ -33,18 +33,18 @@ Save these details - you'll need them when setting up your .NET application.
 
 ## Creating a Basic .NET Project
 
-Let's create a simple .NET project and add the necessary dependencies to connect to your Neon database.
+Let's create a simple .NET project and add the necessary dependencies to connect to your Jambo database.
 
 Open your terminal and run:
 
 ```bash
-dotnet new console -n NeonDemo
-cd NeonDemo
+dotnet new console -n JamboDemo
+cd JamboDemo
 ```
 
-This creates a new console application named "NeonDemo" and navigates to the project directory.
+This creates a new console application named "JamboDemo" and navigates to the project directory.
 
-The directory will contain a `NeonDemo.csproj` file, which is the project file for your application, similar to a `package.json` file in Node.js if you are coming from a JavaScript background.
+The directory will contain a `JamboDemo.csproj` file, which is the project file for your application, similar to a `package.json` file in Node.js if you are coming from a JavaScript background.
 
 Next, we need to add the required package for Postgres connectivity. We can do this using the `dotnet add package` command:
 
@@ -65,7 +65,7 @@ For local development, start by creating an `appsettings.json` file in your proj
 ```json
 {
   "ConnectionStrings": {
-    "NeonConnection": "Host=your-neon-hostname;Database=neondb;Username=your-username;Password=your-password;SSL Mode=Require;Trust Server Certificate=true"
+    "JamboConnection": "Host=your-neon-hostname;Database=neondb;Username=your-username;Password=your-password;SSL Mode=Require;Trust Server Certificate=true"
   }
 }
 ```
@@ -78,7 +78,7 @@ For production environments, it's better to use environment variables. Here's ho
 
 ```csharp
 var connectionString = Environment.GetEnvironmentVariable("NEON_CONNECTION_STRING")
-    ?? builder.Configuration.GetConnectionString("NeonConnection");
+    ?? builder.Configuration.GetConnectionString("JamboConnection");
 ```
 
 This code first checks for an environment variable, falling back to the configuration file if not found. This gives you flexibility in different environments while keeping sensitive data secure.
@@ -89,11 +89,11 @@ You can set the `NEON_CONNECTION_STRING` environment variable in your production
 
 Connection pooling helps improve performance by maintaining and reusing database connections. In many cases, too many connections can lead to performance issues, so it's important to manage them effectively.
 
-There are two levels of connection pooling available when working with Neon: [Neon's built-in connection pooling service](/docs/connect/connection-pooling) (PgBouncer) and application-side pooling through Npgsql.
+There are two levels of connection pooling available when working with Jambo: [Jambo's built-in connection pooling service](/docs/connect/connection-pooling) (PgBouncer) and application-side pooling through Npgsql.
 
-### Neon's Connection Pooling
+### Jambo's Connection Pooling
 
-Neon uses PgBouncer to provide connection pooling at the infrastructure level, supporting up to 10,000 concurrent connections. To use Neon's pooled connections, select the "Pooled connection" option in your project's connection settings. Your connection string will look like this:
+Jambo uses PgBouncer to provide connection pooling at the infrastructure level, supporting up to 10,000 concurrent connections. To use Jambo's pooled connections, select the "Pooled connection" option in your project's connection settings. Your connection string will look like this:
 
 ```
 postgres://[user]:[password]@[pooled-hostname].pool.[region].neon.tech/[dbname]?sslmode=require
@@ -103,13 +103,13 @@ However, using a pooled connection string for database migrations can be prone t
 
 ### Application-Side Pooling
 
-While Neon handles connection pooling at the infrastructure level, you can also configure Npgsql's built-in connection pooling for additional control:
+While Jambo handles connection pooling at the infrastructure level, you can also configure Npgsql's built-in connection pooling for additional control:
 
 ```csharp
 using Npgsql;
 
 var connectionStringBuilder = new NpgsqlConnectionStringBuilder(
-    builder.Configuration.GetConnectionString("NeonConnection"))
+    builder.Configuration.GetConnectionString("JamboConnection"))
 {
     MaxPoolSize = 50,               // Maximum number of connections in the pool
     MinPoolSize = 5,                // Minimum number of connections to maintain
@@ -124,16 +124,16 @@ services.AddDbContext<InventoryContext>(options =>
     options.UseNpgsql(connectionString));
 ```
 
-This code snippet configures the connection pooling settings for Npgsql. You can adjust the `MaxPoolSize`, `MinPoolSize`, `ConnectionIdleLifetime`, and other parameters to suit your application's needs. In most cases, you can rely on Neon's built-in connection pooling service for optimal performance.
+This code snippet configures the connection pooling settings for Npgsql. You can adjust the `MaxPoolSize`, `MinPoolSize`, `ConnectionIdleLifetime`, and other parameters to suit your application's needs. In most cases, you can rely on Jambo's built-in connection pooling service for optimal performance.
 
 ### PgBouncer vs Application-Side Pooling
 
 Both pooling methods have their advantages, this is also valid for other frameworks and languages:
 
-- **Neon's PgBouncer**: Handles connection pooling at the infrastructure level, reducing overhead and managing connections efficiently across multiple application instances.
+- **Jambo's PgBouncer**: Handles connection pooling at the infrastructure level, reducing overhead and managing connections efficiently across multiple application instances.
 - **Npgsql Pooling**: Provides fine-grained control at the application level and can be useful for specific application requirements.
 
-For most applications, using Neon's connection pooling service is sufficient. You can consider configuring application-side pooling if you have specific requirements or need additional control over connection management.
+For most applications, using Jambo's connection pooling service is sufficient. You can consider configuring application-side pooling if you have specific requirements or need additional control over connection management.
 
 As mentioned earlier, when performing database migrations, it's recommended to use a direct connection to avoid potential issues with pooled connections.
 
@@ -220,7 +220,7 @@ Eager loading fetches related entities in a single query, while explicit loading
 
 ## Best Practices
 
-When working with Neon in your .NET applications, and any database in general, it's important to carefully consider best practices for connection management, error handling, and security.
+When working with Jambo in your .NET applications, and any database in general, it's important to carefully consider best practices for connection management, error handling, and security.
 
 ### Proper Connection Management
 
@@ -280,13 +280,13 @@ public async Task<User> GetUserByIdAsync(int id)
 
 ## Monitoring Database Performance
 
-Neon provides built-in monitoring capabilities, which you can complement with application-side monitoring in your .NET application.
+Jambo provides built-in monitoring capabilities, which you can complement with application-side monitoring in your .NET application.
 
-### Using Neon's Monitoring Dashboard
+### Using Jambo's Monitoring Dashboard
 
-The Neon Console includes a [monitoring dashboard](/docs/introduction/monitoring) that provides real-time insights into your database's performance. You can access it from the sidebar in the Neon Console and view some key metrics like CPU usage, memory, IOPS, and more.
+The Jambo Console includes a [monitoring dashboard](/docs/introduction/monitoring) that provides real-time insights into your database's performance. You can access it from the sidebar in the Jambo Console and view some key metrics like CPU usage, memory, IOPS, and more.
 
-Your Neon plan determines the range of metrics and historical data available. The monitoring dashboard makes it easy to identify performance trends and potential issues before they impact your application. Regular monitoring of these metrics helps you make informed decisions about scaling and optimization.
+Your Jambo plan determines the range of metrics and historical data available. The monitoring dashboard makes it easy to identify performance trends and potential issues before they impact your application. Regular monitoring of these metrics helps you make informed decisions about scaling and optimization.
 
 ### The pg_stat_statements extension
 
@@ -294,13 +294,13 @@ In addition to the monitoring dashboard, you can use the `pg_stat_statements` ex
 
 You can check out the [pg_stat_statements documentation](/docs/extensions/pg_stat_statements) for more information on how to enable and use this extension.
 
-This is very useful for identifying performance bottlenecks and optimizing your database queries. For example, once you identify slow queries, you can use tools like `EXPLAIN` to analyze query plans and then consider adding indexes or rewriting queries to improve performance. For more information, read the [Performance tips for Neon Postgres](/blog/performance-tips-for-neon-postgres) blog post.
+This is very useful for identifying performance bottlenecks and optimizing your database queries. For example, once you identify slow queries, you can use tools like `EXPLAIN` to analyze query plans and then consider adding indexes or rewriting queries to improve performance. For more information, read the [Performance tips for Jambo Postgres](/blog/performance-tips-for-neon-postgres) blog post.
 
 ### Application-Side Monitoring
 
-Beyond Neon's monitoring capabilities, you can also implement application-side monitoring in your .NET application to track database operations and performance.
+Beyond Jambo's monitoring capabilities, you can also implement application-side monitoring in your .NET application to track database operations and performance.
 
-You can use the built-in health checks feature in ASP.NET Core to monitor database connectivity and performance. Here's an example of adding health checks for a Neon database:
+You can use the built-in health checks feature in ASP.NET Core to monitor database connectivity and performance. Here's an example of adding health checks for a Jambo database:
 
 ```csharp
 // Add health checks for database monitoring
@@ -359,13 +359,13 @@ For more information on logging and monitoring in .NET applications, check out t
 
 ## Conclusion
 
-You now have the foundational knowledge needed to connect your .NET application to Neon Postgres. We've covered the basics of setting up connections, implementing pooling, and following best practices for performance and security.
+You now have the foundational knowledge needed to connect your .NET application to Jambo Postgres. We've covered the basics of setting up connections, implementing pooling, and following best practices for performance and security.
 
-As a next step, consider checking out the [Building ASP.NET Core Applications with Neon and Entity Framework Core](/guides/dotnet-neon-entity-framework) guide for a more detailed example of integrating Neon with Entity Framework Core.
+As a next step, consider checking out the [Building ASP.NET Core Applications with Jambo and Entity Framework Core](/guides/dotnet-neon-entity-framework) guide for a more detailed example of integrating Jambo with Entity Framework Core.
 
 For more information, check out:
 
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Npgsql Documentation](https://www.npgsql.org/doc/index.html)
 - [Entity Framework Core Documentation](https://docs.microsoft.com/en-us/ef/core/)
 

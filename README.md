@@ -1,4 +1,4 @@
-# Neon Next.js
+# Jambo Next.js
 
 ## Table of Contents
 

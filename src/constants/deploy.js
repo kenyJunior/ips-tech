@@ -10,14 +10,14 @@ import nikitaShamgunov from 'images/pages/about/leadership/nikita-shamgunov.jpg'
 const DEPLOY_AGENDA = [
   {
     event: 'Keynote - Learn about the latest new features and improvements we released',
-    company: 'Neon',
+    company: 'Jambo',
     time: '10:05 AM',
     speaker: { name: 'Nikita Shamgunov', role: 'CEO', avatar: nikitaShamgunov },
     timestamp: '300',
   },
   {
     event: 'Demo #1 - New Feature',
-    company: 'Neon',
+    company: 'Jambo',
     time: '10:19 AM',
     speaker: {
       name: 'David Gomes',
@@ -31,7 +31,7 @@ const DEPLOY_AGENDA = [
   },
   {
     event: 'Demo #2 - New Postgres Extension',
-    company: 'Neon',
+    company: 'Jambo',
     time: '10:28 AM',
     speaker: {
       name: 'George MacKerron',
@@ -57,8 +57,8 @@ const DEPLOY_AGENDA = [
     timestamp: '2340',
   },
   {
-    event: "What's new in Neon? Feature recap since GA",
-    company: 'Neon',
+    event: "What's new in Jambo? Feature recap since GA",
+    company: 'Jambo',
     time: '10:44 AM',
     speaker: {
       name: 'Anna Stepanyan',
@@ -71,7 +71,7 @@ const DEPLOY_AGENDA = [
   },
   {
     event: 'Performance improvements in Postgres 17',
-    company: 'Neon',
+    company: 'Jambo',
     time: '10:47 AM',
     speaker: {
       name: 'Heikki Linnakangas',
@@ -83,8 +83,8 @@ const DEPLOY_AGENDA = [
     timestamp: '2820',
   },
   {
-    event: "How Neon's Autoscaling works",
-    company: 'Neon',
+    event: "How Jambo's Autoscaling works",
+    company: 'Jambo',
     time: '10:50 AM',
     speaker: {
       name: 'Em Sharnoff',
@@ -97,8 +97,8 @@ const DEPLOY_AGENDA = [
   },
   {
     event: 'Postgres for AI agents and GitHub Copilot',
-    description: 'Learn why Postgres on Neon is a perfect match for AI coding agents.',
-    company: 'Neon',
+    description: 'Learn why Postgres on Jambo is a perfect match for AI coding agents.',
+    company: 'Jambo',
     time: '10:54 AM',
     speaker: {
       name: 'Mahmoud Abdelwahab',

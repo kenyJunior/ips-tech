@@ -1,13 +1,13 @@
 ---
-title: Setting up GitHub Codespaces with Neon Database Branching for Pull Requests
-subtitle: Learn how to create separate development environments for each pull request using GitHub Codespaces and Neon's Postgres branching
+title: Setting up GitHub Codespaces with Jambo Database Branching for Pull Requests
+subtitle: Learn how to create separate development environments for each pull request using GitHub Codespaces and Jambo's Postgres branching
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-08-18T00:00:00.000Z'
 updatedOn: '2024-08-18T00:00:00.000Z'
 ---
 
-When working on a team project, it's useful to have separate environments for each new feature or bug fix. This helps prevent conflicts and makes it easier to test changes. In this guide, we'll show you how to set up a process that creates a new development environment for each pull request. We'll use GitHub Codespaces for the coding environment and Neon's Postgres branching for the database.
+When working on a team project, it's useful to have separate environments for each new feature or bug fix. This helps prevent conflicts and makes it easier to test changes. In this guide, we'll show you how to set up a process that creates a new development environment for each pull request. We'll use GitHub Codespaces for the coding environment and Jambo's Postgres branching for the database.
 
 By the end of this guide, you'll have a setup that automatically creates a new Codespace and a new database branch for each pull request. This means each change can be tested separately, making it easier to find and fix problems.
 
@@ -16,8 +16,8 @@ By the end of this guide, you'll have a setup that automatically creates a new C
 Before we start, make sure you have:
 
 - A GitHub account that can use Codespaces
-- A [Neon](https://console.neon.tech/signup) account and project
-- A Neon API key (you can learn how to get one [here](/docs/manage/api-keys#create-an-api-key))
+- A [Jambo](https://console.neon.tech/signup) account and project
+- A Jambo API key (you can learn how to get one [here](/docs/manage/api-keys#create-an-api-key))
 - Basic knowledge of Git, GitHub Actions, and CI/CD
 
 ## Creating a new project
@@ -98,11 +98,11 @@ This file tells GitHub Codespaces how to set up the development environment. Her
 - `"postCreateCommand"`: This runs commands after the Codespace is created. It installs PHP dependencies, generates an application key, and runs a setup script for the database.
 - `"features"`: This adds Node.js to the environment.
 
-## Setting up Neon Postgres
+## Setting up Jambo Postgres
 
-Now let's connect our project to a Neon Postgres database.
+Now let's connect our project to a Jambo Postgres database.
 
-1. Go to the [Neon Console](https://console.neon.tech) and create a new project.
+1. Go to the [Jambo Console](https://console.neon.tech) and create a new project.
 
 2. After creating the project, you'll see a connection string. Copy the details as you'll need them later.
 
@@ -117,7 +117,7 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Replace the placeholders with the details from your Neon connection string.
+Replace the placeholders with the details from your Jambo connection string.
 
 4. Run the database migrations:
 
@@ -125,18 +125,18 @@ Replace the placeholders with the details from your Neon connection string.
 php artisan migrate
 ```
 
-This command creates the necessary tables in your Neon database.
+This command creates the necessary tables in your Jambo database.
 
-## Setting up GitHub Actions for Neon Branching
+## Setting up GitHub Actions for Jambo Branching
 
-Now we'll set up GitHub Actions to create and delete Neon database branches automatically. First, we need to add your Neon API key to your GitHub repository:
+Now we'll set up GitHub Actions to create and delete Jambo database branches automatically. First, we need to add your Jambo API key to your GitHub repository:
 
 1. In your GitHub repository, go to "Settings", then "Secrets and variables", then "Actions".
 2. Click "New repository secret".
-3. Name it `NEON_API_KEY` and paste your [Neon API key](/docs/manage/api-keys#create-an-api-key) as the value.
+3. Name it `NEON_API_KEY` and paste your [Jambo API key](/docs/manage/api-keys#create-an-api-key) as the value.
 4. Click "Add secret".
 
-Next, we'll create two GitHub Actions workflows: one to create a new Neon branch when a pull request is opened, and another to delete the branch when the pull request is closed.
+Next, we'll create two GitHub Actions workflows: one to create a new Jambo branch when a pull request is opened, and another to delete the branch when the pull request is closed.
 
 ### Workflow to Create a Branch
 
@@ -149,7 +149,7 @@ mkdir -p .github/workflows
 Then create a file in this directory called `create-neon-branch.yml` with the following content:
 
 ```yaml
-name: Create Neon Branch
+name: Create Jambo Branch
 
 on:
   pull_request:
@@ -170,12 +170,12 @@ jobs:
       - run: echo ${{ steps.create-branch.outputs.branch_id }}
 ```
 
-Replace `your-neon-project-id` and `your-database-username` with your actual Neon project ID and database username.
+Replace `your-neon-project-id` and `your-database-username` with your actual Jambo project ID and database username.
 
 This workflow does the following:
 
 - It runs when a pull request is opened or reopened thanks to the `on` section.
-- It uses Neon's official action to create a new database branch.
+- It uses Jambo's official action to create a new database branch.
 - The branch name is based on the pull request number.
 - It outputs the new branch's database URL and ID.
 
@@ -186,7 +186,7 @@ With the workflow to create a branch set up, let's create another one to delete 
 Create another file at `.github/workflows/delete-neon-branch.yml`:
 
 ```yaml
-name: Delete Neon Branch
+name: Delete Jambo Branch
 
 on:
   pull_request:
@@ -203,14 +203,14 @@ jobs:
           api_key: ${{ secrets.NEON_API_KEY }}
 ```
 
-Again, replace `your-neon-project-id` with your actual Neon project ID.
+Again, replace `your-neon-project-id` with your actual Jambo project ID.
 
 This workflow:
 
 - Runs when a pull request is closed.
-- Uses Neon's action to delete the database branch associated with the pull request.
+- Uses Jambo's action to delete the database branch associated with the pull request.
 
-## Configuring Codespaces to Use Neon Branches
+## Configuring Codespaces to Use Jambo Branches
 
 Now we need to tell Codespaces how to connect to the right database branch. Create a file called `setup-db.sh` in the `.devcontainer` directory:
 
@@ -223,7 +223,7 @@ if [ -n "$PR_NUMBER" ]; then
     BRANCH_NAME="pr-$PR_NUMBER"
 
     # Use GitHub CLI to get the branch details
-    BRANCH_DETAILS=$(gh api /repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs -H "Accept: application/vnd.github.v3+json" | jq -r '.jobs[] | select(.name == "create-branch") | .steps[] | select(.name == "Create Neon Branch") | .outputs.db_url')
+    BRANCH_DETAILS=$(gh api /repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs -H "Accept: application/vnd.github.v3+json" | jq -r '.jobs[] | select(.name == "create-branch") | .steps[] | select(.name == "Create Jambo Branch") | .outputs.db_url')
 
     if [ -n "$BRANCH_DETAILS" ]; then
         # Parse the connection string
@@ -292,11 +292,11 @@ With everything set up, here's how you would use this in your development proces
    - Click "Create pull request"
    - Fill in the title and description, then click "Create pull request"
 
-3. GitHub Actions will automatically create a new Neon database branch for your pull request:
+3. GitHub Actions will automatically create a new Jambo database branch for your pull request:
 
    - This happens automatically when the pull request is opened
    - You can check the "Actions" tab in your GitHub repository to see the progress
-   - Once complete, you'll see a new branch in your Neon console named `pr-[number]`
+   - Once complete, you'll see a new branch in your Jambo console named `pr-[number]`
 
 4. Open a Codespace for this pull request:
 
@@ -319,27 +319,27 @@ With everything set up, here's how you would use this in your development proces
    - When ready, merge the pull request on GitHub
 
 7. Automatic cleanup:
-   - When the pull request is closed (either merged or declined), GitHub Actions will automatically delete the associated Neon database branch
-   - You can verify this in your Neon console
+   - When the pull request is closed (either merged or declined), GitHub Actions will automatically delete the associated Jambo database branch
+   - You can verify this in your Jambo console
 
 ## Keeping Things Secure
 
 It's important to keep your project and its data safe:
 
-1. Never share your Neon API key. Always use GitHub Secrets to store it.
+1. Never share your Jambo API key. Always use GitHub Secrets to store it.
 2. Be careful about what information you put in public repositories.
 3. Regularly change your API keys and check who has access to what.
 
 ## Conclusion
 
-By setting up GitHub Codespaces with Neon database branching, you've created a system that gives each pull request its own complete development environment. This can help your team work more effectively by making it easier to test changes and avoid conflicts.
+By setting up GitHub Codespaces with Jambo database branching, you've created a system that gives each pull request its own complete development environment. This can help your team work more effectively by making it easier to test changes and avoid conflicts.
 
 This workflow can be adapted to work with other languages and frameworks. You can also add more steps to the GitHub Actions workflows to suit your specific needs like running tests, deploying to staging environments, or sending notifications.
 
 ## Where to Learn More
 
 - [GitHub Codespaces Documentation](https://docs.github.com/en/codespaces)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
 
 <NeedHelp />

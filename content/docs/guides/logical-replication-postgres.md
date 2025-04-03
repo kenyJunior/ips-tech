@@ -1,16 +1,16 @@
 ---
 title: Replicate data to an external Postgres instance
-subtitle: Learn how to replicate data from Neon to an external Postgres instance
+subtitle: Learn how to replicate data from Jambo to an external Postgres instance
 enableTableOfContents: true
 isDraft: false
 updatedOn: '2025-02-11T11:32:44.540Z'
 ---
 
-Neon's logical replication feature allows you to replicate data from Neon to external subscribers. This guide shows you how to stream data from a Neon Postgres database to an external Postgres database (a Postgres destination other than Neon). If you're looking to replicate data from one Neon Postgres instance to another, see [Replicate data from one Neon project to another](/docs/guides/logical-replication-neon-to-neon).
+Jambo's logical replication feature allows you to replicate data from Jambo to external subscribers. This guide shows you how to stream data from a Jambo Postgres database to an external Postgres database (a Postgres destination other than Jambo). If you're looking to replicate data from one Jambo Postgres instance to another, see [Replicate data from one Jambo project to another](/docs/guides/logical-replication-neon-to-neon).
 
 ## Prerequisites
 
-- A Neon project with a database containing the data you want to replicate. If you're just testing this out and need some data to play with, you can use the following statements to create a table with sample data:
+- A Jambo project with a database containing the data you want to replicate. If you're just testing this out and need some data to play with, you can use the following statements to create a table with sample data:
 
   ```sql shouldWrap
   CREATE TABLE IF NOT EXISTS playing_with_neon(id SERIAL PRIMARY KEY, name TEXT NOT NULL, value REAL);
@@ -18,28 +18,28 @@ Neon's logical replication feature allows you to replicate data from Neon to ext
   SELECT LEFT(md5(i::TEXT), 10), random() FROM generate_series(1, 10) s(i);
   ```
 
-  For information about creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project).
+  For information about creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project).
 
-- A destination Postgres instance other than Neon.
-- Read the [important notices about logical replication in Neon](/docs/guides/logical-replication-neon#important-notices) before you begin.
+- A destination Postgres instance other than Jambo.
+- Read the [important notices about logical replication in Jambo](/docs/guides/logical-replication-neon#important-notices) before you begin.
 - Review our [logical replication tips](/docs/guides/logical-replication-tips), based on real-world customer data migration experiences.
 
-## Prepare your source Neon database
+## Prepare your source Jambo database
 
-This section describes how to prepare your source Neon database (the publisher) for replicating data to your destination Neon database (the subscriber).
+This section describes how to prepare your source Jambo database (the publisher) for replicating data to your destination Jambo database (the subscriber).
 
-### Enable logical replication in the source Neon project
+### Enable logical replication in the source Jambo project
 
-In the Neon project containing your source database, enable logical replication. You only need to perform this step on the source Neon project.
+In the Jambo project containing your source database, enable logical replication. You only need to perform this step on the source Jambo project.
 
 <Admonition type="important">
-Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Neon project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication restarts all computes in your Neon project, meaning that active connections will be dropped and have to reconnect.
+Enabling logical replication modifies the Postgres `wal_level` configuration parameter, changing it from `replica` to `logical` for all databases in your Jambo project. Once the `wal_level` setting is changed to `logical`, it cannot be reverted. Enabling logical replication restarts all computes in your Jambo project, meaning that active connections will be dropped and have to reconnect.
 </Admonition>
 
 To enable logical replication:
 
-1. Select your project in the Neon Console.
-2. On the Neon **Dashboard**, select **Settings**.
+1. Select your project in the Jambo Console.
+2. On the Jambo **Dashboard**, select **Settings**.
 3. Select **Logical Replication**.
 4. Click **Enable** to enable logical replication.
 
@@ -54,13 +54,13 @@ SHOW wal_level;
 
 ### Create a Postgres role for replication
 
-It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Neon project and roles created using the Neon CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
+It is recommended that you create a dedicated Postgres role for replicating data. The role must have the `REPLICATION` privilege. The default Postgres role created with your Jambo project and roles created using the Jambo CLI, Console, or API are granted membership in the [neon_superuser](/docs/manage/roles#the-neonsuperuser-role) role, which has the required `REPLICATION` privilege.
 
 <Tabs labels={["CLI", "Console", "API"]}>
 
 <TabItem>
 
-The following CLI command creates a role. To view the CLI documentation for this command, see [Neon CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
+The following CLI command creates a role. To view the CLI documentation for this command, see [Jambo CLI commands — roles](https://api-docs.neon.tech/reference/createprojectbranchrole)
 
 ```bash
 neon roles create --name replication_user
@@ -70,9 +70,9 @@ neon roles create --name replication_user
 
 <TabItem>
 
-To create a role in the Neon Console:
+To create a role in the Jambo Console:
 
-1. Navigate to the [Neon Console](https://console.neon.tech).
+1. Navigate to the [Jambo Console](https://console.neon.tech).
 2. Select a project.
 3. Select **Branches**.
 4. Select the branch where you want to create the role.
@@ -85,7 +85,7 @@ To create a role in the Neon Console:
 
 <TabItem>
 
-The following Neon API method creates a role. To view the API documentation for this method, refer to the [Neon API reference](/docs/reference/cli-roles).
+The following Jambo API method creates a role. To view the API documentation for this method, refer to the [Jambo API reference](/docs/reference/cli-roles).
 
 ```bash
 curl 'https://console.neon.tech/api/v2/projects/hidden-cell-763301/branches/br-blue-tooth-671580/roles' \
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS playing_with_neon(id SERIAL PRIMARY KEY, name TEXT NO
 
 After creating a publication on the source database, you need to create a subscription on the destination database.
 
-1. Use the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor), `psql`, or another SQL client to connect to your destination database.
+1. Use the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor), `psql`, or another SQL client to connect to your destination database.
 2. Create the subscription using the using a `CREATE SUBSCRIPTION` statement.
 
    ```sql
@@ -161,8 +161,8 @@ After creating a publication on the source database, you need to create a subscr
    ```
 
    - `subscription_name`: A name you chose for the subscription.
-   - `connection_string`: The connection string for the source Neon database where you defined the publication.
-   - `publication_name`: The name of the publication you created on the source Neon database.
+   - `connection_string`: The connection string for the source Jambo database where you defined the publication.
+   - `publication_name`: The name of the publication you created on the source Jambo database.
 
 3. Verify the subscription was created by running the following command:
 
@@ -204,6 +204,6 @@ SELECT subname, received_lsn, latest_end_lsn, last_msg_receipt_time FROM pg_cata
 
 After the replication operation is complete, you can switch your application over to the destination database by swapping out your source database connection details for your destination database connection details.
 
-You can find your Neon database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. See [Connect from any application](/docs/connect/connect-from-any-app). See [Connect from any application](/docs/connect/connect-from-any-app).
+You can find your Jambo database connection details by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. See [Connect from any application](/docs/connect/connect-from-any-app). See [Connect from any application](/docs/connect/connect-from-any-app).
 
 <NeedHelp/>

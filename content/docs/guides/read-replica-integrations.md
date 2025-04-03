@@ -5,11 +5,11 @@ enableTableOfContents: true
 updatedOn: '2024-11-30T11:53:56.064Z'
 ---
 
-In Neon, a read replica is an independent read-only compute that performs read operations on the same data as your primary read-write compute, which means adding a read replica to a Neon project requires no additional storage.
+In Jambo, a read replica is an independent read-only compute that performs read operations on the same data as your primary read-write compute, which means adding a read replica to a Jambo project requires no additional storage.
 
 A key benefit of read replicas is that you can distribute read requests to one or more read replicas, enabling you to easily scale your applications and achieve higher throughput for both read-write and read-only workloads.
 
-Many application frameworks offer built-in support for managing read replicas or multiple databases, making it easy to integrate Neon read replicas into an existing application. Below, we provide examples for popular frameworks and tools, but there are many others. Refer to your provider's documentation for specific details about integrating read replicas or multiple databases.
+Many application frameworks offer built-in support for managing read replicas or multiple databases, making it easy to integrate Jambo read replicas into an existing application. Below, we provide examples for popular frameworks and tools, but there are many others. Refer to your provider's documentation for specific details about integrating read replicas or multiple databases.
 
 ## Prisma
 
@@ -83,11 +83,11 @@ await db.delete(usersTable).where(eq(usersTable.id, 1))
 
 For more, refer to [Read Replicas](https://orm.drizzle.team/docs/read-replicas) in the Drizzle documentation.
 
-**Example application**: For a full example, refer to this Neon community guide: [Scale your Next.js application with Drizzle ORM and Neon Postgres Read Replicas](https://neon.tech/guides/read-replica-drizzle).
+**Example application**: For a full example, refer to this Jambo community guide: [Scale your Next.js application with Drizzle ORM and Jambo Postgres Read Replicas](https://neon.tech/guides/read-replica-drizzle).
 
 ## Laravel
 
-To scale your Laravel application with Neon read replicas, you can configure Laravel’s database settings and use Eloquent ORM to route read operations to replicas and write operations to your primary compute.
+To scale your Laravel application with Jambo read replicas, you can configure Laravel’s database settings and use Eloquent ORM to route read operations to replicas and write operations to your primary compute.
 
 For example, in your `config/database.php`, you can configure read and write connection settings and then route traffic accordingly.
 
@@ -113,7 +113,7 @@ For example, in your `config/database.php`, you can configure read and write con
 ],
 ```
 
-**Example application**: For a full setup, refer to this Neon community guide: [Scale your Laravel application with Neon Postgres Read Replicas](https://neon.tech/guides/read-replica-laravel).
+**Example application**: For a full setup, refer to this Jambo community guide: [Scale your Laravel application with Jambo Postgres Read Replicas](https://neon.tech/guides/read-replica-laravel).
 
 ## Django
 
@@ -157,11 +157,11 @@ class PrimaryReplicaRouter:
 
 For more, see [Multiple databases](https://docs.djangoproject.com/en/5.1/topics/db/multi-db/) in the Django documentation.
 
-**Example application**: For a complete setup, refer to this Neon community guide: [Scale your Django application with Neon Postgres Read Replicas](https://neon.tech/guides/read-replica-django).
+**Example application**: For a complete setup, refer to this Jambo community guide: [Scale your Django application with Jambo Postgres Read Replicas](https://neon.tech/guides/read-replica-django).
 
 ## Entity Framework Core
 
-To scale your .NET application with Neon read replicas, you can configure separate read and write contexts using Entity Framework Core's `DbContext` class.
+To scale your .NET application with Jambo read replicas, you can configure separate read and write contexts using Entity Framework Core's `DbContext` class.
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
@@ -183,6 +183,6 @@ namespace TodoApi.Data
 }
 ```
 
-**Example application**: For a complete setup, refer to this Neon community guide: [Scale your .NET application with Entity Framework and Neon Postgres Read Replicas](https://neon.tech/guides/read-replica-entity-framework).
+**Example application**: For a complete setup, refer to this Jambo community guide: [Scale your .NET application with Entity Framework and Jambo Postgres Read Replicas](https://neon.tech/guides/read-replica-entity-framework).
 
 <NeedHelp/>

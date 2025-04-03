@@ -1,6 +1,6 @@
 ---
-title: Migrate from Supabase to Neon Postgres
-subtitle: Learn how to migrate your database from Supabase to Neon Postgres using
+title: Migrate from Supabase to Jambo Postgres
+subtitle: Learn how to migrate your database from Supabase to Jambo Postgres using
   pg_dump and pg_restore
 redirectFrom:
   - /docs/import/import-from-supabase
@@ -8,7 +8,7 @@ enableTableOfContents: true
 updatedOn: '2025-02-11T15:10:57.064Z'
 ---
 
-This guide describes how to migrate a database from Supabase to Neon Postgres.
+This guide describes how to migrate a database from Supabase to Jambo Postgres.
 
 We use the `pg_dump` and `pg_restore` utilities, which are part of the Postgres client toolset. `pg_dump` works by dumping both the schema and data in a custom format that is compressed and suitable for input into `pg_restore` to rebuild the database.
 
@@ -20,9 +20,9 @@ You can also replicate data from Supabase for a near-zero downtime migration. Se
 
 - A Supabase project containing the data you want to migrate.
 
-- A Neon project to move the data to.
+- A Jambo project to move the data to.
 
-  For detailed information on creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project). Make sure to create a project with the same Postgres version as your Supabase deployment.
+  For detailed information on creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project). Make sure to create a project with the same Postgres version as your Supabase deployment.
 
 - `pg_dump` and `pg_restore` utilities installed on your local machine. These typically come with a Postgres installation.
 
@@ -94,15 +94,15 @@ pg_dump: dumping contents of table "public.lego_themes"
 Avoid using `pg_dump` over a [pooled connection string](/docs/reference/glossary#pooled-connection-string) (see PgBouncer issues [452](https://github.com/pgbouncer/pgbouncer/issues/452) & [976](https://github.com/pgbouncer/pgbouncer/issues/976) for details). Use an [unpooled connection string](/docs/reference/glossary#unpooled-connection-string) instead.
 </Admonition>
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your destination Neon Postgres database to receive the imported data.
+This section describes how to prepare your destination Jambo Postgres database to receive the imported data.
 
-### Create the Neon database
+### Create the Jambo database
 
-To maintain consistency with your Supabase setup, you can create a new database in Neon with the same database name you used in Supabase.
+To maintain consistency with your Supabase setup, you can create a new database in Jambo with the same database name you used in Supabase.
 
-1. Connect to your Neon project using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or a Postgres client like [psql](/docs/connect/query-with-psql-editor).
+1. Connect to your Jambo project using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or a Postgres client like [psql](/docs/connect/query-with-psql-editor).
 
 2. Create a new database. For example, if your Supabase database was named `lego`, run:
 
@@ -112,9 +112,9 @@ To maintain consistency with your Supabase setup, you can create a new database 
 
 For more information, see [Create a database](/docs/manage/databases#create-a-database).
 
-### Retrieve Neon connection details
+### Retrieve Jambo connection details
 
-1. In the Neon Console, go to your project dashboard.
+1. In the Jambo Console, go to your project dashboard.
 2. Select **Connect** to open the **Connect to your database** modal.
 3. Copy the connection string. It will look similar to this:
 
@@ -122,19 +122,19 @@ For more information, see [Create a database](/docs/manage/databases#create-a-da
    postgresql://[user]:[password]@[neon_hostname]/[dbname]
    ```
 
-## Restore data to Neon with pg_restore
+## Restore data to Jambo with pg_restore
 
-Now you can restore your data to the Neon database using `pg_restore`:
+Now you can restore your data to the Jambo database using `pg_restore`:
 
 ```bash
 pg_restore -d <neon-connection-string> -v --no-owner --no-acl supabase_dump.bak
 ```
 
-Replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your Neon connection details.
+Replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your Jambo connection details.
 
 This command includes these arguments:
 
-- `-d`: Specifies the connection string for your Neon database.
+- `-d`: Specifies the connection string for your Jambo database.
 - `-v`: Runs `pg_restore` in verbose mode.
 - `--no-owner`: Skips setting the ownership of objects as in the original database.
 - `--no-acl`: Skips restoring access privileges for objects as in the original database.
@@ -166,7 +166,7 @@ pg_restore: creating SEQUENCE "public.lego_inventories_id_seq"
 
 After the restore process completes, you should verify that your data has been successfully migrated:
 
-1. Connect to your Neon database using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
+1. Connect to your Jambo database using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
 
 2. Run some application queries to check your data. For example, if you're using the LEGO database, you can run the following:
 
@@ -179,7 +179,7 @@ After the restore process completes, you should verify that your data has been s
 
 ## Clean up
 
-After successfully migrating and verifying your data on Neon, you can update your application's connection strings to point to your new Neon database. We recommend that you keep your Supabase dump file (`supabase_dump.bak`) as a backup until you've verified that the migration was successful.
+After successfully migrating and verifying your data on Jambo, you can update your application's connection strings to point to your new Jambo database. We recommend that you keep your Supabase dump file (`supabase_dump.bak`) as a backup until you've verified that the migration was successful.
 
 </Steps>
 
@@ -193,7 +193,7 @@ While this guide focuses on using `pg_dump` and `pg_restore`, there are other mi
 
 - **CSV export/import**
 
-  For smaller datasets or specific tables, you might consider exporting to CSV from Supabase and then importing to Neon. See [Import data from CSV](/docs/import/import-from-csv) for more details on this method.
+  For smaller datasets or specific tables, you might consider exporting to CSV from Supabase and then importing to Jambo. See [Import data from CSV](/docs/import/import-from-csv) for more details on this method.
 
 ## Reference
 
@@ -201,6 +201,6 @@ For more information on the Postgres utilities used in this guide, refer to the 
 
 - [pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html)
 - [pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)
-- [Migrating data to Neon](/docs/import/migrate-from-postgres)
+- [Migrating data to Jambo](/docs/import/migrate-from-postgres)
 
 <NeedHelp/>

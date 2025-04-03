@@ -48,7 +48,7 @@ export default {
   serverless: '/docs/introduction/serverless',
   support: '/docs/introduction/support',
   variableTraffic: '/docs/use-cases/variable-traffic',
-  whyNeon: '/docs/get-started-with-neon/why-neon',
+  whyJambo: '/docs/get-started-with-neon/why-neon',
   // Legal
   dpa: '/dpa',
   terms: '/terms-of-service',

@@ -19,7 +19,7 @@ Before transferring projects, review these important guidelines covering transfe
 
 | Transfer method                                      | Project limit                            |
 | ---------------------------------------------------- | ---------------------------------------- |
-| [Neon Console](#transfer-from-the-neon-console)      | Up to 200 projects at a time             |
+| [Jambo Console](#transfer-from-the-neon-console)      | Up to 200 projects at a time             |
 | [API](#transfer-projects-via-api)                    | Up to 400 projects in a single operation |
 | [Python script](#transfer-large-numbers-of-projects) | Unlimited (processes in batches)         |
 
@@ -38,7 +38,7 @@ The number of projects you can transfer is limited by the target Organization pl
 - If any organization members were already collaborators on the projects being transferred, we'll remove their collaborator access since they'll get full access as org members anyway
 - Transferring projects between Organizations is currently supported using the [API](#transfer-between-organizations-via-api) only
 
-## Transfer from the Neon Console
+## Transfer from the Jambo Console
 
 You can transfer projects in a few ways:
 
@@ -67,7 +67,7 @@ You can transfer projects to a destination organization using two different API 
 
 ### Transfer personal projects to an organization
 
-Use the [Project Transfer API](https://api-docs.neon.tech/reference/transferprojectsfromorgtoorg) to transfer projects from your personal Neon account to a specified organization account.
+Use the [Project Transfer API](https://api-docs.neon.tech/reference/transferprojectsfromorgtoorg) to transfer projects from your personal Jambo account to a specified organization account.
 
 `POST /users/me/projects/transfer`
 
@@ -159,7 +159,7 @@ A successful transfer returns a 200 status code with an empty JSON object:
 {}
 ```
 
-You can verify the transfer in the Neon Console or by listing the projects in the destination organization via API.
+You can verify the transfer in the Jambo Console or by listing the projects in the destination organization via API.
 
 ### Error responses
 

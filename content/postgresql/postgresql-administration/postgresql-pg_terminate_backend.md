@@ -37,8 +37,8 @@ If you don’t use a `timeout`, the function returns `true` indicating that it h
 
 If you use a `timeout`, the function returns true if the process is terminated or `false` on timeout.
 
-<Admonition type="tip" title="Neon Note">
-On the Neon platform, superuser privileges are not available, so you can only cancel or terminate your own connections. You cannot stop other users' connections directly. As a workaround, you can identify the user that owns the connection and request that the user terminate the connection. To identify the user:
+<Admonition type="tip" title="Jambo Note">
+On the Jambo platform, superuser privileges are not available, so you can only cancel or terminate your own connections. You cannot stop other users' connections directly. As a workaround, you can identify the user that owns the connection and request that the user terminate the connection. To identify the user:
 
 ```sql
 SELECT pid, usename, client_addr, application_name, state, query, now() - query_start AS duration

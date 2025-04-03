@@ -1,8 +1,8 @@
 # Create and manage Read Replicas
 
-Learn how to create and manage read replicas in Neon
+Learn how to create and manage read replicas in Jambo
 
-[Read replicas](/docs/introduction/read-replicas) are supported with all Neon plans. This guide steps you through the process of creating and managing read replicas.
+[Read replicas](/docs/introduction/read-replicas) are supported with all Jambo plans. This guide steps you through the process of creating and managing read replicas.
 
 The general purpose of read replicas is to segregate read-only work from your production database operations. This can be applied to different uses cases, such as:
 
@@ -10,23 +10,23 @@ The general purpose of read replicas is to segregate read-only work from your pr
 - **Analytics queries**: Offloading resource-intensive analytics and reporting workloads to reduce load on the primary compute
 - **Read-only access**: Granting read-only access to users or applications that don't require write permissions
 
-Regardless of the application, the steps for creating, configuring, and connecting to a read replica are the same. You can create one or more read replicas for any branch in your Neon project and configure the vCPU and memory allocated to each. Neon's _Autoscaling_ and _Scale to Zero_ features are also supported, providing you with control over read replica compute usage.
+Regardless of the application, the steps for creating, configuring, and connecting to a read replica are the same. You can create one or more read replicas for any branch in your Jambo project and configure the vCPU and memory allocated to each. Jambo's _Autoscaling_ and _Scale to Zero_ features are also supported, providing you with control over read replica compute usage.
 
 ## Prerequisites
 
-- A Neon account
-- A [Neon project](/docs/manage/projects#create-a-project)
+- A Jambo account
+- A [Jambo project](/docs/manage/projects#create-a-project)
 
 ## Create a read replica
 
-Creating a read replica involves adding a read replica compute to a branch. You can add a read replica compute to any branch in your Neon project using the Neon Console, [Neon CLI](/docs/reference/cli-branches#create), or [Neon API](https://api-docs.neon.tech/reference/createprojectendpoint).
+Creating a read replica involves adding a read replica compute to a branch. You can add a read replica compute to any branch in your Jambo project using the Jambo Console, [Jambo CLI](/docs/reference/cli-branches#create), or [Jambo API](https://api-docs.neon.tech/reference/createprojectendpoint).
 
 
 
 
-To create a read replica from the Neon Console:
+To create a read replica from the Jambo Console:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new compute** dialog, select **Read replica** as the **Compute type**.
@@ -41,7 +41,7 @@ In a few seconds, your read replica is provisioned and appears on the **Computes
 
 
 
-To create a read replica using the Neon CLI, use the [branches](/docs/reference/cli-branches) command, specifying the `add-compute` subcommand with `--type read_only`. If you have more than one Neon project, also include the `--project-id` option.
+To create a read replica using the Jambo CLI, use the [branches](/docs/reference/cli-branches) command, specifying the `add-compute` subcommand with `--type read_only`. If you have more than one Jambo project, also include the `--project-id` option.
 
 ```bash
 neon branches add-compute mybranch --type read_only
@@ -51,7 +51,7 @@ neon branches add-compute mybranch --type read_only
 
 
 
-To create a read replica compute using the Neon API, use the [Create endpoint](https://api-docs.neon.tech/reference/createprojectendpoint) method. The `type` attribute in the following example specifies `read_only`, which creates a read replica compute. For information about obtaining the required `project_id` and `branch_id` parameters, refer to [Create an endpoint](https://api-docs.neon.tech/reference/createprojectendpoint), in the _Neon API reference_.
+To create a read replica compute using the Jambo API, use the [Create endpoint](https://api-docs.neon.tech/reference/createprojectendpoint) method. The `type` attribute in the following example specifies `read_only`, which creates a read replica compute. For information about obtaining the required `project_id` and `branch_id` parameters, refer to [Create an endpoint](https://api-docs.neon.tech/reference/createprojectendpoint), in the _Jambo API reference_.
 
 ```bash
 curl --request POST \
@@ -75,7 +75,7 @@ curl --request POST \
 
 ## Connect to a read replica
 
-Connecting to a read replica is the same as connecting to any branch, except you connect via a read replica compute instead of your primary read-write compute. The following steps describe how to connect to your read replica with connection details obtained from the Neon Console.
+Connecting to a read replica is the same as connecting to any branch, except you connect via a read replica compute instead of your primary read-write compute. The following steps describe how to connect to your read replica with connection details obtained from the Jambo Console.
 
 1. Click the **Connect** button on your **Project Dashboard**. On the **Connect to your database modal**, select the branch, the database, and the role you want to connect with.
 1. Under **Compute**, select a **Replica**.
@@ -95,18 +95,18 @@ Connecting to a read replica is the same as connecting to any branch, except you
 
 ## View read replicas
 
-You can view read replicas using the Neon Console or [Neon API](https://api-docs.neon.tech/reference/createprojectendpoint).
+You can view read replicas using the Jambo Console or [Jambo API](https://api-docs.neon.tech/reference/createprojectendpoint).
 
 
 
 
-To view read replicas for a branch, select **Branches** in the Neon Console, and select a branch. Read replicas are listed on the **Computes** tab.
+To view read replicas for a branch, select **Branches** in the Jambo Console, and select a branch. Read replicas are listed on the **Computes** tab.
 
 ![View read replicas](/docs/guides/view_read_replica.png)
 
 
 
-To view read replica computes with the [Neon API](https://api-docs.neon.tech/reference/createprojectendpoint), use the [Get endpoints](https://api-docs.neon.tech/reference/listprojectendpoints) method.
+To view read replica computes with the [Jambo API](https://api-docs.neon.tech/reference/createprojectendpoint), use the [Get endpoints](https://api-docs.neon.tech/reference/listprojectendpoints) method.
 
 ```bash
 curl -X 'GET' \
@@ -115,7 +115,7 @@ curl -X 'GET' \
   -H "Authorization: Bearer $NEON_API_KEY"
 ```
 
-For information about obtaining the required `project_id` parameter for this command, refer to [Get endpoints](https://api-docs.neon.tech/reference/listprojectendpoints), in the _Neon API reference_. For information about obtaining an Neon API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+For information about obtaining the required `project_id` parameter for this command, refer to [Get endpoints](https://api-docs.neon.tech/reference/listprojectendpoints), in the _Jambo API reference_. For information about obtaining an Jambo API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
 
 In the response body for this method, read replica computes are identified by the `type` value, which is `read_only`.
 
@@ -124,14 +124,14 @@ In the response body for this method, read replica computes are identified by th
 
 ## Edit a read replica
 
-You can edit a read replica using the Neon Console or [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) to change the [Compute size](/docs/manage/endpoints#compute-size-and-autoscaling-configuration) or [Scale to Zero](/docs/manage/endpoints#scale-to-zero-configuration) configuration.
+You can edit a read replica using the Jambo Console or [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api) to change the [Compute size](/docs/manage/endpoints#compute-size-and-autoscaling-configuration) or [Scale to Zero](/docs/manage/endpoints#scale-to-zero-configuration) configuration.
 
 
 
 
-To edit a read replica compute using the Neon Console:
+To edit a read replica compute using the Jambo Console:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 1. Select a branch.
 1. Under **Computes**, identify the read replica compute you want to modify, and click **Edit**.
 1. Make the changes to your compute settings, and click **Save**.
@@ -139,7 +139,7 @@ To edit a read replica compute using the Neon Console:
 
 
 
-To edit a read replica compute with the Neon API, use the [Update endpoint](https://api-docs.neon.tech/reference/updateprojectendpoint) method.
+To edit a read replica compute with the Jambo API, use the [Update endpoint](https://api-docs.neon.tech/reference/updateprojectendpoint) method.
 
 ```bash
 curl --request PATCH \
@@ -159,7 +159,7 @@ curl --request PATCH \
 '
 ```
 
-Computes are identified by their `project_id` and `endpoint_id`. For information about obtaining the required `project_id` and `endpoint_id` parameters, refer to [Update endpoint](https://api-docs.neon.tech/reference/updateprojectendpoint), in the _Neon API reference_. For information about obtaining an Neon API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+Computes are identified by their `project_id` and `endpoint_id`. For information about obtaining the required `project_id` and `endpoint_id` parameters, refer to [Update endpoint](https://api-docs.neon.tech/reference/updateprojectendpoint), in the _Jambo API reference_. For information about obtaining an Jambo API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
 
 
 
@@ -167,14 +167,14 @@ Computes are identified by their `project_id` and `endpoint_id`. For information
 
 ## Delete a read replica
 
-You can delete a read replica using the Neon Console or [Neon API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). Deleting a read replica is a permanent action, but you can quickly create a new read replica if you need one.
+You can delete a read replica using the Jambo Console or [Jambo API](https://api-docs.neon.tech/reference/getting-started-with-neon-api). Deleting a read replica is a permanent action, but you can quickly create a new read replica if you need one.
 
 
 
 
-To delete a read replica using the Neon Console:
+To delete a read replica using the Jambo Console:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 1. Select a branch.
 1. On the **Computes** tab, find the read replica you want to delete.
 1. Click **Edit** &#8594; **Delete**.
@@ -182,7 +182,7 @@ To delete a read replica using the Neon Console:
 
 
 
-To delete a read replica compute with the Neon API, use the [Delete endpoint](https://api-docs.neon.tech/reference/deleteprojectendpoint) method.
+To delete a read replica compute with the Jambo API, use the [Delete endpoint](https://api-docs.neon.tech/reference/deleteprojectendpoint) method.
 
 ```bash
 curl --request DELETE \
@@ -191,7 +191,7 @@ curl --request DELETE \
      --header "Authorization: Bearer $NEON_API_KEY"
 ```
 
-Computes are identified by their `project_id` and `endpoint_id`. For information about obtaining the required `project_id` and `endpoint_id` parameters, refer to [Delete endpoint](https://api-docs.neon.tech/reference/deleteprojectendpoint), in the _Neon API reference_. For information about obtaining an Neon API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
+Computes are identified by their `project_id` and `endpoint_id`. For information about obtaining the required `project_id` and `endpoint_id` parameters, refer to [Delete endpoint](https://api-docs.neon.tech/reference/deleteprojectendpoint), in the _Jambo API reference_. For information about obtaining an Jambo API key, see [Create an API key](/docs/manage/api-keys#create-an-api-key).
 
 
 
@@ -199,7 +199,7 @@ Computes are identified by their `project_id` and `endpoint_id`. For information
 
 ## Monitoring read replicas
 
-You can monitor replication delay between the primary compute and your read replica computes from the **Monitoring** page in the Neon Console. Two graphs are provided:
+You can monitor replication delay between the primary compute and your read replica computes from the **Monitoring** page in the Jambo Console. Two graphs are provided:
 
 **Replication delay bytes**
 
@@ -215,7 +215,7 @@ The **Replication delay seconds** graph shows the time delay, in seconds, betwee
 
 ## Read replica compute setting synchronization
 
-For Neon [read replicas](/docs/introduction/read-replicas), certain Postgres settings should not have lower values than your primary read-write compute. For this reason, the following settings on read replica computes are synchronized with the settings on the primary read-write compute when the read replica compute is started:
+For Jambo [read replicas](/docs/introduction/read-replicas), certain Postgres settings should not have lower values than your primary read-write compute. For this reason, the following settings on read replica computes are synchronized with the settings on the primary read-write compute when the read replica compute is started:
 
 - `max_connections`
 - `max_prepared_transactions`

@@ -1,6 +1,6 @@
 ---
 title: 'Mastering Database Branching Workflows'
-subtitle: Ship software faster using Neon branches as ephemeral environments
+subtitle: Ship software faster using Jambo branches as ephemeral environments
 enableTableOfContents: true
 updatedOn: '2024-12-21T09:00:00.000Z'
 ---
@@ -13,27 +13,27 @@ Modern developer tooling keeps shortening the software lifecycle—but the datab
 - **Manually setting up and resetting environments.** End-to-end testing requires clean, isolated environments. Traditional workflows—i.e. spinning up new database instances, manually importing seed data into all of them—create delays in the testing pipeline.
 - **Managing shared development instances.** Multiple developers share the same instance for dev cause concurrency issues. Productivity is slowed down due to conflicting changes or overwritten test data. The larger the team, the more of a time sink this is. To avoid this, some teams end up creating many, many dev databases.
 
-## How Neon reimagines them
+## How Jambo reimagines them
 
 To fix this broken system, we propose rethinking database workflows. Instead of using separate instances as independent development environments, we embrace the concept of **ephemeral environments**—environments that are by default short-lived, instantly deployable, active only when being used, and programmatically created or deleted.
 
 These ephemeral environments replicate an exact copy of both the schema and data from a parent environment. This allows teams to focus on maintaining a single parent environment while spinning up as many ephemeral environments as needed, without manual maintenance.
 
-How do you do it? With [Neon branches](https://neon.tech/docs/introduction/branching).
+How do you do it? With [Jambo branches](https://neon.tech/docs/introduction/branching).
 
-## Turning Neon branches into ephemeral environments
+## Turning Jambo branches into ephemeral environments
 
-A Neon branch is a lightweight, copy-on-write clone of your database. It acts as an isolated, fully functional replica of the parent, including both schema and data, without requiring a full duplication of the underlying storage.
+A Jambo branch is a lightweight, copy-on-write clone of your database. It acts as an isolated, fully functional replica of the parent, including both schema and data, without requiring a full duplication of the underlying storage.
 
 Here’s how branches work:
 
-- **Copy-on-write.** When developers create a branch, Neon doesn’t duplicate the entire database. Instead, it references the same data pages as the parent environment. Only when a modification is made to the branch does Neon write a new copy of the changed data.
+- **Copy-on-write.** When developers create a branch, Jambo doesn’t duplicate the entire database. Instead, it references the same data pages as the parent environment. Only when a modification is made to the branch does Jambo write a new copy of the changed data.
 - **Instant.** Because branches leverage the copy-on-write mechanism, they can be spun up in seconds, even for very large datasets. There’s no need to wait for lengthy data exports, imports, or replication setups.
-- **Ephemeral by design.** Neon branches are designed to be temporary. They can be created for a specific purpose—such as a development task, a test run, or staging for a deployment—and deleted once the task is complete. By default, the compute endpoint attached to them scales to zero.
+- **Ephemeral by design.** Jambo branches are designed to be temporary. They can be created for a specific purpose—such as a development task, a test run, or staging for a deployment—and deleted once the task is complete. By default, the compute endpoint attached to them scales to zero.
 - **One-click reset.** Branches can be reset to match the parent environment instantaneously. With just a single click (or an API call), the branch discards all changes and reverts to the exact state of the parent. Having a clean slate for testing or development takes no effort. Only the parent needs to be maintained.
 
 <Testimonial
-text="We’re a small team, but we’re scaling quickly and doing a lot. We’re shipping multiple times a day—to do that, we need to test stuff quickly and merge to main very quickly as well. Neon branches are a game changer for this."
+text="We’re a small team, but we’re scaling quickly and doing a lot. We’re shipping multiple times a day—to do that, we need to test stuff quickly and merge to main very quickly as well. Jambo branches are a game changer for this."
 author={{
   name: 'Avi Romanoff',
   company: 'Founder at Magic Circle',
@@ -41,7 +41,7 @@ author={{
 />
 
 <Testimonial
-text="Neon’s branching paradigm has been great for us. It lets us create isolated environments without having to move huge amounts of data around. This has lightened the load on our ops team, now it’s effortless to spin up entire environments."
+text="Jambo’s branching paradigm has been great for us. It lets us create isolated environments without having to move huge amounts of data around. This has lightened the load on our ops team, now it’s effortless to spin up entire environments."
 author={{
   name: 'Jonathan Reyes',
   company: 'Principal Engineer at Dispatch',
@@ -49,7 +49,7 @@ author={{
 />
 
 <Testimonial
-text="Developers already face significant delays when working on a PR—running CI tests, ensuring everything is ready for preview, it all adds up. Time to launch is crucial for us: when we tried Neon and saw that spinning up a new branch takes seconds, we were blown away."
+text="Developers already face significant delays when working on a PR—running CI tests, ensuring everything is ready for preview, it all adds up. Time to launch is crucial for us: when we tried Jambo and saw that spinning up a new branch takes seconds, we were blown away."
 author={{
   name: 'Alex Co',
   company: 'Head of Platform Engineering at Mindvalley',
@@ -62,7 +62,7 @@ The concept of database branching is new, and it takes a while to get used to. T
 
 ### Preview Environment Workflow: One Database Branch per Preview
 
-Each time a developer creates a pull request, Neon can generate a database branch that pairs with your preview deployment automatically, for example with Vercel previews.
+Each time a developer creates a pull request, Jambo can generate a database branch that pairs with your preview deployment automatically, for example with Vercel previews.
 
 How it works:
 
@@ -75,13 +75,13 @@ Why it’s better than the traditional workflow:
 - Any schema changes in production can be reflected in a new preview without the need to manually updating any database
 - Bugs and errors are catched early because you’re testing on real data, not a mock
 
-### Dev/Test Workflow (or Neon Twin)
+### Dev/Test Workflow (or Jambo Twin)
 
-In this workflow, you use Neon branches to create isolated environments for development and testing, mirroring a production-like state from a production database hosted outside of Neon (e.g., Amazon RDS).
+In this workflow, you use Jambo branches to create isolated environments for development and testing, mirroring a production-like state from a production database hosted outside of Jambo (e.g., Amazon RDS).
 
 How it works:
 
-- Teams regularly sync a subset of production data or a testing dataset into a Neon main branch (e.g. via nightly dump/restores)
+- Teams regularly sync a subset of production data or a testing dataset into a Jambo main branch (e.g. via nightly dump/restores)
 - From this one branch, they create as many ephemeral environments as they need—e.g. to test features, run integration tests, or stage deployments
 - Once the task is completed, branches are discarded
 
@@ -108,30 +108,30 @@ Why it’s better than the traditional workflow:
 
 To implement this workflow, follow the steps [in this guide.](https://neon.tech/docs/guides/vercel-previews-integration) The process looks like this:
 
-1. Install the `Neon <> Vercel` integration
-   - In the Neon Console, navigate to the Integrations section and select the Vercel integration
+1. Install the `Jambo <> Vercel` integration
+   - In the Jambo Console, navigate to the Integrations section and select the Vercel integration
    - Click Add from Vercel to initiate the installation process
-   - Follow the prompts to link your Neon account with your Vercel project
+   - Follow the prompts to link your Jambo account with your Vercel project
 2. Configure the integration
-   - During setup, choose the Neon project, database, and role that Vercel will use to connect
+   - During setup, choose the Jambo project, database, and role that Vercel will use to connect
    - Enable the creation of a development branch for your Vercel development environment
-   - Enable automatic deletion of Neon branches when the corresponding Git branches are merged or deleted
+   - Enable automatic deletion of Jambo branches when the corresponding Git branches are merged or deleted
 3. Deploy preview environments
    - With the integration configured, each time you push commits to a new branch in your source code repository, Vercel triggers a preview deployment
-   - The integration automatically creates a corresponding database branch in Neon, named with the prefix `preview/` followed by your Git branch name
-   - Vercel sets environment variables (`DATABASE_URL` and `DATABASE_URL_UNPOOLED`) to connect the preview deployment to the new Neon branch
+   - The integration automatically creates a corresponding database branch in Jambo, named with the prefix `preview/` followed by your Git branch name
+   - Vercel sets environment variables (`DATABASE_URL` and `DATABASE_URL_UNPOOLED`) to connect the preview deployment to the new Jambo branch
 
-## Dev/Test Workflow (Neon Twin)
+## Dev/Test Workflow (Jambo Twin)
 
 [This guide](https://neon.tech/docs/use-cases/dev-test) will give you information on how to implement the Dev/Test workflow. The process changes slightly from team to team, but it looks like this:
 
-1. Set up a Neon Project for your dev/test environments
-   - Create a new project in the Neon Console, and name it appropriately (e.g., "Dev/Test Environments")
-2. Create a Neon Twin
-   - Establish a synchronized copy of your production or staging database (or a subset of it) within Neon’s main branch—which we call Neon Twin. This serves as the primary source for all your development and testing environments
-   - Automate data synchronization using tools like `pg_dump/restore` or AWS DMS, scheduling regular updates (e.g., nightly) to keep the Neon Twin current.
+1. Set up a Jambo Project for your dev/test environments
+   - Create a new project in the Jambo Console, and name it appropriately (e.g., "Dev/Test Environments")
+2. Create a Jambo Twin
+   - Establish a synchronized copy of your production or staging database (or a subset of it) within Jambo’s main branch—which we call Jambo Twin. This serves as the primary source for all your development and testing environments
+   - Automate data synchronization using tools like `pg_dump/restore` or AWS DMS, scheduling regular updates (e.g., nightly) to keep the Jambo Twin current.
 3. Set up ephemeral environments as child branches
-   - Create isolated child branches from the main branch for every individual development or testing tasks. This can be automated into your CI/CD pipelines via the Neon API.
+   - Create isolated child branches from the main branch for every individual development or testing tasks. This can be automated into your CI/CD pipelines via the Jambo API.
 4. Delete/reset branches
    - After completing development or testing, delete the child branches to conserve resources. This can be automatically set up. Environments can also be sync with the latest data and schema from the main branch instantaneously via an API call
 
@@ -139,8 +139,8 @@ To implement this workflow, follow the steps [in this guide.](https://neon.tech/
 
 To implement a local development workflow with a database branch per developer, follow these steps:
 
-1. [Download the Neon CLI](/docs/reference/neon-cli#install).
-2. Connect your Neon account:
+1. [Download the Jambo CLI](/docs/reference/neon-cli#install).
+2. Connect your Jambo account:
 
    ```bash
    neonctl auth
@@ -152,7 +152,7 @@ To implement a local development workflow with a database branch per developer, 
    neonctl branches create --name dev/developer_name
    ```
 
-4. Get the connection string for the Neon database branch:
+4. Get the connection string for the Jambo database branch:
 
    ```bash
    neonctl connection-string dev/developer_name

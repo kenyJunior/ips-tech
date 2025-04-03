@@ -1,6 +1,6 @@
 ---
-title: Migrate from Digital Ocean Postgres to Neon
-subtitle: Learn how to migrate your Postgres database from Digital Ocean to Neon using
+title: Migrate from Digital Ocean Postgres to Jambo
+subtitle: Learn how to migrate your Postgres database from Digital Ocean to Jambo using
   pg_dump and pg_restore
 redirectFrom:
   - /docs/import/import-from-digital-ocean
@@ -8,13 +8,13 @@ enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.340Z'
 ---
 
-This guide describes how to migrate a Postgres database from Digital Ocean to Neon using the `pg_dump` and `pg_restore` utilities, which are part of the Postgres client toolset. `pg_dump` works by dumping both the schema and data in a custom format that is compressed and suitable for input into `pg_restore` to rebuild the database.
+This guide describes how to migrate a Postgres database from Digital Ocean to Jambo using the `pg_dump` and `pg_restore` utilities, which are part of the Postgres client toolset. `pg_dump` works by dumping both the schema and data in a custom format that is compressed and suitable for input into `pg_restore` to rebuild the database.
 
 ## Prerequisites
 
 - A Digital Ocean Postgres database containing the data you want to migrate.
-- A Neon project to move the data to.
-  For detailed information on creating a Neon project, see [Create a project](/docs/manage/projects#create-a-project). Make sure to create a project with the same Postgres version as your Digital Ocean deployment.
+- A Jambo project to move the data to.
+  For detailed information on creating a Jambo project, see [Create a project](/docs/manage/projects#create-a-project). Make sure to create a project with the same Postgres version as your Digital Ocean deployment.
 - `pg_dump` and `pg_restore` utilities installed on your local machine. These typically come with a Postgres installation.
 
   We recommended that you use the `pg_dump` and `pg_restore` programs from the latest version of Postgres, to take advantage of enhancements that might have been made in these programs. To check the version of `pg_dump` or `pg_restore`, use the `-V` option. For example: `pg_dump -V`.
@@ -80,15 +80,15 @@ pg_dump: dumping contents of table "public.lego_themes"
 Avoid using `pg_dump` over a [pooled connection string](/docs/reference/glossary#pooled-connection-string) (see PgBouncer issues [452](https://github.com/pgbouncer/pgbouncer/issues/452) & [976](https://github.com/pgbouncer/pgbouncer/issues/976) for details). Use an [unpooled connection string](/docs/reference/glossary#unpooled-connection-string) instead.
 </Admonition>
 
-## Prepare your Neon destination database
+## Prepare your Jambo destination database
 
-This section describes how to prepare your destination Neon Postgres database to receive the imported data.
+This section describes how to prepare your destination Jambo Postgres database to receive the imported data.
 
-### Create the Neon database
+### Create the Jambo database
 
-Each Neon project comes with a default database named `neondb`. To maintain consistency with your Digital Ocean setup, create a new database with the same name.
+Each Jambo project comes with a default database named `neondb`. To maintain consistency with your Digital Ocean setup, create a new database with the same name.
 
-1. Connect to your Neon project using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or a Postgres client like `psql`.
+1. Connect to your Jambo project using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or a Postgres client like `psql`.
 
 2. Create a new database. For example, if your Digital Ocean database was named `lego`, run:
 
@@ -98,9 +98,9 @@ Each Neon project comes with a default database named `neondb`. To maintain cons
 
 For more information, see [Create a database](/docs/manage/databases#create-a-database).
 
-### Retrieve Neon connection details
+### Retrieve Jambo connection details
 
-1. In the Neon Console, go to your **Project Dashboard**.
+1. In the Jambo Console, go to your **Project Dashboard**.
 2. Click **Connect** to open the **Connect to your database** modal.
 3. Copy the connection string. It will look similar to this:
 
@@ -108,24 +108,24 @@ For more information, see [Create a database](/docs/manage/databases#create-a-da
    postgresql://[user]:[password]@[neon_hostname]/[dbname]
    ```
 
-## Restore data to Neon with pg_restore
+## Restore data to Jambo with pg_restore
 
-Now you can restore your data to the Neon database using `pg_restore`:
+Now you can restore your data to the Jambo database using `pg_restore`:
 
 ```bash
 pg_restore -d <neon-connection-string> -v --no-owner --no-acl digitalocean_dump.bak
 ```
 
-Replace `<neon-connection-string>` with your Neon connection details.
+Replace `<neon-connection-string>` with your Jambo connection details.
 
 This command includes these arguments:
 
-- `-d`: Specifies the connection string for your Neon database.
+- `-d`: Specifies the connection string for your Jambo database.
 - `-v`: Runs `pg_restore` in verbose mode.
 - `--no-owner`: Skips setting the ownership of objects as in the original database.
 - `--no-acl`: Skips restoring access privileges for objects as in the original database.
 
-We recommend using the `--no-owner` and `--no-acl` options to skip restoring these settings, as they may not be compatible between Digital Ocean and Neon. After migrating the data, review and configure the appropriate roles and privileges for all objects, as needed.
+We recommend using the `--no-owner` and `--no-acl` options to skip restoring these settings, as they may not be compatible between Digital Ocean and Jambo. After migrating the data, review and configure the appropriate roles and privileges for all objects, as needed.
 
 If the command was successful, you'll see output similar to the following:
 
@@ -144,7 +144,7 @@ pg_restore: creating SEQUENCE "public.lego_inventories_id_seq"
 
 After the restore process completes, you should verify that your data has been successfully migrated:
 
-1. Connect to your Neon database using the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
+1. Connect to your Jambo database using the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or `psql`.
 
 2. Run some application queries to check your data. For example, if you're using the `LEGO` database, you can run the following:
 
@@ -157,7 +157,7 @@ After the restore process completes, you should verify that your data has been s
 
 ## Clean up
 
-After successfully migrating and verifying your data on Neon, you can update your application's connection strings to point to your new Neon database. We recommend that you keep your Digital Ocean database dump file (`digitalocean_dump.bak`) as a backup until you've verified that the migration was successful.
+After successfully migrating and verifying your data on Jambo, you can update your application's connection strings to point to your new Jambo database. We recommend that you keep your Digital Ocean database dump file (`digitalocean_dump.bak`) as a backup until you've verified that the migration was successful.
 
 </Steps>
 
@@ -171,7 +171,7 @@ While this guide focuses on using `pg_dump` and `pg_restore`, there are other mi
 
 - **CSV export/import**
 
-  For smaller datasets or specific tables, you might consider exporting to CSV from Digital Ocean and then importing to Neon. See [Import data from CSV](/docs/import/import-from-csv) for more details on this method.
+  For smaller datasets or specific tables, you might consider exporting to CSV from Digital Ocean and then importing to Jambo. See [Import data from CSV](/docs/import/import-from-csv) for more details on this method.
 
 ## Reference
 
@@ -179,6 +179,6 @@ For more information on the Postgres utilities used in this guide, refer to the 
 
 - [pg_dump](https://www.postgresql.org/docs/current/app-pgdump.html)
 - [pg_restore](https://www.postgresql.org/docs/current/app-pgrestore.html)
-- [Migrating data to Neon](/docs/import/migrate-from-postgres)
+- [Migrating data to Jambo](/docs/import/migrate-from-postgres)
 
 <NeedHelp/>

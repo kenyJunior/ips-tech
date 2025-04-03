@@ -7,8 +7,6 @@ import { useInView } from 'react-intersection-observer';
 import useWindowSize from 'react-use/lib/useWindowSize';
 
 import Container from 'components/shared/container';
-import Link from 'components/shared/link';
-import LINKS from 'constants/links';
 import useIsSafari from 'hooks/use-is-safari';
 
 import Testimonials from './testimonials';
@@ -40,9 +38,9 @@ const Industry = () => {
     }
 
     // Each video is optimized to work well in different browsers
-    const videoSrc = isSafari
-      ? '/videos/pages/home/industry/testimonials.mp4?updated=20240422183243'
-      : '/videos/pages/home/industry/testimonials.m3u8?updated=20240422183243';
+    const videoSrc = isSafari;
+    // ? '/videos/pages/home/industry/testimonials.mp4?updated=20240422183243'
+    // : '/videos/pages/home/industry/testimonials.m3u8?updated=20240422183243';
 
     // Using HLS.js for browsers that support it, except for Safari which has native HLS support.
     if (Hls.isSupported() && !isSafari) {
@@ -113,18 +111,9 @@ const Industry = () => {
               'sm:mt-0 sm:text-center sm:text-[32px] sm:leading-[0.9em] sm:tracking-extra-tight'
             )}
           >
-            Industry&nbsp;leaders
-            <br />
-            trust Neon
+            Notre approche technologique&nbsp;
           </h2>
-          <Link
-            className="mt-5 flex w-fit items-center text-[15px] font-medium leading-none tracking-[-0.03em] [&_svg]:ml-[7px] [&_svg]:scale-110"
-            to={LINKS.caseStudies}
-            theme="white"
-            withArrow
-          >
-            Dive into success stories
-          </Link>
+          <p> Etapes clés pour des solutions performantes </p>
 
           <Testimonials
             activeIndex={activeIndex}

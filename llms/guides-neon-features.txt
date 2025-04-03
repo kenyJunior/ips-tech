@@ -1,6 +1,6 @@
-# Neon feature guides
+# Jambo feature guides
 
-Explore Neon's capabilities with our feature guides
+Explore Jambo's capabilities with our feature guides
 
 ### Autoscaling
 
@@ -16,7 +16,7 @@ Enable autoscaling
 
 ### Scale to zero
 
-Enable or disable scale to zero for your Neon computes.
+Enable or disable scale to zero for your Jambo computes.
 
 
 
@@ -50,7 +50,7 @@ Refresh a branch
 
 ### Logical replication
 
-Replicate data from Neon to external data platforms and services.
+Replicate data from Jambo to external data platforms and services.
 
 
 
@@ -60,13 +60,13 @@ Logical replication concepts
 
 Logical replication commands
 
-Logical replication in Neon
+Logical replication in Jambo
 
 
 
 ### Read replicas
 
-Learn how Neon read replicas can help you scale and manage read-only workloads.
+Learn how Jambo read replicas can help you scale and manage read-only workloads.
 
 
 
@@ -110,11 +110,11 @@ Schema Diff tutorial
 
 ### Project collaboration
 
-Invite other users to collaborate on your Neon project.
+Invite other users to collaborate on your Jambo project.
 
 
 
-Collaborate on your Neon project
+Collaborate on your Jambo project
 
 
 

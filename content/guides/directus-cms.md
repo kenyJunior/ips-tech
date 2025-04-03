@@ -3,25 +3,25 @@ author: rishi-raj-jain
 enableTableOfContents: true
 createdAt: '2024-12-22T00:00:00.000Z'
 updatedOn: '2024-12-22T00:00:00.000Z'
-title: Using Directus CMS with Neon Postgres and Astro to build a blog
-subtitle: A step-by-step guide for building your own blog in an Astro application with Directus CMS and Postgres powered by Neon
+title: Using Directus CMS with Jambo Postgres and Astro to build a blog
+subtitle: A step-by-step guide for building your own blog in an Astro application with Directus CMS and Postgres powered by Jambo
 ---
 
-In this guide, you will learn how to set up a serverless Postgres database with Neon, configure Directus CMS with Postgres, define a blog schema, and author content using Directus CMS. The guide also covers configuring API read permissions and building a dynamic frontend with Astro to display blog pages fetched from the Directus CMS instance.
+In this guide, you will learn how to set up a serverless Postgres database with Jambo, configure Directus CMS with Postgres, define a blog schema, and author content using Directus CMS. The guide also covers configuring API read permissions and building a dynamic frontend with Astro to display blog pages fetched from the Directus CMS instance.
 
 ## Prerequisites
 
 To follow the steps in this guide, you will need the following:
 
 - [Node.js 18](https://nodejs.org/en) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) set up locally
 
 ## Provisioning a serverless Postgres database
 
-Using a serverless Postgres database powered by Neon lets you scale compute resources down to zero, which helps you save on compute costs.
+Using a serverless Postgres database powered by Jambo lets you scale compute resources down to zero, which helps you save on compute costs.
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and create a project. You will then be presented with a dialog that provides a connection string for your database. You will be using the connection string to connect the Directus CMS instance to your Postgres database.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and create a project. You will then be presented with a dialog that provides a connection string for your database. You will be using the connection string to connect the Directus CMS instance to your Postgres database.
 
 ## Setting up Directus locally with Postgres
 
@@ -226,6 +226,6 @@ npm run build && npm run preview
 
 ## Summary
 
-In this guide, you learned how to build a blog in an Astro application using Directus CMS and a serverless Postgres database (powered by Neon). Additionally, you learned how to create content collections in Directus CMS and dynamic blog routes in an Astro application.
+In this guide, you learned how to build a blog in an Astro application using Directus CMS and a serverless Postgres database (powered by Jambo). Additionally, you learned how to create content collections in Directus CMS and dynamic blog routes in an Astro application.
 
 <NeedHelp />

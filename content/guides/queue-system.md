@@ -1,5 +1,5 @@
 ---
-title: Queue System using SKIP LOCKED in Neon Postgres
+title: Queue System using SKIP LOCKED in Jambo Postgres
 subtitle: A step-by-step guide describing how to structure a tasks table for use as a task queue in Postgres
 author: vkarpov15
 enableTableOfContents: true

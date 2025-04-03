@@ -1,6 +1,6 @@
 ---
-title: Schema migration with Neon Postgres and Prisma ORM
-subtitle: Set up Neon Postgres and run migrations for your Javascript project using
+title: Schema migration with Jambo Postgres and Prisma ORM
+subtitle: Set up Jambo Postgres and run migrations for your Javascript project using
   Prisma ORM
 enableTableOfContents: true
 updatedOn: '2025-02-03T20:41:57.332Z'
@@ -8,25 +8,25 @@ updatedOn: '2025-02-03T20:41:57.332Z'
 
 [Prisma](https://www.prisma.io/) is an open-source ORM for Node.js and Typescript, known for its ease of use and focus on type safety. It supports many databases, including Postgres, and provides a robust system for managing database schemas and migrations.
 
-This guide walks you through using `Prisma` ORM with a `Neon` Postgres database in a Javascript project. We'll create a Node.js application, set up Prisma, and show how to run migrations using Prisma.
+This guide walks you through using `Prisma` ORM with a `Jambo` Postgres database in a Javascript project. We'll create a Node.js application, set up Prisma, and show how to run migrations using Prisma.
 
 ## Prerequisites
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 
-## Setting up your Neon database
+## Setting up your Jambo database
 
 ### Initialize a new project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/app/projects) section.
 2. Select an existing project or click the `New Project` button to create a new one.
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
-You can find your Neon database connection string by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
+You can find your Jambo database connection string by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
 ```bash
 postgresql://alex:AbC123dEf@ep-cool-darkness-123456.us-east-2.aws.neon.tech/dbname?sslmode=require
@@ -56,9 +56,9 @@ npx prisma init
 
 These commands create a new `prisma` folder in your project with a `schema.prisma` file, where we will define the database schema for our application.
 
-### Configure Prisma to Use Neon Database
+### Configure Prisma to Use Jambo Database
 
-Open the `prisma/schema.prisma` file and update the `datasource db` block with your Neon database connection details:
+Open the `prisma/schema.prisma` file and update the `datasource db` block with your Jambo database connection details:
 
 ```prisma
 datasource db {
@@ -67,7 +67,7 @@ datasource db {
 }
 ```
 
-Add the `DATABASE_URL` environment variable to your `.env` file, which you'll use to connect to your Neon database. Use the connection string that you obtained from the Neon Console earlier:
+Add the `DATABASE_URL` environment variable to your `.env` file, which you'll use to connect to your Jambo database. Use the connection string that you obtained from the Jambo Console earlier:
 
 ```bash
 # .env
@@ -110,7 +110,7 @@ To create and apply migrations based on your schema, run the following command i
 npx prisma migrate dev --name init
 ```
 
-This command generates migration files written in SQL corresponding to our schema definitions and applies them to create the tables in your Neon database. We used the `--name` flag to name the migration.
+This command generates migration files written in SQL corresponding to our schema definitions and applies them to create the tables in your Jambo database. We used the `--name` flag to name the migration.
 
 The command also generates a Prisma Client that is aware of our schemas:
 
@@ -289,14 +289,14 @@ You can navigate to `http://localhost:3000/authors` in your browser to check tha
 
 ## Conclusion
 
-In this guide, we set up a new Javascript project using `Express.js` and `Prisma` ORM and connected it to a `Neon` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
+In this guide, we set up a new Javascript project using `Express.js` and `Prisma` ORM and connected it to a `Jambo` Postgres database. We created a schema for the database, generated and ran migrations, and implemented API endpoints to query the database.
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href="https://github.com/neondatabase/guide-neon-prisma" description="Run Neon database migrations using Prisma" icon="github">Migrations with Neon and Prisma</a>
+<a href="https://github.com/neondatabase/guide-neon-prisma" description="Run Jambo database migrations using Prisma" icon="github">Migrations with Jambo and Prisma</a>
 </DetailIconCards>
 
 ## Resources

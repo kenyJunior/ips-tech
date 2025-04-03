@@ -9,7 +9,7 @@ updatedOn: '2024-06-30T00:00:00.000Z'
 
 In this guide, we'll walk through the process of building a TODO application using [Laravel](https://laravel.com/), [Livewire](https://livewire.laravel.com/), and [Volt](https://livewire.laravel.com/docs/volt).
 
-We'll use [Laravel Breeze](https://laravel.com/docs/11.x/starter-kits) for authentication and Neon Postgres as our database.
+We'll use [Laravel Breeze](https://laravel.com/docs/11.x/starter-kits) for authentication and Jambo Postgres as our database.
 
 By the end of this tutorial, you'll have a simple yet fully functional TODO application that allows users to create, update, and delete tasks.
 
@@ -20,7 +20,7 @@ Before we begin, ensure you have the following:
 - PHP 8.1 or higher installed on your system
 - [Composer](https://getcomposer.org/) for managing PHP dependencies
 - [Node.js](https://nodejs.org/) and npm for managing front-end assets
-- A [Neon](https://console.neon.tech/signup) account for database hosting
+- A [Jambo](https://console.neon.tech/signup) account for database hosting
 - Basic knowledge of Laravel and Livewire
 
 ## Setting up the Project
@@ -71,7 +71,7 @@ This can also be done directly via `composer` instead of using the Laravel insta
 
 ### Setting up the Database
 
-Update your `.env` file with your Neon database credentials:
+Update your `.env` file with your Jambo database credentials:
 
 ```env
 DB_CONNECTION=pgsql
@@ -82,7 +82,7 @@ DB_USERNAME=your_username
 DB_PASSWORD=your_password
 ```
 
-Make sure to replace `your-neon-hostname`, `your_database_name`, `your_username`, and `your_password` with your actual Neon database details.
+Make sure to replace `your-neon-hostname`, `your_database_name`, `your_username`, and `your_password` with your actual Jambo database details.
 
 Once you've updated the `.env` file, run the following command to create the default tables:
 
@@ -90,7 +90,7 @@ Once you've updated the `.env` file, run the following command to create the def
 php artisan migrate
 ```
 
-This will create the necessary tables in your Neon database.
+This will create the necessary tables in your Jambo database.
 
 ### Compiling Assets
 
@@ -171,7 +171,7 @@ public function todos()
 
 This method defines a one-to-many relationship between the `User` and `Todo` models, allowing us to retrieve all todos associated with a user. For example, `Auth::user()->todos` will return all todos created by the authenticated user.
 
-Now, run the migrations to create the `todos` table in your Neon database:
+Now, run the migrations to create the `todos` table in your Jambo database:
 
 ```bash
 php artisan migrate
@@ -388,7 +388,7 @@ composer require pestphp/pest-plugin-livewire --dev
 
 For this example, we will use an in-memory SQLite database for testing. This ensures that tests run quickly and do not affect your production database.
 
-However, to learn more about testing in Laravel along with Neon branding, check out the [Testing Laravel Applications with Neon's Database Branching](https://neon.tech/guides/laravel-test-on-branch). This guide will help you set up a separate database branch for testing, allowing you to test your application with real data rather than an in-memory database.
+However, to learn more about testing in Laravel along with Jambo branding, check out the [Testing Laravel Applications with Jambo's Database Branching](https://neon.tech/guides/laravel-test-on-branch). This guide will help you set up a separate database branch for testing, allowing you to test your application with real data rather than an in-memory database.
 
 To get started, ensure your `.env.testing` file is configured to use an in-memory SQLite database for testing:
 
@@ -533,7 +533,7 @@ The `livewire()` function is used to interact with the Livewire component and ma
 
 ### Running the Tests
 
-Again, before you run the tests, note that the `RefreshDatabase` trait will clear the database before each test, so make sure to use a separate database for testing to avoid data loss like an in-memory SQLite database or a Neon database branch.
+Again, before you run the tests, note that the `RefreshDatabase` trait will clear the database before each test, so make sure to use a separate database for testing to avoid data loss like an in-memory SQLite database or a Jambo database branch.
 
 You can run these tests using the following command:
 
@@ -568,4 +568,4 @@ This application provides a solid foundation for a TODO list, showing the power 
 - [Livewire Documentation](https://laravel-livewire.com/docs)
 - [Laravel Breeze Documentation](https://laravel.com/docs/breeze)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)

@@ -1,6 +1,6 @@
 ---
-title: Testing Laravel Applications with Neon's Database Branching
-subtitle: Leveraging Realistic Production Data for Robust Testing with Laravel and Neon Branching
+title: Testing Laravel Applications with Jambo's Database Branching
+subtitle: Leveraging Realistic Production Data for Robust Testing with Laravel and Jambo Branching
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2024-05-26T00:00:00.000Z'
@@ -9,7 +9,7 @@ updatedOn: '2024-05-26T00:00:00.000Z'
 
 [Laravel](https://laravel.com) is a popular PHP framework widely used for building web applications. It includes powerful tools for automated testing, with [PEST](https://pestphp.com/) being a preferred option due to its simplicity and effectiveness.
 
-Testing with realistic data is crucial as it helps ensure that your application performs well under real-world conditions. Neon's database branching feature offers a unique solution by allowing you to test with actual production data without affecting your live database, thus maintaining data integrity and security.
+Testing with realistic data is crucial as it helps ensure that your application performs well under real-world conditions. Jambo's database branching feature offers a unique solution by allowing you to test with actual production data without affecting your live database, thus maintaining data integrity and security.
 
 ## 1. Understanding Laravel Testing Approaches
 
@@ -17,44 +17,44 @@ In Laravel, developers commonly use a local SQLite database for testing. This me
 
 However, testing with SQLite can differ significantly from a production environment that might use a different database system, such as MySQL or PostgreSQL. These differences can affect the application's behavior and lead to unexpected issues in production. Therefore, testing with real data can provide a more accurate assessment of how the application will perform in its live environment. Using production data, though, presents risks and challenges related to security and data management.
 
-## 2. Neon Branching
+## 2. Jambo Branching
 
-Neon offers a database [branching feature](/docs/introduction/branching) that allows you to create isolated branches of your database for development, testing, and more.
+Jambo offers a database [branching feature](/docs/introduction/branching) that allows you to create isolated branches of your database for development, testing, and more.
 
-A branch in Neon is a copy-on-write clone of your data that can be made from the current database state or any past state. This means you can have an exact copy of your production data at a specific point in time to use for testing.
+A branch in Jambo is a copy-on-write clone of your data that can be made from the current database state or any past state. This means you can have an exact copy of your production data at a specific point in time to use for testing.
 
-Some key benefits of Neon branching include:
+Some key benefits of Jambo branching include:
 
 - **Isolation:** Branches are completely isolated from the original database and other branches, ensuring that the operations performed on one do not affect others.
 - **Efficiency:** Branching is quick and does not burden the parent database, as it uses a copy-on-write mechanism. This means the original database's performance remains unaffected, even when multiple branches are in use.
 - **Flexibility:** You can modify or delete branches without impacting the original data. Changes to a branch are independent and only record the differences from the point of branch creation.
-- **Simplicity:** Every Neon project starts with a main branch, and new branches can be created from this root or from any other branch. This structure simplifies managing different versions of your database.
+- **Simplicity:** Every Jambo project starts with a main branch, and new branches can be created from this root or from any other branch. This structure simplifies managing different versions of your database.
 
-Neon's branching is particularly useful in continuous integration and delivery pipelines, enhancing developer productivity by reducing the setup time needed for test environments.
+Jambo's branching is particularly useful in continuous integration and delivery pipelines, enhancing developer productivity by reducing the setup time needed for test environments.
 
 This feature allows you to test with realistic data scenarios without the overhead of maintaining multiple separate databases.
 
 ## 3. Setting Up Your Testing Environment
 
-Setting up a robust testing environment with Neon and Laravel involves several steps, from configuring your Neon account to setting up Laravel for testing with PEST. This section will guide you through the prerequisites, installation, configuration, and initial test creation to ensure your application is ready for effective testing.
+Setting up a robust testing environment with Jambo and Laravel involves several steps, from configuring your Jambo account to setting up Laravel for testing with PEST. This section will guide you through the prerequisites, installation, configuration, and initial test creation to ensure your application is ready for effective testing.
 
 ### Prerequisites
 
 Before you begin, ensure you have the following:
 
-- **Neon Account:** You need an account with Neon to access their database services. You can sign up at [Neon's official website](https://neon.tech).
-- **API Keys:** Generate API keys from the Neon console. These keys will allow your Laravel application to interact with the Neon database programmatically.
+- **Jambo Account:** You need an account with Jambo to access their database services. You can sign up at [Jambo's official website](https://neon.tech).
+- **API Keys:** Generate API keys from the Jambo console. These keys will allow your Laravel application to interact with the Jambo database programmatically.
 - **Local Development Environment:** Laravel requires a PHP environment (PHP 7.4 or later) and [Composer](https://getcomposer.org/) for managing dependencies.
 - **Laravel Installation:** A Laravel project set up on your local machine. For installation instructions, refer to the [Laravel documentation](https://laravel.com/docs/11.x/installation).
 
 ### Installation and Configuration
 
-To set up your testing environment with Neon and Laravel, follow these steps:
+To set up your testing environment with Jambo and Laravel, follow these steps:
 
 1. **Configure Database Connection:**
 
-   - After creating your Neon account and a new database branch, obtain the connection details from the Neon dashboard.
-   - Open your Laravel project and update the `.env` file with the Neon database connection parameters:
+   - After creating your Jambo account and a new database branch, obtain the connection details from the Jambo dashboard.
+   - Open your Laravel project and update the `.env` file with the Jambo database connection parameters:
 
      ```env
      DB_CONNECTION=pgsql
@@ -202,7 +202,7 @@ Access the `/questions` endpoint in your browser or a tool like Postman to see t
      ```
 
 2. **Write the Test:**
-   Usually, you would write a test that uses the `RefreshDatabase` trait to migrate the database and then seed it with test data before each test. But in this case, we will use the Neon branch to test with real data instead.
+   Usually, you would write a test that uses the `RefreshDatabase` trait to migrate the database and then seed it with test data before each test. But in this case, we will use the Jambo branch to test with real data instead.
 
    - Open the generated test file in `tests/Feature` and add a test to check the `/questions` endpoint:
 
@@ -230,19 +230,19 @@ Run the updated tests to ensure your controller behaves correctly:
 
 PEST will execute the test and provide feedback on the test results.
 
-## 4. Using Neon Branching with Laravel
+## 4. Using Jambo Branching with Laravel
 
-You should never run tests against your production database, as it can lead to data corruption and security risks. Especially if you are using `RefreshDatabase` or `DatabaseTransactions` traits, which can delete or modify data during testing. This is where Neon branching comes in handy.
+You should never run tests against your production database, as it can lead to data corruption and security risks. Especially if you are using `RefreshDatabase` or `DatabaseTransactions` traits, which can delete or modify data during testing. This is where Jambo branching comes in handy.
 
-Neon's branching feature enables you to create isolated database environments, which is ideal for testing changes without impacting the production database.
+Jambo's branching feature enables you to create isolated database environments, which is ideal for testing changes without impacting the production database.
 
-This can be particularly useful when testing complex features or changes that require realistic data scenarios. Especially when there are schema changes or data migrations involved, Neon branching provides a safe and efficient way to validate your application's behavior on a copy of your production data.
+This can be particularly useful when testing complex features or changes that require realistic data scenarios. Especially when there are schema changes or data migrations involved, Jambo branching provides a safe and efficient way to validate your application's behavior on a copy of your production data.
 
-### Creating a Neon Branch
+### Creating a Jambo Branch
 
-1. **Log In to Neon Dashboard:**
+1. **Log In to Jambo Dashboard:**
 
-   - Access your Neon dashboard by logging in at [Neon's official website](https://neon.tech).
+   - Access your Jambo dashboard by logging in at [Jambo's official website](https://neon.tech).
 
 2. **Select Your Database:**
 
@@ -254,14 +254,14 @@ This can be particularly useful when testing complex features or changes that re
    - Name your new branch (e.g., "testing-branch") and specify if it should be created from the current state of the database or from a specific point in time. This creates a copy-on-write clone of your database.
    - Wait for the branch to be fully provisioned, which usually takes just a few seconds.
 
-### Integrating Neon Branching with Laravel Testing
+### Integrating Jambo Branching with Laravel Testing
 
-Go back to your Laravel project and integrate the Neon branch into your testing setup:
+Go back to your Laravel project and integrate the Jambo branch into your testing setup:
 
 1. **Update Environment Configuration:**
 
-   - Once your branch is created, obtain the connection details (hostname, database name, username, and password) from the Neon dashboard.
-   - Create a new environment file in your Laravel project, such as `.env.testing`, and configure it to use the Neon testing branch. This ensures that your testing environment uses its database configuration.
+   - Once your branch is created, obtain the connection details (hostname, database name, username, and password) from the Jambo dashboard.
+   - Create a new environment file in your Laravel project, such as `.env.testing`, and configure it to use the Jambo testing branch. This ensures that your testing environment uses its database configuration.
 
      ```env
      DB_CONNECTION=pgsql
@@ -293,19 +293,19 @@ Go back to your Laravel project and integrate the Neon branch into your testing 
 
    - Examine the output from PEST to ensure your application behaves as expected against the testing branch. This approach allows you to test changes in a controlled environment that mirrors your production setup.
 
-## 5. Managing Neon Branches with `neonctl` CLI
+## 5. Managing Jambo Branches with `neonctl` CLI
 
-Automated testing is an essential aspect of software development, ensuring that new code contributions don't break existing functionality. Neon's database branching feature enables you to create isolated environments for testing changes without affecting your production database.
+Automated testing is an essential aspect of software development, ensuring that new code contributions don't break existing functionality. Jambo's database branching feature enables you to create isolated environments for testing changes without affecting your production database.
 
 With the `neonctl` CLI tool, managing these branches becomes straightforward and seamless.
 
 ### Installing `neonctl`
 
-Before you can start using `neonctl`, you need to install it on your local machine. Follow the installation instructions provided in the [Neon CLI documentation](/docs/reference/cli-install) to set up `neonctl` on your system.
+Before you can start using `neonctl`, you need to install it on your local machine. Follow the installation instructions provided in the [Jambo CLI documentation](/docs/reference/cli-install) to set up `neonctl` on your system.
 
 ### Using `neonctl` to Manage Branches
 
-Once `neonctl` is installed, you can use it to interact with your Neon database branches. Here are the basic commands for managing branches:
+Once `neonctl` is installed, you can use it to interact with your Jambo database branches. Here are the basic commands for managing branches:
 
 #### 1. [Creating a Branch](/docs/reference/cli-branches#create)
 
@@ -315,17 +315,17 @@ To create a new branch, use the `neonctl branches create` command:
 neonctl branches create --project-id PROJECT_ID --parent PARENT_BRANCH_ID --name BRANCH_NAME
 ```
 
-Replace `PROJECT_ID`, `PARENT_BRANCH_ID`, and `BRANCH_NAME` with the appropriate values for your Neon project. This command will create a new branch based on the specified parent branch.
+Replace `PROJECT_ID`, `PARENT_BRANCH_ID`, and `BRANCH_NAME` with the appropriate values for your Jambo project. This command will create a new branch based on the specified parent branch.
 
 #### 2. [Listing Branches](/docs/reference/cli-branches#list)
 
-To list all branches in your Neon project, use the `neonctl branches list` command:
+To list all branches in your Jambo project, use the `neonctl branches list` command:
 
 ```bash
 neonctl branches list --project-id PROJECT_ID
 ```
 
-Replace `PROJECT_ID` with your Neon project ID. This command will display a list of all branches along with their IDs, names, and other relevant information.
+Replace `PROJECT_ID` with your Jambo project ID. This command will display a list of all branches along with their IDs, names, and other relevant information.
 
 #### 3. [Obtaining Connection String](/docs/reference/cli-connection-string)
 
@@ -345,28 +345,28 @@ After you've finished testing with a branch, you can delete it using the `neonct
 neonctl branches delete BRANCH_ID
 ```
 
-Replace `BRANCH_ID` with the ID of the branch you want to delete. This command will remove the branch from your Neon project, ensuring that resources are not left unused.
+Replace `BRANCH_ID` with the ID of the branch you want to delete. This command will remove the branch from your Jambo project, ensuring that resources are not left unused.
 
-### Integrating Neon Branches with Laravel Testing
+### Integrating Jambo Branches with Laravel Testing
 
-Once you've created a Neon branch using `neonctl`, you can integrate it into your Laravel testing workflow:
+Once you've created a Jambo branch using `neonctl`, you can integrate it into your Laravel testing workflow:
 
 1. **Obtain Connection Details:** Use `neonctl connection-string` to get the connection details for the branch.
 2. **Update `.env.testing` File:** Update your Laravel `.env.testing` file with the connection details obtained from `neonctl`.
-3. **Run Tests:** Execute your Laravel tests as usual, ensuring that they interact with the Neon branch database.
+3. **Run Tests:** Execute your Laravel tests as usual, ensuring that they interact with the Jambo branch database.
 4. **Clean Up:** After testing is complete, use `neonctl branches delete` to delete the branch and clean up resources.
 
 ## Conclusion
 
-Testing Laravel applications with Neon's database branching offers a solution for ensuring the reliability and performance of your codebase.
+Testing Laravel applications with Jambo's database branching offers a solution for ensuring the reliability and performance of your codebase.
 
 By using realistic production data in a controlled testing environment, developers can confidently validate their changes without risking the integrity of live databases.
 
-Neon's branching feature provides isolation, efficiency, flexibility, and simplicity, making it a valuable tool for streamlining the testing process.
+Jambo's branching feature provides isolation, efficiency, flexibility, and simplicity, making it a valuable tool for streamlining the testing process.
 
 ## Additional Resources
 
 - [Laravel Documentation](https://laravel.com/docs) - Official documentation for the Laravel PHP framework, covering installation, configuration, and usage guides.
-- [Neon Documentation](/docs) - Comprehensive documentation for Neon's database services, including guides, tutorials, and API references.
+- [Jambo Documentation](/docs) - Comprehensive documentation for Jambo's database services, including guides, tutorials, and API references.
 - [GitHub Actions Tutorials](https://docs.github.com/en/actions/learn-github-actions) - Learn how to automate your workflow with GitHub Actions, including tutorials on setting up continuous integration for Laravel applications.
-- [Neon Branching GitHub Actions Guide](/docs/guides/branching-github-actions) - Step-by-step guide on integrating Neon database branching with GitHub Actions for automated testing workflows.
+- [Jambo Branching GitHub Actions Guide](/docs/guides/branching-github-actions) - Step-by-step guide on integrating Jambo database branching with GitHub Actions for automated testing workflows.

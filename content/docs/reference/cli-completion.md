@@ -1,13 +1,13 @@
 ---
-title: Neon CLI commands — completion
-subtitle: Use the Neon CLI to manage Neon directly from the terminal
+title: Jambo CLI commands — completion
+subtitle: Use the Jambo CLI to manage Jambo directly from the terminal
 enableTableOfContents: true
 updatedOn: '2024-06-30T14:35:12.893Z'
 ---
 
 ## Before you begin
 
-Before running the `completion` command, ensure that you have [installed the Neon CLI](/docs/reference/cli-install).
+Before running the `completion` command, ensure that you have [installed the Jambo CLI](/docs/reference/cli-install).
 
 ## The `completion` command
 

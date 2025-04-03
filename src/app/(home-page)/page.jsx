@@ -20,7 +20,7 @@ getMetadata({
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Neon Postgres',
+  name: 'IPS Technologies',
   url: 'https://neon.tech/',
 };
 

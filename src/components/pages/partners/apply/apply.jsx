@@ -21,8 +21,9 @@ const Testimonial = ({ className = null, ariaHidden = false }) => (
   <figure className={clsx('mt-16 max-w-[464px]', className)} aria-hidden={ariaHidden}>
     <blockquote>
       <p className="border-l border-green-45 pl-[18px] text-2xl font-normal leading-snug tracking-tighter xl:text-xl">
-        The combination of flexible resource limits and nearly instant database provisioning made
-        Neon a no-brainer.
+        Grâce à l’expertise d’IPS, nos projets technologiques sont livrés à temps et sans
+        dépassement de budget. Leur approche agile a optimisé notre processus et renforcé notre
+        efficacité.
       </p>
     </blockquote>
     <figcaption className="mt-4 text-base leading-tight tracking-extra-tight lg:mt-5 md:mt-4">
@@ -73,7 +74,7 @@ const Apply = () => {
           <div className="col-span-5 lg:col-span-full lg:text-center">
             <GradientLabel className="inline-block">Apply now</GradientLabel>
             <h2 className="mt-3 font-title text-[52px] font-medium leading-none tracking-extra-tight xl:text-[44px] lg:text-4xl md:text-[32px]">
-              Become a Partner
+              Contacter-Nous
             </h2>
             <p className="md:flat-breaks sm:flat-none mt-3 text-lg font-light leading-snug xl:text-base">
               Start the process here. You'll be able to schedule a meeting with our partnerships

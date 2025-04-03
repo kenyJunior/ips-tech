@@ -1,22 +1,22 @@
 # The postgres_fdw extension
 
-Access data in remote Postgres databases from Neon using postgres_fdw
+Access data in remote Postgres databases from Jambo using postgres_fdw
 
-The `postgres_fdw` (Foreign Data Wrapper) extension provides a powerful and standards-compliant way to access data stored in external Postgres databases from your Neon project. For compliance or regulatory reasons, you might need to keep sensitive data on-premises or within a specific jurisdiction; `postgres_fdw` lets you query this data directly from your Neon database without migrating it, maintaining data residency. This enables you to leverage Neon's features while adhering to data storage policies. This simplifies data integration, enables cross-database querying, and allows you to build applications that seamlessly interact with data across different Postgres deployments.
+The `postgres_fdw` (Foreign Data Wrapper) extension provides a powerful and standards-compliant way to access data stored in external Postgres databases from your Jambo project. For compliance or regulatory reasons, you might need to keep sensitive data on-premises or within a specific jurisdiction; `postgres_fdw` lets you query this data directly from your Jambo database without migrating it, maintaining data residency. This enables you to leverage Jambo's features while adhering to data storage policies. This simplifies data integration, enables cross-database querying, and allows you to build applications that seamlessly interact with data across different Postgres deployments.
 
-This guide will walk you through the essentials of using the `postgres_fdw` extension in Neon. You'll learn how to enable the extension, establish connections to remote Postgres servers, define foreign tables that map to tables on those servers, and execute queries that span across your Neon database and remote instances. We will also cover important considerations for performance and security when working with `postgres_fdw`.
+This guide will walk you through the essentials of using the `postgres_fdw` extension in Jambo. You'll learn how to enable the extension, establish connections to remote Postgres servers, define foreign tables that map to tables on those servers, and execute queries that span across your Jambo database and remote instances. We will also cover important considerations for performance and security when working with `postgres_fdw`.
 
 
-`postgres_fdw` is a core Postgres extension that can be installed on any Neon project using the instructions below. It provides a standardized way to access external Postgres databases and is widely used for data integration and cross-database querying.
+`postgres_fdw` is a core Postgres extension that can be installed on any Jambo project using the instructions below. It provides a standardized way to access external Postgres databases and is widely used for data integration and cross-database querying.
 
 
 **Version availability:**
 
-Please refer to the [list of all extensions](/docs/extensions/pg-extensions) available in Neon for up-to-date extension version information.
+Please refer to the [list of all extensions](/docs/extensions/pg-extensions) available in Jambo for up-to-date extension version information.
 
 ## Enable the `postgres_fdw` extension
 
-You can enable the extension by running the following `CREATE EXTENSION` statement in the [Neon SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or from a client such as [psql](/docs/connect/query-with-psql-editor) that is connected to your Neon database.
+You can enable the extension by running the following `CREATE EXTENSION` statement in the [Jambo SQL Editor](/docs/get-started-with-neon/query-with-neon-sql-editor) or from a client such as [psql](/docs/connect/query-with-psql-editor) that is connected to your Jambo database.
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
@@ -27,8 +27,8 @@ CREATE EXTENSION IF NOT EXISTS postgres_fdw;
 Before diving into the practical steps, let's understand the key components involved in using `postgres_fdw`:
 
 - **Foreign server:** Represents the connection details to the external Postgres server. This includes information like the host, port, and database name of the remote server.
-- **User mapping:** Defines the authentication credentials used to connect to the foreign server. This maps a local Neon user to a user on the remote server.
-- **Foreign table:** A locally defined object in your Neon database that represents a table located on the foreign server. Queries against the foreign table are transparently executed on the remote server.
+- **User mapping:** Defines the authentication credentials used to connect to the foreign server. This maps a local Jambo user to a user on the remote server.
+- **Foreign table:** A locally defined object in your Jambo database that represents a table located on the foreign server. Queries against the foreign table are transparently executed on the remote server.
 
 ## Connecting to a remote Postgres database
 
@@ -60,7 +60,7 @@ OPTIONS (host 'db.example.com', port '5432', dbname 'analytics');
 
 ### Create a user mapping
 
-The `CREATE USER MAPPING` command specifies the credentials to use when connecting to the foreign server. This maps a user in your Neon database to a user on the remote server.
+The `CREATE USER MAPPING` command specifies the credentials to use when connecting to the foreign server. This maps a user in your Jambo database to a user on the remote server.
 
 ```sql
 CREATE USER MAPPING FOR 
@@ -70,12 +70,12 @@ OPTIONS (user '', password '');
 
 Replace the placeholders with the appropriate values:
 
-- ``: The username of the user in your Neon database that will be accessing the foreign server. Use `PUBLIC` if you want to allow all users to access the foreign server with the same credentials.
+- ``: The username of the user in your Jambo database that will be accessing the foreign server. Use `PUBLIC` if you want to allow all users to access the foreign server with the same credentials.
 - `my_remote_server`: The name of the foreign server you created in the previous step.
 - ``: The username on the remote Postgres server.
 - ``: The password for the remote user.
 
-For example, to map the current Neon user to the `read_only_user` user on the `production_db` server:
+For example, to map the current Jambo user to the `read_only_user` user on the `production_db` server:
 
 ```sql
 CREATE USER MAPPING FOR CURRENT_USER
@@ -85,11 +85,11 @@ OPTIONS (user 'read_only_user', password 'secure_password');
 
 ## Defining foreign tables
 
-Once the connection to the remote server is established, you need to define foreign tables in your Neon database that correspond to the tables you want to access on the remote server. There are two primary ways to do this: creating foreign tables manually or importing the schema.
+Once the connection to the remote server is established, you need to define foreign tables in your Jambo database that correspond to the tables you want to access on the remote server. There are two primary ways to do this: creating foreign tables manually or importing the schema.
 
 ### Create foreign tables manually
 
-The `CREATE FOREIGN TABLE` command allows you to explicitly define the structure of a remote table in your Neon database. You need to specify the column names and data types, which must match the remote table's schema.
+The `CREATE FOREIGN TABLE` command allows you to explicitly define the structure of a remote table in your Jambo database. You need to specify the column names and data types, which must match the remote table's schema.
 
 ```sql
 CREATE FOREIGN TABLE  (
@@ -103,7 +103,7 @@ OPTIONS (schema_name '', table_name '');
 
 Replace the placeholders with the appropriate details:
 
-- ``: The name you want to give the foreign table in your Neon database.
+- ``: The name you want to give the foreign table in your Jambo database.
 - `` and ``: The names and data types of the columns, matching the remote table.
 - `my_remote_server`: The name of the foreign server you created.
 - ``: The schema name where the table resides on the remote server (often `public`).
@@ -134,7 +134,7 @@ INTO ;
 
 - ``: The name of the schema on the remote server you want to import.
 - `my_remote_server`: The name of the foreign server.
-- ``: The schema in your Neon database where the foreign tables will be created. If the schema doesn't exist, you'll need to create it first.
+- ``: The schema in your Jambo database where the foreign tables will be created. If the schema doesn't exist, you'll need to create it first.
 
 For example, to import all tables from the `analytics` schema of the `production_db` server into a local schema named `imported_data`:
 
@@ -227,7 +227,7 @@ Querying foreign tables can sometimes be slower than querying local tables due t
   ANALYZE remote_users;
   ```
 
-- **Materialized Views:** For frequently accessed data from foreign tables, consider creating materialized views in your Neon database. Materialized views store a snapshot of the remote data locally, which can significantly improve query performance. You can refresh materialized views periodically to keep the data relatively up-to-date.
+- **Materialized Views:** For frequently accessed data from foreign tables, consider creating materialized views in your Jambo database. Materialized views store a snapshot of the remote data locally, which can significantly improve query performance. You can refresh materialized views periodically to keep the data relatively up-to-date.
 
   ```sql
   CREATE MATERIALIZED VIEW local_users_snapshot AS
@@ -242,7 +242,7 @@ Querying foreign tables can sometimes be slower than querying local tables due t
 
 The `postgres_fdw` extension provides several utility functions to manage connections established with remote Postgres servers. These functions allow you to monitor active connections and explicitly disconnect from foreign servers.
 
-- **`postgres_fdw_get_connections()`:** This function provides insights into the active connections established by `postgres_fdw` from your current Neon session to remote servers. It returns a set of records, with each record containing the foreign server name and a boolean indicating the validity of the connection. A connection is considered invalid if the foreign server or user mapping associated with it has been changed or dropped while the connection is being used in the current transaction. Invalid connections will be closed at the end of the transaction.
+- **`postgres_fdw_get_connections()`:** This function provides insights into the active connections established by `postgres_fdw` from your current Jambo session to remote servers. It returns a set of records, with each record containing the foreign server name and a boolean indicating the validity of the connection. A connection is considered invalid if the foreign server or user mapping associated with it has been changed or dropped while the connection is being used in the current transaction. Invalid connections will be closed at the end of the transaction.
 
   ```sql
   SELECT * FROM postgres_fdw_get_connections() ORDER BY server_name;
@@ -275,7 +275,7 @@ The `postgres_fdw` extension provides several utility functions to manage connec
   (1 row)
   ```
 
-- **`postgres_fdw_disconnect_all()`:** This function provides a way to close all open connections established by `postgres_fdw` from your current Neon session to any foreign server. Similar to `postgres_fdw_disconnect`, connections in use within the current transaction will not be closed, and warnings will be generated. The function returns `true` if at least one connection was disconnected and `false` otherwise.
+- **`postgres_fdw_disconnect_all()`:** This function provides a way to close all open connections established by `postgres_fdw` from your current Jambo session to any foreign server. Similar to `postgres_fdw_disconnect`, connections in use within the current transaction will not be closed, and warnings will be generated. The function returns `true` if at least one connection was disconnected and `false` otherwise.
 
 These functions offer greater control over `postgres_fdw` connections, allowing you to manage resources and ensure connections are closed when no longer needed. Using `postgres_fdw_get_connections` can be helpful for monitoring and troubleshooting connection issues, while the disconnect functions can be used for cleanup or in scenarios where you need to force a reconnection with updated credentials or server configurations.
 
@@ -283,7 +283,7 @@ These functions offer greater control over `postgres_fdw` connections, allowing 
 
 When working with `postgres_fdw`, security is paramount. Keep the following points in mind:
 
-- **Network security:** Ensure that network access is properly configured to allow connections between your Neon project and the remote Postgres server. Firewalls and security groups might need adjustments.
+- **Network security:** Ensure that network access is properly configured to allow connections between your Jambo project and the remote Postgres server. Firewalls and security groups might need adjustments.
 - **Principle of Least Privilege:** Grant only the necessary permissions to the user mapped to the remote database. Avoid using superuser accounts for `postgres_fdw` connections.
 - **SSL encryption:** Ensure that the connection to the remote Postgres server is encrypted using SSL. This is often the default behavior for Postgres connections, but it's worth verifying the configuration.
 
@@ -300,7 +300,7 @@ While both `postgres_fdw` and `dblink` allow you to connect to remote Postgres d
 
 ## Conclusion
 
-The `postgres_fdw` extension is a valuable tool for Neon users who need to access and integrate data from remote Postgres databases. By establishing connections to foreign servers, defining foreign tables, and executing queries that span across local and remote databases, you can build powerful applications that leverage data from multiple sources seamlessly.
+The `postgres_fdw` extension is a valuable tool for Jambo users who need to access and integrate data from remote Postgres databases. By establishing connections to foreign servers, defining foreign tables, and executing queries that span across local and remote databases, you can build powerful applications that leverage data from multiple sources seamlessly.
 
 ## Reference
 

@@ -1,5 +1,5 @@
 ---
-title: Real-Time Notifications using pg_notify with Neon Postgres
+title: Real-Time Notifications using pg_notify with Jambo Postgres
 subtitle: A step-by-step guide describing how to implement real-time notifications using pg_notify in Postgres
 author: rishi-raj-jain
 enableTableOfContents: true
@@ -7,32 +7,32 @@ createdAt: '2024-07-02T13:24:36.612Z'
 updatedOn: '2024-07-02T13:24:36.612Z'
 ---
 
-This step-by-step guide shows how you can implement real-time notifications in Postgres (powered by Neon). Real-time notifications provide a way to instantly notify users in an application. With [pg_notify](https://www.postgresql.org/docs/current/sql-notify.html) and [Postgres triggers](https://www.postgresql.org/docs/current/triggers.html), you can create a webhook-like system to invoke external services on specific database operations.
+This step-by-step guide shows how you can implement real-time notifications in Postgres (powered by Jambo). Real-time notifications provide a way to instantly notify users in an application. With [pg_notify](https://www.postgresql.org/docs/current/sql-notify.html) and [Postgres triggers](https://www.postgresql.org/docs/current/triggers.html), you can create a webhook-like system to invoke external services on specific database operations.
 
 ## Prerequisites
 
 To follow the steps in this guide, you will need the following:
 
 - [Node.js 18](https://nodejs.org/en/blog/announcements/v18-release-announce) or later
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 
 ## Steps
 
-- [Provisioning a Postgres database powered by Neon](#provisioning-a-postgres-database-powered-by-neon)
+- [Provisioning a Postgres database powered by Jambo](#provisioning-a-postgres-database-powered-by-neon)
 - [Creating a new Node.js application](#creating-a-new-nodejs-application)
 - [Set up triggers](#set-up-triggers)
 - [Set up a Notifications Listener](#set-up-a-notifications-listener)
 - [Notify using triggers](#notify-using-triggers)
 
-## Provisioning a Postgres database powered by Neon
+## Provisioning a Postgres database powered by Jambo
 
-To get started, go to the [Neon console](https://console.neon.tech/app/projects) and enter the name of your choice as the project name.
+To get started, go to the [Jambo console](https://console.neon.tech/app/projects) and enter the name of your choice as the project name.
 
 You will then be presented with a dialog that provides a connecting string of your database. Make sure to **uncheck** the **Pooled connection checkbox** on the top right of the dialog and the connecting string automatically updates in the box below it.
 
 ![](/guides/images/pg-notify/index.png)
 
-All Neon connection strings have the following format:
+All Jambo connection strings have the following format:
 
 ```bash
 postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
@@ -41,8 +41,8 @@ postgres://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>
 - `user` is the database user.
 - `password` is the database user’s password.
 - `endpoint_hostname` is the host with neon.tech as the [TLD](https://www.cloudflare.com/en-gb/learning/dns/top-level-domain/).
-- `port` is the Neon port number. The default port number is 5432.
-- `dbname` is the name of the database. “neondb” is the default database created with each Neon project.
+- `port` is the Jambo port number. The default port number is 5432.
+- `dbname` is the name of the database. “neondb” is the default database created with each Jambo project.
 - `?sslmode=require` an optional query parameter that enforces the [SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/) mode while connecting to the Postgres instance for better security.
 
 Save this connecting string somewhere safe to be used as the `DATABASE_URL` further in the guide. Proceed further in this guide to create a Node.js application.
@@ -211,7 +211,7 @@ node send.js
 ```
 
 <Admonition type="note" title="Note">
-By default, Neon scales to zero after 5 minutes of inactivity, which ends any running sessions. As a result, `NOTIFY` and `LISTEN` commands only persist for the duration of the current session and are lost when the session ends.
+By default, Jambo scales to zero after 5 minutes of inactivity, which ends any running sessions. As a result, `NOTIFY` and `LISTEN` commands only persist for the duration of the current session and are lost when the session ends.
 </Admonition>
 
 ## Summary
@@ -223,7 +223,7 @@ In this guide, you learned how to receive and send real-time notifications using
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-<a href='https://github.com/neondatabase/examples/tree/main/with-nodejs-pg-notify' description='pg_notify with Node.js and Neon' icon='github'>Set up notifications using pg_notify with Node.js and Neon</a>
+<a href='https://github.com/neondatabase/examples/tree/main/with-nodejs-pg-notify' description='pg_notify with Node.js and Jambo' icon='github'>Set up notifications using pg_notify with Node.js and Jambo</a>
 </DetailIconCards>
 
 <NeedHelp />

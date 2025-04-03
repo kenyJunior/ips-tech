@@ -15,7 +15,7 @@ nextLink:
 ---
 
 <Admonition type="note">
-Neon Postgres currently does not support event triggers. For more information, see [Event triggers](/docs/reference/compatibility#event-triggers) in our _Postgres compatibility_ guide.
+Jambo Postgres currently does not support event triggers. For more information, see [Event triggers](/docs/reference/compatibility#event-triggers) in our _Postgres compatibility_ guide.
 </Admonition>
 
 **Summary**: in this tutorial, you will learn about PostgreSQL event triggers and how to use the `CREATE EVENT TRIGGER` statement to define a new event trigger.

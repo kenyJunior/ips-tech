@@ -1,25 +1,25 @@
-# Deploy Your Node.js App with Neon Postgres on Heroku
+# Deploy Your Node.js App with Jambo Postgres on Heroku
 
-A step-by-step guide to deploying a Node application with a Neon Postgres
+A step-by-step guide to deploying a Node application with a Jambo Postgres
 
 [Heroku](https://heroku.com) is a popular platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud. It simplifies the deployment process, making it a favorite among developers for its ease of use and integration capabilities.
 
-This guide walks you through deploying a simple Node.js application connected to a Neon Postgres database, on Heroku.
+This guide walks you through deploying a simple Node.js application connected to a Jambo Postgres database, on Heroku.
 
 ## Prerequisites
 
 To follow along with this guide, you will need:
 
-- A Neon account. If you do not have one, sign up at [Neon](https://neon.tech). Your Neon project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
+- A Jambo account. If you do not have one, sign up at [Jambo](https://neon.tech). Your Jambo project comes with a ready-to-use Postgres database named `neondb`. We'll use this database in the following examples.
 - A Heroku account. Sign up at [Heroku](https://signup.heroku.com/) to get started.
 - Git installed on your local machine. Heroku uses Git for version control and deployment.
 - [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your local machine. We'll use Node.js to build and test the application locally.
 
-## Setting Up Your Neon Database
+## Setting Up Your Jambo Database
 
 ### Initialize a New Project
 
-1. Log in to the Neon Console and navigate to the [Projects](https://console.neon.tech/projects) section.
+1. Log in to the Jambo Console and navigate to the [Projects](https://console.neon.tech/projects) section.
 
 2. Click **New Project** to create a new project.
 
@@ -40,7 +40,7 @@ To follow along with this guide, you will need:
        ('Thriller', 'Michael Jackson');
    ```
 
-### Retrieve your Neon database connection string
+### Retrieve your Jambo database connection string
 
 You can find your database connection string by clicking the **Connect** button on your **Project Dashboard**. It should look similar to this:
 
@@ -52,7 +52,7 @@ Keep your connection string handy for later use.
 
 ## Implementing the Node.js Application
 
-We'll create a simple Express application that connects to our Neon database and retrieves the list of music albums. Run the following commands in your terminal to set it up:
+We'll create a simple Express application that connects to our Jambo database and retrieves the list of music albums. Run the following commands in your terminal to set it up:
 
 ```bash
 mkdir neon-heroku-example && cd neon-heroku-example
@@ -61,9 +61,9 @@ npm install express pg
 touch .env
 ```
 
-We use the `npm pkg set type="module"` command to enable ES6 module support in our project. We'll also create a new `.env` file to store the `DATABASE_URL` environment variable, which we'll use to connect to our Neon database. Lastly, we install the `pg` library which is the Postgres driver we use to connect to our database.
+We use the `npm pkg set type="module"` command to enable ES6 module support in our project. We'll also create a new `.env` file to store the `DATABASE_URL` environment variable, which we'll use to connect to our Jambo database. Lastly, we install the `pg` library which is the Postgres driver we use to connect to our database.
 
-In the `.env` file, store your Neon database connection string:
+In the `.env` file, store your Jambo database connection string:
 
 ```bash
 # .env
@@ -82,7 +82,7 @@ const port = process.env.PORT || 3000;
 // Parse JSON bodies for this app
 app.use(express.json());
 
-// Create a new pool using your Neon database connection string
+// Create a new pool using your Jambo database connection string
 const { Pool } = pkg;
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
@@ -103,7 +103,7 @@ app.listen(port, () => {
 });
 ```
 
-This code sets up an Express server that listens for requests on port 3000. When a request is made to the `URL`, the server queries the `music_albums` table in your Neon database and returns the results as JSON.
+This code sets up an Express server that listens for requests on port 3000. When a request is made to the `URL`, the server queries the `music_albums` table in your Jambo database and returns the results as JSON.
 
 We can test this application locally by running:
 
@@ -143,7 +143,7 @@ Next, we can create a new app on Heroku using the following command. This create
 heroku create neon-heroku-example
 ```
 
-You'll also need to set the `DATABASE_URL` on Heroku to your Neon database connection string:
+You'll also need to set the `DATABASE_URL` on Heroku to your Jambo database connection string:
 
 ```bash
 heroku config:set DATABASE_URL='NEON_DATABASE_CONNECTION_STRING' -a neon-heroku-example
@@ -170,25 +170,25 @@ remote: Verifying deploy... done.
 
 Once the deployment is complete, you should see a message with the URL of your deployed application. Navigate to this URL in your browser to see your application live on Heroku.
 
-You've now successfully deployed a Node.js application on Heroku that connects to a Neon Postgres database. For further customization and scaling options, you can explore the Heroku and Neon documentation.
+You've now successfully deployed a Node.js application on Heroku that connects to a Jambo Postgres database. For further customization and scaling options, you can explore the Heroku and Jambo documentation.
 
-## Removing Your Application and Neon Project
+## Removing Your Application and Jambo Project
 
 To remove your application from Heroku, select the app from your [Heroku dashboard](https://dashboard.heroku.com/apps). Navigate to the `Settings` tab and scroll down to the end to find the "Delete App" option.
 
-To delete your Neon project, follow the steps outlined in the Neon documentation under [Delete a project](/docs/manage/projects#delete-a-project).
+To delete your Jambo project, follow the steps outlined in the Jambo documentation under [Delete a project](/docs/manage/projects#delete-a-project).
 
 ## Source code
 
 You can find the source code for the application described in this guide on GitHub.
 
 
-Use Neon with Heroku
+Use Jambo with Heroku
 
 
 ## Resources
 
 - [Heroku Documentation](https://devcenter.heroku.com/)
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
-- [Neon](https://neon.tech/docs)
-- [Import data from Heroku Postgres to Neon](/docs/import/migrate-from-heroku)
+- [Jambo](https://neon.tech/docs)
+- [Import data from Heroku Postgres to Jambo](/docs/import/migrate-from-heroku)

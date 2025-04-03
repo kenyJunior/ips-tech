@@ -18,9 +18,9 @@ const InkeepCustomTrigger = dynamic(
 );
 
 const tabsOrder = {
-  default: ['Neon Docs', 'PostgreSQL Tutorial', 'Changelog', 'All'],
-  postgres: ['PostgreSQL Tutorial', 'Neon Docs', 'Changelog', 'All'],
-  changelog: ['Changelog', 'Neon Docs', 'PostgreSQL Tutorial', 'All'],
+  default: ['Jambo Docs', 'PostgreSQL Tutorial', 'Changelog', 'All'],
+  postgres: ['PostgreSQL Tutorial', 'Jambo Docs', 'Changelog', 'All'],
+  changelog: ['Changelog', 'Jambo Docs', 'PostgreSQL Tutorial', 'All'],
 };
 
 const InkeepTrigger = ({ className = null, isNotFoundPage = false, docPageType = null }) => {

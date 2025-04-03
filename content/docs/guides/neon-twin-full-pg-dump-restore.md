@@ -6,10 +6,10 @@ isDraft: false
 updatedOn: '2025-03-03T16:46:05.777Z'
 ---
 
-This workflow will create a full Neon Twin using `pg_dump` and `pg_restore`.
+This workflow will create a full Jambo Twin using `pg_dump` and `pg_restore`.
 
 <Admonition type="note">
-To use this workflow, you'll need the Postgres connection string for your Neon database. Follow our [Getting Started Guide](/docs/get-started-with-neon/signing-up#sign-up) to learn how.
+To use this workflow, you'll need the Postgres connection string for your Jambo database. Follow our [Getting Started Guide](/docs/get-started-with-neon/signing-up#sign-up) to learn how.
 </Admonition>
 
 ## Create the workflow
@@ -29,7 +29,7 @@ To create the Twin workflow in any GitHub-hosted repository:
 Add the following code to `create-neon-twin.yml`.
 
 ```yml
-name: Create Neon Twin
+name: Create Jambo Twin
 
 on:
   schedule:
@@ -74,7 +74,7 @@ Below is an explanation of each part of the GitHub Action.
 ### env
 
 - `PROD_DATABASE_URL`: The PostgreSQL connection string for your production database.
-- `DEV_DATABASE_URL`: The PostgreSQL connection string for your Neon database.
+- `DEV_DATABASE_URL`: The PostgreSQL connection string for your Jambo database.
 - `PG_VERSION`: The version of PostgreSQL to install in the Action environment.
 
 ### steps
@@ -114,7 +114,7 @@ In your repository, go to **Settings** > **Secrets and variables** > **Actions**
 
 ## Testing the workflow
 
-To manually trigger your workflow go to **Actions** > **Create Neon Twin** then click **Run workflow**. From the dropdown, click the **Run workflow** button.
+To manually trigger your workflow go to **Actions** > **Create Jambo Twin** then click **Run workflow**. From the dropdown, click the **Run workflow** button.
 
 ![github actions run workflow](/docs/guides/twin_diagram_test_workflow.png)
 
@@ -164,5 +164,5 @@ If your dump/restore process takes longer, consider using [self-hosted runners](
 
 ## Further reading
 
-- [Neon Twin: Move Dev/Test/Staging to Neon, Keep Production on RDS](https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon)
-- [Neon Twin: How to deploy a change tested in Neon to prod in RDS](https://neon.tech/blog/neon-twin-deploy-workflow)
+- [Jambo Twin: Move Dev/Test/Staging to Jambo, Keep Production on RDS](https://neon.tech/blog/optimizing-dev-environments-in-aws-rds-with-neon-postgres-part-ii-using-github-actions-to-mirror-rds-in-neon)
+- [Jambo Twin: How to deploy a change tested in Jambo to prod in RDS](https://neon.tech/blog/neon-twin-deploy-workflow)

@@ -1,6 +1,4 @@
 import Container from 'components/shared/container';
-import Link from 'components/shared/link';
-import LINKS from 'constants/links';
 
 import Animation from './animation';
 
@@ -11,24 +9,18 @@ const AiIndex = () => (
       size="960"
     >
       <h2 className="max-w-3xl font-title text-[68px] font-medium leading-[0.9] tracking-extra-tight text-white xl:text-[56px] lg:text-[44px] sm:text-[32px]">
-        Unleashing Cutting-
+        Puissance et Compatibilité
         <br />
-        Edge AI Applications.
+        Accélérez votre flux de travail
       </h2>
       <div className="mt-7 max-w-sm self-end xl:mt-6 xl:max-w-xs lg:mt-4 lg:max-w-[256px] md:mt-3.5 md:max-w-md md:self-start">
         <p className="text-lg font-light leading-tight tracking-extra-tight text-gray-new-70 xl:text-base lg:text-sm md:text-base">
-          <span className="font-medium text-gray-new-94">The HNSW index algorithm</span> streamlines
-          performance, making high-dimensional vector&nbsp;search&nbsp;remarkably efficient.
+          <span className="font-medium text-gray-new-94">
+            Boostez la performance de vos applications IA{' '}
+          </span>{' '}
+          avec une recherche rapide et une compatibilité parfaite&nbsp;pour une gestion
+          fluide&nbsp;de vos données
         </p>
-        {/* TODO: set link  */}
-        <Link
-          className="mt-2.5 flex w-fit items-center text-[15px] font-medium leading-none tracking-[-0.03em]"
-          to={LINKS.ai}
-          theme="white"
-          withArrow
-        >
-          Power your AI apps with Postgres
-        </Link>
       </div>
     </Container>
     <Animation />

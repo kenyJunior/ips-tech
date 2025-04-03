@@ -23,7 +23,7 @@ const description =
 
 const items = [
   {
-    text: 'Frictionless development experience with Neon branching',
+    text: 'Frictionless development experience with Jambo branching',
     linkText: 'Read blog post',
     linkUrl: '/blog/frictionless-development-experience-with-neon-branching/',
   },
@@ -50,7 +50,7 @@ const Partners = () => {
         id="day-3"
       >
         <div className="col-span-4 flex justify-center 2xl:col-span-3 2xl:justify-start xl:hidden">
-          <img
+          <Image
             className="-mt-20 ml-[74px] 3xl:ml-0 2xl:mt-0"
             src={featureLineSvg}
             width={144}
@@ -82,7 +82,7 @@ const Partners = () => {
               />
             </div>
             <div className="relative isolate w-[940px] overflow-hidden rounded-2xl xl:w-full md:rounded-b-none">
-              <img
+              <Image
                 className="w-full"
                 src={`data:image/svg+xml;charset=utf-8,%3Csvg width='940' height='520' xmlns='http://www.w3.org/2000/svg' version='1.1'%3E%3C/svg%3E`}
                 alt=""

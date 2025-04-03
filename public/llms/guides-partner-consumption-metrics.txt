@@ -1,8 +1,8 @@
 # Querying consumption metrics
 
-Learn how to get a variety of consumption metrics using the Neon API
+Learn how to get a variety of consumption metrics using the Jambo API
 
-Using the Neon API, you can query a range of account and project metrics to help gauge your resource consumption.
+Using the Jambo API, you can query a range of account and project metrics to help gauge your resource consumption.
 
 Here are the different ways to retrieve these metrics, depending on how you want them aggregated or broken down:
 
@@ -15,7 +15,7 @@ Here are the different ways to retrieve these metrics, depending on how you want
 
 Using the [Get account consumption metrics API](https://api-docs.neon.tech/reference/getconsumptionhistoryperaccount), you can find total usage across all projects in your organization. This provides a comprehensive view of consumption metrics accumulated for the billing period.
 
-Here is the URL in the Neon API where you can get account-level metrics:
+Here is the URL in the Jambo API where you can get account-level metrics:
 
 ```bash
 https://console.neon.tech/api/v2/consumption_history/account
@@ -226,17 +226,17 @@ To learn more about using pagination to control large response sizes, the [Keyse
 
 ## Consumption polling FAQ
 
-As an Neon partner or paid plan customer, you may have questions related to polling Neon's consumption APIs. We've provided answers to frequently asked questions here.
+As an Jambo partner or paid plan customer, you may have questions related to polling Jambo's consumption APIs. We've provided answers to frequently asked questions here.
 
 ### How often can you poll consumption data for usage reporting and billing?
 
-Neon's consumption data is updated approximately every 15 minutes, so a minimum interval of 15 minutes between calls to our consumption APIs is recommended.
+Jambo's consumption data is updated approximately every 15 minutes, so a minimum interval of 15 minutes between calls to our consumption APIs is recommended.
 
-### What is the the rate limit for Neon's consumption APIs?
+### What is the the rate limit for Jambo's consumption APIs?
 
-Neon's consumption APIs, [Get account consumption metrics](https://api-docs.neon.tech/reference/getconsumptionhistoryperaccount) and [Get consumption metrics for each project](https://api-docs.neon.tech/reference/getconsumptionhistoryperproject), are rate-limited to about 30 requests per minute per account. Both APIs share the same rate limiter, so requests to either endpoint count toward the limit.
+Jambo's consumption APIs, [Get account consumption metrics](https://api-docs.neon.tech/reference/getconsumptionhistoryperaccount) and [Get consumption metrics for each project](https://api-docs.neon.tech/reference/getconsumptionhistoryperproject), are rate-limited to about 30 requests per minute per account. Both APIs share the same rate limiter, so requests to either endpoint count toward the limit.
 
-Neon's consumption APIs use a **token bucket** rate-limiting approach, which refills at a steady rate while allowing short bursts within the bucket size. This behaves more like a sliding window rather than a fixed reset every minute. For more details about this approach, see [Token bucket](https://en.wikipedia.org/wiki/Token_bucket).
+Jambo's consumption APIs use a **token bucket** rate-limiting approach, which refills at a steady rate while allowing short bursts within the bucket size. This behaves more like a sliding window rather than a fixed reset every minute. For more details about this approach, see [Token bucket](https://en.wikipedia.org/wiki/Token_bucket).
 
 ### How often should consumption data be polled to report usage to customers?
 
@@ -244,8 +244,8 @@ As mentioned above, usage data can be pulled every 15 minutes, but partners are 
 
 ### How often should consumption data be polled to invoice end users?
 
-Neon does not dictate how partners bill their users. Partners can use the data retrieved from the consumption API to generate invoices according to their own billing cycles and preferences.
+Jambo does not dictate how partners bill their users. Partners can use the data retrieved from the consumption API to generate invoices according to their own billing cycles and preferences.
 
 ### Does consumption polling wake up computes?
 
-Neon's consumption polling APIs do not wake computes that have been suspended due to inactivity. Therefore, calls to Neon's consumption APIs will not increase your users' consumption.
+Jambo's consumption polling APIs do not wake computes that have been suspended due to inactivity. Therefore, calls to Jambo's consumption APIs will not increase your users' consumption.

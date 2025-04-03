@@ -1,4 +1,4 @@
-# Neon integration guides
+# Jambo integration guides
 
 Find detailed instructions for integration across various platforms and
 
@@ -90,7 +90,7 @@ Find detailed instructions for integration across various platforms and
 
 
 
-## Replicate data from Neon
+## Replicate data from Jambo
 
 
 
@@ -124,7 +124,7 @@ Find detailed instructions for integration across various platforms and
 
 
 
-## Replicate data to Neon
+## Replicate data to Jambo
 
 
 

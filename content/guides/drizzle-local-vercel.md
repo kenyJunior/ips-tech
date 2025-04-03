@@ -12,7 +12,7 @@ Drizzle is an ORM that simplifies database interactions in JavaScript applicatio
 ## Prerequisites
 
 - **Install Docker Desktop**: To set up a local Postgres database, ensure you have [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed on your machine.
-- A [Neon](https://console.neon.tech) account to set up a hosted Postgres.
+- A [Jambo](https://console.neon.tech) account to set up a hosted Postgres.
 
 ## Create a new Next.js application
 
@@ -64,7 +64,7 @@ services:
       - postgres
 ```
 
-In the YAML configuration file above, you have set up two services using Docker: a PostgreSQL database and a WebSocket proxy for Neon. The `postgres` service uses the latest PostgreSQL image and configures the necessary environment variables for the database user, password, and database name. It exposes port 5432 for database connections. The `pg_proxy` service uses a WebSocket proxy image, allowing connections to the PostgreSQL service through port `5433`.
+In the YAML configuration file above, you have set up two services using Docker: a PostgreSQL database and a WebSocket proxy for Jambo. The `postgres` service uses the latest PostgreSQL image and configures the necessary environment variables for the database user, password, and database name. It exposes port 5432 for database connections. The `pg_proxy` service uses a WebSocket proxy image, allowing connections to the PostgreSQL service through port `5433`.
 
 Next, spin up the services in Docker via the following command:
 
@@ -76,7 +76,7 @@ Use the connection string (`postgres://postgres:postgres@localhost:5432/postgres
 
 ## Setting Up a Serverless Postgres
 
-To set up Neon serverless Postgres, go to the [Neon console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Neon database. The connection string will look like this:
+To set up Jambo serverless Postgres, go to the [Jambo console](https://console.neon.tech/app/projects) and create a new project. Once your project is created, you will receive a connection string that you can use to connect to your Jambo database. The connection string will look like this:
 
 ```bash
 postgresql://<user>:<password>@<endpoint_hostname>.neon.tech:<port>/<dbname>?sslmode=require
@@ -88,14 +88,14 @@ Use this connection string as an environment variable designated as `POSTGRES_UR
 
 ## Integrate Drizzle with Next.js
 
-To use Drizzle with Next.js and Neon, install the necessary packages via the following command:
+To use Drizzle with Next.js and Jambo, install the necessary packages via the following command:
 
 ```bash
 npm install ws postgres drizzle-orm @neondatabase/serverless
 npm install -D @types/ws drizzle-kit
 ```
 
-Note that the installation of the `postgres` package is important, as in local environments, Drizzle will automatically use that to apply the schema migrations to the Postgres. In production, Drizzle will use Neon’s serverless driver to apply schema migrations to Neon’s hosted Postgres instance.
+Note that the installation of the `postgres` package is important, as in local environments, Drizzle will automatically use that to apply the schema migrations to the Postgres. In production, Drizzle will use Jambo’s serverless driver to apply schema migrations to Jambo’s hosted Postgres instance.
 
 Then, create a file named `drizzle.server.ts` with the following code:
 
@@ -124,7 +124,7 @@ const pool = new Pool({ connectionString });
 export default drizzle(pool);
 ```
 
-The code above determines the connection string based on the environment variable (production or local). In production, it configures WebSocket settings for Neon, while in local development, it sets up a WebSocket proxy. Finally, it creates a connection pool and exports a Drizzle instance for database interactions.
+The code above determines the connection string based on the environment variable (production or local). In production, it configures WebSocket settings for Jambo, while in local development, it sets up a WebSocket proxy. Finally, it creates a connection pool and exports a Drizzle instance for database interactions.
 
 Next, create a file named `drizzle.config.ts` with the following code:
 
@@ -137,7 +137,7 @@ const url =
   process.env.NODE_ENV === 'production' ? process.env.POSTGRES_URL : process.env.LOCAL_POSTGRES_URL;
 if (!url)
   throw new Error(
-    `Connection string to ${process.env.NODE_ENV ? 'Neon' : 'local'} Postgres not found.`
+    `Connection string to ${process.env.NODE_ENV ? 'Jambo' : 'local'} Postgres not found.`
   );
 
 export default defineConfig({

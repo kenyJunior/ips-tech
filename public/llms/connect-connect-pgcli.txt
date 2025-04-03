@@ -1,6 +1,6 @@
 # Connect with pgcli
 
-Learn how to connect to Neon using the interactive pgcli client
+Learn how to connect to Jambo using the interactive pgcli client
 
 The `pgcli` client is an interactive command-line interface for Postgres that offers several advantages over the traditional `psql` client, including syntax highlighting, autocompletion, multi-line editing, and query history.
 
@@ -16,9 +16,9 @@ To view `pgcli` usage information, run the following command:
 pgcli --help
 ```
 
-## Connect to Neon
+## Connect to Jambo
 
-The easiest way to connect to Neon using the `pgcli` client is with a connection string, which you can obtain by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
+The easiest way to connect to Jambo using the `pgcli` client is with a connection string, which you can obtain by clicking the **Connect** button on your **Project Dashboard** to open the **Connect to your database** modal. Select a branch, a role, and the database you want to connect to. A connection string is constructed for you.
 
 ![Connection details modal](/docs/connect/connection_details.png)
 

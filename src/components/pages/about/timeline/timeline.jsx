@@ -13,37 +13,34 @@ import pointerLineLg from 'images/pages/about/timeline/pointer-line-lg.svg';
 const ITEMS = [
   {
     className: 'lg:translate-x-[-34px]',
-    date: 'March, 2021',
-    title: 'First Commits',
+    date: 'Entreprise Name',
+    title: 'Industrial Power Solutions',
   },
   {
     className: 'translate-x-3 lg:-translate-x-9',
-    date: 'June 15th, 2022',
-    title: 'Technical Preview',
-    link: 'https://neon.tech/blog/hello-world',
+    date: 'Adresse',
+    title: 'Logbaba, Douala Cameroun',
   },
   {
     className: '-translate-x-3 lg:translate-x-[-72px]',
-    date: 'July, 2022',
-    title: '$54MM Raised',
-    link: 'https://neon.tech/blog/funding-a1',
+    date: 'Email',
+    title: 'info@ips.cm',
   },
   {
     className: '-translate-x-3 lg:translate-x-[-85px]',
-    date: 'December, 2022',
-    title: 'Open Access',
+    date: 'Phone Number 1',
+    title: '+237 675 26 15 68',
     link: 'https://neon.tech/blog/neon-serverless-postgres-is-live',
   },
   {
     className: 'translate-x-1 lg:translate-x-[-94px]',
-    date: 'August, 2023',
-    title: '$46MM Raised',
-    link: 'https://neon.tech/blog/series-b-funding',
+    date: 'Phone Number 2',
+    title: '+237 696 50 42 74',
   },
   {
     className: '2xl:-translate-x-1 lg:translate-x-[-115px]',
     date: 'April 15th, 2024',
-    title: 'Neon is Generally Available',
+    title: 'Jambo is Generally Available',
     link: 'https://neon.tech/blog/neon-ga',
   },
 ];

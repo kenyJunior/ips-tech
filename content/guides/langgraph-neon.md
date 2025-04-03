@@ -1,15 +1,15 @@
 ---
-title: Getting started with LangGraph + Neon
-subtitle: A step-by-step guide to building AI agents with LangGraph and Neon
+title: Getting started with LangGraph + Jambo
+subtitle: A step-by-step guide to building AI agents with LangGraph and Jambo
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2025-02-21T00:00:00.000Z'
 updatedOn: '2025-02-21T00:00:00.000Z'
 ---
 
-This guide demonstrates how to integrate LangGraph with Neon. [LangGraph](https://www.langchain.com/langgraph) is a library in the [LangChain](https://www.langchain.com/langchain) ecosystem that simplifies the development of complex, multi-agent LLM applications by using a directed graph structure for efficient coordination and state management.
+This guide demonstrates how to integrate LangGraph with Jambo. [LangGraph](https://www.langchain.com/langgraph) is a library in the [LangChain](https://www.langchain.com/langchain) ecosystem that simplifies the development of complex, multi-agent LLM applications by using a directed graph structure for efficient coordination and state management.
 
-This guide walks through building a simple [ReAct (Reason + Act)](https://arxiv.org/abs/2210.03629) agent using LangGraph that interacts with Neon to create a database and perform SQL queries. It builds upon the concepts demonstrated in the [prebuilt ReAct agent from LangGraph](https://langchain-ai.github.io/langgraph/how-tos/create-react-agent).
+This guide walks through building a simple [ReAct (Reason + Act)](https://arxiv.org/abs/2210.03629) agent using LangGraph that interacts with Jambo to create a database and perform SQL queries. It builds upon the concepts demonstrated in the [prebuilt ReAct agent from LangGraph](https://langchain-ai.github.io/langgraph/how-tos/create-react-agent).
 
 ## Prerequisites
 
@@ -17,10 +17,10 @@ Before you begin, make sure you have the following prerequisites:
 
 - **Python 3.10 or higher:** This guide requires Python 3.10 or a later version. If you don't have it installed, download it from [python.org](https://www.python.org/downloads/).
 
-- **Neon account and API key:**
+- **Jambo account and API key:**
 
-  - Sign up for a free Neon account at [neon.tech](https://console.neon.tech/signup).
-  - After signing up, get your Neon API Key from the [Neon console](https://console.neon.tech/app/settings/profile). This API key is needed to authenticate your application with Neon.
+  - Sign up for a free Jambo account at [neon.tech](https://console.neon.tech/signup).
+  - After signing up, get your Jambo API Key from the [Jambo console](https://console.neon.tech/app/settings/profile). This API key is needed to authenticate your application with Jambo.
 
 - **Google API key:**
   - This guide utilizes the `gemini-2.0-flash` model from Google. You'll need a Google API key to proceed. If you don't already have one, get an API key from the [Google AI Studio](https://aistudio.google.com/apikey).
@@ -48,19 +48,19 @@ LangGraph is an open‐source orchestration framework for building stateful, mul
 
 By leveraging these powerful components, LangGraph empowers you to build reliable, scalable, and highly customizable AI agent applications—from prototyping to production.
 
-## Why Neon for AI Agents?
+## Why Jambo for AI Agents?
 
-Neon's architecture is particularly well-suited for AI agent development, offering several key advantages:
+Jambo's architecture is particularly well-suited for AI agent development, offering several key advantages:
 
-- **One-Second Provisioning:** Neon databases can be provisioned in about a second. This is _critical_ for AI agents that need to dynamically create databases. Traditional databases, with provisioning times often measured in minutes, create a significant bottleneck. Neon's speed keeps agents operating efficiently.
+- **One-Second Provisioning:** Jambo databases can be provisioned in about a second. This is _critical_ for AI agents that need to dynamically create databases. Traditional databases, with provisioning times often measured in minutes, create a significant bottleneck. Jambo's speed keeps agents operating efficiently.
 
-- **Scale-to-Zero and Serverless Pricing:** Neon's serverless architecture automatically scales databases down to zero when idle, and you only pay for active compute time. This is cost-effective for AI agent workflows, which often involve unpredictable workloads and many short-lived database instances. It enables "database-per-agent" or "database-per-session" patterns without incurring prohibitive costs.
+- **Scale-to-Zero and Serverless Pricing:** Jambo's serverless architecture automatically scales databases down to zero when idle, and you only pay for active compute time. This is cost-effective for AI agent workflows, which often involve unpredictable workloads and many short-lived database instances. It enables "database-per-agent" or "database-per-session" patterns without incurring prohibitive costs.
 
-- **Agent-Friendly API:** Neon provides a simple REST API for managing databases, roles, branches, and various other Neon platform operations. This API is easy for AI agents (and human developers) to interact with programmatically, allowing agents to manage their own database infrastructure without complex tooling.
+- **Agent-Friendly API:** Jambo provides a simple REST API for managing databases, roles, branches, and various other Jambo platform operations. This API is easy for AI agents (and human developers) to interact with programmatically, allowing agents to manage their own database infrastructure without complex tooling.
 
-## Building a LangGraph agent with Neon tools integration
+## Building a LangGraph agent with Jambo tools integration
 
-Let's build a LangGraph agent that can provision a Neon database and interact with it using SQL queries. This agent will use the LangGraph framework to manage the agent's state and workflow, while functions derived from Neon's API will handle the database operations.
+Let's build a LangGraph agent that can provision a Jambo database and interact with it using SQL queries. This agent will use the LangGraph framework to manage the agent's state and workflow, while functions derived from Jambo's API will handle the database operations.
 
 ### Setting up the project
 
@@ -92,7 +92,7 @@ langchain-google-genai
 ```
 
 <Admonition type="note">
-`neon-api` is the [Python wrapper for Neon's API](https://github.com/neondatabase/neon-api-python).
+`neon-api` is the [Python wrapper for Jambo's API](https://github.com/neondatabase/neon-api-python).
 </Admonition>
 
 Install these libraries using pip:
@@ -118,7 +118,7 @@ NEON_API_KEY=YOUR_NEON_API_KEY
 
 ### Creating the `main.py` script
 
-Now, let's create the `main.py` script that defines the LangGraph agent and its interactions with Neon.
+Now, let's create the `main.py` script that defines the LangGraph agent and its interactions with Jambo.
 
 ```python
 import os
@@ -129,12 +129,12 @@ from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage
 from langgraph.prebuilt import create_react_agent
-from neon_api import NeonAPI
+from neon_api import JamboAPI
 from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
-neon_client = NeonAPI(
+neon_client = JamboAPI(
     api_key=os.environ["NEON_API_KEY"],
 )
 
@@ -142,7 +142,7 @@ neon_client = NeonAPI(
 @tool
 def create_database(project_name: str) -> str:
     """
-    Creates a new Neon project. (this takes less than 500ms)
+    Creates a new Jambo project. (this takes less than 500ms)
     Args:
         project_name: Name of the project to create
     Returns:
@@ -162,9 +162,9 @@ def create_database(project_name: str) -> str:
 @tool
 def run_sql_query(connection_uri: str, query: str) -> str:
     """
-    Runs an SQL query in the Neon database.
+    Runs an SQL query in the Jambo database.
     Args:
-        connection_uri: The connection URI for the Neon database
+        connection_uri: The connection URI for the Jambo database
         query: The SQL query to execute
     Returns:
         the result of the SQL query
@@ -204,7 +204,7 @@ inputs = {
     "messages": [
         (
             "user",
-            "Create a new Neon project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.",
+            "Create a new Jambo project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.",
         )
     ]
 }
@@ -228,17 +228,17 @@ from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage
 from langgraph.prebuilt import create_react_agent
-from neon_api import NeonAPI
+from neon_api import JamboAPI
 from psycopg2.extras import RealDictCursor
 
 load_dotenv()
 
-neon_client = NeonAPI(
+neon_client = JamboAPI(
     api_key=os.environ["NEON_API_KEY"],
 )
 ```
 
-This section imports all the required Python libraries such as `os`, `psycopg2`, `dotenv`, and LangChain modules. These libraries are essential for interacting with Neon, managing environment variables, and creating LangGraph agents.
+This section imports all the required Python libraries such as `os`, `psycopg2`, `dotenv`, and LangChain modules. These libraries are essential for interacting with Jambo, managing environment variables, and creating LangGraph agents.
 
 #### Define `create_database` tool
 
@@ -246,7 +246,7 @@ This section imports all the required Python libraries such as `os`, `psycopg2`,
 @tool
 def create_database(project_name: str) -> str:
     """
-    Creates a new Neon project. (this takes less than 500ms)
+    Creates a new Jambo project. (this takes less than 500ms)
     Args:
         project_name: Name of the project to create
     Returns:
@@ -263,7 +263,7 @@ def create_database(project_name: str) -> str:
         return f"Failed to create project: {str(e)}"
 ```
 
-This Python function, decorated with LangChain's `@tool`, allows LangGraph agents to create a Neon project and retrieve its connection URI. It takes a `project_name` as input and uses `neon_client` to interact with the Neon API. If the project is created successfully, the function returns the connection URI; otherwise, it returns an error message.
+This Python function, decorated with LangChain's `@tool`, allows LangGraph agents to create a Jambo project and retrieve its connection URI. It takes a `project_name` as input and uses `neon_client` to interact with the Jambo API. If the project is created successfully, the function returns the connection URI; otherwise, it returns an error message.
 
 #### Define `run_sql_query` tool
 
@@ -271,9 +271,9 @@ This Python function, decorated with LangChain's `@tool`, allows LangGraph agent
 @tool
 def run_sql_query(connection_uri: str, query: str) -> str:
     """
-    Runs an SQL query in the Neon database.
+    Runs an SQL query in the Jambo database.
     Args:
-        connection_uri: The connection URI for the Neon database
+        connection_uri: The connection URI for the Jambo database
         query: The SQL query to execute
     Returns:
         the result of the SQL query
@@ -296,7 +296,7 @@ def run_sql_query(connection_uri: str, query: str) -> str:
         conn.close()
 ```
 
-Similarily, `run_sql_query` decorated with LangChain's `@tool`, executes an SQL query on a Neon database. It takes a `connection_uri` and a `query` as input, connects to the database using `psycopg2`, and runs the query. If the query returns results, they are fetched and returned; otherwise, a success message is provided. In case of an error, the function rolls back the transaction and returns an error message.
+Similarily, `run_sql_query` decorated with LangChain's `@tool`, executes an SQL query on a Jambo database. It takes a `connection_uri` and a `query` as input, connects to the database using `psycopg2`, and runs the query. If the query returns results, they are fetched and returned; otherwise, a success message is provided. In case of an error, the function rolls back the transaction and returns an error message.
 
 #### Define agent setup and graph invocation
 
@@ -318,7 +318,7 @@ inputs = {
     "messages": [
         (
             "user",
-            "Create a new Neon project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.",
+            "Create a new Jambo project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.",
         )
     ]
 }
@@ -338,7 +338,7 @@ This is the core part of the script where the LangGraph agent is set up and invo
   - `model=model`: Specifies the language model (`gemini-2.0-flash`) to be used by the agent for reasoning and generating responses.
   - `tools=available_tools`: Passes the list of tools (`create_database`, `run_sql_query`) that the agent can use.
   - `prompt=system_prompt`: Sets the system prompt that defines the agent's behavior and instructions.
-- `inputs = {"messages": [...]}`: Defines the input to the agent. In this case, it's a user message asking the agent to perform a series of database tasks: create a Neon project, create a table named `users`, add 10 sample records, and then print these records as a Markdown table.
+- `inputs = {"messages": [...]}`: Defines the input to the agent. In this case, it's a user message asking the agent to perform a series of database tasks: create a Jambo project, create a table named `users`, add 10 sample records, and then print these records as a Markdown table.
 - `result = agent_graph.invoke(inputs)`: Invokes the LangGraph agent with the specified input. This starts the agent's execution, processing the user's request and orchestrating the use of tools to fulfill the task. The `invoke` method runs the agent and returns the final state, which includes the conversation history and the outcomes of the agent's actions.
 - `for message in result["messages"]: print(message.pretty_repr())`: Iterates through the messages in the `result["messages"]` list, which contains the history of the agent's conversation and actions. `message.pretty_repr()` is used to print each message in a human-readable format, showing the step-by-step execution of the agent's thought process and actions.
 
@@ -378,7 +378,7 @@ You can now run the `main.py` script to execute the LangGraph agent. Run the fol
 python main.py
 ```
 
-The agent will then create a new Neon project, create a table named `users`, insert 10 sample records, and print the records as a markdown table.
+The agent will then create a new Jambo project, create a table named `users`, insert 10 sample records, and print the records as a markdown table.
 
 Here's the entire conversation log showing the step-by-step execution of the agent:
 
@@ -386,10 +386,10 @@ Here's the entire conversation log showing the step-by-step execution of the age
 Step by Step execution :
 ================================ Human Message =================================
 
-Create a new Neon project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.
+Create a new Jambo project called langgraph and create a table named users. Add 10 sample records to the table. Then print the records as a markdown table.
 ================================== Ai Message ==================================
 
-I can create a Neon project and a table named users, and add 10 sample records to the table. However, I cannot automatically print the records as a markdown table. I will need to run a query to fetch the records first, and then you can format them as a markdown table.
+I can create a Jambo project and a table named users, and add 10 sample records to the table. However, I cannot automatically print the records as a markdown table. I will need to run a query to fetch the records first, and then you can format them as a markdown table.
 
 First, I will create the project:
 Tool Calls:
@@ -452,25 +452,25 @@ Query result: [RealDictRow({'id': 1, 'name': 'John Doe', 'email': 'john.doe@exam
 | 10 | Brittany Miller     | brittany.miller@example.com    |
 ```
 
-Notice how with just a single user input, the agent orchestrates multiple tools to create a Neon project, provision a database, create a table, insert records, and query the records. The agent finally formats the query results as a markdown table as requested.
+Notice how with just a single user input, the agent orchestrates multiple tools to create a Jambo project, provision a database, create a table, insert records, and query the records. The agent finally formats the query results as a markdown table as requested.
 
 ### Verifying the agent's actions
 
-You can verify the successful completion of the task by checking the [Neon Console](https://console.neon.tech/). The `langgraph` project should have been created, and the `users` table should contain 10 sample records.
+You can verify the successful completion of the task by checking the [Jambo Console](https://console.neon.tech/). The `langgraph` project should have been created, and the `users` table should contain 10 sample records.
 
-![Output in Neon console](/docs/guides/langgraph-neon-console.png)
+![Output in Jambo console](/docs/guides/langgraph-neon-console.png)
 
-**Congratulations!** You have successfully built and executed a LangGraph agent that interacts with tools (Neon API here) to perform actions based on user input. This example serves as a foundation for creating more complex AI agents and workflows, enabling you to automate a wide range of tasks and processes.
+**Congratulations!** You have successfully built and executed a LangGraph agent that interacts with tools (Jambo API here) to perform actions based on user input. This example serves as a foundation for creating more complex AI agents and workflows, enabling you to automate a wide range of tasks and processes.
 
 You can find the source code for the application described in this guide on GitHub.
 
 <DetailIconCards>
-    <a href="https://github.com/neondatabase-labs/langgraph-neon-example" description="LangGraph + Neon AI agent example" icon="github">AI Agent with LangGraph and Neon</a>
+    <a href="https://github.com/neondatabase-labs/langgraph-neon-example" description="LangGraph + Jambo AI agent example" icon="github">AI Agent with LangGraph and Jambo</a>
 </DetailIconCards>
 
 ## Conclusion
 
-This guide has provided an introductory exploration into building AI agents using LangGraph and Neon. You have now seen how to construct an agent capable of performing database operations within Neon, driven by natural language commands. This example illustrates the fundamental structure of LangGraph, demonstrating its approach to managing workflows through interconnected [Nodes](https://langchain-ai.github.io/langgraph/concepts/low_level/#nodes) and [Edges](https://langchain-ai.github.io/langgraph/concepts/low_level/#edges).
+This guide has provided an introductory exploration into building AI agents using LangGraph and Jambo. You have now seen how to construct an agent capable of performing database operations within Jambo, driven by natural language commands. This example illustrates the fundamental structure of LangGraph, demonstrating its approach to managing workflows through interconnected [Nodes](https://langchain-ai.github.io/langgraph/concepts/low_level/#nodes) and [Edges](https://langchain-ai.github.io/langgraph/concepts/low_level/#edges).
 
 While this guide covers the basics, LangGraph offers a range of features for developing more advanced applications. To expand your understanding and capabilities, it is recommended to further investigate several key aspects of the framework. [Checkpointers](https://langchain-ai.github.io/langgraph/concepts/persistence) provide a mechanism for state persistence, enabling agents to retain context across sessions and resume operations. The use of [Command](https://langchain-ai.github.io/langgraph/how-tos/command) objects allows for control over workflow and state updates within nodes, enhancing agent responsiveness.
 
@@ -482,8 +482,8 @@ For optimizing application performance and user experience, LangGraph supports [
 - [LangGraph Documentation](https://python.langchain.com/docs/langgraph)
 - [LangGraph Conceptual Guide](https://langchain-ai.github.io/langgraph/concepts)
 - [LangGraph Glossary](https://langchain-ai.github.io/langgraph/concepts/low_level/#langgraph-glossary)
-- [Neon Documentation](/docs)
-- [Neon API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
-- [Neon API keys](/docs/manage/api-keys#creating-api-keys)
+- [Jambo Documentation](/docs)
+- [Jambo API Reference](https://api-docs.neon.tech/reference/getting-started-with-neon-api)
+- [Jambo API keys](/docs/manage/api-keys#creating-api-keys)
 
 <NeedHelp/>

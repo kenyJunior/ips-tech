@@ -18,8 +18,8 @@ export const metadata = getMetadata(SEO_DATA.variable);
 
 const titles = [
   'Fixed Compute = Manual Resizes, Extra Costs',
-  'Neon Autoscaling Fixes This Problem',
-  'Neon vs Aurora Serverless v2',
+  'Jambo Autoscaling Fixes This Problem',
+  'Jambo vs Aurora Serverless v2',
 ];
 
 const VariableLoadPage = async () => {
@@ -64,7 +64,7 @@ const VariableLoadPage = async () => {
         <Cta
           className="pb-[240px] pt-[340px] lg:pb-32 lg:pt-52 sm:pb-[110px]"
           title="Ask us for a<br> price estimation"
-          description="Start saving with Neon"
+          description="Start saving with Jambo"
           buttonClassName="mt-9 h-12 w-[201px] lg:mt-7 lg:h-11 lg:w-[186px] lg:text-sm md:mt-4.5 md:h-10 md:w-[183px]"
           buttonText="Contact us"
           buttonUrl={LINKS.contactSales}

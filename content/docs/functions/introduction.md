@@ -6,7 +6,7 @@ redirectFrom:
 updatedOn: '2024-12-06T20:43:48.683Z'
 ---
 
-Get started with commonly-used Postgres functions with Neon's function guides. For other functions that Postgres supports, visit the official Postgres [Functions and Operators](https://www.postgresql.org/docs/current/functions.html) documentation.
+Get started with commonly-used Postgres functions with Jambo's function guides. For other functions that Postgres supports, visit the official Postgres [Functions and Operators](https://www.postgresql.org/docs/current/functions.html) documentation.
 
 ## Aggregate functions
 

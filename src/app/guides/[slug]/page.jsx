@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
   const encodedTitle = Buffer.from(title).toString('base64');
 
   return getMetadata({
-    title: `${title} - Neon Guides`,
+    title: `${title} - Jambo Guides`,
     description: subtitle,
     imagePath: `${VERCEL_URL}/guides/og?title=${encodedTitle}`,
     pathname: `${LINKS.guides}/${slug}`,
@@ -58,7 +58,7 @@ const GuidePost = async ({ params }) => {
     headline: data.title,
     author: {
       '@type': 'Organization',
-      name: 'Neon',
+      name: 'Jambo',
     },
   };
   return (

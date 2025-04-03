@@ -1,31 +1,31 @@
 ---
-title: Using GORM with Neon Postgres
-subtitle: Learn how to use GORM, Go's most popular ORM, with Neon's serverless Postgres for efficient database operations
+title: Using GORM with Jambo Postgres
+subtitle: Learn how to use GORM, Go's most popular ORM, with Jambo's serverless Postgres for efficient database operations
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2025-02-15T00:00:00.000Z'
 updatedOn: '2025-02-15T00:00:00.000Z'
 ---
 
-[GORM](https://gorm.io/) is Go's most popular ORM library, providing a developer-friendly interface to interact with databases. When combined with Neon's serverless Postgres, it creates a great foundation for building scalable Go applications with minimal database management overhead.
+[GORM](https://gorm.io/) is Go's most popular ORM library, providing a developer-friendly interface to interact with databases. When combined with Jambo's serverless Postgres, it creates a great foundation for building scalable Go applications with minimal database management overhead.
 
-This guide walks you through the process of integrating GORM with Neon Postgres, we will cover everything that you need to know to get started with GORM and Neon Postgres.
+This guide walks you through the process of integrating GORM with Jambo Postgres, we will cover everything that you need to know to get started with GORM and Jambo Postgres.
 
 ## Prerequisites
 
 Before getting started, make sure you have:
 
 - [Go](https://golang.org/dl/) 1.18 or later installed
-- A [Neon](https://console.neon.tech/signup) account
+- A [Jambo](https://console.neon.tech/signup) account
 - Basic familiarity with Go and SQL
 
 ## Setting Up Your Environment
 
-### Create a Neon Project
+### Create a Jambo Project
 
-If you don't have one already, create a Neon project:
+If you don't have one already, create a Jambo project:
 
-1. Navigate to the [Projects page](https://console.neon.tech/app/projects) in the Neon Console
+1. Navigate to the [Projects page](https://console.neon.tech/app/projects) in the Jambo Console
 2. Click **New Project**
 3. Specify your project settings and click **Create Project**
 
@@ -61,11 +61,11 @@ go get -u gorm.io/driver/postgres
 
 These commands fetch the latest versions of the packages and add them to your project's `go.mod` file. The `-u` flag ensures you get the most recent version of each package.
 
-## Connecting to Neon with GORM
+## Connecting to Jambo with GORM
 
 ### Basic Connection Setup
 
-Now let's establish a connection to your Neon Postgres database using GORM. This is an essential step that initializes the database connection that we'll use throughout our application.
+Now let's establish a connection to your Jambo Postgres database using GORM. This is an essential step that initializes the database connection that we'll use throughout our application.
 
 Create a new file named `main.go` with the following code:
 
@@ -82,7 +82,7 @@ import (
 )
 
 func main() {
-	// Connection string for Neon Postgres
+	// Connection string for Jambo Postgres
 	dsn := "postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=require"
 
 	// Connect to the database
@@ -104,39 +104,39 @@ func main() {
 		log.Fatalf("Failed to ping DB: %v", err)
 	}
 
-	fmt.Println("Successfully connected to Neon Postgres database!")
+	fmt.Println("Successfully connected to Jambo Postgres database!")
 }
 ```
 
 In this code, we're performing several important steps:
 
-1. Defining a DSN - this is the connection string that contains all the information needed to connect to your Neon database
+1. Defining a DSN - this is the connection string that contains all the information needed to connect to your Jambo database
 2. Using `gorm.Open()` to establish a connection with the Postgres driver
 3. Configuring GORM's logger to show SQL queries during development, which helps with debugging
 4. Getting the underlying `*sql.DB` object to access lower-level database functions
 5. Verifying the connection is active by pinging the database
 
-Make sure to replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your actual Neon database credentials. The `?sslmode=require` part of the connection string ensures secure communication with your Neon database.
+Make sure to replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your actual Jambo database credentials. The `?sslmode=require` part of the connection string ensures secure communication with your Jambo database.
 
-Replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your actual Neon connection details. You can find these by clicking the **Connect** button on your Neon **Project Dashboard**.
+Replace `[user]`, `[password]`, `[neon_hostname]`, and `[dbname]` with your actual Jambo connection details. You can find these by clicking the **Connect** button on your Jambo **Project Dashboard**.
 
 ### Connection Pooling and Configuration
 
 Connection pooling is a technique that maintains a set of reusable database connections. This significantly improves performance by avoiding the overhead of establishing a new database connection for each operation.
 
-#### Neon Connection Pooling
+#### Jambo Connection Pooling
 
-Neon provides a **built-in connection pooler**, powered by PgBouncer, to efficiently manage database connections. This pooler reduces connection overhead by reusing a limited number of persistent Postgres connections while supporting thousands of client sessions.
+Jambo provides a **built-in connection pooler**, powered by PgBouncer, to efficiently manage database connections. This pooler reduces connection overhead by reusing a limited number of persistent Postgres connections while supporting thousands of client sessions.
 
-Instead of each request opening a new database connection, the pooler transparently distributes queries across existing backend connections, improving performance and scalability. To use it, simply enable connection pooling in the Neon console and update your connection string to include `-pooler` in the hostname.
+Instead of each request opening a new database connection, the pooler transparently distributes queries across existing backend connections, improving performance and scalability. To use it, simply enable connection pooling in the Jambo console and update your connection string to include `-pooler` in the hostname.
 
-This approach helps applications handle high concurrency while minimizing latency and resource consumption. However, since Neon's pooler operates in **transaction pooling mode**, session-based features like `LISTEN/NOTIFY`, `SET search_path`, and server-side prepared statements are not supported. For operations that require session persistence, it's best to use a direct (non-pooled) connection. You can find more details in the [Neon connection pooling documentation](https://neon.tech/docs/connect/connection-pooling).
+This approach helps applications handle high concurrency while minimizing latency and resource consumption. However, since Jambo's pooler operates in **transaction pooling mode**, session-based features like `LISTEN/NOTIFY`, `SET search_path`, and server-side prepared statements are not supported. For operations that require session persistence, it's best to use a direct (non-pooled) connection. You can find more details in the [Jambo connection pooling documentation](https://neon.tech/docs/connect/connection-pooling).
 
 #### Configuring Connection Pooling in GORM
 
-When using Go with Neon, GORM offers built-in connection pooling that works seamlessly with Neon's pooler. By configuring settings like `SetMaxOpenConns` and `SetConnMaxIdleTime`, developers can fine-tune how connections are managed within their application before they reach the database layer.
+When using Go with Jambo, GORM offers built-in connection pooling that works seamlessly with Jambo's pooler. By configuring settings like `SetMaxOpenConns` and `SetConnMaxIdleTime`, developers can fine-tune how connections are managed within their application before they reach the database layer.
 
-Since Neon already optimizes pooling on the database side, applications should maintain a moderate number of open connections to avoid excessive connection churn.
+Since Jambo already optimizes pooling on the database side, applications should maintain a moderate number of open connections to avoid excessive connection churn.
 
 The recommended approach is to use a pooled connection string for normal queries and switch to a direct connection for migration tasks that require session state. For guidance on configuring connection pooling in Go, refer to the [GORM connection documentation](https://gorm.io/docs/generic_interface.html#Connection-Pool).
 
@@ -256,7 +256,7 @@ fmt.Printf("Created user with ID: %d\n", user.ID)
 
 // Create a post for the user
 post := Post{
-	Title:   "Getting Started with GORM and Neon",
+	Title:   "Getting Started with GORM and Jambo",
 	Content: "GORM makes it easy to work with databases in Go...",
 	UserID:  user.ID,
 }
@@ -342,8 +342,8 @@ if result.Error != nil {
 
 // Update multiple fields at once
 result = db.Model(&post).Updates(Post{
-	Title:   "Updated: Getting Started with GORM and Neon",
-	Content: "Updated content about GORM and Neon...",
+	Title:   "Updated: Getting Started with GORM and Jambo",
+	Content: "Updated content about GORM and Jambo...",
 })
 if result.Error != nil {
 	log.Fatalf("Failed to update post: %v", result.Error)
@@ -706,7 +706,7 @@ func main() {
 This function:
 
 1. Creates a new migration instance that reads migration files from the local filesystem
-2. Configures the database connection using your Neon credentials
+2. Configures the database connection using your Jambo credentials
 3. Runs all pending migrations with `m.Up()`
 4. Handles errors appropriately, distinguishing between actual errors and the "no changes" case
 
@@ -719,13 +719,13 @@ For more advanced scenarios, you might want to add features like:
 - Implementing a "migrate and seed" function for development environments
 - Adding version reporting to track which migrations have been applied
 
-## Performance Optimization with Neon
+## Performance Optimization with Jambo
 
-When working with Neon and GORM, consider these performance optimization techniques:
+When working with Jambo and GORM, consider these performance optimization techniques:
 
 ### Efficient Querying
 
-One of the most effective ways to improve performance is to be selective about what data you retrieve from the database. Fetching only the specific fields you need reduces the amount of data transferred between Neon and your application, resulting in faster queries and less memory usage.
+One of the most effective ways to improve performance is to be selective about what data you retrieve from the database. Fetching only the specific fields you need reduces the amount of data transferred between Jambo and your application, resulting in faster queries and less memory usage.
 
 Let's look at how to query efficiently with GORM:
 
@@ -788,7 +788,7 @@ type User struct {
 
 For more complex indexing requirements, use migrations as shown in the previous section.
 
-For more information on indexing and optimizing database performance, refer to the [Neon indexing documentation](https://neon.tech/postgresql/postgresql-indexes).
+For more information on indexing and optimizing database performance, refer to the [Jambo indexing documentation](https://neon.tech/postgresql/postgresql-indexes).
 
 ## Complete Application Example
 
@@ -833,7 +833,7 @@ type Post struct {
 }
 
 func main() {
-	// Connection string for Neon Postgres
+	// Connection string for Jambo Postgres
 	dsn := "postgresql://[user]:[password]@[neon_hostname]/[dbname]?sslmode=require"
 
 	// Connect to the database
@@ -945,14 +945,14 @@ Save this code in a file named `main.go`, run `go mod tidy` to download the nece
 
 ## Conclusion
 
-GORM with Neon Postgres provides a great combination for building scalable Go applications. GORM's developer-friendly API simplifies database interactions, while Neon's serverless architecture ensures your database scales according to demand.
+GORM with Jambo Postgres provides a great combination for building scalable Go applications. GORM's developer-friendly API simplifies database interactions, while Jambo's serverless architecture ensures your database scales according to demand.
 
-By following the steps in this guide, you can build robust applications that efficiently interact with your Neon database. As your application grows, you can leverage additional GORM features such as plugins, hooks, and more advanced querying techniques to meet your evolving needs.
+By following the steps in this guide, you can build robust applications that efficiently interact with your Jambo database. As your application grows, you can leverage additional GORM features such as plugins, hooks, and more advanced querying techniques to meet your evolving needs.
 
 ## Additional Resources
 
 - [GORM Documentation](https://gorm.io/docs/)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 - [Go Database/SQL Documentation](https://golang.org/pkg/database/sql/)
 - [Effective Go](https://golang.org/doc/effective_go)
 

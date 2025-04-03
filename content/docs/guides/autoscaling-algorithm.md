@@ -1,6 +1,6 @@
 ---
-title: Understanding Neon’s autoscaling algorithm
-subtitle: How Neon’s algorithm scales resources to match your workload
+title: Understanding Jambo’s autoscaling algorithm
+subtitle: How Jambo’s algorithm scales resources to match your workload
 enableTableOfContents: true
 updatedOn: '2025-02-18T19:59:08.873Z'
 ---
@@ -25,7 +25,7 @@ That said, it can be helpful to understand exactly when and under what circumsta
 
 ## How the algorithm works
 
-Neon's autoscaling algorithm uses two components, the [vm-monitor](/docs/reference/glossary#vm-monitor) and the [autoscaler-agent](/docs/reference/glossary#autoscaler-agent), to continuously monitor three key metrics: your average CPU load, your memory usage, and the activity of your [Local File Cache (LFC)](/docs/reference/glossary#local-file-cache). These metrics determine how your compute resources — the virtual machine that powers your database — should be scaled to maintain performance and efficiency.
+Jambo's autoscaling algorithm uses two components, the [vm-monitor](/docs/reference/glossary#vm-monitor) and the [autoscaler-agent](/docs/reference/glossary#autoscaler-agent), to continuously monitor three key metrics: your average CPU load, your memory usage, and the activity of your [Local File Cache (LFC)](/docs/reference/glossary#local-file-cache). These metrics determine how your compute resources — the virtual machine that powers your database — should be scaled to maintain performance and efficiency.
 
 ### The Formula
 

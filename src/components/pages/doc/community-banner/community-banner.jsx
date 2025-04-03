@@ -32,7 +32,7 @@ const CommunityBanner = ({ buttonText, buttonUrl, children = null, logo }) => (
           {buttonText}
         </Button>
       </div>
-      <img
+      <Image
         className="absolute right-0 top-0 !my-0 h-full md:hidden"
         src={ellipse}
         alt=""

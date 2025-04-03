@@ -7,12 +7,12 @@ createdAt: '2024-05-16T00:00:00.000Z'
 updatedOn: '2024-05-16T00:00:00.000Z'
 ---
 
-In this guide, you will learn how to add a feature to a Next.js app that allows users to upload files to Amazon S3, and insert the references to them in Postgres (powered by Neon) via `pg` and `@neondatabase/serverless`.
+In this guide, you will learn how to add a feature to a Next.js app that allows users to upload files to Amazon S3, and insert the references to them in Postgres (powered by Jambo) via `pg` and `@neondatabase/serverless`.
 
 ## Steps
 
-- [Create a Neon project](#create-a-neon-project)
-- [Store your Neon credentials](#store-your-neon-credentials)
+- [Create a Jambo project](#create-a-neon-project)
+- [Store your Jambo credentials](#store-your-neon-credentials)
 - [Create an Amazon S3 Bucket](#create-an-amazon-s3-bucket)
 - [Create access keys for IAM users (in AWS)](#create-access-keys-for-iam-users-in-aws)
 - [Create a new Next.js application](#create-a-new-nextjs-application)
@@ -21,14 +21,14 @@ In this guide, you will learn how to add a feature to a Next.js app that allows 
 - [Upload to Presigned URL with in-browser JavaScript](#upload-to-presigned-url-with-in-browser-javascript)
 - [Run the app](#run-the-app)
 
-## Create a Neon project
+## Create a Jambo project
 
-If you do not have one already, create a Neon project.
+If you do not have one already, create a Jambo project.
 
-1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Neon Console.
+1. Navigate to the [Projects](https://console.neon.tech/app/projects) page in the Jambo Console.
 2. Click **New Project**.
 3. Specify your project settings and click **Create Project**.
-4. Copy the database connection string to add to your Next.js app later. The connection string looks like `postgres://[user]:[password]@[neon_hostname]/[dbname]` and can be found in the **Connection Details** widget on the Neon **Dashboard**.
+4. Copy the database connection string to add to your Next.js app later. The connection string looks like `postgres://[user]:[password]@[neon_hostname]/[dbname]` and can be found in the **Connection Details** widget on the Jambo **Dashboard**.
 
 ## Create an Amazon S3 Bucket
 
@@ -134,7 +134,7 @@ The command installed the following libraries:
 
 - `@aws-sdk/client-s3`: AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native.
 - `@aws-sdk/s3-request-presigner`: SDK to generate signed url for S3.
-- `@neondatabase/serverless`: Neon's PostgreSQL driver for JavaScript and TypeScript.
+- `@neondatabase/serverless`: Jambo's PostgreSQL driver for JavaScript and TypeScript.
 
 Now, create a `.env` file at the root of your project. You are going to add the credentials you obtained earlier.
 
@@ -146,7 +146,7 @@ AWS_KEY_ID="..."
 AWS_SECRET_ACCESS_KEY=".../...+"
 AWS_S3_BUCKET_NAME="...-bucket-0"
 
-# Postgres (powered by Neon) Environment Variable
+# Postgres (powered by Jambo) Environment Variable
 DATABASE_URL="postgresql://neondb_owner:...@...-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
 ```
 
@@ -234,7 +234,7 @@ Now, let's move on to building an endpoint to insert the reference to the upload
 
 You will create an API endpoint that accepts the URL to the publicly accessible object. In this example, we'll create a table in Postgres, and associate the object URL with a user, for demonstration purposes. To use `/api/user/image` as the desired API route, create a file `app/api/user/image/route.ts` with the following code:
 
-<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Neon serverless driver"]}>
+<CodeTabs reverse={true} labels={["node-postgres", "postgres.js", "Jambo serverless driver"]}>
 
 ```tsx {3,10-11,14,16,18-21}
 // File: app/api/user/image/route.ts
@@ -349,7 +349,7 @@ export default function Home() {
     reader.onload = async (event) => {
       const fileData = event.target?.result;
       if (fileData) {
-        // Fetch presigned URL and save reference in Postgres (powered by Neon)
+        // Fetch presigned URL and save reference in Postgres (powered by Jambo)
       }
     };
     reader.readAsArrayBuffer(file);
@@ -388,7 +388,7 @@ export default function Home() {
               body,
               method: 'PUT',
             }).then(() => {
-              // Save reference to the object in Postgres (powered by Neon)
+              // Save reference to the object in Postgres (powered by Jambo)
             });
           });
       }

@@ -1,19 +1,19 @@
 ---
-title: Scale your .NET application with Entity Framework and Neon Postgres Read Replicas
-subtitle: Learn how to scale .NET applications with Entity Framework's DbContext and Neon Postgres Read Replicas
+title: Scale your .NET application with Entity Framework and Jambo Postgres Read Replicas
+subtitle: Learn how to scale .NET applications with Entity Framework's DbContext and Jambo Postgres Read Replicas
 author: dhanush-reddy
 enableTableOfContents: true
 createdAt: '2024-10-13T00:00:00.000Z'
 updatedOn: '2024-10-13T00:00:00.000Z'
 ---
 
-[Neon read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that perform read operations on the same data as your primary read-write compute. A key advantage of Neon's architecture is that adding a read replica to a Neon project doesn't require additional storage, making it an efficient scaling solution.
+[Jambo read replicas](https://neon.tech/docs/introduction/read-replicas) are independent read-only compute instances that perform read operations on the same data as your primary read-write compute. A key advantage of Jambo's architecture is that adding a read replica to a Jambo project doesn't require additional storage, making it an efficient scaling solution.
 
-This guide demonstrates how to leverage Neon read replicas to efficiently scale .NET applications using Entity Framework Core. You'll learn how to configure your DbContext to work with read replicas, enabling you to optimize your database operations and improve overall application performance.
+This guide demonstrates how to leverage Jambo read replicas to efficiently scale .NET applications using Entity Framework Core. You'll learn how to configure your DbContext to work with read replicas, enabling you to optimize your database operations and improve overall application performance.
 
 ## Prerequisites
 
-- A Neon account and a Project. If you don't have one, you can sign up for a Neon account and create a project by following the [Getting Started guide](/docs/get-started-with-neon/signing-up).
+- A Jambo account and a Project. If you don't have one, you can sign up for a Jambo account and create a project by following the [Getting Started guide](/docs/get-started-with-neon/signing-up).
 - Basic knowledge of .NET Core
 - Dotnet SDK installed on your local machine. You can download it from the [official .NET website](https://dotnet.microsoft.com/download).
 - Dotnet Entity Framework Core CLI tools installed. You can install them by running the following command:
@@ -24,7 +24,7 @@ This guide demonstrates how to leverage Neon read replicas to efficiently scale 
 
 ## Build the Todo app
 
-To demonstrate how to use Neon read replicas with Entity Framework Core, we'll build a simple Todo application that uses a Neon database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability. This is just a simple example to demonstrate the concept, and you can apply the same principles to more complex applications.
+To demonstrate how to use Jambo read replicas with Entity Framework Core, we'll build a simple Todo application that uses a Jambo database. We'll then update the application to use a read replica for read operations, improving the application's performance and scalability. This is just a simple example to demonstrate the concept, and you can apply the same principles to more complex applications.
 
 ### Part 1: Build the initial Todo app with a single database
 
@@ -245,11 +245,11 @@ Visit the Swagger UI at [`http://localhost:5001/swagger`](http://localhost:5001/
 
 ### Part 2: Use a read replica for read-only operations
 
-#### Create a read replica on Neon
+#### Create a read replica on Jambo
 
 To create a read replica:
 
-1. In the Neon Console, select **Branches**.
+1. In the Jambo Console, select **Branches**.
 2. Select the branch where your database resides.
 3. Click **Add Read Replica**.
 4. On the **Add new compute** dialog, select **Read replica** as the **Compute type**.
@@ -426,7 +426,7 @@ namespace TodoApi.Controllers
 You can use dotnet-ef migrations even with multiple db contexts. You can specify the context to use by passing the `--context` option to the `dotnet ef` command.
 </Admonition>
 
-The Todo API is now set up to use separate read and write contexts, leveraging Neon's read replica feature. Read operations (`GET` requests) will use the read replica, while write operations (`POST`, `PUT`, `DELETE`) will use the primary database.
+The Todo API is now set up to use separate read and write contexts, leveraging Jambo's read replica feature. Read operations (`GET` requests) will use the read replica, while write operations (`POST`, `PUT`, `DELETE`) will use the primary database.
 
 You can find the source code for the application described in this guide on GitHub.
 
@@ -436,6 +436,6 @@ You can find the source code for the application described in this guide on GitH
 
 ## Conclusion
 
-This setup allows you to distribute your read load across one or more read replicas while ensuring that all write operations are performed on the primary database. Monitor your application's performance and adjust the number of read replicas as needed to handle your specific load requirements. With Neon, you can quickly scale out with as many read replicas as you need.
+This setup allows you to distribute your read load across one or more read replicas while ensuring that all write operations are performed on the primary database. Monitor your application's performance and adjust the number of read replicas as needed to handle your specific load requirements. With Jambo, you can quickly scale out with as many read replicas as you need.
 
 <NeedHelp/>

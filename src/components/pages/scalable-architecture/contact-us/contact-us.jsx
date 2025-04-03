@@ -23,7 +23,7 @@ const logos = [
 
 const testimonial = {
   quote:
-    'We’ve been able to manage 300K+ Postgres databases via the Neon API. It saved us a tremendous amount of time and engineering effort.',
+    'We’ve been able to manage 300K+ Postgres databases via the Jambo API. It saved us a tremendous amount of time and engineering effort.',
   name: 'Himanshu Bhandoh',
   position: 'Software Engineer at Retool',
 };
@@ -42,7 +42,7 @@ const ContactUs = () => (
         Contact Us
       </Heading>
       <p className="col-span-5 col-start-1 mt-3 text-lg font-light leading-snug tracking-[0.008em] text-gray-new-80 xl:mt-2.5 lg:order-2 lg:col-span-12 lg:mx-auto lg:max-w-[488px] lg:text-center lg:text-base md:max-w-full xs:text-left">
-        Reach out to the Neon team to ask about your own use case. Build and scale your
+        Reach out to the Jambo team to ask about your own use case. Build and scale your
         database-per-user architecture.
       </p>
       <Testimonial

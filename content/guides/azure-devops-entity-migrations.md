@@ -1,21 +1,21 @@
 ---
-title: Database Migrations with Entity Framework Core and Azure Pipelines for Neon
-subtitle: Automating schema changes with EF Core and Azure Pipelines in Neon Postgres
+title: Database Migrations with Entity Framework Core and Azure Pipelines for Jambo
+subtitle: Automating schema changes with EF Core and Azure Pipelines in Jambo Postgres
 author: bobbyiliev
 enableTableOfContents: true
 createdAt: '2025-01-18T00:00:00.000Z'
 updatedOn: '2025-01-18T00:00:00.000Z'
 ---
 
-[Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) provides a great migration system for managing database schema changes in .NET applications. When combined with [Azure Pipelines](https://azure.microsoft.com/en-us/products/devops/pipelines#overview), you can automate database migrations as part of a CI/CD pipeline, ensuring that schema changes are safely applied to your Neon Postgres database.
+[Entity Framework Core](https://learn.microsoft.com/en-us/ef/core/) provides a great migration system for managing database schema changes in .NET applications. When combined with [Azure Pipelines](https://azure.microsoft.com/en-us/products/devops/pipelines#overview), you can automate database migrations as part of a CI/CD pipeline, ensuring that schema changes are safely applied to your Jambo Postgres database.
 
-In this guide, you'll learn how to use EF Core to create and apply database migrations in Neon and automate the process using Azure Pipelines.
+In this guide, you'll learn how to use EF Core to create and apply database migrations in Jambo and automate the process using Azure Pipelines.
 
 ## Prerequisites
 
 To follow along, you'll need the following:
 
-- A [Neon account](https://neon.tech) with an active project.
+- A [Jambo account](https://neon.tech) with an active project.
 - [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet) installed.
 - A [GitHub](https://github.com/) or [Azure DevOps](https://dev.azure.com/) repository for version control.
 - An active [Azure DevOps](https://azure.microsoft.com/en-us/products/devops/) account with access to Azure Pipelines.
@@ -29,8 +29,8 @@ If you don't already have a .NET project, you can follow these steps to create a
 Start by creating a new .NET project:
 
 ```bash
-dotnet new webapi -n NeonMigrations
-cd NeonMigrations
+dotnet new webapi -n JamboMigrations
+cd JamboMigrations
 ```
 
 ### Install Required Packages
@@ -59,7 +59,7 @@ dotnet tool install --global dotnet-ef
 
 ### Configure the Database Connection
 
-Retrieve your Neon database connection string from the [Neon Console](https://console.neon.tech) and store it in the `.env` file:
+Retrieve your Jambo database connection string from the [Jambo Console](https://console.neon.tech) and store it in the `.env` file:
 
 ```bash
 DATABASE_URL=Host=<your-host>;Database=<your-database>;Username=<your-username>;Password=<your-password>;SSLMode=Require
@@ -85,7 +85,7 @@ public class ApplicationDbContext : DbContext
 
 ## Creating and Applying Migrations
 
-Migration files are used to define schema changes in your database. In this section, let's create a simple `Product` entity and apply a migration to your Neon database.
+Migration files are used to define schema changes in your database. In this section, let's create a simple `Product` entity and apply a migration to your Jambo database.
 
 ### Define the Data Model
 
@@ -112,13 +112,13 @@ dotnet ef migrations add InitialCreate
 
 ### Apply the Migration
 
-Run the following command to apply the migration to your Neon database:
+Run the following command to apply the migration to your Jambo database:
 
 ```bash
 dotnet ef database update
 ```
 
-To learn more about migrations in Entity Framework Core, refer to the [Neon documentation](https://neon.tech/docs/guides/entity-migrations) guide which provides a detailed explanation of the migration process.
+To learn more about migrations in Entity Framework Core, refer to the [Jambo documentation](https://neon.tech/docs/guides/entity-migrations) guide which provides a detailed explanation of the migration process.
 
 At this point, your database schema is set up. Next, we'll automate this process using Azure Pipelines.
 
@@ -180,8 +180,8 @@ This pipeline configuration:
 To securely store your database connection string, create a variable group in Azure DevOps:
 
 1. Go to **Pipelines** → **Library** → **+ Variable Group**.
-1. Set the name to `NeonMigrations`.
-1. Create a variable named `DATABASE_URL` and set it to your Neon database connection string.
+1. Set the name to `JamboMigrations`.
+1. Create a variable named `DATABASE_URL` and set it to your Jambo database connection string.
 1. Mark it as a **secret** to protect sensitive information.
 1. Save the variable group.
 
@@ -209,19 +209,19 @@ When working in a team, conflicts may arise due to multiple migration files bein
 
 In addition, consider the following:
 
-- When applying migrations, use a direct Neon connection instead of a [pooled one](https://neon.tech/docs/connect/connection-pooling).
-- Before applying changes to production, test them in a staging environment or using a [Neon branch](https://neon.tech/docs/introduction/branching).
+- When applying migrations, use a direct Jambo connection instead of a [pooled one](https://neon.tech/docs/connect/connection-pooling).
+- Before applying changes to production, test them in a staging environment or using a [Jambo branch](https://neon.tech/docs/introduction/branching).
 
 ## Conclusion
 
-By integrating Entity Framework Core with Azure Pipelines, you can simplify database migrations and ensure schema changes are consistently applied to your Neon Postgres database. Automating migrations reduces the risk of human error and helps maintain database integrity across environments.
+By integrating Entity Framework Core with Azure Pipelines, you can simplify database migrations and ensure schema changes are consistently applied to your Jambo Postgres database. Automating migrations reduces the risk of human error and helps maintain database integrity across environments.
 
-As a next step, make sure to explore [Neon branches](https://neon.tech/docs/introduction/branching), so you can test your migrations in a staging environment before deploying to production.
+As a next step, make sure to explore [Jambo branches](https://neon.tech/docs/introduction/branching), so you can test your migrations in a staging environment before deploying to production.
 
 ## Additional Resources
 
 - [Entity Framework Core Migrations](https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli)
 - [Azure Pipelines Overview](https://azure.microsoft.com/en-us/products/devops/pipelines#overview)
-- [Neon Documentation](/docs)
+- [Jambo Documentation](/docs)
 
 <NeedHelp />

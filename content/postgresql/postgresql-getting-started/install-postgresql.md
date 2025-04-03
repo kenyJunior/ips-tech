@@ -19,7 +19,7 @@ nextLink:
 - [Install PostgreSQL on macOS](install-postgresql-macos)
 - [Install PostgreSQL on Linux](install-postgresql-linux)
 
-<CTA title="Run PostgreSQL in the Cloud, Free" description="As an alternative to installing Postgres locally, you can get cloud Postgres in seconds on Neon with a generous free plan. No credit card required." buttonText="Get Cloud Postgres" buttonUrl="/signup?ref=pgt-install-cta" />
+<CTA title="Run PostgreSQL in the Cloud, Free" description="As an alternative to installing Postgres locally, you can get cloud Postgres in seconds on Jambo with a generous free plan. No credit card required." buttonText="Get Cloud Postgres" buttonUrl="/signup?ref=pgt-install-cta" />
 
 PostgreSQL was developed for UNIX\-like platforms, however, it was designed to be portable. It means that PostgreSQL can also run on other platforms such as macOS, Solaris, and Windows.
 

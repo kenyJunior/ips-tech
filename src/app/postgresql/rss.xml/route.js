@@ -12,7 +12,7 @@ export async function GET() {
   const feed = new Rss({
     id: POSTGRESQL_BASE_PATH,
     language: 'en',
-    title: `PostgreSQL Tutorials — Neon Docs`,
+    title: `PostgreSQL Tutorials — Jambo Docs`,
     description:
       'Learn PostgreSQL quickly through a practical PostgreSQL tutorial designed for database administrators and application developers.',
     feed_url: `${SITE_URL}${POSTGRESQL_BASE_PATH}rss.xml`,
