@@ -1,6 +1,3 @@
-<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3.9375 12.6875L5.6875 1.3125" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="round"/>
-<path d="M8.3125 12.6875L10.0625 1.3125" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="round"/>
-<path d="M3.0625 4.8125H11.8125" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="round"/>
-<path d="M2.1875 9.1875H10.9375" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="round"/>
-</svg>
+version https://git-lfs.github.com/spec/v1
+oid sha256:48faa8417b579b013301156c65f7dc2f12f99e9b6497a9faa18679160a08bb73
+size 614
