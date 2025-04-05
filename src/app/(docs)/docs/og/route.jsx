@@ -4,18 +4,13 @@ export const runtime = 'edge';
 export const preferredRegion = 'auto';
 
 export async function GET(request) {
-  const fontTitle = fetch(
-    new URL('../../../../fonts/esbuild/ESBuild-Medium.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const fontText = fetch(
-    new URL('../../../../fonts/inter/Inter-Regular.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const logo = fetch(
-    new URL('../../../../../public/images/og-image/logo.png', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const background = fetch(
-    new URL('../../../../../public/images/og-image/docs-background.jpg', import.meta.url)
-  ).then((res) => res.arrayBuffer());
+  // Chargement des polices depuis le dossier 'public/fonts'
+  const fontTitle = fetch('/fonts/esbuild/ESBuild-Medium.ttf').then((res) => res.arrayBuffer());
+  const fontText = fetch('/fonts/inter/Inter-Regular.ttf').then((res) => res.arrayBuffer());
+
+  // Chargement des images depuis le dossier 'public/images/og-image'
+  const logo = fetch('/images/og-image/logo.png').then((res) => res.arrayBuffer());
+  const background = fetch('/images/og-image/docs-background.jpg').then((res) => res.arrayBuffer());
 
   const [fontDataTitle, fontDataText, logoData, backgroundData] = await Promise.all([
     fontTitle,
