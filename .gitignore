@@ -106,3 +106,7 @@ package-lock.json
 *.bak
 *.log
 *.log.*
+.vercel
+
+# Local Netlify folder
+.netlify

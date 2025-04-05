@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "dev:build": "next build",
     "postbuild": "node src/scripts/copy-docs-md.js && next-sitemap --config next-sitemap.config.js && next-sitemap --config next-sitemap-postgres.config.js",
     "start": "next start",

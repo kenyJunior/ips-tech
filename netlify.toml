@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"  # Commande pour la construction de l'application Next.js
+  functions = "netlify/functions"  # Dossier pour les fonctions serverless (si utilisé)
+  publish = ".next"  # Dossier de publication où Next.js stocke le build
+
+  ## Décommenter pour utiliser une redirection pour une SPA comme create-react-app (pas nécessaire pour Next.js)
+  #[[redirects]]
+  #  from = "/*"
+  #  to = "/index.html"
+  #  status = 200
+
+  ## (optionnel) Paramètres pour Netlify Dev
+  #[dev]
+  #  command = "yarn start"  # Commande pour démarrer ton serveur de développement
+  #  port = 3000  # Port que le serveur de dev écoute
+  #  publish = "dist"  # Dossier contenant le contenu statique pour le fichier _redirect
+
+  ## Plus d'infos sur la configuration de ce fichier : https://ntl.fyi/file-based-build-config
