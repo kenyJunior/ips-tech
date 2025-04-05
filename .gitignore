@@ -45,7 +45,7 @@ typings/
 # Optional eslint cache
 .eslintcache
 
-# Optional eslint cache
+# Optional stylelint cache
 .stylelintcache
 
 # Optional REPL history
@@ -61,7 +61,7 @@ typings/
 # next files
 .next/
 
-# ignore local sitemap
+# Ignore local sitemaps
 public/sitemap.xml
 public/sitemap-0.xml
 public/sitemap-postgres.xml
@@ -78,12 +78,26 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
+# IDE/Editor files
 .idea/
 .vscode/
-content/docs/shared-content/NewPricing
-public/md
 
-content/docs/guides/time_travel_tutorial_before-1.png
+# Ignore videos (trop volumineux)
+public/videos/pages/
+
+# Prisma files
+.prisma/
+
+# Git LFS files
+.git/lfs/
+
+# Ignore heavy Webpack and Next.js cache files
+*.pack
+*.pack.gz
+node_modules/@next/swc-darwin-x64/
+node_modules/@prisma/engines/
+node_modules/.prisma/
+
+# Ignore npm lock files if you're using yarn
 yarn.lock
 package-lock.json
-node_modules
