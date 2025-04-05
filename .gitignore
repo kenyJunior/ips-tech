@@ -101,3 +101,8 @@ node_modules/.prisma/
 # Ignore npm lock files if you're using yarn
 yarn.lock
 package-lock.json
+
+# Ignore logs and backup files
+*.bak
+*.log
+*.log.*
