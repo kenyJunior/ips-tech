@@ -4,7 +4,6 @@ import NextLink from 'next/link';
 import PropTypes from 'prop-types';
 import React, { forwardRef } from 'react';
 
-import ArrowRightIcon from 'icons/arrow-right.inline.svg';
 import ExternalIcon from 'icons/external.inline.svg';
 import GlossaryIcon from 'icons/glossary.inline.svg';
 
@@ -77,15 +76,7 @@ const Link = forwardRef(
 
     const Icon = icons[icon];
 
-    const content = (
-      <>
-        {withArrow ? <span>{children}</span> : children}
-        {withArrow && (
-          <ArrowRightIcon className="-mb-px shrink-0 transition-transform duration-200 group-hover:translate-x-[3px]" />
-        )}
-        {Icon && <Icon className="-mb-px shrink-0" />}
-      </>
-    );
+    const content = <>{Icon && <Icon className="-mb-px shrink-0" />}</>;
     // TODO: remove this when we upgrade to latest version of Next.js
     if (to?.includes('#')) {
       return (

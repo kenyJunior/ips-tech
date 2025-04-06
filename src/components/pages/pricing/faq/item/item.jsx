@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import Link from 'components/shared/link/link';
-import ArrowIcon from 'icons/arrow-right-rounded.inline.svg';
 import sendGtagEvent from 'utils/send-gtag-event';
 
 const variantsAnimation = {
@@ -53,13 +52,6 @@ const Item = ({
         aria-controls={index}
         onClick={handleOpen}
       >
-        <ArrowIcon
-          className={clsx(
-            'shrink-0 transition-[fill,transform] duration-200',
-            isOpen ? 'rotate-90 fill-green-45 text-black-new' : 'text-green-45'
-          )}
-          aria-hidden
-        />
         <h3 className="text-[22px] font-medium leading-tight tracking-tight xl:text-xl md:text-lg">
           {question}
         </h3>

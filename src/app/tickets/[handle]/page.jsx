@@ -7,7 +7,6 @@ import Layout from 'components/shared/layout';
 import Link from 'components/shared/link';
 import LINKS from 'constants/links';
 import SEO_DATA from 'constants/seo-data';
-import ArrowLeftIcon from 'icons/arrow-left-thin.inline.svg';
 import buildOgImageUrl from 'utils/build-og-image-url';
 import getMetadata from 'utils/get-metadata';
 import prisma from 'utils/prisma';
@@ -45,7 +44,6 @@ const TicketPage = async ({ params }) => {
               to={LINKS.stage}
             >
               <span>Watch the event live</span>
-              <ArrowLeftIcon className="ml-2.5 h-auto w-[18px] rotate-180" />
             </Link>
 
             <Button

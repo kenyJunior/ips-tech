@@ -2,7 +2,6 @@ import clsx from 'clsx';
 
 import Container from 'components/shared/container';
 import LINKS from 'constants/links';
-import ArrowRightIcon from 'icons/arrow-right.inline.svg';
 import digitImage from 'images/pages/home/trusted/digit.jpg';
 import elephantImage from 'images/pages/home/trusted/goat.jpg';
 import socMdImage from 'images/pages/home/trusted/goat2.jpg';
@@ -38,7 +37,6 @@ const Trusted = () => (
         >
           <span className="mx-auto flex items-center font-medium text-white transition-colors duration-200 group-hover:text-green-45">
             ips technologies
-            <ArrowRightIcon className="-mb-px ml-1.5 shrink-0 transition-transform duration-200 group-hover:translate-x-[3px]" />
           </span>
         </Card>
         <Card
@@ -70,7 +68,6 @@ const Trusted = () => (
         >
           <span className="flex items-end font-medium text-white transition-colors duration-200 group-hover:text-green-45">
             <span>Automatisation</span>
-            <ArrowRightIcon className="relative -left-5 -top-2 shrink-0 transition-transform duration-200 group-hover:translate-x-[3px] xl:-left-1 xl:-top-1 lg:-top-1.5 lg:left-1.5 sm:-top-1" />
           </span>
         </Card>
       </div>

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Button from 'components/shared/button';
 import Link from 'components/shared/link';
-import ArrowIcon from 'icons/arrow-right.inline.svg';
 import PlayIcon from 'icons/play.inline.svg';
 
 const ItemsList = ({
@@ -60,7 +59,6 @@ const ItemsList = ({
                 </p>
                 <span className="mt-3.5 inline-flex items-center space-x-2 font-semibold leading-none lg:mt-2">
                   <span>{linkText}</span>
-                  <ArrowIcon className="h-auto w-[18px] transition-transform duration-200 group-hover:translate-x-1" />
                 </span>
               </Link>
             ) : (
