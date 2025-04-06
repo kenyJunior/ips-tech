@@ -1,3 +1,4 @@
+/*
 import { notFound } from 'next/navigation';
 
 import GuideCard from 'components/pages/guides/guide-card';
@@ -33,3 +34,4 @@ const GuidesPage = async () => {
 };
 
 export default GuidesPage;
+*/

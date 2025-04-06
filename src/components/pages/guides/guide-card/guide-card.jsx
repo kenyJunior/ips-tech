@@ -6,8 +6,6 @@ import Link from 'components/shared/link/link';
 import LINKS from 'constants/links';
 import getFormattedDate from 'utils/get-formatted-date';
 
-import ArrowIcon from './images/arrow.inline.svg';
-
 const GuideCard = ({ title, subtitle, author, createdAt, slug }) => {
   const formattedDate = getFormattedDate(createdAt);
 
@@ -51,7 +49,6 @@ const GuideCard = ({ title, subtitle, author, createdAt, slug }) => {
             <span className="text-[15px] leading-tight tracking-extra-tight md:text-sm">
               Read guide
             </span>
-            <ArrowIcon className="shrink-0" />
           </div>
         </div>
       </Link>
