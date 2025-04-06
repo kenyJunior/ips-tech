@@ -1,15 +1,8 @@
 {
-    "functions": {
-      "api/cron/my-task.js": {
-        "memory": 128,
-        "maxDuration": 60
-      }
-    },
     "crons": [
       {
-        "path": "/api/cron/my-task",
-        "schedule": "0 0 * * *" 
+        "path": "/api/clean-up-postgres",
+        "schedule": "0 0 * * *"
       }
     ]
   }
-  
