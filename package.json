@@ -27,6 +27,12 @@
     "studio": "npx prisma studio",
     "postinstall": "prisma generate"
   },
+  "lint-staged": {
+  "*.svg": [
+    "svgo --config=node_modules/svgo-config.json",
+    "git add"
+  ]
+},
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@headlessui/tailwindcss": "^0.2.0",
@@ -119,8 +125,8 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
     "prettier": "^3.5.3",

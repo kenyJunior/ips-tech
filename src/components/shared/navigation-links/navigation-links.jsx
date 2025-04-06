@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import Link from 'components/shared/link';
 
-import ArrowIcon from './images/arrow.inline.svg';
-
 const getUrl = (slug, basePath) => {
   if (slug.startsWith('http')) {
     return slug;
@@ -27,7 +25,6 @@ const NavigationLinks = ({ previousLink = null, nextLink = null, basePath }) => 
             nextLink?.title && nextLink?.slug && 'sm:hidden'
           )}
         >
-          <ArrowIcon className="shrink-0 rotate-180 text-gray-new-70 transition-colors duration-200 group-hover:text-secondary-8 dark:group-hover:text-primary-1 sm:block" />
           <div className="flex flex-col items-end">
             <span className="text-sm font-normal text-gray-new-40 dark:text-gray-new-90">
               Previous

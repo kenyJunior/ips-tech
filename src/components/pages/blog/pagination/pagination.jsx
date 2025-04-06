@@ -7,8 +7,6 @@ import ReactPaginate from 'react-paginate';
 import Container from 'components/shared/container';
 import { BLOG_BASE_PATH } from 'constants/blog';
 
-import Arrow from './images/pagination-arrow.inline.svg';
-
 const Pagination = ({ currentPageIndex, pageCount }) => {
   const router = useRouter();
   const pageLinkAndBreakLinkClassName =

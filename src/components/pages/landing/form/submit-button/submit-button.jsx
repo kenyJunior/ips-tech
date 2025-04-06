@@ -1,11 +1,9 @@
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
+import FormCheckIcon from 'icons/subscription-form-check.inline.svg';
 import PropTypes from 'prop-types';
 
 import { FORM_STATES } from 'constants/forms';
-import FormCheckIcon from 'icons/subscription-form-check.inline.svg';
-
-import SendIcon from './images/send.inline.svg';
 
 const appearAndExitAnimationVariants = {
   initial: { opacity: 0 },
@@ -34,7 +32,6 @@ const SubmitButton = ({ formState, text, simpleMode = false, isAzurePage = false
           aria-label={text}
           variants={appearAndExitAnimationVariants}
         >
-          {simpleMode && <SendIcon className="hidden h-6 w-6 md:block" />}
           <span className={clsx(simpleMode && 'md:hidden')}>{text}</span>
         </m.button>
       )}

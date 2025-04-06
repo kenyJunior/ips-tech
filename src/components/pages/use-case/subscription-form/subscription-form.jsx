@@ -2,6 +2,7 @@
 
 import clsx from 'clsx';
 import { AnimatePresence, LazyMotion, domAnimation, m } from 'framer-motion';
+import CheckIcon from 'icons/subscription-form-check.inline.svg';
 import Image from 'next/image';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -10,12 +11,10 @@ import { useCookie, useLocalStorage, useLocation } from 'react-use';
 import BgDecor from 'components/pages/use-case/bg-decor';
 import { HUBSPOT_USE_CASES_FORM_ID } from 'constants/forms';
 import ErrorIcon from 'icons/error.inline.svg';
-import CheckIcon from 'icons/subscription-form-check.inline.svg';
 import { doNowOrAfterSomeTime, emailRegexp, sendHubspotFormData } from 'utils/forms';
 
 import blueGlow from './images/blue-glow.svg';
 import greenGlow from './images/green-glow.svg';
-import SendIcon from './images/send.inline.svg';
 
 const STATES = {
   DEFAULT: 'default',
@@ -142,7 +141,6 @@ const SubscriptionForm = ({ title, description }) => {
                   exit="exit"
                 >
                   <span className="sm:hidden">Reach out to us</span>
-                  <SendIcon className="hidden h-6 w-6 sm:block" />
                 </m.button>
               )}
               {formState === STATES.LOADING && (

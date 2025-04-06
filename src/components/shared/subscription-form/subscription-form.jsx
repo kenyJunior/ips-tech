@@ -2,6 +2,8 @@
 
 import clsx from 'clsx';
 import { m, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import CheckIcon from 'icons/subscription-form-check.inline.svg';
+import ErrorIcon from 'icons/subscription-form-error.inline.svg';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import useCookie from 'react-use/lib/useCookie';
@@ -9,9 +11,6 @@ import useLocation from 'react-use/lib/useLocation';
 
 import Button from 'components/shared/button';
 import useLocalStorage from 'hooks/use-local-storage';
-import CheckIcon from 'icons/subscription-form-check.inline.svg';
-import ErrorIcon from 'icons/subscription-form-error.inline.svg';
-import SendIcon from 'icons/subscription-form-send.inline.svg';
 import { doNowOrAfterSomeTime, emailRegexp, sendHubspotFormData } from 'utils/forms';
 
 const appearAndExitAnimationVariants = {
@@ -176,7 +175,6 @@ const SubscriptionForm = ({
                 disabled={formState !== 'default'}
               >
                 <span className="md:sr-only">{submitButtonText}</span>
-                <SendIcon className="hidden md:ml-1.5 md:block" aria-hidden />
               </Button>
             </m.div>
           )}

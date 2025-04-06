@@ -1,3 +1,4 @@
+/*
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -59,7 +60,6 @@ import Puzzle from './images/puzzle.inline.svg';
 import Queries from './images/queries.inline.svg';
 import Refresh from './images/refresh.inline.svg';
 import Research from './images/research.inline.svg';
-import RespondArrow from './images/respond-arrow.inline.svg';
 import RowTable from './images/row-table.inline.svg';
 import ScaleUp from './images/scale-up.inline.svg';
 import Screen from './images/screen.inline.svg';
@@ -234,3 +234,4 @@ DetailIconCards.propTypes = {
 };
 
 export default DetailIconCards;
+*/
