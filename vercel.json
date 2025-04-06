@@ -1,8 +1,15 @@
 {
     "functions": {
       "api/cron/my-task.js": {
-        "schedule": "0 9 * * *"
+        "memory": 128,
+        "maxDuration": 60
       }
-    }
+    },
+    "crons": [
+      {
+        "path": "api/cron/my-task",
+        "schedule": "0 * * * *" 
+      }
+    ]
   }
   
