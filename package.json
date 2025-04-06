@@ -25,7 +25,8 @@
     "test": "npx cypress open",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@headlessui/react": "^2.1.2",

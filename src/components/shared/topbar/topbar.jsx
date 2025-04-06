@@ -11,14 +11,15 @@ const Topbar = async ({ isDarkTheme }) => {
         revalidate: 600, // 10 minutes
       },
     });
+
     const topbar = await response.json();
 
-    if (!topbar?.text || !topbar?.link) return null;
+    // Vérifie que le texte et le lien sont valides
+    if (!topbar?.text || !topbar?.link?.url) return null;
 
-    return <TopbarClient {...topbar} isDarkTheme={isDarkTheme} />;
+    return <TopbarClient text={topbar.text} link={topbar.link.url} isDarkTheme={isDarkTheme} />;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
+    console.error('Erreur lors de la récupération de la topbar :', error);
     return null;
   }
 };

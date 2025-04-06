@@ -3,7 +3,6 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 
-
 import Link from 'components/shared/link';
 import ChevronIcon from 'icons/chevron-down.inline.svg';
 import sendGtagEvent from 'utils/send-gtag-event';

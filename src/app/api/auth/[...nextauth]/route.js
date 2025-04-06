@@ -23,30 +23,36 @@ export const authOptions = {
   callbacks: {
     async session({ session, token }) {
       if (session?.user) {
-        session.colorSchema = token.colorSchema;
-        session.userId = token.uid;
-        session.githubHandle = token.githubHandle;
+        // Crée une copie du session et ajoute les propriétés
+        const updatedSession = { ...session };
+        updatedSession.colorSchema = token.colorSchema;
+        updatedSession.userId = token.uid;
+        updatedSession.githubHandle = token.githubHandle;
+        return updatedSession;
       }
       return session;
     },
     async jwt({ user, account, token, profile, trigger, session }) {
+      // Crée une copie du token et ajoute les propriétés
+      const updatedToken = { ...token };
+
       if (trigger === 'update' && session?.colorSchema) {
-        token.colorSchema = session.colorSchema;
+        updatedToken.colorSchema = session.colorSchema;
       }
 
       if (user) {
-        token.uid = user.id;
-        token.colorSchema = user.colorSchema;
+        updatedToken.uid = user.id;
+        updatedToken.colorSchema = user.colorSchema;
       }
 
       if (account) {
-        token.access_token = account.access_token;
+        updatedToken.access_token = account.access_token;
       }
       if (profile) {
-        token.githubHandle = profile.login;
+        updatedToken.githubHandle = profile.login;
       }
 
-      return token;
+      return updatedToken;
     },
   },
   session: {
