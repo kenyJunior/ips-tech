@@ -1,23 +1,6 @@
+/*
 import Container from 'components/shared/container';
 import Heading from 'components/shared/heading';
-
-import InstantIcon from './images/instant.inline.svg';
-import SeamlessIcon from './images/seamless.inline.svg';
-
-const items = [
-  {
-    icon: InstantIcon,
-    title: 'Instant branches',
-    description:
-      'Jambo’s copy-on-write technique makes branching instantaneous and cost-effective.',
-  },
-  {
-    icon: SeamlessIcon,
-    title: 'Seamless integration',
-    description:
-      'Integrate branching into your CI/CD pipeline using the <a href="https://api-docs.neon.tech/reference/getting-started-with-neon-api">Jambo API</a>.',
-  },
-];
 
 const BranchData = () => (
   <section className="branch-data safe-paddings bg-black-pure pb-32 pt-44 text-white 2xl:pb-28 2xl:pt-40 xl:pb-24 xl:pt-28 lg:pt-20 sm:pb-16">
@@ -44,3 +27,4 @@ const BranchData = () => (
 );
 
 export default BranchData;
+*/
