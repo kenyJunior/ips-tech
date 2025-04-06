@@ -5,8 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import ChevronIcon from './images/chevron.inline.svg';
-
 const sliderItemsAnimationProps = {
   initial: (direction) => ({
     opacity: 0,
@@ -72,7 +70,6 @@ const TestimonialsWrapper = ({ children }) => {
             setDirection('left');
           }}
         >
-          <ChevronIcon className="rotate-180" />
           <span className="sr-only">Prev</span>
         </button>
         <button
@@ -83,7 +80,6 @@ const TestimonialsWrapper = ({ children }) => {
             setDirection('right');
           }}
         >
-          <ChevronIcon />
           <span className="sr-only">Next</span>
         </button>
       </div>

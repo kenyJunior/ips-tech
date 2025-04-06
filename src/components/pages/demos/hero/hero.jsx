@@ -3,7 +3,6 @@ import Image from 'next/image';
 
 import Container from 'components/shared/container';
 import Link from 'components/shared/link';
-import ChevronIcon from 'icons/chevron.inline.svg';
 
 import databaseCopyIllustration from './images/database-copy.jpg';
 import provisioningIllustration from './images/provisioning.jpg';
@@ -98,7 +97,6 @@ const Hero = () => (
                       target={demoLink.startsWith('http') ? '_blank' : '_self'}
                       rel={demoLink.startsWith('http') ? 'noopener noreferrer' : ''}
                     >
-                      <ChevronIcon className="mr-2" />
                       Live demo
                     </Link>
                   )}

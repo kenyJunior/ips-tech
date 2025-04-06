@@ -2,7 +2,6 @@ import clsx from 'clsx';
 
 import Container from 'components/shared/container';
 import Link from 'components/shared/link';
-import ChevronIcon from 'icons/chevron.inline.svg';
 
 const items = [
   {
@@ -250,7 +249,6 @@ const DemoList = () => (
                         target={demoLink.startsWith('http') ? '_blank' : '_self'}
                         rel={demoLink.startsWith('http') ? 'noopener noreferrer' : ''}
                       >
-                        <ChevronIcon className="mr-2" />
                         Live demo
                       </Link>
                     )}

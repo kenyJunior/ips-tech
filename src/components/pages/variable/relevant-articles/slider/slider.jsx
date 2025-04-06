@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Link from 'components/shared/link';
-import ChevronRight from 'icons/chevron-right.inline.svg';
 
 import 'swiper/css';
 
@@ -22,9 +21,6 @@ const Button = ({ prev = false, disabled, handleClick }) => (
     onClick={handleClick}
   >
     <span className="sr-only">{prev ? 'prev slide' : 'next slide'}</span>
-    <ChevronRight
-      className={clsx('w-2.5 text-inherit md:w-2', prev ? '-ml-0.5 rotate-180' : 'ml-0.5')}
-    />
   </button>
 );
 

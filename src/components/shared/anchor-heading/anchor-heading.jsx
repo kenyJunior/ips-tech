@@ -1,8 +1,6 @@
 import clsx from 'clsx';
 import slugify from 'slugify';
 
-import HashIcon from './images/hash.inline.svg';
-
 const extractText = (children) => {
   if (typeof children === 'string') {
     return children;
@@ -46,11 +44,7 @@ const AnchorHeading = (Tag) => {
           href={`#${id}`}
           tabIndex="-1"
           aria-hidden
-        >
-          <HashIcon
-            className={clsx(Tag === 'h2' && 'w-3.5', Tag === 'h3' && 'w-3', 'text-green-45')}
-          />
-        </a>
+         />
         {children}
       </Tag>
     );

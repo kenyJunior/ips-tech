@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 
 import useClickOutside from 'hooks/use-click-outside';
-import CloseIcon from 'icons/close.inline.svg';
 
 import backgroundGradient from './images/bg-gradient-modal.jpg';
 
@@ -29,9 +28,7 @@ const VideoModal = ({ isOpenModal, setIsOpenModal, title, description, videoId }
           className="absolute -right-9 top-[84px] md:-top-9 md:right-0"
           type="button"
           onClick={() => setIsOpenModal(false)}
-        >
-          <CloseIcon className="h-5 w-5 text-white opacity-20" />
-        </button>
+         />
         <h3 className="text-3xl font-bold leading-tight">{title}</h3>
         <p className="mt-0.5">{description}</p>
         <div className="relative mt-5">

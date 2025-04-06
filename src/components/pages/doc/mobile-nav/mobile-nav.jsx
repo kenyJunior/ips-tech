@@ -11,7 +11,6 @@ import { HOME_MENU_ITEM } from 'constants/docs';
 import useBodyLockScroll from 'hooks/use-body-lock-scroll';
 import useClickOutside from 'hooks/use-click-outside';
 import useWindowSize from 'hooks/use-window-size';
-import ChevronRight from 'icons/chevron-right.inline.svg';
 
 import Menu from '../menu';
 
@@ -134,13 +133,6 @@ const MobileNav = ({ className = null, sidebar, slug, basePath, customName, cust
         onClick={toggleMenu}
       >
         <span className="text-ellipsis">{customName || 'Documentation'} menu</span>
-        <ChevronRight
-          className={clsx(
-            'absolute right-[37px] top-1/2 -translate-y-1/2 rotate-90 transition-transform duration-200 md:right-5',
-            isOpen && 'rotate-[270deg]'
-          )}
-          aria-hidden
-        />
       </button>
       <LazyMotion features={domAnimation}>
         <m.div

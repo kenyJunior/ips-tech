@@ -12,7 +12,6 @@ import useHubspotForm from 'hooks/use-hubspot-form';
 
 import 'styles/hubspot-form.css';
 import 'styles/calendly-widget.css';
-import CloseIcon from './images/close.inline.svg';
 
 const calendlyURL = 'https://calendly.com/d/ckxx-b4h-69y/neon-solutions-engineering';
 const hubspotFormID = '26f1ff16-e3ab-4adf-b09f-910f130637b0';
@@ -119,9 +118,7 @@ const Apply = () => {
                   aria-label="Close"
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                >
-                  <CloseIcon className="h-4 w-4 text-gray-new-60 dark:text-gray-new-50" />
-                </button>
+                 />
               </Dialog.Close>
             </div>
           </Dialog.Content>
