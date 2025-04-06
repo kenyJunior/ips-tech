@@ -8,9 +8,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import useOnClickOutside from 'hooks/use-click-outside';
 
-import ChevronsIcon from '../images/chevrons.inline.svg';
-import ThemeIcon from '../images/switcher.inline.svg';
-
 const ANIMATION_DURATION = 0.2;
 
 const dropdownVariants = {
@@ -39,7 +36,6 @@ const itemVariants = {
 
 const ActiveThemeIcon = ({ theme = '' }) => {
   if (theme === 'system') {
-    return <ThemeIcon />;
   }
   return (
     <span
@@ -123,7 +119,6 @@ const ThemeSelect = ({ className = null }) => {
         >
           <ActiveThemeIcon theme={theme} />
           <span className="ml-2.5 capitalize">{theme}</span>
-          <ChevronsIcon className="ml-auto text-gray-new-50 dark:text-gray-new-80" />
         </button>
       </div>
     </div>

@@ -1,10 +1,10 @@
+/*
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 import Container from 'components/shared/container/container';
 
-import AdobeLogo from './images/adobe.inline.svg';
-import AKQALogo from './images/akqa.inline.svg';
+
 import AlbertsonsLogo from './images/albertsons.inline.svg';
 import BCGLogo from './images/bcg.inline.svg';
 import BranchLogo from './images/branch.inline.svg';
@@ -34,8 +34,6 @@ import WundergraphLogo from './images/wundergraph.inline.svg';
 import ZimmerBioLogo from './images/zimmer-biomet.inline.svg';
 
 const allLogos = {
-  adobe: AdobeLogo,
-  akqa: AKQALogo,
   albertsons: AlbertsonsLogo,
   bcg: BCGLogo,
   branch: BranchLogo,
@@ -118,3 +116,4 @@ Logos.propTypes = {
 };
 
 export default Logos;
+*/
